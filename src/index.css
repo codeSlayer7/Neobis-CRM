@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    :root {
+        --color-text-base: hsl(88, 100%, 32%);
+        --color-fill: hsl(88, 27%, 25%);
+    }
+}
