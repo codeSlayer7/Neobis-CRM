@@ -7,18 +7,23 @@ import profile from '../../icons/profile-circle.svg';
 
 function Navbar() {
   return (
-    <div className='flex justify-between items-center h-16 border border-inherit rounded-sm'>
-      <div className='flex ml-6 w-56 justify-between'>
+    <div className="flex h-16 items-center justify-between rounded-sm border border-inherit">
+      <div className="ml-6 flex w-56 justify-between">
         <img src={logo} alt="#" />
         <img src={arrow} alt="#" />
       </div>
-      <div className="w-[420px] flex items-center justify-between">
-        <input className="w-[420px] absolute placeholder:regular placeholder:text-slate-400 block bg-white  border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="Поиск..." type="text" name="search"/>
+      <div className="flex w-[420px] items-center justify-between">
+        <input
+          className="placeholder:regular absolute block w-[420px] rounded-md border  border-slate-300 bg-white py-2 pl-9 pr-3 shadow-sm placeholder:text-slate-400 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
+          placeholder="Поиск..."
+          type="text"
+          name="search"
+        />
         <span className="relative left-[350px]">
           <img src={search} alt="#" />
         </span>
       </div>
-      <div className="flex w-56 justify-around mr-6">
+      <div className="mr-6 flex w-56 justify-around">
         <img src={notification} alt="#" />
         <img src={profile} alt="#" />
       </div>
