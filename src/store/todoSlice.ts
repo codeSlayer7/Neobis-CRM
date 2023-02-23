@@ -1,43 +1,58 @@
-import { createSlice, current, PayloadAction } from '@reduxjs/toolkit';
-
-type ItemBack = {
-  id: string;
-  content: string;
-};
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ItemBack, Column, DragResult } from '../interfaces';
+import { CardStatus } from '../interfaces/enum';
 
 const itemsFromBackend: ItemBack[] = [
-  { id: 'dszfd111', content: 'First task' },
-  { id: '22samfs2', content: 'Second task' },
-  { id: '33ADSPOSAXJO3', content: 'Third task' },
-  { id: '44FDPOPOKPO44', content: 'Fourth task' },
-  { id: '55AIXDPDOKPAOKPOK55', content: 'Fifth task' },
+  {
+    name: 'bakyt5 abykanov',
+    time: '24 hours ago',
+    specific: 'Frontend React',
+    phoneNumber: '+996 550 51 80 40',
+    status: CardStatus.WaitCall,
+    id: 0.5980302055849753,
+  },
+  {
+    name: 'bakyt4 abykanov',
+    time: '24 hours ago',
+    specific: 'Frontend React',
+    phoneNumber: '+996 550 51 80 40',
+    status: CardStatus.WaitCall,
+    id: 0.31199698824253685,
+  },
+  {
+    name: 'bakyt2 abykanov',
+    time: '24 hours ago',
+    specific: 'Frontend React',
+    phoneNumber: '+996 550 51 80 40',
+    status: CardStatus.WaitCall,
+    id: 1.3010947237842845,
+  },
+  {
+    name: 'bakyt1 abykansfov',
+    time: '24 hours ago',
+    specific: 'Frontend React',
+    phoneNumber: '+996 550 51 80 40',
+    status: CardStatus.WaitCall,
+    id: 1.4348247561641614,
+  },
 ];
 
-type Column = {
-  columns: {
-    [key: string]: {
-      name: string;
-      items: ItemBack[] | [];
-    };
-  };
-};
-
-const initialState: any = {
+const initialState: Column = {
   columns: {
     aa: {
-      name: 'Requested',
+      name: 'Ждет звонка',
       items: itemsFromBackend,
     },
     bb: {
-      name: 'To do',
+      name: 'Звонок совершен',
       items: [],
     },
     cc: {
-      name: 'In Progress',
+      name: 'Записан на проб.урок',
       items: [],
     },
     dd: {
-      name: 'Done',
+      name: 'Посетил проб.урок',
       items: [],
     },
   },
@@ -47,22 +62,35 @@ const todoSlice = createSlice({
   name: 'trello',
   initialState,
   reducers: {
-    moveTask: (state, action: any): any => {
-      console.log(current(state.columns));
-      console.log(action);
+    // fetchMockData: (state, action) {
+    //   console.log(action.payload);
+    //   console.log(current(state));
 
-      const { source, destination } = action.payload;
-      console.log(source, destination);
+    //   action.payload.itemsFromBackend.forEach((el: ItemBack): any => {
+    //     if (el.status === CardStatus.WaitCall) {
+    //       state.columns[ColumnName.WaitCall].items.push(el);
+    //     } else if (el.status === CardStatus.PassedTrialLesson) {
+    //       state.columns[ColumnName.PassedTrialLesson].items.push(el);
+    //     } else if (el.status === CardStatus.TrialLesson) {
+    //       state.columns[ColumnName.TrialLesson].items.push(el);
+    //     } else {
+    //       state.columns[ColumnName.CallEnded].items.push(el);
+    //     }
+    //   });
+    // },
+    moveTask(state, action: PayloadAction<DragResult>) {
+      const { source, destination, cardStatus } = action.payload;
 
-      if (source.droppableId && destination.droppableId) {
+      if (source.droppableId && destination.droppableId && cardStatus) {
         const sourceColumn = state.columns[source.droppableId];
         const destColumn = state.columns[destination.droppableId];
-        console.log(current(destColumn));
 
         const sourceItems = [...sourceColumn.items];
         const destItems = [...destColumn.items];
         const [removed] = sourceItems.splice(source.index, 1);
-        destItems.splice(destination.index, 0, removed);
+        const removed1 = { ...removed, status: cardStatus.name };
+        destItems.splice(destination.index, 0, removed1);
+
         return {
           ...state,
           columns: {
@@ -78,8 +106,10 @@ const todoSlice = createSlice({
           },
         };
       }
+      return state;
     },
-    sort: (state, action) => {
+
+    sort(state, action: PayloadAction<DragResult>) {
       const { source, destination } = action.payload;
 
       if (source && destination) {
@@ -98,6 +128,7 @@ const todoSlice = createSlice({
           },
         };
       }
+      return state;
     },
   },
 });
