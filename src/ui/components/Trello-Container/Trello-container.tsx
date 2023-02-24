@@ -4,6 +4,7 @@ import TrelloColumn from './Trello-card/TrelloColumn';
 import TrelloCard from './Trello-card/TrelloCard/TrelloCard';
 import { moveTask, sort } from '../../../store/todoSlice';
 import { ColumnName, CardStatus } from '../../../interfaces/enum';
+import PageTitle from './PageTitle';
 
 function TrelloContainer() {
   const dispatch = useAppDispatch();
@@ -42,48 +43,59 @@ function TrelloContainer() {
   };
 
   return (
-    <div style={{ display: 'flex', height: '100%', width: '85%' }}>
-      <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
-        {Object.entries(columns).map(([columnId, column]) => {
-          return (
-            <TrelloColumn
-              key={columnId}
-              columnTitle={column.name}
-              count={column.items.length}
-            >
-              <Droppable droppableId={columnId} key={columnId}>
-                {(provided, snapshot) => {
-                  return (
-                    <div
-                      // eslint-disable-next-line react/jsx-props-no-spreading
-                      {...provided.droppableProps}
-                      ref={provided.innerRef}
-                      style={{
-                        background: snapshot.isDraggingOver
-                          ? 'lightblue'
-                          : '#F4F7FD',
-                        minHeight: 500,
-                        borderRadius: '24px',
-                      }}
-                    >
-                      {column.items.map((item, index) => {
-                        return (
-                          <TrelloCard
-                            card={item}
-                            index={index}
-                            key={item.id.toString()}
-                          />
-                        );
-                      })}
-                      {provided.placeholder}
-                    </div>
-                  );
-                }}
-              </Droppable>
-            </TrelloColumn>
-          );
-        })}
-      </DragDropContext>
+    <div className="flex  w-[90vw] flex-col ">
+      <PageTitle />
+      <div className="scroll h-full w-full overflow-x-scroll whitespace-nowrap scrollbar-hide">
+        <div
+          style={{
+            display: 'flex',
+            height: '100%',
+            width: '100%',
+          }}
+        >
+          <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
+            {Object.entries(columns).map(([columnId, column]) => {
+              return (
+                <TrelloColumn
+                  key={columnId}
+                  columnTitle={column.name}
+                  count={column.items.length}
+                >
+                  <Droppable droppableId={columnId} key={columnId}>
+                    {(provided, snapshot) => {
+                      return (
+                        <div
+                          // eslint-disable-next-line react/jsx-props-no-spreading
+                          {...provided.droppableProps}
+                          ref={provided.innerRef}
+                          style={{
+                            background: snapshot.isDraggingOver
+                              ? 'lightblue'
+                              : '#F4F7FD',
+                            minHeight: 753,
+                            borderRadius: '24px',
+                          }}
+                        >
+                          {column.items.map((item, index) => {
+                            return (
+                              <TrelloCard
+                                card={item}
+                                index={index}
+                                key={item.id.toString()}
+                              />
+                            );
+                          })}
+                          {provided.placeholder}
+                        </div>
+                      );
+                    }}
+                  </Droppable>
+                </TrelloColumn>
+              );
+            })}
+          </DragDropContext>
+        </div>
+      </div>
     </div>
   );
 }

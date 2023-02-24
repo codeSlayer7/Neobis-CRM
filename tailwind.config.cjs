@@ -42,7 +42,7 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('tailwind-scrollbar-hide')],
 };
 // custom colors doesnt support oppacity utilitys
 // --color-green-btn: 112,191,68;

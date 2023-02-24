@@ -1,4 +1,4 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../../icons/logo.svg';
 import search from '../../icons/search.svg';
 import notification from '../../icons/notification.svg';
@@ -6,9 +6,11 @@ import profile from '../../icons/profile-circle.svg';
 
 function Navbar() {
   return (
-    <div className="flex h-16 items-center justify-between rounded-sm border border-inherit">
+    <div className="flex h-16 w-[99vw] items-center justify-between rounded-sm border border-inherit">
       <div className="ml-6 flex w-56 justify-between">
-        <img src={logo} alt="#" />
+        <Link to="/">
+          <img src={logo} alt="#" />
+        </Link>
       </div>
       <div className="flex w-[420px] items-center justify-between">
         <input

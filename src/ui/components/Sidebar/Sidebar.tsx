@@ -1,6 +1,6 @@
 import { ReactNode, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { FaBars, FaArrowRight } from 'react-icons/fa';
+import { FaBars, FaArrowLeft } from 'react-icons/fa';
 import StudentIcon from '../../icons/StudentIcon';
 import ArchiveIcon from '../../icons/ArchiveIcon';
 import MentorsIcon from '../../icons/MentorsIcon';
@@ -14,7 +14,7 @@ interface IMenuItem {
   icon: ReactNode;
 }
 type Props = {
-  children: any;
+  children: React.ReactNode;
 };
 
 function Sidebar({ children }: Props) {
@@ -32,7 +32,7 @@ function Sidebar({ children }: Props) {
     <div className="flex">
       <div
         style={{ width: isOpen ? '240px' : '80px' }}
-        className="h-screen w-60 rounded-md border-solid border-r-slate-300  shadow-md"
+        className="h-[100vh] w-60 rounded-md border-solid border-r-slate-300  shadow-md"
       >
         <div className="my-3.5 flex items-center">
           <div
@@ -45,7 +45,7 @@ function Sidebar({ children }: Props) {
               style={{ display: isOpen ? 'none' : 'block' }}
               className="ml-6"
             />
-            <FaArrowRight
+            <FaArrowLeft
               style={{ display: isOpen ? 'block' : 'none' }}
               onClick={toggle}
               className="ml-20 text-2xl text-purple-500"
@@ -56,6 +56,7 @@ function Sidebar({ children }: Props) {
         {menuItem?.map((item, index) => (
           <NavLink
             to={item.path}
+            // eslint-disable-next-line react/no-array-index-key
             key={index}
             className="text-slate-400: flex gap-3.5  p-5 hover:bg-purple-100  "
           >
