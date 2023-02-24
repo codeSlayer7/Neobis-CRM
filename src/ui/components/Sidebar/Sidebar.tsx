@@ -1,6 +1,6 @@
-import { ReactNode, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FaBars, FaArrowLeft } from 'react-icons/fa';
+import React, { useState } from 'react';
 import StudentIcon from '../../icons/StudentIcon';
 import ArchiveIcon from '../../icons/ArchiveIcon';
 import MentorsIcon from '../../icons/MentorsIcon';
@@ -11,7 +11,7 @@ import GroupIcon from '../../icons/GroupIcon';
 interface IMenuItem {
   name: string;
   path: string;
-  icon: ReactNode;
+  icon: React.ReactNode;
 }
 type Props = {
   children: React.ReactNode;
