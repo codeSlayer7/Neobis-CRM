@@ -58,14 +58,12 @@ function Sidebar({ children }: Props) {
             to={item.path}
             // eslint-disable-next-line react/no-array-index-key
             key={index}
-            className="text-slate-400: flex gap-3.5  p-5 hover:bg-purple-100  "
+            className="text-slate-400: group flex gap-3.5  p-5 hover:bg-purple-100  "
           >
-            <div className="active: text-xl text-slate-400 hover:text-purple-500">
-              {item.icon}
-            </div>
+            <div className="active: text-xl text-slate-400 ">{item.icon}</div>
             <div
               style={{ display: isOpen ? 'block' : 'none' }}
-              className="text-xl text-slate-400 hover:text-purple-500 "
+              className="text-xl text-slate-300 group-hover:text-purple-500 "
             >
               {item.name}
             </div>
