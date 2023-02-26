@@ -3,12 +3,12 @@ import { Route, Routes } from 'react-router-dom';
 import TrelloContainer from './ui/components/Trello-Container/Trello-container';
 import './App.css';
 import Sidebar from './ui/components/Sidebar/Sidebar';
-import Applications from './ui/components/pages/Applications/Applications';
-import Groups from './ui/components/pages/Groups/Groups';
-import Students from './ui/components/pages/Students/Students';
-import Mentors from './ui/components/pages/Mentors/Mentors';
-import Archive from './ui/components/pages/Archive/Archive';
-import Analytics from './ui/components/pages/Analytics/Analytics';
+import Applications from './ui/pages/Applications/Applications';
+import Groups from './ui/pages/Groups/Groups';
+import Students from './ui/pages/Students/Students';
+import Mentors from './ui/pages/Mentors/Mentors';
+import Archive from './ui/pages/Archive/Archive';
+import Analytics from './ui/pages/Analytics/Analytics';
 import Navbar from './ui/components/Navbar/Navbar';
 
 function App(): JSX.Element {
