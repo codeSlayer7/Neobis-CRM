@@ -29,10 +29,10 @@ function Sidebar({ children }: Props) {
     { name: 'Аналитика', path: '/analytics', icon: <AnalyticsIcon /> },
   ];
   return (
-    <div className="flex">
+    <div className="flex ">
       <div
         style={{ width: isOpen ? '240px' : '80px' }}
-        className="h-[100vh] w-60 rounded-md border-solid border-r-slate-300  shadow-md"
+        className="h-[100vh]  w-60 rounded-md border-solid border-r-slate-300  shadow-md"
       >
         <div className="my-3.5 flex items-center">
           <div
@@ -72,7 +72,10 @@ function Sidebar({ children }: Props) {
           </NavLink>
         ))}
       </div>
-      <main className="w-full, p-6">{children}</main>
+
+      <main className={!isOpen ? 'flex w-[90vw]' : 'flex w-[83%] '}>
+        {children}
+      </main>
     </div>
   );
 }

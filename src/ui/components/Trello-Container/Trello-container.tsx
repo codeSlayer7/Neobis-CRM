@@ -43,58 +43,52 @@ function TrelloContainer() {
   };
 
   return (
-    <div className="flex  w-[90vw] flex-col ">
+    <div className="flex p-6 w-[100%] flex-col ">
       <PageTitle />
-      <div className="scroll h-full w-full overflow-x-scroll whitespace-nowrap scrollbar-hide">
-        <div
-          style={{
-            display: 'flex',
-            height: '100%',
-            width: '100%',
-          }}
-        >
-          <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
-            {Object.entries(columns).map(([columnId, column]) => {
-              return (
-                <TrelloColumn
-                  key={columnId}
-                  columnTitle={column.name}
-                  count={column.items.length}
-                >
-                  <Droppable droppableId={columnId} key={columnId}>
-                    {(provided, snapshot) => {
-                      return (
-                        <div
-                          // eslint-disable-next-line react/jsx-props-no-spreading
-                          {...provided.droppableProps}
-                          ref={provided.innerRef}
-                          style={{
-                            background: snapshot.isDraggingOver
-                              ? 'lightblue'
-                              : '#F4F7FD',
-                            minHeight: 753,
-                            borderRadius: '24px',
-                          }}
-                        >
-                          {column.items.map((item, index) => {
-                            return (
-                              <TrelloCard
-                                card={item}
-                                index={index}
-                                key={item.id.toString()}
-                              />
-                            );
-                          })}
-                          {provided.placeholder}
-                        </div>
-                      );
-                    }}
-                  </Droppable>
-                </TrelloColumn>
-              );
-            })}
-          </DragDropContext>
-        </div>
+
+      <div className="flex justify-between ml-4">
+        <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
+          {Object.entries(columns).map(([columnId, column]) => {
+            return (
+              <TrelloColumn
+                key={columnId}
+                columnTitle={column.name}
+                count={column.items.length}
+              >
+                <Droppable droppableId={columnId} key={columnId}>
+                  {(provided, snapshot) => {
+                    return (
+                      <div
+                        // eslint-disable-next-line react/jsx-props-no-spreading
+                        {...provided.droppableProps}
+                        ref={provided.innerRef}
+                        style={{
+                          background: snapshot.isDraggingOver
+                            ? 'lightblue'
+                            : '#F4F7FD',
+                          minHeight: 753,
+                          minWidth: 290,
+                          borderRadius: '24px',
+                        }}
+                      >
+                        {column.items.map((item, index) => {
+                          return (
+                            <TrelloCard
+                              card={item}
+                              index={index}
+                              key={item.id.toString()}
+                            />
+                          );
+                        })}
+                        {provided.placeholder}
+                      </div>
+                    );
+                  }}
+                </Droppable>
+              </TrelloColumn>
+            );
+          })}
+        </DragDropContext>
       </div>
     </div>
   );
