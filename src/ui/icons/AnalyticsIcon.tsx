@@ -6,7 +6,8 @@ export default function AnalyticsIcon() {
       viewBox="0 0 30 30"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="group-hover:fill-purple-500"
+      // eslint-disable-next-line tailwindcss/classnames-order
+      className="group-hover:fill-purple-400 "
     >
       <path
         d="M2.5 27.5H27.5"

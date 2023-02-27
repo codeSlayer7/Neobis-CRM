@@ -20,6 +20,10 @@ type Props = {
 function Sidebar({ children }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
+  const activeMenu = 'text-slate-100 text-xl flex gap-3.5 p-5 bg-purple-400';
+  const normalMenu =
+    'text-slate-400 group flex gap-3.5 text-xl p-5 hover:bg-purple-100 hover:text-purple-400 ';
+
   const menuItem: IMenuItem[] = [
     { name: 'Заявки', path: '/applications', icon: <ApplicationIcon /> },
     { name: 'Группы', path: '/groups', icon: <GroupIcon /> },
@@ -40,15 +44,14 @@ function Sidebar({ children }: Props) {
             className="ml-20 flex text-2xl"
           >
             <FaBars
-              color="#A062F7"
               onClick={toggle}
               style={{ display: isOpen ? 'none' : 'block' }}
-              className="ml-6"
+              className="ml-6 text-2xl text-purple-400"
             />
             <FaArrowLeft
               style={{ display: isOpen ? 'block' : 'none' }}
               onClick={toggle}
-              className="ml-20 text-2xl text-purple-500"
+              className="ml-20 text-2xl text-purple-400"
             />
           </div>
         </div>
@@ -58,13 +61,10 @@ function Sidebar({ children }: Props) {
             to={item.path}
             // eslint-disable-next-line react/no-array-index-key
             key={index}
-            className="text-slate-400: group flex gap-3.5  p-5 hover:bg-purple-100  "
+            className={({ isActive }) => (isActive ? activeMenu : normalMenu)}
           >
-            <div className="active: text-xl text-slate-400 ">{item.icon}</div>
-            <div
-              style={{ display: isOpen ? 'block' : 'none' }}
-              className="text-xl text-slate-300 group-hover:text-purple-500 "
-            >
+            <div>{item.icon}</div>
+            <div style={{ display: isOpen ? 'block' : 'none' }}>
               {item.name}
             </div>
           </NavLink>
