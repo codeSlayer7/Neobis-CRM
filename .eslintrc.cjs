@@ -10,6 +10,7 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
+    'plugin:tailwindcss/recommended',
   ],
   overrides: [],
   parser: '@typescript-eslint/parser',
@@ -21,6 +22,7 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
+    'tailwindcss/no-custom-classname': 0,
     'react/react-in-jsx-scope': 0,
     'prettier/prettier': [
       'error',
