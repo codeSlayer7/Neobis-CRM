@@ -10,10 +10,10 @@ import Mentors from './ui/pages/Mentors/Mentors';
 import Archive from './ui/pages/Archive/Archive';
 import Analytics from './ui/pages/Analytics/Analytics';
 import Navbar from './ui/components/Navbar/Navbar';
-import LogIn from './ui/pages/Auth/LogIn';
-import ForgotPassword from './ui/pages/Auth/ForgotPassword';
-import Confirmation from './ui/pages/Auth/Confirmation';
-import ChangePassword from './ui/pages/Auth/ChangePassword';
+// import LogIn from './ui/pages/Auth/LogIn';
+// import ForgotPassword from './ui/pages/Auth/ForgotPassword';
+// import Confirmation from './ui/pages/Auth/Confirmation';
+// import ChangePassword from './ui/pages/Auth/ChangePassword';
 
 function App(): JSX.Element {
   // const columns = useAppSelector((trello) => trello.trello?.columns);
