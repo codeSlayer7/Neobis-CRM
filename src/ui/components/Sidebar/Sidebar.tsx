@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { FaBars, FaArrowLeft } from 'react-icons/fa';
+import { FaBars, FaArrowRight } from 'react-icons/fa';
 import React, { useState } from 'react';
 import StudentIcon from '../../icons/StudentIcon';
 import ArchiveIcon from '../../icons/ArchiveIcon';
@@ -25,7 +25,7 @@ function Sidebar({ children }: Props) {
     'text-slate-400 group flex gap-3.5 text-xl p-5 hover:bg-purple-100 hover:text-purple-400 ';
 
   const menuItem: IMenuItem[] = [
-    { name: 'Заявки', path: '/applications', icon: <ApplicationIcon /> },
+    { name: 'Заявки', path: '/', icon: <ApplicationIcon /> },
     { name: 'Группы', path: '/groups', icon: <GroupIcon /> },
     { name: 'Студенты', path: '/students', icon: <StudentIcon /> },
     { name: 'Преподаватели', path: '/mentors', icon: <MentorsIcon /> },
@@ -43,12 +43,12 @@ function Sidebar({ children }: Props) {
             style={{ marginLeft: isOpen ? '80px' : '0px' }}
             className="ml-20 flex text-2xl"
           >
-            <FaBars
+            <FaArrowRight
               onClick={toggle}
               style={{ display: isOpen ? 'none' : 'block' }}
               className="ml-6 text-2xl text-purple-400"
             />
-            <FaArrowLeft
+            <FaBars
               style={{ display: isOpen ? 'block' : 'none' }}
               onClick={toggle}
               className="ml-20 text-2xl text-purple-400"

@@ -1,5 +1,6 @@
 // import { useState } from "react";
 import { Draggable } from 'react-beautiful-dnd';
+import { Link } from 'react-router-dom';
 import { ItemBack } from '../../../../../interfaces';
 import { CardStatus } from '../../../../../interfaces/enum';
 import Clock from '../../../../icons/clock.svg';
@@ -81,12 +82,14 @@ function TrelloCard({ card, index }: Props) {
               >
                 Зачислять
               </button>
-              <button
-                type="button"
-                className="bg-neobis-bg-card-text text-skin-text-darkViolet rounded-lg px-2 py-[4px] text-base font-normal  "
-              >
-                Архивировать
-              </button>
+              <Link to="/archiveclient">
+                <button
+                  type="button"
+                  className="bg-neobis-bg-card-text text-skin-text-darkViolet rounded-lg px-2 py-[4px] text-base font-normal  "
+                >
+                  Архивировать
+                </button>
+              </Link>
             </div>
           </div>
         );
