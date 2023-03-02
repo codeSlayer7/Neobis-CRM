@@ -20,9 +20,10 @@ type Props = {
 function Sidebar({ children }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
-  const activeMenu = 'text-slate-100 text-xl flex gap-3.5 p-5 bg-purple-400';
+  const activeMenu =
+    'text-slate-100 text-xl flex gap-3.5 rounded-lg p-5 bg-purple-400';
   const normalMenu =
-    'text-slate-400 group flex gap-3.5 text-xl p-5 hover:bg-purple-100 hover:text-purple-400 ';
+    'text-slate-400 group flex rounded-lg gap-3.5 text-xl p-5 hover:bg-purple-100 hover:text-purple-400 ';
 
   const menuItem: IMenuItem[] = [
     { name: 'Заявки', path: '/', icon: <ApplicationIcon /> },
@@ -36,7 +37,7 @@ function Sidebar({ children }: Props) {
     <div className="flex ">
       <div
         style={{ width: isOpen ? '240px' : '80px' }}
-        className="h-[100vh]  w-60 rounded-md border-solid border-r-slate-300  shadow-md"
+        className="h-auto  w-60 rounded-md border-solid border-r-slate-300  shadow-md"
       >
         <div className="my-3.5 flex items-center">
           <div

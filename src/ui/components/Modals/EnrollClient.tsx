@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import Attention from '../../icons/Attention';
 
-function ArchiveClient() {
+function EnrollClient() {
   const navigate = useNavigate();
 
   return (
@@ -12,11 +12,11 @@ function ArchiveClient() {
           <Attention />
         </div>
         <p className="mt-[47px] text-center text-xl font-semibold">
-          Вы уверены, что хотите архивировать клиента ?
+          Вы уверены, что хотите зачислить клиента ?
         </p>
         <div className="mt-12 ml-5 ">
-          <Link to="/rejectionreason">
-            <button className="hover:easy-in h-[42px] w-[98px] rounded-lg border bg-red-500 text-white transition duration-150 hover:scale-110">
+          <Link to="/groups">
+            <button className="bg-neobis-bg-green hover:easy-in h-[42px] w-[98px] rounded-lg border text-white transition duration-150 hover:scale-110">
               Да
             </button>
           </Link>
@@ -31,4 +31,4 @@ function ArchiveClient() {
     </div>
   );
 }
-export default ArchiveClient;
+export default EnrollClient;

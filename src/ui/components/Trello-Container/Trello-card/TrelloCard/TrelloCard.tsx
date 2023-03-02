@@ -76,16 +76,18 @@ function TrelloCard({ card, index }: Props) {
             </div>
 
             <div className="mt-2 flex justify-around px-2 pb-8">
-              <button
-                type="button"
-                className="bg-neobis-bg-green rounded-lg px-4 py-[4px] text-base font-normal text-white"
-              >
-                Зачислять
-              </button>
+              <Link to="/enrollclient">
+                <button
+                  type="button"
+                  className="bg-neobis-bg-green hover:easy-in rounded-lg px-4 py-[4px] text-base font-normal text-white transition duration-150 hover:scale-110 "
+                >
+                  Зачислять
+                </button>
+              </Link>
               <Link to="/archiveclient">
                 <button
                   type="button"
-                  className="bg-neobis-bg-card-text text-skin-text-darkViolet rounded-lg px-2 py-[4px] text-base font-normal  "
+                  className="bg-neobis-bg-card-text text-skin-text-darkViolet rounded-lg px-2 py-[4px] text-base font-normal transition duration-150 hover:scale-110 hover:ease-in"
                 >
                   Архивировать
                 </button>

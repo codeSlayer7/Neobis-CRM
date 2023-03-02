@@ -10,6 +10,8 @@ import Archive from './ui/pages/Archive/Archive';
 import Analytics from './ui/pages/Analytics/Analytics';
 import Navbar from './ui/components/Navbar/Navbar';
 import ArchiveClient from './ui/components/Modals/ArchiveClient';
+import EnrollClient from './ui/components/Modals/EnrollClient';
+import RejectionReason from './ui/components/Modals/RejectionReason';
 // import LogIn from './ui/pages/Auth/LogIn';
 // import ForgotPassword from './ui/pages/Auth/ForgotPassword';
 // import Confirmation from './ui/pages/Auth/Confirmation';
@@ -26,8 +28,10 @@ function App(): JSX.Element {
       <Navbar />
       <Sidebar>
         <Routes>
+          <Route path="/enrollclient" element={<EnrollClient />} />
           <Route path="/" element={<TrelloContainer />} />
           <Route path="/archiveclient" element={<ArchiveClient />} />
+          <Route path="/rejectionreason" element={<RejectionReason />} />
           <Route path="/groups" element={<Groups />} />
           <Route path="/students" element={<Students />} />
           <Route path="/mentors" element={<Mentors />} />
