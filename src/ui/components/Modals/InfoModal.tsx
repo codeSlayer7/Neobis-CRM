@@ -4,6 +4,7 @@ import Phone from '../../icons/Phone';
 import SmsEdit from '../../icons/SmsEdit';
 import userProfile from '../../images/UserProfile.png';
 
+
 function InfoModal() {
   return (
     <div className="flex h-[100vh] w-full items-center justify-center">
@@ -22,47 +23,47 @@ function InfoModal() {
           <div className="mt-[24px] flex  items-center justify-between ">
             <button
               type="button"
-              className="ml-[146px] inline-flex h-[41px] w-[192px] items-center rounded-[10px] border border-black bg-white p-2 text-center text-right text-lg font-normal ring-slate-600 focus:outline-none focus:ring-1 "
+              className="ml-[146px] inline-flex h-[41px] w-[192px] items-center rounded-[10px] border border-black bg-white p-2 text-right text-lg font-normal ring-slate-600 focus:outline-none focus:ring-1 "
             >
               <SmsEdit />
               Написать Email
             </button>
-            <button className="mr-[146px] inline-flex h-[41px] w-[154px] items-center rounded-[10px] border border-black bg-white p-2 text-center text-right text-lg font-normal ring-slate-600 focus:outline-none focus:ring-1">
+            <button className="mr-[146px] inline-flex h-[41px] w-[154px] items-center rounded-[10px] border border-black bg-white p-2 text-right text-lg font-normal ring-slate-600 focus:outline-none focus:ring-1">
               <Phone />
               Позвонить
             </button>
           </div>
         </div>
-        <div className="mt-[69px] ml-[42px] mr-[50px] flex justify-between">
-          <span>
-            <h3 className="text-lg font-semibold">ФИО</h3>
-            <p>Антонио Лоренцо</p>
-          </span>
-          <span>
-            <h3 className="text-lg font-semibold">Телефон</h3>
-            <p>+996 551 123 321</p>
-          </span>
-          <span>
-            <h3 className="text-lg font-semibold">Направление</h3>
-            <p>Java Script</p>
-          </span>
+        <div className="mx-10 mt-[69px] flex justify-between">
+          <ul>
+            <li className="text-lg font-semibold">ФИО</li>
+            <li>Антонио Лоренцо</li>
+          </ul>
+          <ul>
+            <li className="text-lg font-semibold">Телефон</li>
+            <li>+996 551 123 321</li>
+          </ul>
+          <ul className="mr-6">
+            <li className="text-lg font-semibold">Направление</li>
+            <li>Java Script</li>
+          </ul>
         </div>
-        <div className="mt-[30px]  ml-4 flex justify-between mr-[25px] ml-[42px]">
-          <span>
-            <h3 className="text-lg font-semibold">Группа</h3>
-            <p>Javascript</p>
-          </span>
-          <span>
-            <h3 className="text-lg font-semibold">Статус</h3>
-            <p>Обучается</p>
-          </span>
-          <span>
+        <div className="mx-10 mt-[30px] flex justify-between">
+          <ul>
+            <li className="text-lg font-semibold">Группа</li>
+            <li>Javascript</li>
+          </ul>
+          <ul className="ml-5">
+            <li className="text-lg font-semibold">Статус</li>
+            <li>Обучается</li>
+          </ul>
+          <ul>
             <Link to="/fullinfomodal">
-            <button className="inline-flex h-[41px] w-[141px] pt-1 pl-3 rounded-[10px] border border-black bg-white  text-center text-right text-lg font-normal ring-slate-600 focus:outline-none focus:ring-1">
-              Подробнее
-            </button>
+              <button className="inline-flex h-[41px] w-[141px] rounded-[10px] border border-black bg-white pt-1 pl-3 text-right text-lg font-normal ring-slate-600 focus:outline-none focus:ring-1">
+                Подробнее
+              </button>
             </Link>
-          </span>
+          </ul>
         </div>
       </div>
     </div>

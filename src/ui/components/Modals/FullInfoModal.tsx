@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import More from '../../icons/More';
 import Phone from '../../icons/Phone';
 import SmsEdit from '../../icons/SmsEdit';
@@ -22,12 +21,12 @@ function FullInfoModal() {
           <div className="mt-[24px] flex  items-center justify-between ">
             <button
               type="button"
-              className="ml-[146px] inline-flex h-[41px] w-[192px] items-center rounded-[10px] border border-black bg-white p-2 text-center text-right text-lg font-normal ring-slate-600 focus:outline-none focus:ring-1 "
+              className="ml-[146px] inline-flex h-[41px] w-[192px] items-center rounded-[10px] border border-black bg-white p-2 text-right text-lg font-normal ring-slate-600 focus:outline-none focus:ring-1 "
             >
               <SmsEdit />
               Написать Email
             </button>
-            <button className="mr-[146px] inline-flex h-[41px] w-[154px] items-center rounded-[10px] border border-black bg-white p-2 text-center text-right text-lg font-normal ring-slate-600 focus:outline-none focus:ring-1">
+            <button className="mr-[146px] inline-flex h-[41px] w-[154px] items-center rounded-[10px] border border-black bg-white p-2 text-right text-lg font-normal ring-slate-600 focus:outline-none focus:ring-1">
               <Phone />
               Позвонить
             </button>
