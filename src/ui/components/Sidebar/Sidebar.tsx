@@ -21,9 +21,9 @@ function Sidebar({ children }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   const activeMenu =
-    'text-slate-100 text-xl flex gap-3.5 rounded-lg p-5 bg-purple-400';
+    'text-slate-100 text-xl flex gap-3.5 rounded-lg p-5 bg-violet-400';
   const normalMenu =
-    'text-slate-400 group flex rounded-lg gap-3.5 text-xl p-5 hover:bg-purple-100 hover:text-purple-400 ';
+    'text-slate-400 group flex rounded-lg gap-3.5 text-xl p-5 hover:bg-purple-100 hover:text-violet-400 ';
 
   const menuItem: IMenuItem[] = [
     { name: 'Заявки', path: '/', icon: <ApplicationIcon /> },
@@ -47,12 +47,12 @@ function Sidebar({ children }: Props) {
             <FaArrowRight
               onClick={toggle}
               style={{ display: isOpen ? 'none' : 'block' }}
-              className="ml-6 text-2xl text-purple-400"
+              className="ml-6 text-2xl text-violet-400"
             />
             <FaBars
               style={{ display: isOpen ? 'block' : 'none' }}
               onClick={toggle}
-              className="ml-20 text-2xl text-purple-400"
+              className="ml-20 text-2xl text-violet-400"
             />
           </div>
         </div>

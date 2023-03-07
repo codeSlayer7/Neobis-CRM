@@ -12,6 +12,8 @@ import Navbar from './ui/components/Navbar/Navbar';
 import ArchiveClient from './ui/components/Modals/ArchiveClient';
 import EnrollClient from './ui/components/Modals/EnrollClient';
 import RejectionReason from './ui/components/Modals/RejectionReason';
+import InfoModal from './ui/components/Modals/InfoModal';
+import FullInfoModal from './ui/components/Modals/FullInfoModal';
 // import LogIn from './ui/pages/Auth/LogIn';
 // import ForgotPassword from './ui/pages/Auth/ForgotPassword';
 // import Confirmation from './ui/pages/Auth/Confirmation';
@@ -29,6 +31,8 @@ function App(): JSX.Element {
       <Sidebar>
         <Routes>
           <Route path="/enrollclient" element={<EnrollClient />} />
+          <Route path="/infomodal" element={<InfoModal />} />
+          <Route path="/fullinfomodal" element={<FullInfoModal />} />
           <Route path="/" element={<TrelloContainer />} />
           <Route path="/archiveclient" element={<ArchiveClient />} />
           <Route path="/rejectionreason" element={<RejectionReason />} />
