@@ -14,6 +14,7 @@ import EnrollClient from './ui/components/Modals/EnrollClient';
 import RejectionReason from './ui/components/Modals/RejectionReason';
 import InfoModal from './ui/components/Modals/InfoModal';
 import FullInfoModal from './ui/components/Modals/FullInfoModal';
+import CreateCard from './ui/components/Forms/CreateCard';
 // import LogIn from './ui/pages/Auth/LogIn';
 // import ForgotPassword from './ui/pages/Auth/ForgotPassword';
 // import Confirmation from './ui/pages/Auth/Confirmation';
@@ -33,6 +34,7 @@ function App(): JSX.Element {
           <Route path="/enrollclient" element={<EnrollClient />} />
           <Route path="/infomodal" element={<InfoModal />} />
           <Route path="/fullinfomodal" element={<FullInfoModal />} />
+          <Route path="/createcard" element={<CreateCard />} />
           <Route path="/" element={<TrelloContainer />} />
           <Route path="/archiveclient" element={<ArchiveClient />} />
           <Route path="/rejectionreason" element={<RejectionReason />} />

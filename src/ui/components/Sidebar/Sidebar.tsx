@@ -21,7 +21,7 @@ function Sidebar({ children }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   const activeMenu =
-    'text-slate-100 text-xl flex gap-3.5 rounded-lg p-5 bg-violet-400';
+    'text-slate-100 text-xl flex gap-3.5 rounded-lg p-5 bg-neobis-bg-violet';
   const normalMenu =
     'text-slate-400 group flex rounded-lg gap-3.5 text-xl p-5 hover:bg-purple-100 hover:text-violet-400 ';
 
