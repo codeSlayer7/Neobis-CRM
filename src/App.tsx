@@ -15,7 +15,7 @@ import RejectionReason from './ui/components/Modals/RejectionReason';
 import InfoModal from './ui/components/Modals/InfoModal';
 import FullInfoModal from './ui/components/Modals/FullInfoModal';
 import CreateCard from './ui/components/Forms/CreateCard';
-
+import MentorsDetails from './ui/pages/Mentors/MentorsDetails/MentorsDetails';
 // import LogIn from './ui/pages/Auth/LogIn';
 // import ForgotPassword from './ui/pages/Auth/ForgotPassword';
 // import Confirmation from './ui/pages/Auth/Confirmation';
@@ -42,6 +42,7 @@ function App(): JSX.Element {
           <Route path="/groups" element={<Groups />} />
           <Route path="/students" element={<Students />} />
           <Route path="/mentors" element={<Mentors />} />
+          <Route path="/mentorsdetails" element={<MentorsDetails />} />
           <Route path="/archive" element={<Archive />} />
           <Route path="/analytics" element={<Analytics />} />
         </Routes>
