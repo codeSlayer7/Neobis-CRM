@@ -5,6 +5,7 @@ import { ItemBack } from '../../../../../interfaces';
 import { CardStatus } from '../../../../../interfaces/enum';
 import Clock from '../../../../icons/clock.svg';
 import Clock2 from '../../../../icons/clockBlack.svg';
+import More from '../../../../icons/More';
 
 interface Props {
   card: ItemBack;
@@ -38,16 +39,20 @@ function TrelloCard({ card, index }: Props) {
             }}
           >
             <div className="px-6 pt-4">
-              <p
-                className={
-                  card.status === CardStatus.WaitCall
-                    ? 'text-xl font-normal text-white'
-                    : 'text-xl font-normal text-black'
-                }
-              >
-                {card.name}
-              </p>
-
+              <div className="flex justify-between">
+                <p
+                  className={
+                    card.status === CardStatus.WaitCall
+                      ? 'text-xl font-normal text-white'
+                      : 'text-xl font-normal text-black'
+                  }
+                >
+                  {card.name}
+                </p>
+                <Link to="/infomodal">
+                  <More />
+                </Link>
+              </div>
               <p
                 className="flex pt-2 text-base font-normal"
                 style={{

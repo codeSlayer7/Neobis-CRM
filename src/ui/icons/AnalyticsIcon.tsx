@@ -7,7 +7,7 @@ export default function AnalyticsIcon() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       // eslint-disable-next-line tailwindcss/classnames-order
-      className="group-hover:fill-purple-400 "
+      className="group-hover:fill-violet-400 "
     >
       <path
         d="M2.5 27.5H27.5"
