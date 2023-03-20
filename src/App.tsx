@@ -16,6 +16,8 @@ import InfoModal from './ui/components/Modals/InfoModal';
 import FullInfoModal from './ui/components/Modals/FullInfoModal';
 import CreateCard from './ui/components/Forms/CreateCard';
 import MentorsDetails from './ui/pages/Mentors/MentorsDetails/MentorsDetails';
+import Profile from './ui/pages/Profile/Profile';
+
 // import LogIn from './ui/pages/Auth/LogIn';
 // import ForgotPassword from './ui/pages/Auth/ForgotPassword';
 // import Confirmation from './ui/pages/Auth/Confirmation';
@@ -32,6 +34,7 @@ function App(): JSX.Element {
       <Navbar />
       <Sidebar>
         <Routes>
+          <Route path="/profile" element={<Profile />} />
           <Route path="/enrollclient" element={<EnrollClient />} />
           <Route path="/infomodal" element={<InfoModal />} />
           <Route path="/fullinfomodal" element={<FullInfoModal />} />

@@ -1,15 +1,15 @@
 import { Link } from 'react-router-dom';
-import logo from '../../icons/logo.svg';
-import search from '../../icons/search.svg';
-import notification from '../../icons/notification.svg';
-import profile from '../../icons/profile-circle.svg';
+import Logo from '../../icons/Logo';
+import Search from '../../icons/Search';
+import Notification from '../../icons/Notification';
+import Profile from '../../icons/Profile';
 
 function Navbar() {
   return (
     <div className="flex h-16 w-[99vw] items-center justify-between rounded-sm border border-inherit">
       <div className="ml-6 flex w-56 justify-between">
         <Link to="/">
-          <img src={logo} alt="#" />
+          <Logo />
         </Link>
       </div>
       <div className="flex w-[420px] items-center justify-between">
@@ -20,12 +20,14 @@ function Navbar() {
           name="search"
         />
         <span className="relative left-[350px]">
-          <img src={search} alt="#" />
+          <Search />
         </span>
       </div>
       <div className="mr-6 flex w-56 justify-around">
-        <img src={notification} alt="#" />
-        <img src={profile} alt="#" />
+        <Link to="/profile">
+          <Notification />
+        </Link>
+        <Profile />
       </div>
     </div>
   );
