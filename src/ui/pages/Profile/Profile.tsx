@@ -3,8 +3,8 @@ import Photo from '../../images/photo.png';
 
 function Profile() {
   return (
-    <div className="flex h-auto w-full items-center justify-center mx-auto">
-      <div className="my-10 h-[798px] w-[886px] mx-auto">
+    <div className="mx-auto flex h-auto w-full items-center justify-center">
+      <div className="my-10 mx-auto h-[798px] w-[886px]">
         <div className="flex">
           <div>
             <img src={Photo} alt="#" />

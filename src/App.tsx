@@ -50,7 +50,7 @@ function App(): JSX.Element {
           <Route path="/analytics" element={<Analytics />} />
         </Routes>
       </Sidebar>
-    </div>
+    </>
   );
 }
 

@@ -6,7 +6,7 @@ export default function StudentIcon() {
       viewBox="0 0 30 30"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="group-hover:fill-violet-400"
+      className="group-hover:fill-[#A062F7]"
     >
       <path
         d="M14.9999 13.0975L5.07178 7.985L14.9999 2.8125L24.928 7.985L14.9999 13.0975Z"

@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
-import { FaBars, FaArrowRight } from 'react-icons/fa';
+import { HiOutlineArrowLongRight } from 'react-icons/hi2';
+import { HiOutlineMenuAlt1 } from 'react-icons/hi';
 import React, { useState } from 'react';
 import StudentIcon from '../../icons/StudentIcon';
 import ArchiveIcon from '../../icons/ArchiveIcon';
@@ -21,9 +22,9 @@ function Sidebar({ children }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   const activeMenu =
-    'text-slate-100 text-xl flex gap-3.5 rounded-lg p-5 bg-neobis-bg-violet';
+    'text-slate-100 text-xl flex gap-3.5 rounded-full p-5 m-1 bg-[#A062F7]';
   const normalMenu =
-    'text-slate-400 group flex rounded-lg gap-3.5 text-xl p-5 hover:bg-purple-100 hover:text-violet-400 ';
+    'text-slate-400 group flex rounded-full gap-3.5 text-xl p-5 m-1 hover:bg-[#D9BFFF] hover:text-[#A062F7]';
 
   const menuItem: IMenuItem[] = [
     { name: 'Заявки', path: '/', icon: <ApplicationIcon /> },
@@ -44,15 +45,15 @@ function Sidebar({ children }: Props) {
             style={{ marginLeft: isOpen ? '80px' : '0px' }}
             className="ml-20 flex text-2xl"
           >
-            <FaArrowRight
+            <HiOutlineArrowLongRight
               onClick={toggle}
               style={{ display: isOpen ? 'none' : 'block' }}
-              className="ml-6 text-2xl text-violet-400"
+              className="ml-6 text-5xl text-[#A062F7]"
             />
-            <FaBars
+            <HiOutlineMenuAlt1
               style={{ display: isOpen ? 'block' : 'none' }}
               onClick={toggle}
-              className="ml-20 text-2xl text-violet-400"
+              className="ml-20 text-4xl text-[#A062F7]"
             />
           </div>
         </div>

@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import Logo from '../../icons/Logo';
-import Search from '../../icons/Search';
 import Notification from '../../icons/Notification';
 import Profile from '../../icons/Profile';
+import SearchIcon from '../../icons/SearchIcon';
 
 function Navbar() {
   return (
@@ -20,7 +20,7 @@ function Navbar() {
           name="search"
         />
         <span className="relative left-[350px]">
-          <Search />
+          <SearchIcon />
         </span>
       </div>
       <div className="mr-6 flex w-56 justify-around">
