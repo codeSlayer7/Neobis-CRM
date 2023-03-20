@@ -16,6 +16,8 @@ import InfoModal from './ui/components/Modals/InfoModal';
 import FullInfoModal from './ui/components/Modals/FullInfoModal';
 import CreateCard from './ui/components/Forms/CreateCard';
 import MentorsDetails from './ui/pages/Mentors/MentorsDetails/MentorsDetails';
+import Profile from './ui/pages/Profile/Profile';
+
 // import LogIn from './ui/pages/Auth/LogIn';
 // import ForgotPassword from './ui/pages/Auth/ForgotPassword';
 // import Confirmation from './ui/pages/Auth/Confirmation';
@@ -30,27 +32,25 @@ function App(): JSX.Element {
       {/* <Confirmation /> */}
       {/* <ChangePassword /> */}
       <Navbar />
-      <div>
-        <Sidebar>
-          <Routes>
-            <Route path="/enrollclient" element={<EnrollClient />} />
-            <Route path="/infomodal" element={<InfoModal />} />
-            <Route path="/fullinfomodal" element={<FullInfoModal />} />
-            <Route path="/createcard" element={<CreateCard />} />
-            <Route path="/" element={<TrelloContainer />} />
-            <Route path="/archiveclient" element={<ArchiveClient />} />
-            <Route path="/rejectionreason" element={<RejectionReason />} />
-            <Route path="/groups" element={<Groups />} />
-            <Route path="/students" element={<Students />} />
-            <Route path="/mentors" element={<Mentors />} />
-            <Route path="/mentorsdetails" element={<MentorsDetails />} />
-            <Route path="/archive" element={<Archive />} />
-            <Route path="/analytics" element={<Analytics />} />
-          </Routes>
-        </Sidebar>
-      </div>
-      ,
-    </>
+      <Sidebar>
+        <Routes>
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/enrollclient" element={<EnrollClient />} />
+          <Route path="/infomodal" element={<InfoModal />} />
+          <Route path="/fullinfomodal" element={<FullInfoModal />} />
+          <Route path="/createcard" element={<CreateCard />} />
+          <Route path="/" element={<TrelloContainer />} />
+          <Route path="/archiveclient" element={<ArchiveClient />} />
+          <Route path="/rejectionreason" element={<RejectionReason />} />
+          <Route path="/groups" element={<Groups />} />
+          <Route path="/students" element={<Students />} />
+          <Route path="/mentors" element={<Mentors />} />
+          <Route path="/mentorsdetails" element={<MentorsDetails />} />
+          <Route path="/archive" element={<Archive />} />
+          <Route path="/analytics" element={<Analytics />} />
+        </Routes>
+      </Sidebar>
+    </div>
   );
 }
 
