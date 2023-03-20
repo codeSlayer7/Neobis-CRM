@@ -34,7 +34,7 @@ function Sidebar({ children }: Props) {
     { name: 'Аналитика', path: '/analytics', icon: <AnalyticsIcon /> },
   ];
   return (
-    <div className="flex ">
+    <div className="flex">
       <div
         style={{ width: isOpen ? '240px' : '80px' }}
         className="h-auto  w-60 rounded-md border-solid border-r-slate-300  shadow-md"
@@ -60,7 +60,6 @@ function Sidebar({ children }: Props) {
         {menuItem?.map((item, index) => (
           <NavLink
             to={item.path}
-            // eslint-disable-next-line react/no-array-index-key
             key={index}
             className={({ isActive }) => (isActive ? activeMenu : normalMenu)}
           >
@@ -72,7 +71,7 @@ function Sidebar({ children }: Props) {
         ))}
       </div>
 
-      <main className={!isOpen ? 'flex w-[90vw]' : 'flex w-[83%] '}>
+      <main className={!isOpen ? 'flex w-[90%]' : 'flex w-[73%] '}>
         {children}
       </main>
     </div>

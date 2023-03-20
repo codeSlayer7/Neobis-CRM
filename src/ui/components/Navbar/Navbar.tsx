@@ -6,7 +6,7 @@ import profile from '../../icons/profile-circle.svg';
 
 function Navbar() {
   return (
-    <div className="flex h-16 w-[99vw] items-center justify-between rounded-sm border border-inherit">
+    <div className="flex h-16  items-center justify-between rounded-sm border border-inherit">
       <div className="ml-6 flex w-56 justify-between">
         <Link to="/">
           <img src={logo} alt="#" />
