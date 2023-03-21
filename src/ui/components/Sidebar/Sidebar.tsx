@@ -24,7 +24,7 @@ function Sidebar({ children }: Props) {
   const activeMenu =
     'text-slate-100 text-xl flex gap-3.5 rounded-full p-5 m-1 bg-[#A062F7]';
   const normalMenu =
-    'text-slate-400 group flex rounded-full gap-3.5 text-xl p-5 m-1 hover:bg-[#D9BFFF] hover:text-[#A062F7]';
+    'text-slate-400 group flex rounded-full gap-3.5 text-xl p-5 m-1 hover:bg-#D9BFFF[] hover:text-[#A062F7]';
 
   const menuItem: IMenuItem[] = [
     { name: 'Заявки', path: '/', icon: <ApplicationIcon /> },

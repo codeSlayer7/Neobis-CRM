@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import Logo from '../../icons/Logo';
 import Notification from '../../icons/Notification';
-import Profile from '../../icons/Profile';
 import SearchIcon from '../../icons/SearchIcon';
+import ProfileDropDown from '../ProfileDropDown/ProfileDropDown';
 
 function Navbar() {
   return (
@@ -23,11 +23,9 @@ function Navbar() {
           <SearchIcon />
         </span>
       </div>
-      <div className="mr-6 flex w-56 justify-around">
-        <Link to="/profile">
-          <Notification />
-        </Link>
-        <Profile />
+      <div className="mr-6 flex w-60 justify-around">
+        <Notification />
+        <ProfileDropDown />
       </div>
     </div>
   );

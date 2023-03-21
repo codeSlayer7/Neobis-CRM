@@ -1,5 +1,5 @@
 export default function Edit() {
-  return (
+    return (
     <svg
       width="25"
       height="25"
