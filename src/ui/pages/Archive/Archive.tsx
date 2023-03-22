@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import NavigateButtons from '../../components/Buttons/NavigateButtons';
-import ArchiveTable from '../../components/Table/ArchiveTable';
+import ArchiveTable from '../../components/Table/ArchiveTable/ArchiveTable';
 
 export default function Archive() {
   const [buttonType, setButtonType] = useState<number>(0);
@@ -12,7 +12,7 @@ export default function Archive() {
         <NavigateButtons setButtonType={setButtonType} />
       </div>
       <ArchiveTable
-      // buttonType={buttonType}
+      buttonType={buttonType}
       />
     </div>
   );

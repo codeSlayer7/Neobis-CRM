@@ -17,7 +17,7 @@ const DropDown: React.FC<Props> = ({ options, onOptionClick, label }) => {
     <div className="relative inline-block text-left">
       <button
         onClick={() => setIsExpended(!isExpended)}
-        className="hover:text-blue flex items-center rounded border bg-white px-4 py-2 text-sm font-medium text-black text-gray-700 shadow-sm hover:bg-black hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+        className="hover:text-blue flex items-center rounded border bg-white px-4 py-2 text-sm font-medium text-black  shadow-sm  hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
       >
         <div className="mr-10">{selectedValue ?? label}</div>
         <div>

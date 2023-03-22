@@ -16,21 +16,35 @@ import InfoModal from './ui/components/Modals/InfoModal';
 import FullInfoModal from './ui/components/Modals/FullInfoModal';
 import CreateCard from './ui/components/Forms/CreateCard';
 import MentorsDetails from './ui/pages/Mentors/MentorsDetails/MentorsDetails';
+<<<<<<< HEAD
 import Profile from './ui/pages/Profile/Profile';
 
 // import LogIn from './ui/pages/Auth/LogIn';
+=======
+import LogIn from './ui/pages/Auth/LogIn';
+>>>>>>> feature/archive
 // import ForgotPassword from './ui/pages/Auth/ForgotPassword';
 // import Confirmation from './ui/pages/Auth/Confirmation';
-// import ChangePassword from './ui/pages/Auth/ChangePassword';
+import ChangePassword from './ui/pages/Auth/ChangePassword';
 
+const RouteWrapper = ({children}: any) => {
+  return (
+    <>
+      <Navbar />
+      <div>
+        <Sidebar>{children}</Sidebar>
+      </div>
+    </>
+  );
+};
 function App(): JSX.Element {
   // const columns = useAppSelector((trello) => trello.trello?.columns);
   return (
     <>
-      {/* <LogIn /> */}
       {/* <ForgotPassword /> */}
       {/* <Confirmation /> */}
       {/* <ChangePassword /> */}
+<<<<<<< HEAD
       <Navbar />
       <Sidebar>
         <Routes>
@@ -50,6 +64,115 @@ function App(): JSX.Element {
           <Route path="/analytics" element={<Analytics />} />
         </Routes>
       </Sidebar>
+=======
+      <Routes>
+        <Route path="/login" element={<LogIn />} />
+        <Route
+          path="/enrollclient"
+          element={
+            <RouteWrapper>
+              <EnrollClient />
+            </RouteWrapper>
+          }
+        />
+        <Route
+          path="/infomodal"
+          element={
+            <RouteWrapper>
+              <InfoModal />
+            </RouteWrapper>
+          }
+        />
+        <Route
+          path="/fullinfomodal"
+          element={
+            <RouteWrapper>
+              <FullInfoModal />
+            </RouteWrapper>
+          }
+        />
+        <Route
+          path="/createcard"
+          element={
+            <RouteWrapper>
+              <CreateCard />
+            </RouteWrapper>
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <RouteWrapper>
+              <TrelloContainer />
+            </RouteWrapper>
+          }
+        />
+        <Route
+          path="/archiveclient"
+          element={
+            <RouteWrapper>
+              <ArchiveClient />
+            </RouteWrapper>
+          }
+        />
+        <Route
+          path="/rejectionreason"
+          element={
+            <RouteWrapper>
+              <RejectionReason />
+            </RouteWrapper>
+          }
+        />
+        <Route
+          path="/groups"
+          element={
+            <RouteWrapper>
+              <Groups />
+            </RouteWrapper>
+          }
+        />
+        <Route
+          path="/students"
+          element={
+            <RouteWrapper>
+              <Students />
+            </RouteWrapper>
+          }
+        />
+        <Route
+          path="/mentors"
+          element={
+            <RouteWrapper>
+              <Mentors />
+            </RouteWrapper>
+          }
+        />
+        <Route
+          path="/mentorsdetails"
+          element={
+            <RouteWrapper>
+              <MentorsDetails />
+            </RouteWrapper>
+          }
+        />
+        <Route
+          path="/archive"
+          element={
+            <RouteWrapper>
+              <Archive />
+            </RouteWrapper>
+          }
+        />
+        <Route
+          path="/analytics"
+          element={
+            <RouteWrapper>
+              <Analytics />
+            </RouteWrapper>
+          }
+        />
+      </Routes>
+>>>>>>> feature/archive
     </>
   );
 }
