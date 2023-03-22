@@ -16,15 +16,10 @@ import InfoModal from './ui/components/Modals/InfoModal';
 import FullInfoModal from './ui/components/Modals/FullInfoModal';
 import CreateCard from './ui/components/Forms/CreateCard';
 import MentorsDetails from './ui/pages/Mentors/MentorsDetails/MentorsDetails';
-<<<<<<< HEAD
 import Profile from './ui/pages/Profile/Profile';
-
-// import LogIn from './ui/pages/Auth/LogIn';
-=======
 import LogIn from './ui/pages/Auth/LogIn';
->>>>>>> feature/archive
-// import ForgotPassword from './ui/pages/Auth/ForgotPassword';
-// import Confirmation from './ui/pages/Auth/Confirmation';
+import ForgotPassword from './ui/pages/Auth/ForgotPassword';
+import Confirmation from './ui/pages/Auth/Confirmation';
 import ChangePassword from './ui/pages/Auth/ChangePassword';
 
 const RouteWrapper = ({children}: any) => {
@@ -41,32 +36,12 @@ function App(): JSX.Element {
   // const columns = useAppSelector((trello) => trello.trello?.columns);
   return (
     <>
-      {/* <ForgotPassword /> */}
-      {/* <Confirmation /> */}
-      {/* <ChangePassword /> */}
-<<<<<<< HEAD
-      <Navbar />
-      <Sidebar>
-        <Routes>
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/enrollclient" element={<EnrollClient />} />
-          <Route path="/infomodal" element={<InfoModal />} />
-          <Route path="/fullinfomodal" element={<FullInfoModal />} />
-          <Route path="/createcard" element={<CreateCard />} />
-          <Route path="/" element={<TrelloContainer />} />
-          <Route path="/archiveclient" element={<ArchiveClient />} />
-          <Route path="/rejectionreason" element={<RejectionReason />} />
-          <Route path="/groups" element={<Groups />} />
-          <Route path="/students" element={<Students />} />
-          <Route path="/mentors" element={<Mentors />} />
-          <Route path="/mentorsdetails" element={<MentorsDetails />} />
-          <Route path="/archive" element={<Archive />} />
-          <Route path="/analytics" element={<Analytics />} />
-        </Routes>
-      </Sidebar>
-=======
       <Routes>
         <Route path="/login" element={<LogIn />} />
+        <Route path="/forgot" element={<ForgotPassword />} />
+        <Route path="/confirmation" element={<Confirmation />} />
+        <Route path="/change-password" element={<ChangePassword />} />
+
         <Route
           path="/enrollclient"
           element={
@@ -171,8 +146,15 @@ function App(): JSX.Element {
             </RouteWrapper>
           }
         />
+                <Route
+          path="/profile"
+          element={
+            <RouteWrapper>
+              <Profile />
+            </RouteWrapper>
+          }
+        />
       </Routes>
->>>>>>> feature/archive
     </>
   );
 }
