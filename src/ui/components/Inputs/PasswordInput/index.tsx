@@ -15,8 +15,6 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const PasswordInput: React.FC<Props> = ({ helperText, error, ...rest }) => {
-  console.log('error', error);
-
   const [open, setOpen] = useState(false);
 
   const toggle = () => {

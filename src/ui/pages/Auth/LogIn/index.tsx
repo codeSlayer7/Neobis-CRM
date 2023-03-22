@@ -46,8 +46,6 @@ export const LogIn: React.FC = () => {
     onSubmit,
   });
 
-  console.log('formik', formik);
-
   return (
     <div className="flex h-screen items-center justify-around">
       <div className="mt-[55px] ">
