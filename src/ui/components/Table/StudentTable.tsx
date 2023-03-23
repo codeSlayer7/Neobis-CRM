@@ -133,7 +133,7 @@ const StudentTable = () => {
     {
       field: 'status',
       headerName: <div className="text-[16px] font-semibold">Статус</div>,
-      width: 136,
+      width: 148,
       renderCell: (params: any) => {
         return (
           <div
@@ -152,17 +152,17 @@ const StudentTable = () => {
     {
       field: 'number',
       headerName: <div className="text-[16px] font-semibold">Телефон</div>,
-      width: 209,
+      width: 180,
     },
     {
       field: 'email',
       headerName: <div className="text-[16px] font-semibold">Email</div>,
-      width: 185,
+      width: 219,
     },
     {
       field: 'group',
       headerName: <div className="text-[16px] font-semibold">Группа</div>,
-      width: 219,
+      width: 185,
     },
     {
       field: 'payment',
@@ -180,9 +180,6 @@ const StudentTable = () => {
           rows={rows}
           columns={columns}
           getRowClassName={(params) => 'even:bg-[#F4F7FD]'}
-          // autoPageSize={true}
-          // paginationComponent={Pagination}
-          // pagination={true}
         />
       </div>
     </>

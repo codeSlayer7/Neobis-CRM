@@ -22,7 +22,7 @@ import ForgotPassword from './ui/pages/Auth/ForgotPassword';
 import Confirmation from './ui/pages/Auth/Confirmation';
 import ChangePassword from './ui/pages/Auth/ChangePassword';
 
-const RouteWrapper = ({children}: any) => {
+const RouteWrapper = ({ children }: any) => {
   return (
     <>
       <Navbar />
@@ -146,7 +146,7 @@ function App(): JSX.Element {
             </RouteWrapper>
           }
         />
-                <Route
+        <Route
           path="/profile"
           element={
             <RouteWrapper>

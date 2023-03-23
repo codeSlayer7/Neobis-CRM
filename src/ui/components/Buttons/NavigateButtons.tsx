@@ -1,8 +1,9 @@
-
+import { useState } from 'react';
 import Search from '../Search';
 
 interface Props {
   setButtonType: (v: number) => void;
+  buttonType: number;
 }
 
 const buttons = [
@@ -28,22 +29,26 @@ const buttons = [
   },
 ];
 
-export default function NavigateButtons({ setButtonType }: Props) {
+export default function NavigateButtons({ buttonType, setButtonType }: Props) {
   return (
     <div className="bg-[#E2EBFF] pl-[31px] pt-[20px] pb-[19px] pr-[29px] rounded-[16px] flex">
-      {buttons.map((btn) => (
-        <button
-          onClick={() => setButtonType(btn.value)}
-          className="pl-[15px] pt-[8px] pr-[15px] pb-[8px] bg-[#FFFFFF] border-[1px solid #E2E2E2] mr-[60px] rounded-[8px] "
-        >
-          {btn.label}
-        </button>
-      ))}
+      {buttons.map((btn) => {
+        return (
+          <button
+            onClick={() => setButtonType(btn.value)}
+            className={
+              buttonType === btn.value
+                ? 'pl-[15px] pt-[8px] pr-[15px] pb-[8px] bg-[#70BF44] text-white border-[1px solid #E2E2E2] mr-[60px] rounded-[8px]'
+                : 'pl-[15px] pt-[8px] pr-[15px] pb-[8px] bg-[#FFFFFF] border-[1px solid #E2E2E2] mr-[60px] rounded-[8px]'
+            }
+          >
+            {btn.label}
+          </button>
+        );
+      })}
       <div>
         <Search />
       </div>
     </div>
   );
 }
-
-// ===  backGround: '#70BF44'

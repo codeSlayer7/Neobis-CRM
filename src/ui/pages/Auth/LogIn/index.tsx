@@ -3,13 +3,13 @@ import React, { useEffect } from 'react';
 import Auth from '../../../icons/auth';
 import EmailInput from '../../../components/Inputs/EmailInput';
 import PasswordInput from '../../../components/Inputs/PasswordInput';
-import LogInButton from '../../../components/Buttons/LogInButton';
 import CheckBox from '../../../components/CheckBox';
-import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import { UserData } from '../../../../redux/types/userTypes';
 import { loginUserThunk } from '../../../../redux/slices/userSlice';
 import { useAppDispatch } from '../../../../types/global';
+import { useNavigate } from 'react-router-dom';
+import { Button } from '../../../components/Buttons/Button';
 
 export interface ILoginForm {
   email: string;
@@ -35,9 +35,11 @@ const initialValues = {
 
 export const LogIn: React.FC = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const onSubmit = (values: UserData) => {
     dispatch(loginUserThunk(values));
+    navigate('/');
   };
 
   const formik = useFormik({
@@ -68,7 +70,7 @@ export const LogIn: React.FC = () => {
           error={Boolean(formik.touched.password && formik.errors.password)}
           helperText={formik.errors.password}
         />
-        <LogInButton />
+        <Button label="Войти" />
         <CheckBox />
       </form>
     </div>

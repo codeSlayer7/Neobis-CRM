@@ -31,7 +31,9 @@ const EmailInput: React.FC<Props> = ({ error, helperText, ...rest }) => {
     dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
           placeholder="введите ваш email"
         />
-        <div className="text-[red] mt-0 mb-[24px]">{helperText}</div>
+        <div className="text-[red] mt-0 mb-[24px] max-w-[415px]">
+          {helperText}
+        </div>
       </label>
     </div>
   );

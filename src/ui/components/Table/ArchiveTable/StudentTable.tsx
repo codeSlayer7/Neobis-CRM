@@ -14,7 +14,7 @@ export default function StudentTable() {
       name: 'Жаныш Мамытов',
       email: 'zhanysh12@gmail.com',
       number: '+996 555 123 123',
-      post: 'Python',
+      group: 'Python',
       date: 'Октябрь 14',
       cause: 'Курс завершился ',
     },
@@ -23,7 +23,25 @@ export default function StudentTable() {
       name: 'Жаныш Мамытов',
       email: 'zhanysh12@gmail.com',
       number: '+996 555 123 123',
-      post: 'Python',
+      group: 'Python',
+      date: 'Октябрь 14',
+      cause: 'По состоянию здоровью',
+    },
+    {
+      id: 3,
+      name: 'Мамытов Алтын',
+      email: 'altynka12@gmail.com',
+      number: '+996 555 123 123',
+      group: 'IOS',
+      date: 'Октябрь 14',
+      cause: 'По состоянию здоровью',
+    },
+    {
+      id: 4,
+      name: 'Мамытов Алтын',
+      email: 'altynkaa12347@gmail.com',
+      number: '+996 555 123 123',
+      group: 'Android',
       date: 'Октябрь 14',
       cause: 'По состоянию здоровью',
     },
@@ -43,31 +61,27 @@ export default function StudentTable() {
     },
     {
       field: 'number',
-      headerName: (
-        <div className="text-[16px] font-semibold">+996 555 123 123</div>
-      ),
-      width: 225,
+      headerName: <div className="text-[16px] font-semibold">Телефон</div>,
+      width: 200,
     },
     {
-      field: 'post',
-      headerName: (
-        <div className="text-[16px] font-semibold">Office Manager</div>
-      ),
-      width: 219,
+      field: 'group',
+      headerName: <div className="text-[16px] font-semibold">Группа</div>,
+      width: 160,
     },
     {
       field: 'date',
       headerName: (
         <div className="text-[16px] font-semibold">Дата архивации</div>
       ),
-      width: 170,
+      width: 180,
     },
     {
       field: 'cause',
       headerName: (
         <div className="text-[16px] font-semibold">Причина архивации</div>
       ),
-      width: 200,
+      width: 240,
     },
   ];
 
