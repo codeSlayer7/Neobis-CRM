@@ -1,9 +1,11 @@
 // import { useState } from "react";
 import { Draggable } from 'react-beautiful-dnd';
+import { Link } from 'react-router-dom';
 import { ItemBack } from '../../../../../interfaces';
 import { CardStatus } from '../../../../../interfaces/enum';
 import Clock from '../../../../icons/clock.svg';
 import Clock2 from '../../../../icons/clockBlack.svg';
+import More from '../../../../icons/More';
 
 interface Props {
   card: ItemBack;
@@ -37,16 +39,20 @@ function TrelloCard({ card, index }: Props) {
             }}
           >
             <div className="px-6 pt-4">
-              <p
-                className={
-                  card.status === CardStatus.WaitCall
-                    ? 'text-xl font-normal text-white'
-                    : 'text-xl font-normal text-black'
-                }
-              >
-                {card.name}
-              </p>
-
+              <div className="flex justify-between">
+                <p
+                  className={
+                    card.status === CardStatus.WaitCall
+                      ? 'text-xl font-normal text-white'
+                      : 'text-xl font-normal text-black'
+                  }
+                >
+                  {card.name}
+                </p>
+                <Link to="/infomodal">
+                  <More />
+                </Link>
+              </div>
               <p
                 className="flex pt-2 text-base font-normal"
                 style={{
@@ -75,18 +81,22 @@ function TrelloCard({ card, index }: Props) {
             </div>
 
             <div className="mt-2 flex justify-around px-2 pb-8">
-              <button
-                type="button"
-                className="bg-neobis-bg-green rounded-lg px-4 py-[4px] text-base font-normal text-white"
-              >
-                Зачислять
-              </button>
-              <button
-                type="button"
-                className="bg-neobis-bg-card-text text-skin-text-darkViolet rounded-lg px-2 py-[4px] text-base font-normal  "
-              >
-                Архивировать
-              </button>
+              <Link to="/enrollclient">
+                <button
+                  type="button"
+                  className="bg-neobis-bg-green hover:easy-in rounded-lg px-4 py-[4px] text-base font-normal text-white transition duration-150 hover:scale-110 "
+                >
+                  Зачислять
+                </button>
+              </Link>
+              <Link to="/archiveclient">
+                <button
+                  type="button"
+                  className="bg-neobis-bg-card-text text-skin-text-darkViolet rounded-lg px-2 py-[4px] text-base font-normal transition duration-150 hover:scale-110 hover:ease-in"
+                >
+                  Архивировать
+                </button>
+              </Link>
             </div>
           </div>
         );

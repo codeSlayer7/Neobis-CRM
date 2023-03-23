@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const CheckBox = () => {
   return (
     <div className="flex items-start">
@@ -13,9 +15,11 @@ const CheckBox = () => {
           Запомнить меня
         </label>
       </div>
-      <div className="ml-[110px] text-[20px] text-[#70BF44] font-normal">
-        Забыли пароль ?
-      </div>
+      <Link to="/forgot">
+        <div className="ml-[70px] text-[20px] text-[#70BF44] font-normal cursor-pointer">
+          Забыли пароль ?
+        </div>
+      </Link>
     </div>
   );
 };

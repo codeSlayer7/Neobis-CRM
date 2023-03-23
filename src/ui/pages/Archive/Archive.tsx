@@ -1,4 +1,19 @@
-function Archive() {
-  return <h1 className="text-green-400 text-5xl">Архивы</h1>;
+import { useState } from 'react';
+import NavigateButtons from '../../components/Buttons/NavigateButtons';
+import ArchiveTable from '../../components/Table/ArchiveTable/ArchiveTable';
+
+export default function Archive() {
+  const [buttonType, setButtonType] = useState<number>(0);
+
+  return (
+    <div className="p-[40px]">
+      <div className="mb-[50px]">
+        <NavigateButtons
+          buttonType={buttonType}
+          setButtonType={setButtonType}
+        />
+      </div>
+      <ArchiveTable buttonType={buttonType} />
+    </div>
+  );
 }
-export default Archive;
