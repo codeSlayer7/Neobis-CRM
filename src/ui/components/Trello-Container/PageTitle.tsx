@@ -8,7 +8,7 @@ function PageTitle() {
         <Link to="/createcard">
           <button
             type="button"
-            className="bg-neobis-bg-green rounded-lg px-4 py-[8px] text-xl font-semibold text-white hover:opacity-90 transition duration-150 hover:scale-110"
+            className="bg-neobis-bg-green rounded-lg px-4 py-[8px] text-xl font-semibold text-white transition duration-150 hover:scale-110 hover:opacity-90"
           >
             Создать карточку
           </button>
