@@ -72,7 +72,7 @@ function Sidebar({ children }: Props) {
         ))}
       </div>
 
-      <main className={!isOpen ? 'flex w-[90vw]' : 'flex w-[83%] '}>
+      <main className={isOpen ? 'flex w-[82%]' : 'flex w-[90%]'}>
         {children}
       </main>
     </div>

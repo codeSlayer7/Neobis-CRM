@@ -1,4 +1,12 @@
+import Calendar from '../../components/Schedule/calendar';
+import HistoryTable from '../../components/Schedule/history-table';
+import Schedule from '../../components/Schedule/schedule';
+
 function Analytics() {
-  return <h1 className="text-green-400 text-5xl">Аналитика</h1>;
+  return (
+    <div className="w-[100%]">
+   
+    </div>
+  );
 }
 export default Analytics;

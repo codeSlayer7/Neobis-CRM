@@ -1,4 +1,9 @@
 body {
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
 
-    overflow-x: hidden; /* Hide horizontal scrollbar */
-  }
