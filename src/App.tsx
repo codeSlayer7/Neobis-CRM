@@ -23,6 +23,10 @@ import Confirmation from './ui/pages/Auth/Confirmation';
 import ChangePassword from './ui/pages/Auth/ChangePassword';
 import Courses from './ui/pages/Groups/Courses';
 import Groups from './ui/pages/Groups/Groups';
+import CreateUser from './ui/admin/Modals/CreateUser';
+import NavbarAdmin from './ui/admin/NavbarAdmin/NavbarAdmin';
+import SidebarAdmin from './ui/admin/SidebarAdmin/SidebarAdmin';
+import AdminPanel from './ui/admin/AdminPanel';
 
 function RouteWrapper({ children }: any) {
   return (
@@ -30,6 +34,17 @@ function RouteWrapper({ children }: any) {
       <Navbar />
       <div>
         <Sidebar>{children}</Sidebar>
+      </div>
+    </>
+  );
+}
+
+export function RouteWrapperAdmin({ children }: any) {
+  return (
+    <>
+      <NavbarAdmin />
+      <div>
+        <SidebarAdmin>{children}</SidebarAdmin>
       </div>
     </>
   );
@@ -42,6 +57,8 @@ function App(): JSX.Element {
       <Route path="/forgot" element={<ForgotPassword />} />
       <Route path="/confirmation" element={<Confirmation />} />
       <Route path="/change-password" element={<ChangePassword />} />
+      <Route path="/admin" element={<AdminPanel />} />
+      <Route path="/createUser" element={<CreateUser />} />
 
       <Route
         path="/enrollclient"
@@ -155,6 +172,7 @@ function App(): JSX.Element {
           </RouteWrapper>
         }
       />
+
       <Route
         path="/profile"
         element={

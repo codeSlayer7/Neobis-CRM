@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import Logo from '../../icons/Logo';
 import SearchIcon from '../../icons/SearchIcon';
-import ProfileDropDown from '../ProfileDropDown/ProfileDropDown';
+import ProfileDropDown from '../../components/ProfileDropDown/ProfileDropDown';
 
-function Navbar() {
+function NavbarAdmin() {
   return (
     <div className="flex h-16  items-center justify-between rounded-sm border border-inherit">
       <div className="ml-6 flex w-56 justify-between">
@@ -28,4 +28,4 @@ function Navbar() {
     </div>
   );
 }
-export default Navbar;
+export default NavbarAdmin;
