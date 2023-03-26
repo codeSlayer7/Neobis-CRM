@@ -3,17 +3,17 @@ import { Button } from '../../../components/Buttons/Button';
 import EmailInput from '../../../components/Inputs/EmailInput';
 import Auth from '../../../icons/auth';
 import * as yup from 'yup';
-import { useAppDispatch } from '../../../../types/global';
 import { useNavigate } from 'react-router-dom';
 import { UserForgotPassword } from '../../../../redux/types/userTypes';
 import { forgotPasswordThunk } from '../../../../redux/slices/userSlice';
 import { useState } from 'react';
+import { useAppDispatch } from '../../../../constants/global';
 
 const schema = yup.object().shape({
   email: yup
     .string()
     .required('Укажите логин !')
-    .email('Неверный email. Проверьте, правильно ли введён email'),
+    .email('Неверный email!'),
 });
 
 const initialValues = {

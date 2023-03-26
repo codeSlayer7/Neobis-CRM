@@ -16,3 +16,4 @@ export interface UserResetPassword{
     newPassword : string;
     confirmPassword: string;
 }
+export type UserRole = "ROLE_ADMIN" | "ROLE_MANAGER"

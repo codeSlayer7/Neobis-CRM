@@ -19,7 +19,7 @@ const ConfirmationInput: React.FC<Props> = ({ error, helperText, ...rest }) => {
     dark:focus:border-blue-500 dark:focus:ring-blue-500"
           placeholder="******"
         />
-        <div className="text-[red] mt-0 mb-[24px] max-w-[415px]">
+        <div className="text-[red] text-[16px] mt-[4px] mb-[15px] max-w-[415px] h-[10px]">
           {helperText}
         </div>
       </label>

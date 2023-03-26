@@ -2,11 +2,11 @@ import { useFormik } from 'formik';
 import ConfirmationInput from '../../../components/Inputs/Confirmation';
 import Auth from '../../../icons/auth';
 import * as yup from 'yup';
-import { useAppDispatch } from '../../../../types/global';
 import { useNavigate } from 'react-router-dom';
 import { UserConfirmCode } from '../../../../redux/types/userTypes';
 import { confirmCodeThunk } from '../../../../redux/slices/userSlice';
 import { Button } from '../../../components/Buttons/Button';
+import { useAppDispatch } from '../../../../constants/global';
 
 const schema = yup.object().shape({
   code: yup

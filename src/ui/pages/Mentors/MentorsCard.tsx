@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 
-function MentorsCard(props) {
+function MentorsCard(props: any) {
   return (
     <>
       {props.details.map((value, index) => (
-        <div className=" mr-8" key={index}>
+        <div className="mr-[50px]" key={index}>
           <div className="mb-10 h-[351px] w-[323px] rounded-3xl border border-[#C7C7C7] shadow-md">
             <div className="mt-6 flex w-full">
               <img src={value.img} alt="#" className="ml-[101px]" />

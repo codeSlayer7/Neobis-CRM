@@ -36,7 +36,7 @@ const ChangeInput: React.FC<Props> = ({ helperText, error, ...rest }) => {
       font-normal text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:placeholder:text-gray-400
       dark:focus:border-blue-500 dark:focus:ring-blue-500"
         />
-        <div className="text-[red] mt-0 mb-[24px]">{helperText}</div>
+        <div className="text-[red] text-[16px] mt-[4px] mb-[15px] max-w-[415px] h-[10px]">{helperText}</div>
       </label>
     </div>
   );

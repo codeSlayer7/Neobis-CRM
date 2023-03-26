@@ -22,7 +22,7 @@ import ForgotPassword from './ui/pages/Auth/ForgotPassword';
 import Confirmation from './ui/pages/Auth/Confirmation';
 import ChangePassword from './ui/pages/Auth/ChangePassword';
 
-const RouteWrapper = ({ children }: any) => {
+export const RouteWrapper = ({ children }: any) => {
   return (
     <>
       <Navbar />
@@ -37,6 +37,7 @@ function App(): JSX.Element {
   return (
     <>
       <Routes>
+        
         <Route path="/login" element={<LogIn />} />
         <Route path="/forgot" element={<ForgotPassword />} />
         <Route path="/confirmation" element={<Confirmation />} />

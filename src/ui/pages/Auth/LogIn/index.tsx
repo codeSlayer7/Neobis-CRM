@@ -7,9 +7,12 @@ import CheckBox from '../../../components/CheckBox';
 import { useFormik } from 'formik';
 import { UserData } from '../../../../redux/types/userTypes';
 import { loginUserThunk } from '../../../../redux/slices/userSlice';
-import { useAppDispatch } from '../../../../types/global';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../../../components/Buttons/Button';
+import { useAppDispatch, useAppSelector } from '../../../../constants/global';
+// import { toast } from 'react-toastify';
+// import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export interface ILoginForm {
   email: string;
@@ -17,15 +20,12 @@ export interface ILoginForm {
 }
 
 const schema = yup.object().shape({
-  email: yup
-    .string()
-    .required('Укажите логин !')
-    .email('Неверный email. Проверьте, правильно ли введён email'),
+  email: yup.string().required('Укажите логин !').email('Неверный email!'),
   password: yup
     .string()
     .required('Укажите пароль !')
-    .min(6, 'Пароль должен быть неменьше 6 символов')
-    .max(40, 'Пароль должен быть небольше 40 символов'),
+    .min(6, 'Пароль должен быть не меньше 6 символов')
+    .max(40, 'Пароль должен быть не больше 40 символов'),
 });
 
 const initialValues = {
@@ -37,9 +37,12 @@ export const LogIn: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  const { role, error } = useAppSelector((state) => {
+    return state.user;
+  });
+
   const onSubmit = (values: UserData) => {
     dispatch(loginUserThunk(values));
-    navigate('/');
   };
 
   const formik = useFormik({
@@ -48,9 +51,16 @@ export const LogIn: React.FC = () => {
     onSubmit,
   });
 
+  useEffect(() => {
+    if (role) {
+      role === 'ROLE_ADMIN' && navigate('/');
+      role === 'ROLE_MANAGER' && navigate('/tff');
+    }
+  }, [role]);
+
   return (
     <div className="flex h-screen items-center justify-around">
-      <div className="mt-[55px] ">
+      <div className="mt-[55px]">
         <Auth />
       </div>
       <form onSubmit={formik.handleSubmit} className="flex flex-col">
@@ -59,7 +69,7 @@ export const LogIn: React.FC = () => {
           value={formik.values.email}
           name="email"
           onChange={formik.handleChange}
-          error={Boolean(formik.touched.email && formik.errors.email)}
+          error={Boolean(formik.touched.email || formik.errors.email)}
           helperText={formik.errors.email}
         />
         <PasswordInput
@@ -67,10 +77,13 @@ export const LogIn: React.FC = () => {
           type="password"
           value={formik.values.password}
           onChange={formik.handleChange}
-          error={Boolean(formik.touched.password && formik.errors.password)}
+          error={Boolean(formik.touched.password || formik.errors.password)}
           helperText={formik.errors.password}
         />
-        <Button label="Войти" />
+        <div>
+          {/* <ToastContainer /> */}
+          <Button label="Войти" />
+        </div>
         <CheckBox />
       </form>
     </div>
