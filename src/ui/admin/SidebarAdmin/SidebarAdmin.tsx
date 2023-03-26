@@ -3,11 +3,13 @@ import { HiOutlineArrowLongRight } from 'react-icons/hi2';
 import { HiOutlineMenuAlt1 } from 'react-icons/hi';
 import React, { useState } from 'react';
 import StudentIcon from '../../icons/StudentIcon';
-import ArchiveIcon from '../../icons/ArchiveIcon';
-import MentorsIcon from '../../icons/MentorsIcon';
-import ApplicationIcon from '../../icons/ApplicationIcon';
+import User from '../../icons/User';
+// import StudentIcon from '../../icons/StudentIcon';
+// import ArchiveIcon from '../../icons/ArchiveIcon';
+// import MentorsIcon from '../../icons/MentorsIcon';
+// import ApplicationIcon from '../../icons/ApplicationIcon';
 // import AnalyticsIcon from '../../icons/AnalyticsIcon';
-import Education from '../../icons/Education';
+// import Education from '../../icons/Education';
 // import Course from '../../icons/Course';
 
 interface IMenuItem {
@@ -19,7 +21,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-function Sidebar({ children }: Props) {
+function SidebarAdmin({ children }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   const activeMenu =
@@ -28,17 +30,8 @@ function Sidebar({ children }: Props) {
     'text-slate-400 group flex rounded-full gap-3.5 text-xl p-5 m-1 hover:bg-[#D9BFFF] hover:text-[#A062F7]';
 
   const menuItem: IMenuItem[] = [
-    { name: 'Заявки', path: '/', icon: <ApplicationIcon /> },
-    {
-      name: 'Курсы',
-      path: '/courses',
-      icon: <Education />,
-    },
+    { name: 'Менеджер', path: '/admin', icon: <User /> },
 
-    { name: 'Студенты', path: '/students', icon: <StudentIcon /> },
-    { name: 'Преподаватели', path: '/mentors', icon: <MentorsIcon /> },
-    { name: 'Архивы', path: '/archive', icon: <ArchiveIcon /> },
-    // { name: 'Аналитика', path: '/analytics', icon: <AnalyticsIcon /> },
   ];
   return (
     <div className="flex">
@@ -85,4 +78,4 @@ function Sidebar({ children }: Props) {
   );
 }
 
-export default Sidebar;
+export default SidebarAdmin;

@@ -1,4 +1,3 @@
-import { IoChevronDown } from 'react-icons/io5';
 import DropDown from '../../components/DropDown';
 import MentorsCard from './MentorsCard';
 import MentorsData from './MentorsData';
@@ -9,7 +8,7 @@ function Mentors() {
       <div className="ml-[800px] flex h-[43px] w-[199px] items-center justify-around ">
         <DropDown
           label={<div className="font-sans text-base">Направление</div>}
-          onOptionClick={(option) => console.log(option)}
+          onOptionClick={(option) => `(option)`}
           options={['Phyton', 'Java', 'JavaScript', 'Product Manager', 'UI8']}
         />
       </div>

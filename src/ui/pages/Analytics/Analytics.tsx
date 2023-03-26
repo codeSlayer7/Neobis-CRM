@@ -1,4 +1,4 @@
 function Analytics() {
-  return <h1 className="text-green-400 text-5xl">Аналитика</h1>;
+  return <div className="h-[100vh] w-full">analytics</div>;
 }
 export default Analytics;
