@@ -1,15 +1,13 @@
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid } from '@mui/x-data-grid';
 
 interface Columns {
-    field: string;
-    headerName: any;
-    width: number;
-    renderCell?: any;
-  }
-
+  field: string;
+  headerName: any;
+  width: number;
+  renderCell?: any;
+}
 
 export default function BlackListTable() {
-
   const blackListRows = [
     {
       id: 1,
@@ -29,6 +27,24 @@ export default function BlackListTable() {
       date: 'Октябрь 14',
       cause: 'По состоянию здоровью',
     },
+    {
+      id: 3,
+      name: 'Мария Никулина',
+      email: 'mariionetwo@gmail.com',
+      number: '+996 555 123 123',
+      group: 'Java Script',
+      date: 'Октябрь 14',
+      cause: 'В течении урока ходит за едой',
+    },
+    {
+      id: 4,
+      name: 'Мария Никулина',
+      email: 'mariionetwo@gmail.com',
+      number: '+996 555 123 123',
+      group: 'Java Script',
+      date: 'Октябрь 14',
+      cause: 'В течении урока ходит за едой',
+    },
   ];
 
   const blackListColumns: Columns[] = [
@@ -45,24 +61,20 @@ export default function BlackListTable() {
     },
     {
       field: 'number',
-      headerName: (
-        <div className="text-[16px] font-semibold">+996 555 123 123</div>
-      ),
-      width: 225,
+      headerName: <div className="text-[16px] font-semibold">Телефон</div>,
+      width: 200,
     },
     {
       field: 'group',
-      headerName: (
-        <div className="text-[16px] font-semibold">Office Manager</div>
-      ),
-      width: 219,
+      headerName: <div className="text-[16px] font-semibold">Группа</div>,
+      width: 160,
     },
     {
       field: 'date',
       headerName: (
         <div className="text-[16px] font-semibold">Дата архивации</div>
       ),
-      width: 170,
+      width: 180,
     },
     {
       field: 'cause',
@@ -72,13 +84,13 @@ export default function BlackListTable() {
       width: 200,
     },
   ];
-    return(
-      <DataGrid
-        autoHeight
-        className=" bg-white border rounded-lg shadow-lg w-[1300px] hover:none"
-        rows={blackListRows}
-        columns={blackListColumns}
-        getRowClassName={(params) => 'even:bg-[#F4F7FD]'}
-      /> 
-    )
+  return (
+    <DataGrid
+      autoHeight
+      className=" bg-white border rounded-lg shadow-lg w-[1300px] hover:none"
+      rows={blackListRows}
+      columns={blackListColumns}
+      getRowClassName={(params) => 'even:bg-[#F4F7FD]'}
+    />
+  );
 }

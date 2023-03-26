@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useAppSelector } from '../../../constants/global';
 import ProfileInput from '../../components/Forms/ProfileInput';
 import Edit from '../../icons/Edit';
 import EditWhite from '../../icons/EditWhite';
@@ -13,6 +14,10 @@ function Profile() {
     setShow(!show);
   };
 
+  const { firstName, lastName } = useAppSelector((state) => {
+    return state.user;
+  });
+
   return (
     <div className="mx-auto flex h-auto w-full items-center justify-center">
       <div className="my-10 mx-auto h-[798px] w-[886px]">
@@ -21,7 +26,7 @@ function Profile() {
             <img src={Photo} alt="#" />
           </div>
           <div className="ml-7">
-            <h2 className="text-3xl font-bold">Джулия Робертс</h2>
+            <h2 className="text-3xl font-bold">{firstName}{lastName}</h2>
             <div className="mt-10">
               <button
                 type="button"

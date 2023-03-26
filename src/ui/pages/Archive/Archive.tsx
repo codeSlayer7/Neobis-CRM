@@ -4,16 +4,16 @@ import ArchiveTable from '../../components/Table/ArchiveTable/ArchiveTable';
 
 export default function Archive() {
   const [buttonType, setButtonType] = useState<number>(0);
-  console.log('btn', buttonType);
 
   return (
     <div className="p-[40px]">
       <div className="mb-[50px]">
-        <NavigateButtons setButtonType={setButtonType} />
+        <NavigateButtons
+          buttonType={buttonType}
+          setButtonType={setButtonType}
+        />
       </div>
-      <ArchiveTable
-      buttonType={buttonType}
-      />
+      <ArchiveTable buttonType={buttonType} />
     </div>
   );
 }
