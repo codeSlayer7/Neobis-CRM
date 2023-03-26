@@ -7,8 +7,8 @@ function EnrollClient() {
   return (
     <div className="flex h-[100vh] w-full items-center justify-center bg-[#FAFAFA]">
       <div className="h-[266px] w-[512px] rounded-lg border  border-black bg-white">
-        <div className="flex h-[68px] w-[512px] items-center justify-center rounded-t-lg bg-black text-white">
-          <p className="mr-5 text-3xl font-semibold">Внимание</p>
+        <div className="justify-left flex h-[68px] w-[512px] items-center rounded-t-lg bg-black text-white">
+          <p className="mx-5 text-3xl font-semibold">Внимание</p>
           <Attention />
         </div>
         <p className="mt-[47px] text-center text-xl font-semibold">

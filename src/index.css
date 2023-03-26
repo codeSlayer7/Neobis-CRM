@@ -21,8 +21,8 @@
 
 @layer base {
   html {
-    @apply font-sans;
-    /* font-family: @apply font-sans; */
+    /* @apply font-sans; */
+    font-family: 'Segoe UI';
   }
 }
 

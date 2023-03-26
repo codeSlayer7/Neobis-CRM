@@ -259,7 +259,7 @@ export default function Calendar() {
             </div>
           </div>
           <section className="mt-12 md:mt-0 md:pl-14">
-            <h2 className="font-semibold text-gray-900">
+            <h2 className="font-semibold text-gray-900 ml-14">
               Schedule for{' '}
               <time dateTime={format(selectedDay, 'yyyy-MM-dd')}>
                 {format(selectedDay, 'MMM dd, yyy')}
@@ -286,7 +286,7 @@ function Meeting({ meeting }) {
   const endDateTime = parseISO(meeting.endDatetime);
 
   return (
-    <li className="group flex items-center space-x-4 rounded-xl px-4 py-2 focus-within:bg-gray-100 hover:bg-gray-100">
+    <li className="group ml-14 flex items-center space-x-4 rounded-xl px-4 py-2 focus-within:bg-gray-100 hover:bg-gray-100">
       <img
         src={meeting.imageUrl}
         alt=""
