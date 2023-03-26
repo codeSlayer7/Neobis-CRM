@@ -10,6 +10,9 @@ function Analytics() {
       <HistoryTitle />
       <BasicTable />
       <Calendar />
+      <div className="w-[90%] h-[600px] mt-10">
+        <Schedule />
+      </div>
     </div>
   );
 }

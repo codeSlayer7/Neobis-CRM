@@ -260,9 +260,9 @@ export default function Calendar() {
           </div>
           <section className="mt-12 md:mt-0 md:pl-14">
             <h2 className="font-semibold text-gray-900 ml-14">
-              Schedule for{' '}
+              Расписание на {' '}
               <time dateTime={format(selectedDay, 'yyyy-MM-dd')}>
-                {format(selectedDay, 'MMM dd, yyy')}
+                {format(selectedDay, 'dd MMMM yyy')}
               </time>
             </h2>
             <ol className="mt-4 space-y-1 text-sm leading-6 text-gray-500">
@@ -271,7 +271,7 @@ export default function Calendar() {
                   <Meeting meeting={meeting} key={meeting.id} />
                 ))
               ) : (
-                <p>No meetings for today.</p>
+                <p className='ml-14 font-bold space-y-1 text-sm leading-6 text-gray-500'> Нет событий</p>
               )}
             </ol>
           </section>

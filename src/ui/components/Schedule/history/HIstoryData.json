@@ -4,17 +4,17 @@
     "first_name": "Rosalyn",
     "last_name": "Trappe",
     "email": "rtrappe0@google.com.au",
-    "action": "Tox uninod goit no cris",
+    "action": "Редактироание",
     "time": "1:37 PM",
     "img": "http://dummyimage.com/209x100.png/dddddd/000000",
-    "type_operatin": "Sprain of unspecified site of left knee"
+    "type_operatin": "Поменял статус Карты - ожидает зввонок"
   },
   {
     "id": "01GW21A6AQCCV3NHHGR79EC08N",
     "first_name": "Issi",
     "last_name": "Metzel",
     "email": "imetzel1@spotify.com",
-    "action": "Open wound nasal septum",
+    "action": "Удаление",
     "time": "4:10 PM",
     "img": "http://dummyimage.com/183x100.png/5fa2dd/ffffff",
     "type_operatin": "Unspecified atherosclerosis of unspecified type of bypass graft(s) of the extremities, other extremity"
@@ -24,17 +24,17 @@
     "first_name": "Florian",
     "last_name": "Roggero",
     "email": "froggero2@si.edu",
-    "action": "TB pneumonia-oth test",
+    "action": "Редактироание",
     "time": "1:51 AM",
     "img": "http://dummyimage.com/216x100.png/cc0000/ffffff",
-    "type_operatin": "Poisoning by glucocorticoids and synthetic analogues, accidental (unintentional), initial encounter"
+    "type_operatin": "Поменял статус Студ - ожидает зввонок"
   },
   {
     "id": "01GW21A6B12WAX1N5YE707S05R",
     "first_name": "Inna",
     "last_name": "Greenhead",
     "email": "igreenhead3@quantcast.com",
-    "action": "C5-c7 spin cord inj NEC",
+    "action": "Редактироание",
     "time": "11:59 AM",
     "img": "http://dummyimage.com/129x100.png/ff4444/ffffff",
     "type_operatin": "Unspecified injury of other muscle(s) and tendon(s) of posterior muscle group at lower leg level, unspecified leg"
@@ -44,50 +44,50 @@
     "first_name": "Sydney",
     "last_name": "Dunderdale",
     "email": "sdunderdale4@japanpost.jp",
-    "action": "Bladder neck obstruction",
+    "action": "Редактироание",
     "time": "5:42 AM",
     "img": "http://dummyimage.com/139x100.png/cc0000/ffffff",
-    "type_operatin": "Passenger in three-wheeled motor vehicle injured in collision with heavy transport vehicle or bus in traffic accident, sequela"
+    "type_operatin": "Удалил студента"
   },
   {
     "id": "01GW21A6B8PM4HYGW3TY1BCJZ4",
     "first_name": "Gunther",
     "last_name": "Cregg",
     "email": "gcregg5@icio.us",
-    "action": "Cracked nipple preg-unsp",
+    "action": "Удаление",
     "time": "12:23 AM",
     "img": "http://dummyimage.com/182x100.png/ff4444/ffffff",
-    "type_operatin": "Unspecified fracture of left lower leg, subsequent encounter for open fracture type I or II with routine healing"
+    "type_operatin": "Удалил студента"
   },
   {
     "id": "01GW21A6BA36YBB2ZK67W9M0BG",
     "first_name": "Verney",
     "last_name": "Sancho",
     "email": "vsancho6@cbsnews.com",
-    "action": "Colstmy/enteros comp NEC",
+    "action": "Удаление",
     "time": "11:00 PM",
     "img": "http://dummyimage.com/196x100.png/dddddd/000000",
-    "type_operatin": "Salter-Harris Type III physeal fracture of lower end of humerus, left arm, subsequent encounter for fracture with nonunion"
+    "type_operatin": "Удалил студента"
   },
   {
     "id": "01GW21A6BEMWGM4ZGJ400C35S4",
     "first_name": "Thatch",
     "last_name": "Dust",
     "email": "tdust7@yandex.ru",
-    "action": "Fx radius head-closed",
+    "action": "Удаление",
     "time": "7:54 AM",
     "img": "http://dummyimage.com/103x100.png/cc0000/ffffff",
-    "type_operatin": "Unilateral inguinal hernia, with gangrene, not specified as recurrent"
+    "type_operatin": "Удалил студента"
   },
   {
     "id": "01GW21A6BGBYXRS5VN3BMJ6NTH",
     "first_name": "Jillene",
     "last_name": "O'Cooney",
     "email": "jocooney8@jiathis.com",
-    "action": "Amphetamine abuse-contin",
+    "action": "Удаление",
     "time": "7:38 AM",
     "img": "http://dummyimage.com/171x100.png/5fa2dd/ffffff",
-    "type_operatin": "Nondisplaced fracture of lateral condyle of left femur, initial encounter for closed fracture"
+    "type_operatin": "Удалил студента"
   },
   {
     "id": "01GW21A6BMS91XXG10G65Q4V6F",
