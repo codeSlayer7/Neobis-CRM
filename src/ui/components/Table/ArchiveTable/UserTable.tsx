@@ -14,7 +14,7 @@ export default function UserTable() {
       name: 'Жаныш Мамытов',
       email: 'zhanysh12@gmail.com',
       number: '+996 555 123 123',
-      post: 'Python',
+      post: 'Office Manager',
       date: 'Октябрь 14',
       cause: 'Курс завершился ',
     },
@@ -23,9 +23,18 @@ export default function UserTable() {
       name: 'Жаныш Мамытов',
       email: 'zhanysh12@gmail.com',
       number: '+996 555 123 123',
-      post: 'Python',
+      post: 'Office Manager',
       date: 'Октябрь 14',
       cause: 'По состоянию здоровью',
+    },
+    {
+      id: 3,
+      name: 'Алтынай Бекешова',
+      email: 'altysha_b@gmai.com',
+      number: '+996 555 123 123',
+      post: 'Office Manager',
+      date: 'Октябрь 14',
+      cause: 'плохое понимание кыргызского языка',
     },
   ];
 
@@ -43,31 +52,27 @@ export default function UserTable() {
     },
     {
       field: 'number',
-      headerName: (
-        <div className="text-[16px] font-semibold">+996 555 123 123</div>
-      ),
-      width: 225,
+      headerName: <div className="text-[16px] font-semibold">Телефон</div>,
+      width: 200,
     },
     {
       field: 'post',
-      headerName: (
-        <div className="text-[16px] font-semibold">Office Manager</div>
-      ),
-      width: 219,
+      headerName: <div className="text-[16px] font-semibold">Должность</div>,
+      width: 160,
     },
     {
       field: 'date',
       headerName: (
         <div className="text-[16px] font-semibold">Дата архивации</div>
       ),
-      width: 170,
+      width: 180,
     },
     {
       field: 'cause',
       headerName: (
         <div className="text-[16px] font-semibold">Причина архивации</div>
       ),
-      width: 200,
+      width: 240,
     },
   ];
 

@@ -1,10 +1,10 @@
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-import { useAppSelector, useAppDispatch } from '../../../store/hook/hook';
 import TrelloColumn from './Trello-card/TrelloColumn';
 import TrelloCard from './Trello-card/TrelloCard/TrelloCard';
-import { moveTask, sort } from '../../../store/todoSlice';
+import { moveTask, sort } from '../../../redux/slices/todoSlice';
 import { ColumnName, CardStatus } from '../../../interfaces/enum';
 import PageTitle from './PageTitle';
+import { useAppDispatch, useAppSelector } from '../../../constants/global';
 
 function TrelloContainer() {
   const dispatch = useAppDispatch();
@@ -41,6 +41,7 @@ function TrelloContainer() {
       dispatch(moveTask({ source, destination, cardStatus }));
     }
   };
+console.log("columns", columns);
 
   return (
     <div className="flex p-6 w-[100%] flex-col ">

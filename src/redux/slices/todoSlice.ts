@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ItemBack, Column, DragResult } from '../interfaces';
-import { CardStatus } from '../interfaces/enum';
+import { ItemBack, Column, DragResult } from '../../interfaces';
+import { CardStatus } from '../../interfaces/enum';
 
 const itemsFromBackend: ItemBack[] = [
   {

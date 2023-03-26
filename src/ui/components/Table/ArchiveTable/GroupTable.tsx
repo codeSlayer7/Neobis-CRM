@@ -1,20 +1,20 @@
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid } from '@mui/x-data-grid';
 
 interface Columns {
-    field: string;
-    headerName: any;
-    width: number;
-    renderCell?: any;
-  }
-  
-  interface Rows {
-    id: number;
-    group: string;
-    number: string;
-    teacher: string;
-    date: string;
-    cause: string;
-  }
+  field: string;
+  headerName: any;
+  width: number;
+  renderCell?: any;
+}
+
+interface Rows {
+  id: number;
+  group: string;
+  number: string;
+  teacher: string;
+  date: string;
+  cause: string;
+}
 
 export default function GroupTable() {
   const groupRows: Rows[] = [
@@ -73,7 +73,7 @@ export default function GroupTable() {
     { field: 'id', headerName: '', width: 0 },
     {
       field: 'group',
-      headerName: <div className="text-[16px] font-semibold">Группа</div>,
+      headerName: <div className="text-[16px] font-semibold">Направление</div>,
       width: 195,
     },
     {
@@ -105,13 +105,13 @@ export default function GroupTable() {
       width: 290,
     },
   ];
-    return (
-        <DataGrid 
-        autoHeight
-        className=" bg-white border rounded-lg shadow-lg w-[1300px] hover:none"
-        rows={groupRows}
-        columns={groupColumns}
-        getRowClassName={(params) => 'even:bg-[#F4F7FD]'}
-        />
-    )
+  return (
+    <DataGrid
+      autoHeight
+      className=" bg-white border rounded-lg shadow-lg w-[1300px] hover:none"
+      rows={groupRows}
+      columns={groupColumns}
+      getRowClassName={(params) => 'even:bg-[#F4F7FD]'}
+    />
+  );
 }
