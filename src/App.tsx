@@ -12,7 +12,7 @@ import Navbar from './ui/components/Navbar/Navbar';
 import ArchiveClient from './ui/components/Modals/ArchiveClient';
 import EnrollClient from './ui/components/Modals/EnrollClient';
 import RejectionReason from './ui/components/Modals/RejectionReason';
-import Groups from './ui/pages/Groups';
+// import Groups from './ui/pages/Groups/Courses';
 import InfoModal from './ui/components/Modals/InfoModal';
 import FullInfoModal from './ui/components/Modals/FullInfoModal';
 import CreateCard from './ui/components/Forms/CreateCard';
@@ -22,6 +22,12 @@ import LogIn from './ui/pages/Auth/LogIn';
 import ForgotPassword from './ui/pages/Auth/ForgotPassword';
 import Confirmation from './ui/pages/Auth/Confirmation';
 import ChangePassword from './ui/pages/Auth/ChangePassword';
+import Courses from './ui/pages/Groups/Courses';
+import Groups from './ui/pages/Groups/Groups';
+import CreateUser from './ui/admin/Modals/CreateUser';
+import NavbarAdmin from './ui/admin/NavbarAdmin/NavbarAdmin';
+import SidebarAdmin from './ui/admin/SidebarAdmin/SidebarAdmin';
+import AdminPanel from './ui/admin/AdminPanel';
 
 const RouteWrapper = ({ children }: any) => {
   return (
@@ -39,6 +45,16 @@ const theme = createTheme({
     fontFamily: ['"Segoe UI"'],
   },
 });
+export function RouteWrapperAdmin({ children }: any) {
+  return (
+    <>
+      <NavbarAdmin />
+      <div>
+        <SidebarAdmin>{children}</SidebarAdmin>
+      </div>
+    </>
+  );
+}
 function App(): JSX.Element {
   // const columns = useAppSelector((trello) => trello.trello?.columns);
   return (
@@ -48,6 +64,8 @@ function App(): JSX.Element {
         <Route path="/forgot" element={<ForgotPassword />} />
         <Route path="/confirmation" element={<Confirmation />} />
         <Route path="/change-password" element={<ChangePassword />} />
+        <Route path="/admin" element={<AdminPanel />} />
+        <Route path="/createUser" element={<CreateUser />} />
 
         <Route
           path="/enrollclient"
@@ -141,7 +159,8 @@ function App(): JSX.Element {
           path="/archive"
           element={
             <RouteWrapper>
-              <Archive />
+              {/* <Archive /> */}
+              <Analytics />
             </RouteWrapper>
           }
         />

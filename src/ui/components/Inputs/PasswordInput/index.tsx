@@ -23,7 +23,7 @@ const PasswordInput: React.FC<Props> = ({ helperText, error, ...rest }) => {
 
   return (
     <div>
-      <div className="mb-[20px] text-[20px] font-medium">Пароль</div>
+      <div className="mb-[10px] text-[20px] font-medium">Пароль</div>
       <label className="relative mb-2 block text-[20px] font-medium text-gray-900 dark:text-white">
         <div className="top-[18px] left-[22px] absolute">
           {open === false ? (
@@ -45,7 +45,9 @@ const PasswordInput: React.FC<Props> = ({ helperText, error, ...rest }) => {
           dark:focus:border-blue-500 dark:focus:ring-blue-500"
           placeholder="введите ваш пароль"
         />
-        <div className="text-[red] mt-0 mb-[24px]">{helperText}</div>
+        <div className="text-[red] text-[16px] mt-[4px] mb-[25px] max-w-[415px] h-[10px]">
+          {helperText}
+        </div>
       </label>
     </div>
   );

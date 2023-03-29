@@ -1,6 +1,6 @@
 import { Menu, Transition } from '@headlessui/react';
 import { DotsVerticalIcon } from '@heroicons/react/outline';
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid';
+import { ChevronLeftIcon as LeftArrow, ChevronRightIcon as RightArrow } from '@heroicons/react/solid';
 import {
   add,
   eachDayOfInterval,
@@ -17,10 +17,10 @@ import {
   startOfToday,
 } from 'date-fns';
 import setDefaultOptions from 'date-fns/setDefaultOptions';
-import {
-  MdOutlineKeyboardArrowRight as RighArrow,
-  MdOutlineKeyboardArrowLeft as LeftArrow,
-} from 'react-icons/Md';
+// import {
+//   MdOutlineKeyboardArrowRight as RighArrow,
+//   MdOutlineKeyboardArrowLeft as LeftArrow,
+// } from 'react-icons/Md';
 import { ru } from 'date-fns/locale';
 import { Fragment, useState } from 'react';
 
@@ -170,7 +170,7 @@ export default function Calendar() {
                   className=" flex h-8 w-8  flex-none items-center justify-center rounded-[50%] bg-white p-1.5 text-gray-400 hover:text-gray-500"
                 >
                   <span className="sr-only">Next month</span>
-                  <RighArrow
+                  <RightArrow
                     className="text-2xl text-[#80C700]"
                     aria-hidden="true"
                   />

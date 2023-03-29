@@ -8,9 +8,9 @@ export default function Students() {
       <div className="mb-[40px] flex">
         <div className="mr-[40px]">
           <DropDown
-            label={<div className="text-base font-sans">Группа</div>}
+            label={<div className="text-base">Группа</div>}
             onOptionClick={(option) => console.log(option)}
-            options={['Phyton', 'Java', 'JavaScript', 'Product Manager']}
+            options={['Python', 'Java', 'JavaScript', 'Product Manager']}
           />
         </div>
         <div className="mr-[40px]">
