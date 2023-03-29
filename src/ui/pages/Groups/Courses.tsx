@@ -1,5 +1,3 @@
-// import { Link } from 'react-router-dom';
-import CreateUser from '../../admin/Modals/CreateUser';
 import CourseCard from './CourseCard';
 import CourseData from './CourseData';
 

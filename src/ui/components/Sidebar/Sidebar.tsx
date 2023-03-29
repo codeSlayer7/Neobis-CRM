@@ -29,12 +29,7 @@ function Sidebar({ children }: Props) {
 
   const menuItem: IMenuItem[] = [
     { name: 'Заявки', path: '/', icon: <ApplicationIcon /> },
-    {
-      name: 'Курсы',
-      path: '/courses',
-      icon: <Education />,
-    },
-
+    { name: 'Курсы', path: '/courses', icon: <Education /> },
     { name: 'Студенты', path: '/students', icon: <StudentIcon /> },
     { name: 'Преподаватели', path: '/mentors', icon: <MentorsIcon /> },
     { name: 'Архивы', path: '/archive', icon: <ArchiveIcon /> },
@@ -44,7 +39,7 @@ function Sidebar({ children }: Props) {
     <div className="flex">
       <div
         style={{ width: isOpen ? '240px' : '80px' }}
-        className="h-auto  w-60 rounded-md border-solid border-r-slate-300  shadow-md"
+        className=" h-auto w-60 rounded-md border-solid  border-r-slate-300 shadow-md"
       >
         <div className="my-3.5 flex items-center">
           <div
@@ -70,7 +65,27 @@ function Sidebar({ children }: Props) {
             key={index}
             className={({ isActive }) => (isActive ? activeMenu : normalMenu)}
           >
-            <div>{item.icon}</div>
+            <div className="group relative">{item.icon}</div>
+            <div
+              className={isOpen ? "absolute top-[20%] left-20 z-40 m-2  hidden h-64 w-52 rounded-lg border-4 border-[#D9BFFF] bg-white  shadow-md": "absolute top-[20%] left-20 z-40 m-2  hidden h-64 w-52 rounded-lg border-4 border-[#D9BFFF] bg-white group-hover:block shadow-md"
+             }
+              >
+              <ul className="p-4 ">
+                <li className="py-2 text-lg font-normal text-black">Заявки</li>
+
+                <li className="py-2 text-lg font-normal text-black ">Курсы</li>
+
+                <li className="py-2 text-lg font-normal text-black ">
+                  Студенты
+                </li>
+
+                <li className="py-2 text-lg font-normal text-black ">
+                  Преподаватели
+                </li>
+
+                <li className="py-2 text-lg font-normal text-black">Архивы</li>
+              </ul>
+            </div>
             <div style={{ display: isOpen ? 'block' : 'none' }}>
               {item.name}
             </div>
