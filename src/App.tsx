@@ -1,4 +1,5 @@
 // import { useAppSelector } from './store/hook/hook';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Route, Routes } from 'react-router-dom';
 import TrelloContainer from './ui/components/Trello-Container/Trello-container';
 import './App.css';
@@ -39,6 +40,11 @@ function RouteWrapper({ children }: any) {
   );
 }
 
+const theme = createTheme({
+  typography: {
+    fontFamily: ['"Segoe UI"'],
+  },
+});
 export function RouteWrapperAdmin({ children }: any) {
   return (
     <>
@@ -52,135 +58,137 @@ export function RouteWrapperAdmin({ children }: any) {
 function App(): JSX.Element {
   // const columns = useAppSelector((trello) => trello.trello?.columns);
   return (
-    <Routes>
-      <Route path="/login" element={<LogIn />} />
-      <Route path="/forgot" element={<ForgotPassword />} />
-      <Route path="/confirmation" element={<Confirmation />} />
-      <Route path="/change-password" element={<ChangePassword />} />
-      <Route path="/admin" element={<AdminPanel />} />
-      <Route path="/createUser" element={<CreateUser />} />
+    <ThemeProvider theme={theme}>
+      <Routes>
+        <Route path="/login" element={<LogIn />} />
+        <Route path="/forgot" element={<ForgotPassword />} />
+        <Route path="/confirmation" element={<Confirmation />} />
+        <Route path="/change-password" element={<ChangePassword />} />
+        <Route path="/admin" element={<AdminPanel />} />
+        <Route path="/createUser" element={<CreateUser />} />
 
-      <Route
-        path="/enrollclient"
-        element={
-          <RouteWrapper>
-            <EnrollClient />
-          </RouteWrapper>
-        }
-      />
-      <Route
-        path="/infomodal"
-        element={
-          <RouteWrapper>
-            <InfoModal />
-          </RouteWrapper>
-        }
-      />
-      <Route
-        path="/fullinfomodal"
-        element={
-          <RouteWrapper>
-            <FullInfoModal />
-          </RouteWrapper>
-        }
-      />
-      <Route
-        path="/createcard"
-        element={
-          <RouteWrapper>
-            <CreateCard />
-          </RouteWrapper>
-        }
-      />
-      <Route
-        path="/"
-        element={
-          <RouteWrapper>
-            <TrelloContainer />
-          </RouteWrapper>
-        }
-      />
-      <Route
-        path="/archiveclient"
-        element={
-          <RouteWrapper>
-            <ArchiveClient />
-          </RouteWrapper>
-        }
-      />
-      <Route
-        path="/rejectionreason"
-        element={
-          <RouteWrapper>
-            <RejectionReason />
-          </RouteWrapper>
-        }
-      />
-      <Route
-        path="/groups"
-        element={
-          <RouteWrapper>
-            <Groups />
-          </RouteWrapper>
-        }
-      />
-      <Route
-        path="/courses"
-        element={
-          <RouteWrapper>
-            <Courses />
-          </RouteWrapper>
-        }
-      />
-      <Route
-        path="/students"
-        element={
-          <RouteWrapper>
-            <Students />
-          </RouteWrapper>
-        }
-      />
-      <Route
-        path="/mentors"
-        element={
-          <RouteWrapper>
-            <Mentors />
-          </RouteWrapper>
-        }
-      />
-      <Route
-        path="/mentorsdetails"
-        element={
-          <RouteWrapper>
-            <MentorsDetails />
-          </RouteWrapper>
-        }
-      />
-      <Route
-        path="/archive"
-        element={
-          <RouteWrapper>
-            <Archive />
-          </RouteWrapper>
-        }
-      />
-      <Route
-        path="/analytics"
-        element={
-          <RouteWrapper>
-            <Analytics />
-          </RouteWrapper>
-        }
-      />
-      <Route
-        path="/profile"
-        element={
-          <RouteWrapper>
-            <Profile />
-          </RouteWrapper>
-        }
-      />
-    </Routes>
+        <Route
+          path="/enrollclient"
+          element={
+            <RouteWrapper>
+              <EnrollClient />
+            </RouteWrapper>
+          }
+        />
+        <Route
+          path="/infomodal"
+          element={
+            <RouteWrapper>
+              <InfoModal />
+            </RouteWrapper>
+          }
+        />
+        <Route
+          path="/fullinfomodal"
+          element={
+            <RouteWrapper>
+              <FullInfoModal />
+            </RouteWrapper>
+          }
+        />
+        <Route
+          path="/createcard"
+          element={
+            <RouteWrapper>
+              <CreateCard />
+            </RouteWrapper>
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <RouteWrapper>
+              <TrelloContainer />
+            </RouteWrapper>
+          }
+        />
+        <Route
+          path="/archiveclient"
+          element={
+            <RouteWrapper>
+              <ArchiveClient />
+            </RouteWrapper>
+          }
+        />
+        <Route
+          path="/rejectionreason"
+          element={
+            <RouteWrapper>
+              <RejectionReason />
+            </RouteWrapper>
+          }
+        />
+        <Route
+          path="/groups"
+          element={
+            <RouteWrapper>
+              <Groups />
+            </RouteWrapper>
+          }
+        />
+        <Route
+          path="/courses"
+          element={
+            <RouteWrapper>
+              <Courses />
+            </RouteWrapper>
+          }
+        />
+        <Route
+          path="/students"
+          element={
+            <RouteWrapper>
+              <Students />
+            </RouteWrapper>
+          }
+        />
+        <Route
+          path="/mentors"
+          element={
+            <RouteWrapper>
+              <Mentors />
+            </RouteWrapper>
+          }
+        />
+        <Route
+          path="/mentorsdetails"
+          element={
+            <RouteWrapper>
+              <MentorsDetails />
+            </RouteWrapper>
+          }
+        />
+        <Route
+          path="/archive"
+          element={
+            <RouteWrapper>
+              <Archive />
+            </RouteWrapper>
+          }
+        />
+        <Route
+          path="/analytics"
+          element={
+            <RouteWrapper>
+              <Analytics />
+            </RouteWrapper>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <RouteWrapper>
+              <Profile />
+            </RouteWrapper>
+          }
+        />
+      </Routes>
+    </ThemeProvider>
   );
 }
 

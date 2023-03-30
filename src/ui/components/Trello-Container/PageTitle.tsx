@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 function PageTitle() {
   return (
-    <div className="w-[100%] px-[2vw] pb-8 pt-12">
+    <div className="w-[105%] px-[2vw] pb-8 pt-12">
       <div className="flex justify-between">
         <h3 className="block text-4xl font-bold text-black">Заявки</h3>
         <Link to="/createcard">

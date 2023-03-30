@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { HiOutlineArrowLongRight } from 'react-icons/hi2';
 import { HiOutlineMenuAlt1 } from 'react-icons/hi';
 import React, { useState } from 'react';
@@ -9,6 +9,8 @@ import ApplicationIcon from '../../icons/ApplicationIcon';
 // import AnalyticsIcon from '../../icons/AnalyticsIcon';
 import Education from '../../icons/Education';
 // import Course from '../../icons/Course';
+import HistoryHeader from './history-header';
+import HoverText from './hoverText';
 
 interface IMenuItem {
   name: string;
@@ -19,13 +21,17 @@ type Props = {
   children: React.ReactNode;
 };
 
+const hoverName = ['Заявки', 'Курсы', 'Студенты', 'Преподаватели', 'Архивы'];
+
 function Sidebar({ children }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
+  const location = useLocation();
+  console.log(location.pathname);
   const activeMenu =
     'text-slate-100 text-xl flex gap-3.5 rounded-full p-5 m-1 bg-[#A062F7]';
   const normalMenu =
-    'text-slate-400 group flex rounded-full gap-3.5 text-xl p-5 m-1 hover:bg-[#D9BFFF] hover:text-[#A062F7]';
+    'relative text-slate-400 group flex rounded-full gap-3.5 text-xl p-5 m-1 hover:bg-[#D9BFFF] hover:text-[#A062F7]';
 
   const menuItem: IMenuItem[] = [
     { name: 'Заявки', path: '/', icon: <ApplicationIcon /> },
@@ -36,7 +42,7 @@ function Sidebar({ children }: Props) {
     // { name: 'Аналитика', path: '/analytics', icon: <AnalyticsIcon /> },
   ];
   return (
-    <div className="flex">
+    <div className="flex ">
       <div
         style={{ width: isOpen ? '240px' : '80px' }}
         className=" h-auto w-60 rounded-md border-solid  border-r-slate-300 shadow-md"
@@ -66,39 +72,45 @@ function Sidebar({ children }: Props) {
             className={({ isActive }) => (isActive ? activeMenu : normalMenu)}
           >
             <div className="group relative">{item.icon}</div>
-            <div
-              className={
-                isOpen
-                  ? 'absolute top-[20%] left-20 z-40 m-2  hidden h-64 w-52 rounded-lg border-4 border-[#D9BFFF] bg-white  shadow-md'
-                  : 'absolute top-[20%] left-20 z-40 m-2  hidden h-64 w-52 rounded-lg border-4 border-[#D9BFFF] bg-white shadow-md group-hover:block'
-              }
-            >
-              <ul className="p-4 ">
-                <li className="py-2 text-lg font-normal text-black">Заявки</li>
 
-                <li className="py-2 text-lg font-normal text-black ">Курсы</li>
+              
+=======
+>>>>>>> 33cced9d786d4f5040bda36f8af5c4680b95aac2
 
-                <li className="py-2 text-lg font-normal text-black ">
-                  Студенты
-                </li>
-
-                <li className="py-2 text-lg font-normal text-black ">
-                  Преподаватели
-                </li>
-
-                <li className="py-2 text-lg font-normal text-black">Архивы</li>
-              </ul>
-            </div>
             <div style={{ display: isOpen ? 'block' : 'none' }}>
               {item.name}
             </div>
+            {hoverName
+              .filter((name) => name === item.name)
+              .map((name) => (
+                <HoverText text={name} isOpen={isOpen} key={index} />
+              ))}
           </NavLink>
         ))}
       </div>
+      {/* <div className="flex flex-col"> */}
 
-      <main className={!isOpen ? 'flex w-[90%]' : 'flex w-[73%] '}>
-        {children}
-      </main>
+      {location.pathname === '/analytics' ? (
+        <div className="flex flex-col">
+          {' '}
+          <HistoryHeader />
+          <main
+            className={
+              !isOpen ? 'flex w-[90%] flex-col ' : 'flex w-[73%] flex-col'
+            }
+          >
+            {children}
+          </main>
+        </div>
+      ) : (
+        <main
+          className={
+            !isOpen ? 'flex w-[90%] flex-col ' : 'flex w-[73%] flex-col'
+          }
+        >
+          {children}
+        </main>
+      )}
     </div>
   );
 }
