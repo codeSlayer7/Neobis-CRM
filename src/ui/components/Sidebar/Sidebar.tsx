@@ -67,9 +67,12 @@ function Sidebar({ children }: Props) {
           >
             <div className="group relative">{item.icon}</div>
             <div
-              className={isOpen ? "absolute top-[20%] left-20 z-40 m-2  hidden h-64 w-52 rounded-lg border-4 border-[#D9BFFF] bg-white  shadow-md": "absolute top-[20%] left-20 z-40 m-2  hidden h-64 w-52 rounded-lg border-4 border-[#D9BFFF] bg-white group-hover:block shadow-md"
-             }
-              >
+              className={
+                isOpen
+                  ? 'absolute top-[20%] left-20 z-40 m-2  hidden h-64 w-52 rounded-lg border-4 border-[#D9BFFF] bg-white  shadow-md'
+                  : 'absolute top-[20%] left-20 z-40 m-2  hidden h-64 w-52 rounded-lg border-4 border-[#D9BFFF] bg-white shadow-md group-hover:block'
+              }
+            >
               <ul className="p-4 ">
                 <li className="py-2 text-lg font-normal text-black">Заявки</li>
 
