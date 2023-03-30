@@ -1,6 +1,9 @@
 import { Menu, Transition } from '@headlessui/react';
 import { DotsVerticalIcon } from '@heroicons/react/outline';
-import { ChevronLeftIcon as LeftArrow, ChevronRightIcon as RightArrow } from '@heroicons/react/solid';
+import {
+  ChevronLeftIcon as LeftArrow,
+  ChevronRightIcon as RightArrow,
+} from '@heroicons/react/solid';
 import {
   add,
   eachDayOfInterval,
@@ -134,10 +137,20 @@ export default function Calendar() {
     // return daysFilterd.some((marked) =>
     //   isSameDay(marked, day)
     // );
-    return isWithinInterval(selectedDay, {
-      start: startDate.setDate(startDate.getDate() - 1),
-      end: new Date(meeting.endDatetime),
-    });
+    const daysMarked = getDatesInRange(
+      meeting.startDatetime,
+      meeting.endDatetime
+    );
+    const daysFilterd = daysMarked.filter((e) =>
+      meeting.days.includes(e.toString().substring(0, 3))
+    );
+    console.log(daysFilterd, 'filtered');
+    return daysFilterd.some((marked) => isSameDay(marked, selectedDay));
+
+    // return isWithinInterval(selectedDay, {
+    //   start: startDate.setDate(startDate.getDate() - 1),
+    //   end: new Date(meeting.endDatetime),
+    // });
     // isSameDay(parseISO(meeting.startDatetime), selectedDay)
   });
 
@@ -213,7 +226,7 @@ export default function Calendar() {
                         const daysFilterd = daysMarked.filter((e) =>
                           meeting.days.includes(e.toString().substring(0, 3))
                         );
-                        console.log(daysFilterd);
+                        console.log(daysFilterd, 'filtered');
                         return daysFilterd.some((marked) =>
                           isSameDay(marked, day)
                         );
@@ -260,7 +273,7 @@ export default function Calendar() {
           </div>
           <section className="mt-12 md:mt-0 md:pl-14">
             <h2 className="font-semibold text-gray-900 ml-14">
-              Расписание на {' '}
+              Расписание на{' '}
               <time dateTime={format(selectedDay, 'yyyy-MM-dd')}>
                 {format(selectedDay, 'dd MMMM yyy')}
               </time>
@@ -271,7 +284,10 @@ export default function Calendar() {
                   <Meeting meeting={meeting} key={meeting.id} />
                 ))
               ) : (
-                <p className='ml-14 font-bold space-y-1 text-sm leading-6 text-gray-500'> Нет событий</p>
+                <p className="ml-14 font-bold space-y-1 text-sm leading-6 text-gray-500">
+                  {' '}
+                  Нет событий
+                </p>
               )}
             </ol>
           </section>

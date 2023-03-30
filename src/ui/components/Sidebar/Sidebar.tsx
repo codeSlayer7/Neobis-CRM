@@ -82,7 +82,7 @@ function Sidebar({ children }: Props) {
       </div>
       {/* <div className="flex flex-col"> */}
 
-      {location.pathname === '/analytics' ? (
+      {location.pathname === '/archive' ? (
         <div className="flex flex-col">
           {' '}
           <HistoryHeader />
