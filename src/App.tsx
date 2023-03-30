@@ -29,7 +29,7 @@ import NavbarAdmin from './ui/admin/NavbarAdmin/NavbarAdmin';
 import SidebarAdmin from './ui/admin/SidebarAdmin/SidebarAdmin';
 import AdminPanel from './ui/admin/AdminPanel';
 
-const RouteWrapper = ({ children }: any) => {
+function RouteWrapper({ children }: any) {
   return (
     <>
       <Navbar />
@@ -38,7 +38,7 @@ const RouteWrapper = ({ children }: any) => {
       </div>
     </>
   );
-};
+}
 
 const theme = createTheme({
   typography: {
@@ -132,6 +132,14 @@ function App(): JSX.Element {
           }
         />
         <Route
+          path="/courses"
+          element={
+            <RouteWrapper>
+              <Courses />
+            </RouteWrapper>
+          }
+        />
+        <Route
           path="/students"
           element={
             <RouteWrapper>
@@ -159,8 +167,7 @@ function App(): JSX.Element {
           path="/archive"
           element={
             <RouteWrapper>
-              {/* <Archive /> */}
-              <Analytics />
+              <Archive />
             </RouteWrapper>
           }
         />

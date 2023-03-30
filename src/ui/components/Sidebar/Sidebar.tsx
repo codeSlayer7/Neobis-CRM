@@ -10,6 +10,7 @@ import ApplicationIcon from '../../icons/ApplicationIcon';
 import Education from '../../icons/Education';
 // import Course from '../../icons/Course';
 import HistoryHeader from './history-header';
+import HoverText from './hoverText';
 
 interface IMenuItem {
   name: string;
@@ -20,6 +21,8 @@ type Props = {
   children: React.ReactNode;
 };
 
+const hoverName = ['Заявки', 'Курсы', 'Студенты', 'Преподаватели', 'Архивы'];
+
 function Sidebar({ children }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
@@ -28,16 +31,11 @@ function Sidebar({ children }: Props) {
   const activeMenu =
     'text-slate-100 text-xl flex gap-3.5 rounded-full p-5 m-1 bg-[#A062F7]';
   const normalMenu =
-    'text-slate-400 group flex rounded-full gap-3.5 text-xl p-5 m-1 hover:bg-[#D9BFFF] hover:text-[#A062F7]';
+    'relative text-slate-400 group flex rounded-full gap-3.5 text-xl p-5 m-1 hover:bg-[#D9BFFF] hover:text-[#A062F7]';
 
   const menuItem: IMenuItem[] = [
     { name: 'Заявки', path: '/', icon: <ApplicationIcon /> },
-    {
-      name: 'Курсы',
-      path: '/courses',
-      icon: <Education />,
-    },
-
+    { name: 'Курсы', path: '/courses', icon: <Education /> },
     { name: 'Студенты', path: '/students', icon: <StudentIcon /> },
     { name: 'Преподаватели', path: '/mentors', icon: <MentorsIcon /> },
     { name: 'Архивы', path: '/archive', icon: <ArchiveIcon /> },
@@ -47,7 +45,7 @@ function Sidebar({ children }: Props) {
     <div className="flex ">
       <div
         style={{ width: isOpen ? '240px' : '80px' }}
-        className="h-auto  w-60 rounded-md border-solid border-r-slate-300  shadow-md"
+        className=" h-auto w-60 rounded-md border-solid  border-r-slate-300 shadow-md"
       >
         <div className="my-3.5 flex items-center">
           <div
@@ -73,16 +71,22 @@ function Sidebar({ children }: Props) {
             key={index}
             className={({ isActive }) => (isActive ? activeMenu : normalMenu)}
           >
-            <div>{item.icon}</div>
+            <div className="group relative">{item.icon}</div>
+
             <div style={{ display: isOpen ? 'block' : 'none' }}>
               {item.name}
             </div>
+            {hoverName
+              .filter((name) => name === item.name)
+              .map((name) => (
+                <HoverText text={name} isOpen={isOpen} key={index} />
+              ))}
           </NavLink>
         ))}
       </div>
       {/* <div className="flex flex-col"> */}
 
-      {location.pathname === '/archive' ? (
+      {location.pathname === '/analytics' ? (
         <div className="flex flex-col">
           {' '}
           <HistoryHeader />
