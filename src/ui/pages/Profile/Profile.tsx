@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import { useAppSelector } from '../../../constants/global';
 import ProfileInput from '../../components/Forms/ProfileInput';
 import Edit from '../../icons/Edit';

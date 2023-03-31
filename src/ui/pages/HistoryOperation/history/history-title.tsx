@@ -11,7 +11,8 @@ import {
 import { ru } from 'date-fns/locale';
 import setDefaultOptions from 'date-fns/setDefaultOptions';
 import { useState } from 'react';
-import DropDown from '../../DropDown';
+import DropDown from '../../../components/DropDown';
+import HistoryTable from './HistoryTable';
 
 function HistoryTitle() {
   const today = startOfToday();
@@ -22,7 +23,7 @@ function HistoryTitle() {
   console.log(result);
 
   return (
-    <div className="flex justify-between mb-10">
+    <div className="flex flex-col justify-between mb-10">
       <div>
         <h3 className="font-bold text-3xl">История операций</h3>
         <span className="block mt-5 font-semibold text-xl">
@@ -38,6 +39,7 @@ function HistoryTitle() {
           options={['Тип операций', '50%', '75%', '100%']}
         />
       </div>
+      <HistoryTable/>
     </div>
   );
 }

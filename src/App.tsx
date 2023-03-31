@@ -28,6 +28,7 @@ import CreateUser from './ui/admin/Modals/CreateUser';
 import NavbarAdmin from './ui/admin/NavbarAdmin/NavbarAdmin';
 import SidebarAdmin from './ui/admin/SidebarAdmin/SidebarAdmin';
 import AdminPanel from './ui/admin/AdminPanel';
+import HistoryTitle from './ui/pages/HistoryOperation/history/history-title';
 
 function RouteWrapper({ children }: any) {
   return (
@@ -184,6 +185,14 @@ function App(): JSX.Element {
           element={
             <RouteWrapper>
               <Profile />
+            </RouteWrapper>
+          }
+        />
+        <Route
+          path="/history"
+          element={
+            <RouteWrapper>
+              <HistoryTitle />
             </RouteWrapper>
           }
         />

@@ -155,7 +155,7 @@ export default function Calendar() {
   });
 
   return (
-    <div className="pt-16 ">
+    <div className="pt-16 my-16">
       <div className="mx-auto max-w-4xl px-4 sm:px-7 md:max-w-4xl md:px-6">
         <div className=" grid grid-cols-2 md:divide-gray-200  ">
           <div className="rounded-2xl  border-[1px] border-[#D4D4D4] md:pr-14">

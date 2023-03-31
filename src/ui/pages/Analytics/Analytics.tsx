@@ -1,8 +1,8 @@
 import Calendar from '../../components/Schedule/calendar';
-import BasicTable from '../../components/Schedule/history/history-second';
+import BasicTable from '../HistoryOperation/history/HistoryTable';
 import HistoryTable from '../../components/Schedule/history-table';
 import Schedule from '../../components/Schedule/schedule';
-import HistoryTitle from '../../components/Schedule/history/history-title';
+import HistoryTitle from '../HistoryOperation/history/history-title';
 
 function Analytics() {
   return (

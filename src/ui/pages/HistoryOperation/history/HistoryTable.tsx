@@ -10,7 +10,7 @@ import { styled } from '@mui/material/styles';
 import { Avatar, Typography, Box, Pagination } from '@mui/material';
 import { usePagination } from '../../../../store/hook/use-pagination';
 import data from './HIstoryData.json';
-import HistoryHeader from '../../Sidebar/history-header';
+import HistoryHeader from '../../../components/Sidebar/history-header';
 
 // const StyledTableCell = styled(TableCell)(({ theme }) => ({
 //   [`&.${tableCellClasses.head}`]: {
@@ -22,7 +22,7 @@ import HistoryHeader from '../../Sidebar/history-header';
 //   },
 // }));
 
-export default function BasicTable() {
+export default function HistoryTable() {
   const [isInitialized, setIsInitialized] = useState(false);
 
   const {
