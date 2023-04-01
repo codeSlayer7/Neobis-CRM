@@ -8,10 +8,9 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import { Avatar, Typography, Box, Pagination } from '@mui/material';
-import { usePagination } from '../../../../hook/use-pagination';
+import { usePagination } from '../../../../store/hook/use-pagination';
 import data from './HIstoryData.json';
-import HistoryHeader from '../../Sidebar/history-header';
-import HistoryModal from './history-modal';
+import HistoryHeader from '../../../components/Sidebar/history-header';
 
 // const StyledTableCell = styled(TableCell)(({ theme }) => ({
 //   [`&.${tableCellClasses.head}`]: {
@@ -23,10 +22,8 @@ import HistoryModal from './history-modal';
 //   },
 // }));
 
-export default function BasicTable() {
+export default function HistoryTable() {
   const [isInitialized, setIsInitialized] = useState(false);
-  const [show, setShow] = useState(false);
-  const [modalData, setModalData] = useState(null);
 
   const {
     // isPaginating,
@@ -101,18 +98,14 @@ export default function BasicTable() {
               <TableBody>
                 {pageItems.map((row) => (
                   <TableRow
-                    hover
+                    hover={true}
                     key={row.id}
-                    // sx={{
-                    //   '&:last-child td, &:last-child th': { border: 0 },
-                    //   '&.MuiTableRow-root:hover': {
-                    //     backgroundColor: '#C7C7C7',
-                    //     opacity: '90%',
-                    //   },
-                    // }}
-                    onClick={() => {
-                      setShow(!show);
-                      setModalData(row)
+                    sx={{
+                      '&:last-child td, &:last-child th': { border: 0 },
+                      '&.MuiTableRow-root:hover': {
+                        backgroundColor: '#C7C7C7',
+                        opacity: '90%',
+                      },
                     }}
                   >
                     <TableCell
@@ -181,8 +174,6 @@ export default function BasicTable() {
                     >
                       {row.type_operatin.substring(0, 15)}
                     </TableCell>
-                    {/* {row && <HistoryModal show={show} manager={row} />} */}
-                    <HistoryModal show={show} manager={modalData} />
                   </TableRow>
                 ))}
               </TableBody>

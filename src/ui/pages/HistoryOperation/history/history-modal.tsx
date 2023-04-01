@@ -1,14 +1,3 @@
-// {
-//     "id": "01GW21A67SY9ZCF8VCSZP5YGR4",
-//     "first_name": "Rosalyn",
-//     "last_name": "Trappe",
-//     "email": "rtrappe0@google.com.au",
-//     "action": "Редактироание",
-//     "time": "1:37 PM",
-//     "img": "http://dummyimage.com/209x100.png/dddddd/000000",
-//     "type_operatin": "Поменял статус Карты - ожидает зввонок"
-//   },
-
 function HistoryModal({ show, manager }) {
   if (!show) {
     return null;

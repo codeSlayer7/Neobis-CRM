@@ -5,10 +5,12 @@ import student from '../../images/student.png';
 import DropDown from '../../components/DropDown';
 import SearchIcon from '../../icons/SearchIcon';
 import CourseStudents from '../../components/Table/CourseStudents';
+import Schedule from '../../components/Schedule/schedule';
+import Calendar from '../../components/Schedule/calendar';
 
 function Groups() {
   return (
-    <div className="mx-16 my-10 h-[100vh] w-full">
+    <div className="mx-16 my-20 h-[100vh] w-full">
       <div className="flex h-24 w-[1287px] items-center justify-around rounded-lg border-2 border-slate-200 shadow-md ">
         <div className="flex">
           <img className="h-[65px] w-[65px]" src={mentor} alt="#" />
@@ -63,6 +65,8 @@ function Groups() {
         </div>
       </div>
       <CourseStudents />
+      <Calendar />
+      <Schedule />
     </div>
   );
 }
