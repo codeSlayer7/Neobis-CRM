@@ -65,7 +65,7 @@ function TrelloContainer() {
                             ? 'lightblue'
                             : '#F4F7FD',
                           minHeight: 753,
-                          ...(matches ? { minWidth: 220 } : { width: 220 }),
+                          ...(!matches ? { width: 230 } : { width: '19vw' }),
                           // width: matches ? 250 : 220,
                           borderRadius: '24px',
                         }}

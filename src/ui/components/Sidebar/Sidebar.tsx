@@ -73,10 +73,6 @@ function Sidebar({ children }: Props) {
           >
             <div className="group relative">{item.icon}</div>
 
-              
-=======
->>>>>>> 33cced9d786d4f5040bda36f8af5c4680b95aac2
-
             <div style={{ display: isOpen ? 'block' : 'none' }}>
               {item.name}
             </div>
