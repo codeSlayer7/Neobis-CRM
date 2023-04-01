@@ -100,7 +100,7 @@ export default function Calendar() {
 
   const [currentMonth, setCurrentMonth] = useState(format(today, 'MMM-yyyy'));
   const firstDayCurrentMonth = parse(currentMonth, 'MMM-yyyy', new Date());
-  //   console.log(new Date(meetings[0].endDatetime));
+ 
 
   function getDatesInRange(startDate, endDate) {
     return eachDayOfInterval({
@@ -125,18 +125,6 @@ export default function Calendar() {
   }
 
   const selectedDayMeetings = meetings.filter((meeting) => {
-    const startDate = new Date(meeting.startDatetime);
-    // const daysMarked = getDatesInRange(
-    //   meeting.startDatetime,
-    //   meeting.endDatetime
-    // );
-    // const daysFilterd = daysMarked.filter((e) =>
-    //   meeting.days.includes(e.toString().substring(0, 3))
-    // );
-    // console.log(daysFilterd);
-    // return daysFilterd.some((marked) =>
-    //   isSameDay(marked, day)
-    // );
     const daysMarked = getDatesInRange(
       meeting.startDatetime,
       meeting.endDatetime
@@ -144,21 +132,14 @@ export default function Calendar() {
     const daysFilterd = daysMarked.filter((e) =>
       meeting.days.includes(e.toString().substring(0, 3))
     );
-    console.log(daysFilterd, 'filtered');
     return daysFilterd.some((marked) => isSameDay(marked, selectedDay));
-
-    // return isWithinInterval(selectedDay, {
-    //   start: startDate.setDate(startDate.getDate() - 1),
-    //   end: new Date(meeting.endDatetime),
-    // });
-    // isSameDay(parseISO(meeting.startDatetime), selectedDay)
   });
 
   return (
     <div className="pt-16 ">
-      <div className="mx-auto max-w-4xl px-4 sm:px-7 md:max-w-4xl md:px-6">
-        <div className=" grid grid-cols-2 md:divide-gray-200  ">
-          <div className="rounded-2xl  border-[1px] border-[#D4D4D4] md:pr-14">
+      <div className=" max-w-4xl  px-4 sm:px-7 md:max-w-4xl md:px-6">
+        <div className=" grid grid-cols-2 md:divide-gray-200 w-[100%] ">
+          <div className="rounded-2xl w-[100%] border-[1px] border-[#D4D4D4]">
             <div className="bg-neobis-bg-green rounded-t-2xl pt-5 ">
               <div className="flex justify-around    ">
                 <button
@@ -243,14 +224,14 @@ export default function Calendar() {
                       isEqual(day, selectedDay) && isToday(day) && 'bg-red-500',
                       meetings.some((meeting) =>
                         isSameDay(parseISO(meeting.startDatetime), day)
-                      ) && 'bg-[#70BF44] text-slate-50 hover:bg-[#70BF44]',
+                      ) && 'bg-[#70BF44] text-slate-50',
                       meetings.some((meeting) =>
                         isSameDay(parseISO(meeting.endDatetime), day)
-                      ) && 'bg-[#8F7DC7] text-slate-50 hover:bg-[#70BF44]',
+                      ) && 'bg-[#8F7DC7] text-slate-50 ',
                       isEqual(day, selectedDay) &&
                         !isToday(day) &&
                         'bg-slate-500',
-                      !isEqual(day, selectedDay) && 'hover:bg-gray-200',
+                      !isEqual(day, selectedDay) && 'hover:bg-[#70BF44]',
 
                       (isEqual(day, selectedDay) || isToday(day)) &&
                         'font-semibold',
