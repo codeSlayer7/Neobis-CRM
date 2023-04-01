@@ -5,15 +5,12 @@ import { moveTask, sort } from '../../../redux/slices/todoSlice';
 import { ColumnName, CardStatus } from '../../../interfaces/enum';
 import PageTitle from './PageTitle';
 import { useAppDispatch, useAppSelector } from '../../../constants/global';
+import useMediaQuery from '../../../hook/useMediaQuery';
 
 function TrelloContainer() {
   const dispatch = useAppDispatch();
+  const matches = useMediaQuery('(min-width: 1280px)');
 
-  // useEffect(() => {
-  //   if (itemsFromBackend) {
-  //     dispatch(fetchMockData({ itemsFromBackend }));
-  //   }
-  // }, []);
   const columns = useAppSelector((trello) => trello.trello?.columns);
   const onDragEnd = (result: any): void => {
     const { source, destination } = result;
@@ -41,7 +38,7 @@ function TrelloContainer() {
       dispatch(moveTask({ source, destination, cardStatus }));
     }
   };
-console.log("columns", columns);
+  console.log('columns', columns);
 
   return (
     <div className="flex p-6 w-[100%] flex-col ">
@@ -68,7 +65,8 @@ console.log("columns", columns);
                             ? 'lightblue'
                             : '#F4F7FD',
                           minHeight: 753,
-                          minWidth: 190,
+                          ...(matches ? { minWidth: 220 } : { width: 220 }),
+                          // width: matches ? 250 : 220,
                           borderRadius: '24px',
                         }}
                       >
