@@ -53,8 +53,8 @@ export const LogIn: React.FC = () => {
 
   useEffect(() => {
     if (role) {
-      role === 'ROLE_ADMIN' && navigate('/');
-      role === 'ROLE_MANAGER' && navigate('/tff');
+      role === 'ROLE_ADMIN' && navigate('/admin');
+      role === 'ROLE_MANAGER' && navigate('/');
     }
   }, [role]);
 

@@ -62,7 +62,7 @@ export default function CourseStudents() {
     {
       field: 'cash',
       headerName: <div className="text-[16px] font-semibold">Оплата</div>,
-      width: 250,
+      width: 150,
     },
   ];
 

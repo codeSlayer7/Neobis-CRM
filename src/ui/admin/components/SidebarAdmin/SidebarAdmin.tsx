@@ -4,12 +4,11 @@ import { HiOutlineMenuAlt1 } from 'react-icons/hi';
 import React, { useState } from 'react';
 import { MdOutlineManageAccounts } from 'react-icons/md';
 import { VscBook } from 'react-icons/vsc';
-import { BsPersonWorkspace, BsFolder } from 'react-icons/bs';
+import { BsFolder } from 'react-icons/bs';
+import { BsPersonWorkspace } from 'react-icons/bs';
 import { SlGraduation } from 'react-icons/sl';
-
 import { TiMessages } from 'react-icons/ti';
-import AnalyticsIcon from '../../icons/AnalyticsIcon';
-import Analytic from '../../icons/Analytic';
+import Analytic from '../../../icons/Analytic';
 
 interface IMenuItem {
   name: string;
@@ -65,6 +64,7 @@ function SidebarAdmin({ children }: Props) {
       path: '/adminCourses',
       icon: <Analytic />,
     },
+
   ];
   return (
     <div className="flex">

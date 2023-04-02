@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import Logo from '../../icons/Logo';
-import SearchIcon from '../../icons/SearchIcon';
-import ProfileDropDown from '../../components/ProfileDropDown/ProfileDropDown';
+import ProfileDropDown from '../../../components/ProfileDropDown/ProfileDropDown';
+import Logo from '../../../icons/Logo';
+import SearchIcon from '../../../icons/SearchIcon';
 
 function NavbarAdmin() {
   return (
