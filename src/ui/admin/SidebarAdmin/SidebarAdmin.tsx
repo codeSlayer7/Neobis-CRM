@@ -2,15 +2,14 @@ import { NavLink } from 'react-router-dom';
 import { HiOutlineArrowLongRight } from 'react-icons/hi2';
 import { HiOutlineMenuAlt1 } from 'react-icons/hi';
 import React, { useState } from 'react';
-import StudentIcon from '../../icons/StudentIcon';
-import User from '../../icons/User';
-// import StudentIcon from '../../icons/StudentIcon';
-// import ArchiveIcon from '../../icons/ArchiveIcon';
-// import MentorsIcon from '../../icons/MentorsIcon';
-// import ApplicationIcon from '../../icons/ApplicationIcon';
-// import AnalyticsIcon from '../../icons/AnalyticsIcon';
-// import Education from '../../icons/Education';
-// import Course from '../../icons/Course';
+import { MdOutlineManageAccounts } from 'react-icons/md';
+import { VscBook } from 'react-icons/vsc';
+import { BsPersonWorkspace, BsFolder } from 'react-icons/bs';
+import { SlGraduation } from 'react-icons/sl';
+
+import { TiMessages } from 'react-icons/ti';
+import AnalyticsIcon from '../../icons/AnalyticsIcon';
+import Analytic from '../../icons/Analytic';
 
 interface IMenuItem {
   name: string;
@@ -25,13 +24,47 @@ function SidebarAdmin({ children }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   const activeMenu =
-    'text-slate-100 text-xl flex gap-3.5 rounded-full p-5 m-1 bg-[#A062F7]';
+    'text-slate-100 text-xl flex gap-3.5 rounded-full p-5 m-1 bg-[#4588C6]';
   const normalMenu =
-    'text-slate-400 group flex rounded-full gap-3.5 text-xl p-5 m-1 hover:bg-[#D9BFFF] hover:text-[#A062F7]';
+    'text-slate-400 group flex rounded-full gap-3.5 text-xl p-5 m-1 hover:bg-[#B4D9FF] hover:text-[#4588C6]';
 
   const menuItem: IMenuItem[] = [
-    { name: 'Менеджер', path: '/admin', icon: <User /> },
+    {
+      name: 'Менеджер',
+      path: '/admin',
+      icon: <MdOutlineManageAccounts className="text-3xl" />,
+    },
+    {
+      name: 'Заявки',
+      path: '/adminht',
+      icon: <TiMessages className="text-3xl" />,
+    },
 
+    {
+      name: 'Преподаватели',
+      path: '/adminMentors',
+      icon: <VscBook className="text-3xl" />,
+    },
+    {
+      name: 'Курсы',
+      path: '/adminCourses',
+      icon: <BsPersonWorkspace className="text-3xl" />,
+    },
+    {
+      name: 'Студенты',
+      path: '/adminCourses',
+      icon: <SlGraduation className="text-3xl" />,
+    },
+    {
+      name: 'Архивы',
+      path: '/adminCourses',
+      icon: <BsFolder className="text-3xl" />,
+    },
+    {
+      name: 'Аналитика',
+      path: '/adminCourses',
+      icon: <Analytic />,
+    },
   ];
   return (
     <div className="flex">
@@ -47,12 +80,12 @@ function SidebarAdmin({ children }: Props) {
             <HiOutlineArrowLongRight
               onClick={toggle}
               style={{ display: isOpen ? 'none' : 'block' }}
-              className="ml-6 text-5xl text-[#A062F7]"
+              className="ml-6 text-5xl text-[#4588C6]"
             />
             <HiOutlineMenuAlt1
               style={{ display: isOpen ? 'block' : 'none' }}
               onClick={toggle}
-              className="ml-20 text-4xl text-[#A062F7]"
+              className="ml-20 text-4xl text-[#4588C6]"
             />
           </div>
         </div>

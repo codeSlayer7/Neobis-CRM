@@ -100,7 +100,6 @@ export default function Calendar() {
 
   const [currentMonth, setCurrentMonth] = useState(format(today, 'MMM-yyyy'));
   const firstDayCurrentMonth = parse(currentMonth, 'MMM-yyyy', new Date());
- 
 
   function getDatesInRange(startDate, endDate) {
     return eachDayOfInterval({
@@ -138,8 +137,8 @@ export default function Calendar() {
   return (
     <div className="pt-16 ">
       <div className=" max-w-4xl  px-4 sm:px-7 md:max-w-4xl md:px-6">
-        <div className=" grid grid-cols-2 md:divide-gray-200 w-[100%] ">
-          <div className="rounded-2xl w-[100%] border-[1px] border-[#D4D4D4]">
+        <div className=" grid w-[100%] grid-cols-2 md:divide-gray-200 ">
+          <div className="w-[100%] rounded-2xl border-[1px] border-[#D4D4D4]">
             <div className="bg-neobis-bg-green rounded-t-2xl pt-5 ">
               <div className="flex justify-around    ">
                 <button
@@ -253,7 +252,7 @@ export default function Calendar() {
             </div>
           </div>
           <section className="mt-12 md:mt-0 md:pl-14">
-            <h2 className="font-semibold text-gray-900 ml-14">
+            <h2 className="ml-14 font-semibold text-gray-900">
               Расписание на{' '}
               <time dateTime={format(selectedDay, 'yyyy-MM-dd')}>
                 {format(selectedDay, 'dd MMMM yyy')}
@@ -265,7 +264,7 @@ export default function Calendar() {
                   <Meeting meeting={meeting} key={meeting.id} />
                 ))
               ) : (
-                <p className="ml-14 font-bold space-y-1 text-sm leading-6 text-gray-500">
+                <p className="ml-14 space-y-1 text-sm font-bold leading-6 text-gray-500">
                   {' '}
                   Нет событий
                 </p>

@@ -1,5 +1,5 @@
 import { DataGrid } from '@mui/x-data-grid';
-import UserActions from '../../admin/UserActions';
+import UserActions from '../../admin/Manager/UserActions';
 
 interface Columns {
   field: string;

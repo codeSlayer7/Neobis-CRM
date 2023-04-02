@@ -98,7 +98,7 @@ export default function HistoryTable() {
               <TableBody>
                 {pageItems.map((row) => (
                   <TableRow
-                    hover={true}
+                    hover
                     key={row.id}
                     sx={{
                       '&:last-child td, &:last-child th': { border: 0 },

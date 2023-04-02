@@ -29,6 +29,7 @@ import NavbarAdmin from './ui/admin/NavbarAdmin/NavbarAdmin';
 import SidebarAdmin from './ui/admin/SidebarAdmin/SidebarAdmin';
 import AdminPanel from './ui/admin/AdminPanel';
 import HistoryTitle from './ui/pages/HistoryOperation/history/history-title';
+import AdminMentorsDetails from './ui/admin/AdminMentors/AdminMentorsDetails';
 
 function RouteWrapper({ children }: any) {
   return (
@@ -65,7 +66,7 @@ function App(): JSX.Element {
         <Route path="/forgot" element={<ForgotPassword />} />
         <Route path="/confirmation" element={<Confirmation />} />
         <Route path="/change-password" element={<ChangePassword />} />
-        <Route path="/admin" element={<AdminPanel />} />
+        <Route path="admin/*" element={<AdminPanel />} />
         <Route path="/createUser" element={<CreateUser />} />
 
         <Route
@@ -161,6 +162,14 @@ function App(): JSX.Element {
           element={
             <RouteWrapper>
               <MentorsDetails />
+            </RouteWrapper>
+          }
+        />
+        <Route
+          path="/adminmentorsdetails"
+          element={
+            <RouteWrapper>
+              <AdminMentorsDetails />
             </RouteWrapper>
           }
         />
