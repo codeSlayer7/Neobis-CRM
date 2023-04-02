@@ -6,9 +6,7 @@ import { MdOutlineManageAccounts } from 'react-icons/md';
 import { VscBook } from 'react-icons/vsc';
 import { BsPersonWorkspace, BsFolder } from 'react-icons/bs';
 import { SlGraduation } from 'react-icons/sl';
-
 import { TiMessages } from 'react-icons/ti';
-import AnalyticsIcon from '../../icons/AnalyticsIcon';
 import Analytic from '../../icons/Analytic';
 
 interface IMenuItem {
