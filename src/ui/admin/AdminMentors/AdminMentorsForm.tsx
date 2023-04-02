@@ -2,17 +2,17 @@ import { GrFormClose } from 'react-icons/gr';
 // import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-function CreateUser() {
-  const [open, setOpen] = useState(true);
+function AdminMentorsForm() {
+  const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(!open);
 
   // const navigate = useNavigate();
   return (
-    <div className="m-auto my-24 ">
+    <div className="ml-[30%] my-10 ">
       <div className="relative flex h-[656px] w-[598px] flex-col items-center rounded-lg border-2 bg-[#DADADA]">
-        <h3 className="mt-6 text-3xl font-bold ">Создать менеджера</h3>
-        <button type="button"  onClick={handleClose}>
-          <GrFormClose className="absolute left-[550px] top-3 text-3xl "/>
+        <h3 className="mt-6 text-3xl font-bold ">Добавить преподавателя</h3>
+        <button type="button" onClick={handleClose}>
+          <GrFormClose className="absolute left-[550px] top-3 text-3xl " />
         </button>
 
         <form className="mt-10">
@@ -70,11 +70,12 @@ function CreateUser() {
             type="button"
             className="mt-4 h-[47px] w-[377px] rounded-lg border border-black bg-black text-lg text-white transition duration-150 hover:scale-95"
           >
-            Создать
+            Добавить
           </button>
         </form>
       </div>
     </div>
   );
 }
-export default CreateUser;
+
+export default AdminMentorsForm;

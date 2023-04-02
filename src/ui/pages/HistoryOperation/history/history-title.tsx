@@ -23,10 +23,10 @@ function HistoryTitle() {
   console.log(result);
 
   return (
-    <div className="flex flex-col justify-between mb-10">
+    <div className="mb-10 flex flex-col justify-between">
       <div>
-        <h3 className="font-bold text-3xl">История операций</h3>
-        <span className="block mt-5 font-semibold text-xl">
+        <h3 className="text-3xl font-bold">История операций</h3>
+        <span className="mt-5 block text-xl font-semibold">
           {' '}
           Сегодня - {format(parseISO(result), ' EEEE d MMMM yyyy')} г.
         </span>
@@ -39,7 +39,7 @@ function HistoryTitle() {
           options={['Тип операций', '50%', '75%', '100%']}
         />
       </div>
-      <HistoryTable/>
+      <HistoryTable />
     </div>
   );
 }

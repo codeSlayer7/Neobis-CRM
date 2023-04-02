@@ -15,7 +15,7 @@ export default function ApplicationIcon() {
         strokeMiterlimit="10"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="group-hover:stroke-[#A062F7]"
+        // className="group-hover:stroke-[#A062F7]"
       />
       <path
         d="M27.5 6.5625V11.4375C27.5 13.3 26.55 14.6999 25 15.2499C24.525 15.4124 24 15.5 23.4375 15.5H20.1875L16.575 17.9124C16.0375 18.2624 15.3125 17.875 15.3125 17.2375V15.5C14.1 15.5 13.075 15.1 12.3625 14.3875C11.65 13.675 11.25 12.65 11.25 11.4375V6.5625C11.25 6 11.3375 5.475 11.5 5C12.05 3.45 13.45 2.5 15.3125 2.5H23.4375C25.875 2.5 27.5 4.125 27.5 6.5625Z"
@@ -24,7 +24,7 @@ export default function ApplicationIcon() {
         strokeMiterlimit="10"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="group-hover:stroke-[#A062F7]"
+        // className="group-hover:stroke-[#A062F7]"
       />
       <path
         d="M9.25 27.5H18.25"
@@ -33,7 +33,7 @@ export default function ApplicationIcon() {
         strokeMiterlimit="10"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="group-hover:stroke-[#A062F7]"
+        // className="group-hover:stroke-[#A062F7]"
       />
       <path
         d="M13.75 23V27.5"
@@ -42,7 +42,7 @@ export default function ApplicationIcon() {
         strokeMiterlimit="10"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="group-hover:stroke-[#A062F7]"
+        // className="group-hover:stroke-[#A062F7]"
       />
       <path
         d="M23.1194 9.0625H23.1306"
@@ -50,7 +50,7 @@ export default function ApplicationIcon() {
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="group-hover:stroke-[#A062F7]"
+        // className="group-hover:stroke-[#A062F7]"
       />
       <path
         d="M19.6196 9.0625H19.6309"
@@ -58,7 +58,7 @@ export default function ApplicationIcon() {
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="group-hover:stroke-[#A062F7]"
+        // className="group-hover:stroke-[#A062F7]"
       />
       <path
         d="M16.1194 9.0625H16.1306"
@@ -66,7 +66,7 @@ export default function ApplicationIcon() {
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="group-hover:stroke-[#A062F7]"
+        // className="group-hover:stroke-[#A062F7]"
       />
     </svg>
   );
