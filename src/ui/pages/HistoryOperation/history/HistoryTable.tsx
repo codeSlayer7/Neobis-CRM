@@ -8,7 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import { Avatar, Typography, Box, Pagination } from '@mui/material';
-import { usePagination } from '../../../../store/hook/use-pagination';
+import { usePagination } from '../../../../hook/use-pagination';
 import data from './HIstoryData.json';
 import HistoryHeader from '../../../components/Sidebar/history-header';
 
