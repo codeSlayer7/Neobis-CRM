@@ -42,7 +42,11 @@ function RouteWrapper({ children }: any) {
   );
 }
 
-
+const theme = createTheme({
+  typography: {
+    fontFamily: ['"Segoe UI"'],
+  },
+});
 export function RouteWrapperAdmin({ children }: any) {
   return (
     <>
