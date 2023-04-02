@@ -1,11 +1,10 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-
 import Modal from '@mui/material/Modal';
 import { useState } from 'react';
-import UserTable from '../components/Table/UserTable';
-import CreateUser from './Modals/CreateUser';
+import UserTable from '../../components/Table/UserTable';
+import CreateUser from '../components/Modals/CreateUser';
 
 function UserPage() {
   const [open, setOpen] = useState(false);
@@ -32,7 +31,7 @@ function UserPage() {
         </div>
       </Modal>
 
-      <div className="mx-16">
+      <div className="ml-[36px]">
         <UserTable />
       </div>
     </div>

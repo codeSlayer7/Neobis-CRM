@@ -2,15 +2,13 @@ import { NavLink } from 'react-router-dom';
 import { HiOutlineArrowLongRight } from 'react-icons/hi2';
 import { HiOutlineMenuAlt1 } from 'react-icons/hi';
 import React, { useState } from 'react';
-import StudentIcon from '../../icons/StudentIcon';
-import User from '../../icons/User';
-// import StudentIcon from '../../icons/StudentIcon';
-// import ArchiveIcon from '../../icons/ArchiveIcon';
-// import MentorsIcon from '../../icons/MentorsIcon';
-// import ApplicationIcon from '../../icons/ApplicationIcon';
-// import AnalyticsIcon from '../../icons/AnalyticsIcon';
-// import Education from '../../icons/Education';
-// import Course from '../../icons/Course';
+import User from '../../../icons/User';
+import ApplicationIcon from '../../../icons/ApplicationIcon';
+import Education from '../../../icons/Education';
+import StudentIcon from '../../../icons/StudentIcon';
+import MentorsIcon from '../../../icons/MentorsIcon';
+import ArchiveIcon from '../../../icons/ArchiveIcon';
+import AnalyticsIcon from '../../../icons/AnalyticsIcon';
 
 interface IMenuItem {
   name: string;
@@ -31,7 +29,16 @@ function SidebarAdmin({ children }: Props) {
 
   const menuItem: IMenuItem[] = [
     { name: 'Менеджер', path: '/admin', icon: <User /> },
+    { name: 'Заявки', path: '/admin/analytics', icon: <AnalyticsIcon /> },
+    {
+      name: 'Курсы',
+      path: '/cos',
+      icon: <Education />,
+    },
 
+    { name: 'Студенты', path: '/students', icon: <StudentIcon /> },
+    { name: 'Преподаватели', path: '/mentojdnjrs', icon: <MentorsIcon /> },
+    { name: 'Архивы', path: '/archivnjbjbje', icon: <ArchiveIcon /> },
   ];
   return (
     <div className="flex">

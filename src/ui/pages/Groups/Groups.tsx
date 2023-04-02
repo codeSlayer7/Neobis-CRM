@@ -8,7 +8,7 @@ import CourseStudents from '../../components/Table/CourseStudents';
 
 function Groups() {
   return (
-    <div className="mx-16 my-10 h-[100vh] w-full">
+    <div className="ml-[36px] my-10 h-[100vh] w-full">
       <div className="flex h-24 w-[1287px] items-center justify-around rounded-lg border-2 border-slate-200 shadow-md ">
         <div className="flex">
           <img className="h-[65px] w-[65px]" src={mentor} alt="#" />
