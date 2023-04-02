@@ -16,11 +16,8 @@ import HistoryTable from './HistoryTable';
 
 function HistoryTitle() {
   const today = startOfToday();
-  const [currentMonth, setCurrentMonth] = useState(format(today, 'MMM-yyyy'));
-  const firstDayCurrentMonth = parse(currentMonth, 'MMM-yyyy', new Date());
   setDefaultOptions({ locale: ru });
   const result = format(today, "yyyy-MM-dd'T'HH:mm:ss.SSSxxx");
-  console.log(result);
 
   return (
     <div className="mb-10 flex flex-col justify-between">
