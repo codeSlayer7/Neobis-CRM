@@ -170,7 +170,7 @@ export default function Calendar() {
                 </button>
               </div>
 
-              <div className="mt-5 grid grid-cols-7 text-center text-xs text-xl font-semibold leading-6 text-white ">
+              <div className="mt-5 grid grid-cols-7 text-center text-xl font-semibold leading-6 text-white ">
                 <div>Пн</div>
                 <div>Вт</div>
                 <div>Ср</div>
