@@ -1,7 +1,7 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import { HiOutlineArrowLongRight } from 'react-icons/hi2';
 import { HiOutlineMenuAlt1 } from 'react-icons/hi';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import StudentIcon from '../../icons/StudentIcon';
 import ArchiveIcon from '../../icons/ArchiveIcon';
 import MentorsIcon from '../../icons/MentorsIcon';
@@ -11,6 +11,8 @@ import Education from '../../icons/Education';
 // import Course from '../../icons/Course';
 import HistoryHeader from './history-header';
 import HoverText from './hoverText';
+import { useAppDispatch } from '../../../constants/global';
+import { toggleStore } from '../../../redux/slices/toggleSidebar';
 
 interface IMenuItem {
   name: string;
@@ -24,10 +26,15 @@ type Props = {
 const hoverName = ['Заявки', 'Курсы', 'Студенты', 'Преподаватели', 'Архивы'];
 
 function Sidebar({ children }: Props) {
+  const dispatch = useAppDispatch();
+
   const [isOpen, setIsOpen] = useState(false);
-  const toggle = () => setIsOpen(!isOpen);
+  const toggle = () => {
+    dispatch(toggleStore({ sidebar: !isOpen }));
+    setIsOpen(!isOpen);
+  };
   const location = useLocation();
-  console.log(location.pathname);
+
   const activeMenu =
     'text-slate-100 text-xl flex gap-3.5 rounded-full p-5 m-1 bg-[#A062F7]';
   const normalMenu =

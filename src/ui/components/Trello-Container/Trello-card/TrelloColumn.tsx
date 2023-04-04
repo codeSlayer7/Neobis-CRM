@@ -18,7 +18,7 @@ function TrelloColumn({ columnTitle, children, count }: Props) {
           <p className=" mt-1 text-center text-base text-slate-900 ">{count}</p>
         </div>
       </div>
-      {children}
+      <div className="w-[100%]">{children}</div>
     </div>
   );
 }
