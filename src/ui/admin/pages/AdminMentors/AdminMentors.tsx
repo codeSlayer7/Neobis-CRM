@@ -1,9 +1,9 @@
 import { Modal } from '@mui/material';
 import { useState } from 'react';
-import DropDown from '../../components/DropDown';
 import AdminMentorsCard from './AdminMentorsCard';
 import AdminMentorsData from './AdminMentorsData';
 import AdminMentorsForm from './AdminMentorsForm';
+import DropDown from '../../../components/DropDown';
 
 function AdminMentors() {
   const [open, setOpen] = useState(false);

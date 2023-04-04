@@ -9,7 +9,7 @@ function ProfileDropDown() {
   const navigate = useNavigate();
   const [openProfile, setOpenProfile] = useState(false);
 
-  const { firstName, lastName, accessToken } = useAppSelector((state) => {
+  const { firstName, lastName, } = useAppSelector((state) => {
     return state.user;
   });
 
