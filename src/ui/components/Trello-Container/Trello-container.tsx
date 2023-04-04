@@ -6,6 +6,8 @@ import { ColumnName, CardStatus } from '../../../interfaces/enum';
 import PageTitle from './PageTitle';
 import { useAppDispatch, useAppSelector } from '../../../constants/global';
 import useMediaQuery from '../../../hook/useMediaQuery';
+import HistoryModal from '../../pages/HistoryOperation/history/history-modal';
+import HistoryTable from '../../pages/HistoryOperation/history/HistoryTable';
 
 function TrelloContainer() {
   const dispatch = useAppDispatch();
@@ -43,7 +45,6 @@ function TrelloContainer() {
   return (
     <div className="flex p-6 w-[100%] flex-col ">
       <PageTitle />
-
       <div className="flex justify-between ml-4">
         <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
           {Object.entries(columns).map(([columnId, column]) => {

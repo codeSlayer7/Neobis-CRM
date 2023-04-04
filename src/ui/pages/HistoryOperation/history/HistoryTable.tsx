@@ -11,6 +11,7 @@ import { Avatar, Typography, Box, Pagination } from '@mui/material';
 import { usePagination } from '../../../../hook/use-pagination';
 import data from './HIstoryData.json';
 import HistoryHeader from '../../../components/Sidebar/history-header';
+import HistoryModal from './history-modal';
 
 // const StyledTableCell = styled(TableCell)(({ theme }) => ({
 //   [`&.${tableCellClasses.head}`]: {
@@ -24,7 +25,8 @@ import HistoryHeader from '../../../components/Sidebar/history-header';
 
 export default function HistoryTable() {
   const [isInitialized, setIsInitialized] = useState(false);
-
+  const [show, setShow] = useState(false);
+  const [modalData, setModalData] = useState(null);
   const {
     // isPaginating,
     currentPage,
@@ -100,12 +102,9 @@ export default function HistoryTable() {
                   <TableRow
                     hover
                     key={row.id}
-                    sx={{
-                      '&:last-child td, &:last-child th': { border: 0 },
-                      '&.MuiTableRow-root:hover': {
-                        backgroundColor: '#C7C7C7',
-                        opacity: '90%',
-                      },
+                    onClick={() => {
+                      setShow(!show);
+                      setModalData(row);
                     }}
                   >
                     <TableCell
@@ -174,6 +173,7 @@ export default function HistoryTable() {
                     >
                       {row.type_operatin.substring(0, 15)}
                     </TableCell>
+                    <HistoryModal show={show} manager={modalData} />
                   </TableRow>
                 ))}
               </TableBody>
