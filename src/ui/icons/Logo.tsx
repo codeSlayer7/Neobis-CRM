@@ -6,7 +6,7 @@ export default function Logo() {
       viewBox="0 0 154 36"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
     >
       <rect width="154" height="36" fill="url(#pattern0)" />
       <defs>

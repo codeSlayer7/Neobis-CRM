@@ -1,19 +1,27 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { BiUser, BiHistory, BiExit } from 'react-icons/bi';
 import Profile from '../../icons/Profile';
 import { useAppSelector } from '../../../constants/global';
+import { removeCookie } from '../../../utils/cookie';
 
 function ProfileDropDown() {
-  const [openProfile, setOenProfile] = useState(false);
+  const navigate = useNavigate();
+  const [openProfile, setOpenProfile] = useState(false);
 
-  const { firstName, lastName } = useAppSelector((state) => {
+  const { firstName, lastName, accessToken } = useAppSelector((state) => {
     return state.user;
   });
 
+  const handleClick = () => {
+    setOpenProfile(false);
+    removeCookie('token');
+    navigate('/login');
+  };
+
   return (
     <div>
-      <div className="relative" onClick={() => setOenProfile((prev) => !prev)}>
+      <div className="relative" onClick={() => setOpenProfile((prev) => !prev)}>
         <Profile />
       </div>
       {openProfile && (
@@ -35,15 +43,16 @@ function ProfileDropDown() {
                 История операции
               </li>
             </Link>
-
+            {/* <Link to={'/login'}> */}
             <button
               type="button"
               className="mt-2 inline-flex w-full items-center justify-start hover:text-[#A062F7]"
-              onClick={() => setOenProfile(false)}
+              onClick={handleClick}
             >
               <BiExit className="mx-2" />
               Выход
             </button>
+            {/* </Link> */}
           </ul>
         </div>
       )}

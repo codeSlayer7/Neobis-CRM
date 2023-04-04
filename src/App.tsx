@@ -7,12 +7,11 @@ import Sidebar from './ui/components/Sidebar/Sidebar';
 import Students from './ui/pages/Students';
 import Mentors from './ui/pages/Mentors/Mentors';
 import Archive from './ui/pages/Archive/Archive';
-import Analytics from './ui/pages/Analytics/Analytics';
+// import Analytics from './ui/pages/Analytics/Analytics';
 import Navbar from './ui/components/Navbar/Navbar';
 import ArchiveClient from './ui/components/Modals/ArchiveClient';
 import EnrollClient from './ui/components/Modals/EnrollClient';
 import RejectionReason from './ui/components/Modals/RejectionReason';
-// import Groups from './ui/pages/Groups/Courses';
 import InfoModal from './ui/components/Modals/InfoModal';
 import FullInfoModal from './ui/components/Modals/FullInfoModal';
 import CreateCard from './ui/components/Forms/CreateCard';
@@ -23,15 +22,15 @@ import ForgotPassword from './ui/pages/Auth/ForgotPassword';
 import Confirmation from './ui/pages/Auth/Confirmation';
 import ChangePassword from './ui/pages/Auth/ChangePassword';
 import Courses from './ui/pages/Groups/Courses';
-import Groups from './ui/pages/Groups/Groups';
-import CreateUser from './ui/admin/Modals/CreateUser';
-import NavbarAdmin from './ui/admin/NavbarAdmin/NavbarAdmin';
-import SidebarAdmin from './ui/admin/SidebarAdmin/SidebarAdmin';
 import AdminPanel from './ui/admin/AdminPanel';
-import HistoryTitle from './ui/pages/HistoryOperation/history/history-title';
+import CreateUser from './ui/admin/components/Modals/CreateUser';
+import NavbarAdmin from './ui/admin/components/NavbarAdmin/NavbarAdmin';
+import SidebarAdmin from './ui/admin/components/SidebarAdmin/SidebarAdmin';
 import AdminMentorsDetails from './ui/admin/AdminMentors/AdminMentorsDetails';
+import Groups from './ui/pages/Groups/Groups';
+import HistoryTitle from './ui/pages/HistoryOperation/history/history-title';
 
-function RouteWrapper({ children }: any) {
+const RouteWrapper = ({ children }: any) => {
   return (
     <>
       <Navbar />
@@ -40,13 +39,14 @@ function RouteWrapper({ children }: any) {
       </div>
     </>
   );
-}
+};
 
 const theme = createTheme({
   typography: {
     fontFamily: ['"Segoe UI"'],
   },
 });
+
 export function RouteWrapperAdmin({ children }: any) {
   return (
     <>
@@ -66,7 +66,7 @@ function App(): JSX.Element {
         <Route path="/forgot" element={<ForgotPassword />} />
         <Route path="/confirmation" element={<Confirmation />} />
         <Route path="/change-password" element={<ChangePassword />} />
-        <Route path="admin/*" element={<AdminPanel />} />
+        <Route path="/admin/*" element={<AdminPanel />} />
         <Route path="/createUser" element={<CreateUser />} />
 
         <Route
@@ -181,19 +181,27 @@ function App(): JSX.Element {
             </RouteWrapper>
           }
         />
-        <Route
+        {/* <Route
           path="/analytics"
           element={
             <RouteWrapper>
               <Analytics />
             </RouteWrapper>
           }
-        />
+        /> */}
         <Route
           path="/profile"
           element={
             <RouteWrapper>
               <Profile />
+            </RouteWrapper>
+          }
+        />
+        <Route
+          path="/courses"
+          element={
+            <RouteWrapper>
+              <Courses />
             </RouteWrapper>
           }
         />

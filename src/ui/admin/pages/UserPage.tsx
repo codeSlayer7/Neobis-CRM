@@ -28,9 +28,9 @@ function UserPage() {
         aria-describedby="modal-modal-description"
       >
         <div className="absolute top-[-10%] left-[30%] right-32">
-          <CreateUser 
-          // handleClose={handleClose}
-          />
+          <CreateUser
+          //  handleClose={handleClose}
+           />
         </div>
       </Modal>
 
