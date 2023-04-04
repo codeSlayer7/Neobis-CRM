@@ -97,13 +97,20 @@ export default function ColumnChart() {
   };
 
   return (
-    <>
+    <div className="w-[1290px] bg-white rounded-[20px] mb-[102px]">
+            <div className="flex flex-col pl-[39px] pt-[10px]">
+        <span className="text-[#9291A5] ">Статистика</span>
+        <div className="text-[20px] font-semibold pb-[32px]">
+        Категория Заявок
+        </div>
+      </div>
+      <div className="border -[1px solid #E5E5EF]"></div>
       <ReactApexChart
         options={chartData}
         series={chartData.series}
         type="bar"
         height={chartData.chart.height}
       />
-    </>
+    </div>
   );
 }

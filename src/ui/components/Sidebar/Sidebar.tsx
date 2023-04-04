@@ -46,7 +46,6 @@ function Sidebar({ children }: Props) {
     { name: 'Студенты', path: '/students', icon: <StudentIcon /> },
     { name: 'Преподаватели', path: '/mentors', icon: <MentorsIcon /> },
     { name: 'Архивы', path: '/archive', icon: <ArchiveIcon /> },
-    // { name: 'Аналитика', path: '/analytics', icon: <AnalyticsIcon /> },
   ];
   return (
     <div className="flex ">
@@ -99,7 +98,7 @@ function Sidebar({ children }: Props) {
           <HistoryHeader />
           <main
             className={
-              !isOpen ? 'flex w-[90%] flex-col ' : 'flex w-[73%] flex-col'
+              !isOpen ? 'flex w-[100%] flex-col ' : 'flex w-[73%] flex-col'
             }
           >
             {children}
@@ -108,7 +107,7 @@ function Sidebar({ children }: Props) {
       ) : (
         <main
           className={
-            !isOpen ? 'flex w-[90%] flex-col ' : 'flex w-[73%] flex-col'
+            !isOpen ? 'flex w-[100%] flex-col ' : 'flex w-[73%] flex-col'
           }
         >
           {children}

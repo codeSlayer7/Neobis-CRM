@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
-import Book from '../../icons/Book';
-import Money from '../../icons/Money';
-import ProfileUser from '../../icons/ProfileUser';
-import Time from '../../icons/Time';
 import DropDownAdminCourses from './DropDownAdminCourses';
+import ProfileUser from '../../../icons/ProfileUser';
+import Time from '../../../icons/Time';
+import Money from '../../../icons/Money';
+import Book from '../../../icons/Book';
 
-function AdminCourseCard(props) {
+function AdminCourseCard(props : any) {
   return (
     <>
-      {props.details.map((value, index) => (
+      {props.details.map((value: any, index: any) => (
         <div key={index}>
           <div className="relative m-5 bg-fixed h-[398px] w-[382px] rounded-3xl border border-black shadow-sm">
             <DropDownAdminCourses />

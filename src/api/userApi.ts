@@ -10,9 +10,9 @@ export interface LoginResponse{
         "jwtToken": string,
         "dateExpiredAccessToken": number,
         "dateExpiredRefreshToken": number,
-        "refreshToken": string
+        "refreshToken": string,
     },
-    role:UserRole
+    role : UserRole
 }
 
 

@@ -3,9 +3,8 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import { useState } from 'react';
-import UserTable from '../../components/Table/UserTable';
-import CreateUser from '../components/Modals/CreateUser';
-import AdminMentors from '../AdminMentors/AdminMentors';
+import UserTable from '../../../components/Table/UserTable';
+import CreateUser from '../../components/Modals/CreateUser';
 
 function UserPage() {
   const [open, setOpen] = useState(false);
@@ -28,7 +27,7 @@ function UserPage() {
         aria-describedby="modal-modal-description"
       >
         <div className="absolute top-[-10%] left-[30%] right-32">
-          <CreateUser 
+          <CreateUser
           // handleClose={handleClose}
           />
         </div>
@@ -37,10 +36,7 @@ function UserPage() {
       <div className="ml-[36px]">
         <UserTable />
       </div>
-      <AdminMentors />
     </div>
   );
 }
 export default UserPage;
-
-

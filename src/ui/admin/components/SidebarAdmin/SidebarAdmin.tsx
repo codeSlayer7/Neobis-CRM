@@ -35,36 +35,35 @@ function SidebarAdmin({ children }: Props) {
     },
     {
       name: 'Заявки',
-      path: '/adminht',
+      path: '/admin/applications',
       icon: <TiMessages className="text-3xl" />,
     },
 
     {
       name: 'Преподаватели',
-      path: '/adminMentors',
+      path: '/admin/mentors',
       icon: <VscBook className="text-3xl" />,
     },
     {
       name: 'Курсы',
-      path: '/adminCourses',
+      path: '/admin/courses',
       icon: <BsPersonWorkspace className="text-3xl" />,
     },
     {
       name: 'Студенты',
-      path: '/adminCourses',
+      path: '/admin/students',
       icon: <SlGraduation className="text-3xl" />,
     },
     {
       name: 'Архивы',
-      path: '/adminCourses',
+      path: '/admin/archive',
       icon: <BsFolder className="text-3xl" />,
     },
     {
       name: 'Аналитика',
-      path: '/adminCourses',
+      path: '/admin/analytics',
       icon: <Analytic />,
     },
-
   ];
   return (
     <div className="flex">
@@ -104,7 +103,7 @@ function SidebarAdmin({ children }: Props) {
         ))}
       </div>
 
-      <main className={!isOpen ? 'flex w-[90%]' : 'flex w-[73%] '}>
+      <main className={!isOpen ? 'flex w-[100%]' : 'flex w-[73%] '}>
         {children}
       </main>
     </div>

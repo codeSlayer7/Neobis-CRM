@@ -1,10 +1,10 @@
-import photo from '../../images/Photo.png';
-import Python from '../../icons/Python';
-import Java from '../../icons/Java';
-import Javascript from '../../icons/Javascript';
-import Ui8 from '../../icons/Ui8';
-import PM from '../../icons/PM';
-import Android from '../../icons/Android';
+import photo from '../../../images/Photo.png';
+import Android from "../../../icons/Android";
+import Java from "../../../icons/Java";
+import Javascript from "../../../icons/Javascript";
+import PM from "../../../icons/PM";
+import Python from "../../../icons/Python";
+import Ui8 from "../../../icons/Ui8";
 
 const AdminMentorsData = [
   {
