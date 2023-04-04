@@ -52,8 +52,15 @@ export default function BarChart() {
   };
 
   return (
-    <>
+    <div className="w-[1290px] bg-white rounded-[20px] ">
+                  <div className="flex flex-col pl-[39px] pt-[10px]">
+        <span className="text-[#9291A5] ">Статистика</span>
+        <div className="text-[20px] font-semibold pb-[32px]">
+        Возраст  и Пол
+        </div>
+      </div>
+      <div className="border -[1px solid #E5E5EF]"></div>
       <ReactApexChart options={options} series={data} type="bar" height={350} />
-    </>
+    </div>
   );
 }

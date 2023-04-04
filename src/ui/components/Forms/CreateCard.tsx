@@ -142,7 +142,7 @@ function CreateCard() {
               </label>
 
               <textarea
-                type="notes"
+                // type="notes"
                 id="notes"
                 className="mb-3 block h-[162px] w-[377px] rounded-sm border border-black bg-white p-2.5 text-sm"
                 required

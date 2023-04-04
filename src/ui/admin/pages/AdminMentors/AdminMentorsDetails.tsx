@@ -1,5 +1,6 @@
-import Edit from '../../icons/Edit';
-import photo from '../../images/Photo.png';
+
+import Edit from '../../../icons/Edit';
+import photo from '../../../images/Photo.png';
 
 function AdminMentorsDetails() {
   return (

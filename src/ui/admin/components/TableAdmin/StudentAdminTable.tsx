@@ -1,16 +1,6 @@
 import { DataGrid, GridRowClassNameParams } from '@mui/x-data-grid';
 import { useEffect, useState } from 'react';
-
-interface MyGridRowClassNameParams extends GridRowClassNameParams {
-  api: {
-    _gridParams: {
-      api: {
-        currentRoute: string;
-      }
-    }
-  }
-}
-
+import Actions from '../Actions/Actions';
 
 interface MyRows {
   id: number;
@@ -30,96 +20,96 @@ interface MyColums {
   renderCell?: any;
 }
 
-const StudentTable = () => {
+const StudentTableAdmin = () => {
   const rows: MyRows[] = [
     {
       id: 1,
-      name: 'Жоломан Шаршенбеков',
+      name: 'ХАБИБЧИК МАГИБЧИК',
       status: 'Заморожен',
       number: '+996 555 123 123',
-      email: 'jolaman23@gmail.com',
+      email: 'khabibchik@gmail.com',
       group: 'Product Manager',
       payment: '50 %',
     },
     {
       id: 2,
-      name: 'Жоломан Шаршенбеков',
+      name: 'ХАБИБЧИК МАГИБЧИК',
       status: 'Активен',
       number: '+996 555 123 123',
-      email: 'jolaman23@gmail.com',
-      group: 'Product Manager',
+      email: 'khabibchik@gmail.com',
+      group: 'Python',
       payment: '50 %',
       style: {},
     },
     {
       id: 3,
-      name: 'Жоломан Шаршенбеков',
+      name: 'ХАБИБЧИК МАГИБЧИК',
       status: 'Неактивен',
       number: '+996 555 123 123',
-      email: 'jolaman23@gmail.com',
-      group: 'Product Manager',
+      email: 'khabibchik@gmail.com',
+      group: 'Python',
       payment: '50 %',
     },
     {
       id: 4,
-      name: 'Жоломан Шаршенбеков',
+      name: 'ХАБИБЧИК МАГИБЧИК',
       status: 'Заморожен',
       number: '+996 555 123 123',
-      email: 'jolaman23@gmail.com',
-      group: 'Product Manager',
+      email: 'khabibchik@gmail.com',
+      group: 'Python',
       payment: '50 %',
     },
     {
       id: 5,
-      name: 'Жоломан Шаршенбеков',
+      name: 'ХАБИБЧИК МАГИБЧИК',
       status: 'Неактивен',
       number: '+996 555 123 123',
-      email: 'jolaman23@gmail.com',
-      group: 'Product Manager',
+      email: 'khabibchik@gmail.com',
+      group: 'Python',
       payment: '50 %',
     },
     {
       id: 6,
-      name: 'Жоломан Шаршенбеков',
+      name: 'ХАБИБЧИК МАГИБЧИК',
       status: 'Активен',
       number: '+996 555 123 123',
-      email: 'jolaman23@gmail.com',
-      group: 'Product Manager',
+      email: 'khabibchik@gmail.com',
+      group: 'Python',
       payment: '50 %',
     },
     {
       id: 7,
-      name: 'Жоломан Шаршенбеков',
+      name: 'ХАБИБЧИК МАГИБЧИК',
       status: 'Заморожен',
       number: '+996 555 123 123',
-      email: 'jolaman23@gmail.com',
-      group: 'Product Manager',
+      email: 'khabibchik@gmail.com',
+      group: 'Python',
       payment: '50 %',
     },
     {
       id: 8,
-      name: 'Жоломан Шаршенбеков',
+      name: 'ХАБИБЧИК МАГИБЧИК',
       status: 'Активен',
       number: '+996 555 123 123',
-      email: 'jolaman23@gmail.com',
-      group: 'Product Manager',
+      email: 'khabibchik@gmail.com',
+      group: 'Python',
       payment: '50 %',
     },
     {
       id: 9,
-      name: 'Жоломан Шаршенбеков',
+      name: 'ХАБИБЧИК МАГИБЧИК',
       status: 'Неактивен',
       number: '+996 555 123 123',
-      email: 'jolaman23@gmail.com',
-      group: 'Product Manager',
+      email: 'khabibchik@gmail.com',
+      group: 'Python',
       payment: '50 %',
     },
     {
       id: 10,
-      name: 'Жоломан Шаршенбеков',
+      name: 'ХАБИБЧИК МАГИБЧИК',
       status: 'Заморожен',
       number: '+996 555 123 123',
-      email: 'jolaman23@gmail.com',
+      email: 'khabibchik@gmail.com',
       group: 'Product Manager',
       payment: '50 %',
     },
@@ -173,13 +163,20 @@ const StudentTable = () => {
     {
       field: 'group',
       headerName: <div className="text-[16px] font-semibold">Группа</div>,
-      width: 185,
+      width: 155,
     },
     {
       field: 'payment',
       headerName: <div className="text-[16px] font-semibold">Оплата</div>,
-      width: 140,
+      width: 110,
     },
+    {
+        field: 'actions',
+        headerName: <div className="text-[16px] font-semibold">Действия</div>,
+  
+        width: 120,
+        renderCell: (params: any) => <Actions {...params} />,
+      },
   ];
 
   return (
@@ -190,11 +187,11 @@ const StudentTable = () => {
           className=" bg-white border rounded-lg shadow-lg"
           rows={rows}
           columns={columns}
-          getRowClassName={(params) => 'even:bg-[#F4F7FD]'}
+          getRowClassName={(params) => 'even:bg-[#dee7f3]'}
         />
       </div>
     </>
   );
 };
 
-export default StudentTable;
+export default StudentTableAdmin;

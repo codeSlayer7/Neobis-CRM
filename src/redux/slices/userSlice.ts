@@ -1,7 +1,7 @@
+import { UserRole } from './../types/userTypes';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getApiErrorMessage } from '../../utils/utils';
 import {
-  UserRole,
   UserData,
   UserForgotPassword,
   UserConfirmCode,
@@ -71,13 +71,12 @@ const userSlice = createSlice({
         loginUserThunk.fulfilled,
         (state, { payload }: PayloadAction<any>) => {
           console.log('4', payload);
-
           state.loading = false;
           state.accessToken = payload.authenticationResponse.jwtToken;
           state.refreshToken = payload.authenticationResponse.refreshToken;
+          state.role = payload.role;
           state.firstName = payload.firstName;
           state.lastName = payload.lastName;
-          state.role = payload.role;
         }
       ),
       builder.addCase(

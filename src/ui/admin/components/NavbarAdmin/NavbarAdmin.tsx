@@ -7,7 +7,7 @@ function NavbarAdmin() {
   return (
     <div className="flex h-16  items-center justify-between rounded-sm border border-inherit">
       <div className="ml-6 flex w-56 justify-between">
-        <Link to="/">
+        <Link to="/admin">
           <Logo />
         </Link>
       </div>

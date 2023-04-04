@@ -37,13 +37,20 @@ export const LogIn: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const { role, error } = useAppSelector((state) => {
-    return state.user;
+  const {role} = useAppSelector((state) => {
+    return state.user
   });
 
   const onSubmit = (values: UserData) => {
     dispatch(loginUserThunk(values));
   };
+  useEffect(() => {
+    if (role) {
+      role === "ROLE_ADMIN" && navigate('/admin');
+      role === "ROLE_MANAGER" && navigate('/');
+    }
+  }, [role]);
+  console.log("role",role);
 
   const formik = useFormik({
     initialValues,
@@ -51,12 +58,6 @@ export const LogIn: React.FC = () => {
     onSubmit,
   });
 
-  useEffect(() => {
-    if (role) {
-      role === 'ROLE_ADMIN' && navigate('/admin');
-      role === 'ROLE_MANAGER' && navigate('/');
-    }
-  }, [role]);
 
   return (
     <div className="flex h-screen items-center justify-around">
