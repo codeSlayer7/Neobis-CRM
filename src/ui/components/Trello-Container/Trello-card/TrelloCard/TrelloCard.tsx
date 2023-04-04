@@ -1,6 +1,8 @@
 // import { useState } from "react";
+import classNames from 'classnames';
 import { Draggable } from 'react-beautiful-dnd';
 import { Link } from 'react-router-dom';
+import { useAppSelector } from '../../../../../constants/global';
 import useMediaQuery from '../../../../../hook/useMediaQuery';
 import { ItemBack } from '../../../../../interfaces';
 import { CardStatus } from '../../../../../interfaces/enum';
@@ -16,6 +18,7 @@ interface Props {
 function TrelloCard({ card, index }: Props) {
   //   const [violet, setViolet] = useState<boolean>(false);
   const matches = useMediaQuery('(min-width: 1280px)');
+  const toggle = useAppSelector((trello) => trello.toggle.toggle);
 
   const colorChange =
     card.status === CardStatus.WaitCall ? '#8874C8' : '#FFFFFF';
@@ -33,7 +36,8 @@ function TrelloCard({ card, index }: Props) {
             style={{
               userSelect: 'none',
               minHeight: matches ? '190px' : '175px',
-              width: '100%',
+              width: toggle ? '16vw' : '19vw',
+              // ...(toggle ? { width: '16vw' } : { width: '19vw' }),
               borderRadius: '24px',
               backgroundColor: snapshot.isDragging ? '#DADADA' : colorChange,
               color: 'black',
@@ -72,10 +76,16 @@ function TrelloCard({ card, index }: Props) {
                 {card.time}
               </p>
               <div className="mt-3 flex w-[100%] justify-around ">
-                <span className="bg-neobis-bg-card-text text-skin-text-darkViolet whitespace-nowrap rounded-lg   px-1 xl:px-2   text-xs  font-normal xl:text-sm  2xl:text-lg ">
+                <span
+                  className={classNames(
+                    `bg-neobis-bg-card-text text-skin-text-darkViolet whitespace-nowrap rounded-lg ${
+                      toggle ? 'text-[0.9vw]' : 'text-[1vw]'
+                    } px-1 font-normal `
+                  )}
+                >
                   {card.specific}
                 </span>
-                <span className="bg-neobis-bg-card-text text-skin-text-darkViolet ml-2 whitespace-nowrap rounded-lg px-1 xl:px-2  text-xs  xl:text-sm   2xl:text-lg ">
+                <span className="bg-neobis-bg-card-text text-skin-text-darkViolet ml-2 whitespace-nowrap rounded-lg text-[1vw] px-1 ">
                   {card.phoneNumber}
                 </span>
               </div>
@@ -84,11 +94,11 @@ function TrelloCard({ card, index }: Props) {
               {' '}
             </div>
 
-            <div className="mt-2 flex justify-around px-2 ">
+            <div className="mt-2 flex justify-around px-2 mx-2 ">
               <Link to="/enrollclient">
                 <button
                   type="button"
-                  className="bg-neobis-bg-green hover:easy-in rounded-lg px-4 py-[4px] text-xs font-normal text-white transition duration-150 hover:scale-110 xl:text-base  "
+                  className="bg-neobis-bg-green hover:easy-in rounded-lg px-4 py-[4px] text-[1vw] font-normal text-white transition duration-150 hover:scale-110 "
                 >
                   Зачислять
                 </button>
@@ -96,7 +106,7 @@ function TrelloCard({ card, index }: Props) {
               <Link to="/archiveclient">
                 <button
                   type="button"
-                  className="bg-neobis-bg-card-text text-skin-text-darkViolet rounded-lg px-2 py-[4px] text-xs font-normal transition duration-150 hover:scale-110   hover:ease-in  xl:text-base"
+                  className="bg-neobis-bg-card-text text-skin-text-darkViolet rounded-lg ml-1 px-2 py-[4px] text-[1vw] font-normal transition duration-150 hover:scale-110   hover:ease-in "
                 >
                   Архивировать
                 </button>
