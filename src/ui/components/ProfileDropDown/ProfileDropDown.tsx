@@ -9,7 +9,7 @@ function ProfileDropDown() {
   const navigate = useNavigate();
   const [openProfile, setOpenProfile] = useState(false);
 
-  const { firstName, lastName, } = useAppSelector((state) => {
+  const { firstName, lastName } = useAppSelector((state) => {
     return state.user;
   });
 
@@ -43,7 +43,6 @@ function ProfileDropDown() {
                 История операции
               </li>
             </Link>
-            {/* <Link to={'/login'}> */}
             <button
               type="button"
               className="mt-2 inline-flex w-full items-center justify-start hover:text-[#A062F7]"
@@ -52,7 +51,6 @@ function ProfileDropDown() {
               <BiExit className="mx-2" />
               Выход
             </button>
-            {/* </Link> */}
           </ul>
         </div>
       )}

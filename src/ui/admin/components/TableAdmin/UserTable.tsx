@@ -1,5 +1,5 @@
 import { DataGrid } from '@mui/x-data-grid';
-import UserActions from '../../admin/pages/Manager/UserActions';
+import UserActions from '../../pages/Manager/UserActions';
 
 interface Columns {
   field: string;
@@ -59,7 +59,7 @@ export default function UserTable() {
       headerName: <div className="text-[16px] font-semibold">Действия</div>,
 
       width: 150,
-      renderCell: (params: any) => <UserActions {...{ params }} />,
+      renderCell: (params: any) => <UserActions {...params} />,
     },
   ];
 

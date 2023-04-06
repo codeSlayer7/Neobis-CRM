@@ -35,17 +35,18 @@ export const loginUserThunk = createAsyncThunk(
     try {
       const response = await loginUser(user);
       console.log('response', response);
-      console.log(Status.SUCCESS);
+      console.warn(response.data.result_code === Status.SUCCESS);
 
-      if (response.data.resultCode === Status.SUCCESS) {
+      if (response.data.result_code === Status.SUCCESS) {
         setCookie(
           'token',
           response.data.result.authenticationResponse.jwtToken,
           4
         );
         return response.data.result;
+      }else{
+        return rejectWithValue(response.data.details);
       }
-      return rejectWithValue(response.data.details);
     } catch (err) {
       return rejectWithValue(getApiErrorMessage(err));
     }
@@ -58,10 +59,7 @@ const userSlice = createSlice({
   reducers: {
     setAccessToken: (state, action) => {
       state.accessToken = action.payload;
-    },
-    setRefreshToken: (state, action) => {
-      state.refreshToken = action.payload;
-    },
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(loginUserThunk.pending, (state) => {
@@ -89,7 +87,7 @@ const userSlice = createSlice({
   },
 });
 
-export const { setAccessToken, setRefreshToken } = userSlice.actions;
+export const { setAccessToken } = userSlice.actions;
 
 export default userSlice.reducer;
 

@@ -1,24 +1,33 @@
-// import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { getCookie } from '../../utils/cookie';
+import { getApiErrorMessage } from '../../utils/utils';
+import { getAllUsers } from '../../api/adminApi';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-// const initialState = {
-//   users: '',
-// };
+const initialState = {
+  users: '',
+};
 
-// const adminUserSlice = createSlice({
-//   name: 'adminUser',
-//   initialState,
-//   reducers: {},
-// });
+ const adminSlice = createSlice({
+  name: 'admin',
+  initialState,
+  reducers: {},
+});
 
-// export const getAllUsers = createAsyncThunk(
-//   'adminUser/getAllUsers',
-//   async (adminUser: { rejectWithValue }) => {
-//     try {
-//       const response = await getAllUsers();
-//       return response.data;
-//       console.log(response);
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   }
-// );
+export default adminSlice.reducer;
+
+export const getAllUserThunk = createAsyncThunk(
+  'admin/users',
+  async ( _, {rejectWithValue }) => {
+    try {
+      const response = await getAllUsers();
+      console.log('response2', response);
+        getCookie(
+          'token'
+        );
+        return response.data
+    } catch (err) {
+      return rejectWithValue(getApiErrorMessage(err));
+    }
+  }
+);
+

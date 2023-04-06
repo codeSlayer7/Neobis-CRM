@@ -55,6 +55,7 @@ export const LogIn: React.FC = () => {
   const formik = useFormik({
     initialValues,
     validationSchema: schema,
+    validateOnChange: false,
     onSubmit,
   });
 
