@@ -1,12 +1,13 @@
-import { UserRole } from './../types/userTypes';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { getApiErrorMessage } from '../../utils/utils';
 import {
+  UserRole,
   UserData,
   UserForgotPassword,
   UserConfirmCode,
   UserResetPassword,
 } from '../types/userTypes';
+import { getApiErrorMessage } from '../../utils/utils';
+
 import { BaseResponse } from '../../types/global';
 import {
   confirmCode,
@@ -44,9 +45,8 @@ export const loginUserThunk = createAsyncThunk(
           4
         );
         return response.data.result;
-      }else{
-        return rejectWithValue(response.data.details);
       }
+      return rejectWithValue(response.data.details);
     } catch (err) {
       return rejectWithValue(getApiErrorMessage(err));
     }
@@ -59,7 +59,7 @@ const userSlice = createSlice({
   reducers: {
     setAccessToken: (state, action) => {
       state.accessToken = action.payload;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(loginUserThunk.pending, (state) => {
