@@ -3,13 +3,20 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import { useState } from 'react';
-import UserTable from '../../../components/Table/UserTable';
+import UserTable from '../../components/TableAdmin/UserTable';
 import CreateUser from '../../components/Modals/CreateUser';
+import { useAppDispatch, useAppSelector } from '../../../../constants/global';
+import { useNavigate } from 'react-router-dom';
+import { getAllUserThunk } from '../../../../redux/slices/adminSlice';
+import { getCookie } from '../../../../utils/cookie';
 
 function UserPage() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+
+
   return (
     <div className="relative h-[100vh] w-full">
       <button
@@ -28,7 +35,7 @@ function UserPage() {
       >
         <div className="absolute top-[-10%] left-[30%] right-32">
           <CreateUser
-          // handleClose={handleClose}
+          handleClose={handleClose}
           />
         </div>
       </Modal>

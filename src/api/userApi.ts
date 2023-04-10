@@ -1,10 +1,8 @@
+import { baseURL } from './base';
 import { BaseResponse } from './../types/global';
 import { UserData, UserForgotPassword, UserConfirmCode, UserResetPassword, UserRole } from './../redux/types/userTypes';
 import axios, { AxiosInstance } from 'axios'; 
-import { NullableString } from '../types/global';
-import { Status } from '../constants/global';
 
-const baseURL = 'http://68.183.88.191:8080';
 export interface LoginResponse{
     authenticationResponse:{
         "jwtToken": string,
