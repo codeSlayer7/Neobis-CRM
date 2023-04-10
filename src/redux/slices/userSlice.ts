@@ -35,9 +35,9 @@ export const loginUserThunk = createAsyncThunk(
     try {
       const response = await loginUser(user);
       console.log('response', response);
-      console.warn(response.data.result_code === Status.SUCCESS);
+      console.warn(response.data.resultCode === Status.SUCCESS);
 
-      if (response.data.result_code === Status.SUCCESS) {
+      if (response.data.resultCode === Status.SUCCESS) {
         setCookie(
           'token',
           response.data.result.authenticationResponse.jwtToken,

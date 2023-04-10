@@ -8,21 +8,13 @@ import CreateUser from '../../components/Modals/CreateUser';
 import { useAppDispatch, useAppSelector } from '../../../../constants/global';
 import { useNavigate } from 'react-router-dom';
 import { getAllUserThunk } from '../../../../redux/slices/adminSlice';
+import { getCookie } from '../../../../utils/cookie';
 
 function UserPage() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
-  const state = useAppSelector((state) => {
-
-  });
-
-  React.useEffect(() => {
-    dispatch(getAllUserThunk())
-  },[])
 
 
   return (
@@ -43,7 +35,7 @@ function UserPage() {
       >
         <div className="absolute top-[-10%] left-[30%] right-32">
           <CreateUser
-          // handleClose={handleClose}
+          handleClose={handleClose}
           />
         </div>
       </Modal>

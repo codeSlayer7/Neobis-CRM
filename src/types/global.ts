@@ -4,6 +4,6 @@ export type Status = string
 
 export interface BaseResponse<Data>{
     result: Data,
-    result_code : Status,
+    resultCode : Status,
     details : NullableString
 }
