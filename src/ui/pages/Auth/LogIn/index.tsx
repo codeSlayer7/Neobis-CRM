@@ -13,20 +13,13 @@ import { useAppDispatch, useAppSelector } from '../../../../constants/global';
 // import { toast } from 'react-toastify';
 // import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { schema } from '../../../../utils/schema';
 
 export interface ILoginForm {
   email: string;
   password: string;
 }
 
-const schema = yup.object().shape({
-  email: yup.string().required('Укажите логин !').email('Неверный email!'),
-  password: yup
-    .string()
-    .required('Укажите пароль !')
-    .min(6, 'Пароль должен быть не меньше 6 символов')
-    .max(40, 'Пароль должен быть не больше 40 символов'),
-});
 
 const initialValues = {
   email: '',
@@ -37,8 +30,8 @@ export const LogIn: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const {role} = useAppSelector((state) => {
-    return state.user
+  const { role } = useAppSelector((state) => {
+    return state.user;
   });
 
   const onSubmit = (values: UserData) => {
@@ -46,12 +39,11 @@ export const LogIn: React.FC = () => {
   };
   useEffect(() => {
     if (role) {
-      console.log(role)
-      role === "ROLE_ADMIN" && navigate('/admin');
-      role === "ROLE_MANAGER" && navigate('/');
+      role === 'ROLE_ADMIN' && navigate('/admin');
+      role === 'ROLE_MANAGER' && navigate('/');
     }
   }, [role]);
-  console.log("role",role);
+  console.log('role', role);
 
   const formik = useFormik({
     initialValues,
@@ -59,7 +51,6 @@ export const LogIn: React.FC = () => {
     validateOnChange: false,
     onSubmit,
   });
-
 
   return (
     <div className="flex h-screen items-center justify-around">

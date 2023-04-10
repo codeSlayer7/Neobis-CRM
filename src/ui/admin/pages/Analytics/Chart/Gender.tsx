@@ -20,7 +20,7 @@ const data: DataItem[] = [
   },
 ];
 
-export default function BarChart() {
+export default function Gender() {
   const options: ApexCharts.ApexOptions = {
     chart: {
       type: 'bar',

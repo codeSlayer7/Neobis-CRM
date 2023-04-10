@@ -31,11 +31,11 @@ const buttons = [
 
 export default function NavigateButtons({ buttonType, setButtonType }: Props) {
   return (
-    <div className="bg-[#E2EBFF] p-[16px] rounded-[16px] flex">
+    <div className="flex rounded-[16px] bg-[#E2EBFF] p-[16px]">
       {buttons.map((btn, index) => {
         return (
           <button
-          key={index}
+            key={index}
             onClick={() => setButtonType(btn.value)}
             className={
               buttonType === btn.value
@@ -44,7 +44,7 @@ export default function NavigateButtons({ buttonType, setButtonType }: Props) {
             }
           >
             {btn.label}
-          </button> 
+          </button>
         );
       })}
       <Search />

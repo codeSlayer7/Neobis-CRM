@@ -4,11 +4,10 @@ import { HiOutlineMenuAlt1 } from 'react-icons/hi';
 import React, { useState } from 'react';
 import { MdOutlineManageAccounts } from 'react-icons/md';
 import { VscBook } from 'react-icons/vsc';
-import { BsFolder } from 'react-icons/bs';
-import { BsPersonWorkspace } from 'react-icons/bs';
+import { BsFolder, BsPersonWorkspace } from 'react-icons/bs';
 import { SlGraduation } from 'react-icons/sl';
 import { TiMessages } from 'react-icons/ti';
-import Analytic from '../../../icons/Analytic';
+import { TbBrandGoogleAnalytics } from 'react-icons/tb';
 
 interface IMenuItem {
   name: string;
@@ -62,7 +61,7 @@ function SidebarAdmin({ children }: Props) {
     {
       name: 'Аналитика',
       path: '/admin/analytics',
-      icon: <Analytic />,
+      icon: <TbBrandGoogleAnalytics className="text-3xl" />,
     },
   ];
   return (

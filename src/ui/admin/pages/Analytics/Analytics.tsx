@@ -1,6 +1,7 @@
-import BarChart from './Chart/BarChart';
+import BarChart from './Chart/Gender';
 import ColumnChart from './Chart/ColumnChart';
 import DonutChart from './Chart/DonutChart';
+// import ReasonsForLosingClient from './Chart/ReasonsForLosingClient';
 
 export default function Analytics() {
   return (
@@ -12,6 +13,7 @@ export default function Analytics() {
       <div>
         <BarChart />
       </div>
+      <div>{/* <ReasonsForLosingClient/> */}</div>
     </div>
   );
 }

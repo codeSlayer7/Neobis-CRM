@@ -1,5 +1,9 @@
 import { DataGrid } from '@mui/x-data-grid';
 import UserActions from '../../pages/Manager/UserActions';
+import { useAppDispatch, useAppSelector } from '../../../../constants/global';
+import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { getAllUserThunk } from '../../../../redux/slices/adminSlice';
 
 interface Columns {
   field: string;
@@ -9,6 +13,18 @@ interface Columns {
 }
 
 export default function UserTable() {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const users = useAppSelector((state) => {
+    return state.admin.users;
+  });
+  console.log('users', users);
+
+  React.useEffect(() => {
+    dispatch(getAllUserThunk());
+  }, [dispatch]);
+
   const userRows = [
     {
       id: 1,
@@ -29,7 +45,7 @@ export default function UserTable() {
   const userColumns: Columns[] = [
     { field: 'id', headerName: '', width: 0 },
     {
-      field: 'name',
+      field: 'firstName',
       headerName: <div className="text-[16px] font-semibold">Ф.И.О</div>,
       width: 250,
     },
@@ -47,7 +63,7 @@ export default function UserTable() {
       width: 250,
     },
     {
-      field: 'lastVisit',
+      field: 'lastVisitTime',
       headerName: (
         <div className="text-[16px] font-semibold">Последний визит</div>
       ),
@@ -67,9 +83,9 @@ export default function UserTable() {
     <DataGrid
       autoHeight
       className=" hover:none w-[1300px] rounded-lg border bg-white shadow-lg"
-      rows={userRows}
+      rows={users}
       columns={userColumns}
-      getRowClassName={(params) => 'even:bg-[#F4F7FD]'}
+      getRowClassName={(params) => 'even:bg-[#dee7f3]'}
     />
   );
 }

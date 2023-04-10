@@ -1,20 +1,18 @@
-import axios, { AxiosInstance } from "axios";
-import { getCookie } from "../utils/cookie";
-
-const baseURL = 'http://68.183.88.191:8080/api/v1/admin/';
-
-const token = getCookie('token')
-
-export const adminApi : AxiosInstance = axios.create({
-  baseURL,
-  headers: {
-    Authorization: `Bearer ${token}`,
-    'Content-type': 'application/json'
-  }
-}) 
+import { Api } from './base/index';
+import { UserData } from "../redux/types/adminTypes";
 
 
 export const getAllUsers = () => {
-    return adminApi.get('users');   
-  };
+    return Api.get('/api/v1/admin/users');   
+};
    
+
+export const createUser = (user: UserData) => {
+  return Api.post('/api/v1/admin/registration',{email: user.data.email, password: user.data.password,
+    firstName: user.data.firstName, lastName: user.data.lastName, phoneNumber: user.data.phoneNumber})
+} 
+
+
+export const editUser = (user: UserData) => {
+  return Api.put('/api/v1/admin/update/{id}', user)
+}

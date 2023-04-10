@@ -5,12 +5,12 @@ import Time from '../../../icons/Time';
 import Money from '../../../icons/Money';
 import Book from '../../../icons/Book';
 
-function AdminCourseCard(props : any) {
+function AdminCourseCard(props: any) {
   return (
     <>
       {props.details.map((value: any, index: any) => (
         <div key={index}>
-          <div className="relative m-5 bg-fixed h-[398px] w-[382px] rounded-3xl border border-black shadow-sm">
+          <div className="relative m-5 h-[398px] w-[382px] rounded-3xl border border-black bg-fixed shadow-sm">
             <DropDownAdminCourses />
 
             <img

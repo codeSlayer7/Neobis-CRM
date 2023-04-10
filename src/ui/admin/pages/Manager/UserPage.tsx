@@ -8,28 +8,20 @@ import CreateUser from '../../components/Modals/CreateUser';
 import { useAppDispatch, useAppSelector } from '../../../../constants/global';
 import { useNavigate } from 'react-router-dom';
 import { getAllUserThunk } from '../../../../redux/slices/adminSlice';
+import { getCookie } from '../../../../utils/cookie';
 
 function UserPage() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
-  const state = useAppSelector((state) => {
-
-  });
-
-  React.useEffect(() => {
-    dispatch(getAllUserThunk())
-  },[])
 
 
   return (
     <div className="relative h-[100vh] w-full">
       <button
         type="button"
-        className="bg-neobis-bg-green my-20 ml-[80%] h-12 w-56 rounded-lg border text-lg text-white transition duration-150 hover:scale-95"
+        className="bg-[#4588C6] my-20 ml-[80%] h-12 w-56 rounded-lg border text-lg text-white transition duration-150 hover:scale-95"
         onClick={handleOpen}
       >
         Создать менеджера
@@ -43,7 +35,7 @@ function UserPage() {
       >
         <div className="absolute top-[-10%] left-[30%] right-32">
           <CreateUser
-          // handleClose={handleClose}
+          handleClose={handleClose}
           />
         </div>
       </Modal>

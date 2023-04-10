@@ -1,22 +1,30 @@
+import { useState } from 'react';
 import { GrFormClose } from 'react-icons/gr';
 
-function AdminMentorsForm({ open, onClose }) {
+function MentorEdit() {
+  const [open, setOpen] = useState(false);
+  const handleClick = () => {
+    setOpen(!open);
+  };
+
   return (
-    <div className="my-5 ml-[30%] ">
-      <div className="relative flex h-[756px] w-[598px] flex-col items-center rounded-lg border-2 bg-[#f1f1f1]">
-        <h3 className="mt-6 text-3xl font-bold ">Добавить преподавателя</h3>
-        <button type="button" onClick={onClose}>
+    <div className="my-10 ml-[30%] h-[100vh] ">
+      <div className="relative flex h-[700px] w-[598px] flex-col items-center rounded-lg border-2 bg-[#fff]">
+        <h3 className="mt-6 text-3xl font-bold ">
+          Редактировать преподавателя
+        </h3>
+        <button type="button" onClose={handleClick}>
           <GrFormClose className="absolute left-[550px] top-3 text-3xl " />
         </button>
 
-        <form className="mt-6">
+        <form className="mt-5">
           <label className="mb-2 block text-lg font-semibold text-gray-900">
             Имя
           </label>
           <input
             type="name"
             id="name"
-            className="mb-2 block h-[40px] w-[377px] rounded-sm border border-slate-300 bg-white p-2.5 text-sm"
+            className="mb-2 block h-[40px] w-[377px] rounded-sm border border-slate-200 bg-[#f1f1f1] p-2.5 text-sm"
             required
           />
 
@@ -26,7 +34,7 @@ function AdminMentorsForm({ open, onClose }) {
           <input
             type="lastName"
             id="lastName"
-            className="mb-2 block h-[40px] w-[377px] rounded-sm border border-slate-300 bg-white p-2.5 text-sm"
+            className="mb-2 block h-[40px] w-[377px] rounded-sm border border-slate-200 bg-[#f1f1f1] p-2.5 text-sm"
             required
           />
 
@@ -36,7 +44,7 @@ function AdminMentorsForm({ open, onClose }) {
           <input
             type="email"
             id="email"
-            className="mb-2 block h-[40px] w-[377px] rounded-sm border border-slate-300 bg-white p-2.5 text-sm"
+            className="mb-2 block h-[40px] w-[377px] rounded-sm border border-slate-200 bg-[#f1f1f1] p-2.5 text-sm"
             required
           />
           <label className="mb-2 block text-lg font-semibold text-gray-900">
@@ -46,7 +54,7 @@ function AdminMentorsForm({ open, onClose }) {
           <input
             type="phoneNumber"
             id="phoneNumber"
-            className="mb-3 block h-[40px] w-[377px] rounded-sm border border-slate-300 bg-white p-2.5 text-sm"
+            className="mb-2 block h-[40px] w-[377px] rounded-sm border border-slate-200 bg-[#f1f1f1] p-2.5 text-sm"
             required
           />
           <label className="mb-2 block text-lg font-semibold text-gray-900">
@@ -56,9 +64,10 @@ function AdminMentorsForm({ open, onClose }) {
           <input
             type="password"
             id="password"
-            className="mb-2 block h-[40px] w-[377px] rounded-sm border border-slate-300 bg-white p-2.5 text-sm"
+            className="mb-2 block h-[40px] w-[377px] rounded-sm border border-slate-200 bg-[#f1f1f1] p-2.5 text-sm"
             required
           />
+
           <label className="mb-2 block text-lg font-semibold text-gray-900">
             Направление
           </label>
@@ -66,7 +75,7 @@ function AdminMentorsForm({ open, onClose }) {
           <select
             id="cars"
             name="cars"
-            className="mb-2 block h-[40px] w-[377px] rounded-sm border border-slate-300 bg-white p-2.5 text-sm "
+            className="mb-2 block h-[40px] w-[377px] rounded-sm border border-slate-300 bg-[#f1f1f1] p-2.5 text-sm "
           >
             <option value="js">JavaScript</option>
             <option value="python">Python</option>
@@ -75,11 +84,11 @@ function AdminMentorsForm({ open, onClose }) {
           </select>
 
           <button
-            onClick={onClose}
             type="button"
+            // onClose={handleClose}
             className="mt-4 h-[47px] w-[377px] rounded-lg border border-none bg-[#4588C6] text-lg text-white transition duration-150 hover:scale-95"
           >
-            Добавить
+            Сохранить
           </button>
         </form>
       </div>
@@ -87,4 +96,4 @@ function AdminMentorsForm({ open, onClose }) {
   );
 }
 
-export default AdminMentorsForm;
+export default MentorEdit;
