@@ -14,7 +14,7 @@ function UserPage() {
     <div className="relative h-[100vh] w-full">
       <button
         type="button"
-        className="bg-neobis-bg-green my-20 ml-[80%] h-12 w-56 rounded-lg border text-lg text-white transition duration-150 hover:scale-95"
+        className="bg-[#4588C6] my-20 ml-[80%] h-12 w-56 rounded-lg border text-lg text-white transition duration-150 hover:scale-95"
         onClick={handleOpen}
       >
         Создать менеджера

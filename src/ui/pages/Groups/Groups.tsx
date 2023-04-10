@@ -10,7 +10,7 @@ import Calendar from '../../components/Schedule/calendar';
 
 function Groups() {
   return (
-    <div className="ml-[36px] my-10 h-[100vh] w-full">
+    <div className="h-[100vh] my-10 ml-[36px] w-full">
       <div className="flex h-24 w-[1287px] items-center justify-around rounded-lg border-2 border-slate-200 shadow-md ">
         <div className="flex">
           <img className="h-[65px] w-[65px]" src={mentor} alt="#" />
@@ -41,7 +41,7 @@ function Groups() {
           </span>
         </div>
       </div>
-      <div className="mt-20 mb-10 flex w-[60%] justify-between">
+      <div className="my-20 mb-10 flex w-[60%] justify-between">
         <DropDown
           label={<div className="font-sans text-base">Оплата</div>}
           onOptionClick={(option) => `(option)`}
@@ -64,9 +64,11 @@ function Groups() {
           </span>
         </div>
       </div>
-      <CourseStudents />
-      <Calendar />
-      <Schedule />
+      <div className=" w-full  h-[1200px] items-left ">
+        <CourseStudents />
+        <Calendar />
+        <Schedule />
+      </div>
     </div>
   );
 }
