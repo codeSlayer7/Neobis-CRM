@@ -46,6 +46,7 @@ export const LogIn: React.FC = () => {
   };
   useEffect(() => {
     if (role) {
+      console.log(role)
       role === "ROLE_ADMIN" && navigate('/admin');
       role === "ROLE_MANAGER" && navigate('/');
     }

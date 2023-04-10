@@ -1,57 +1,29 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ItemBack, Column, DragResult } from '../../interfaces';
 import { CardStatus } from '../../interfaces/enum';
+import { IApplication } from '../service/applications/applications';
+import {
+  getAllApplications,
+  getAllAppThunk,
+} from '../service/applications/applicationAction';
 
-const itemsFromBackend: ItemBack[] = [
-  {
-    name: 'bakyt5 abykanov',
-    time: '24 hours ago',
-    specific: 'Frontend React',
-    phoneNumber: '+996 550 51 80 40',
-    status: CardStatus.WaitCall,
-    id: 0.5980302055849753,
-  },
-  {
-    name: 'bakyt4 abykanov',
-    time: '24 hours ago',
-    specific: 'Frontend React',
-    phoneNumber: '+996 550 51 80 40',
-    status: CardStatus.WaitCall,
-    id: 0.31199698824253685,
-  },
-  {
-    name: 'bakyt2 abykanov',
-    time: '24 hours ago',
-    specific: 'Frontend React',
-    phoneNumber: '+996 550 51 80 40',
-    status: CardStatus.WaitCall,
-    id: 1.3010947237842845,
-  },
-  {
-    name: 'bakyt1 abykansfov',
-    time: '24 hours ago',
-    specific: 'Frontend React',
-    phoneNumber: '+996 550 51 80 40',
-    status: CardStatus.WaitCall,
-    id: 1.4348247561641614,
-  },
-];
+const itemsFromBackend: IApplication[] | [] = [];
 
 const initialState: Column = {
   columns: {
-    aa: {
+    waitingForCall: {
       name: 'Ждет звонка',
-      items: itemsFromBackend,
+      items: itemsFromBackend || [],
     },
-    bb: {
+    callReceived: {
       name: 'Звонок совершен',
       items: [],
     },
-    cc: {
+    attendedTrial: {
       name: 'Записан на проб.урок',
       items: [],
     },
-    dd: {
+    appliedForTrial: {
       name: 'Посетил проб.урок',
       items: [],
     },
@@ -130,6 +102,28 @@ const todoSlice = createSlice({
       }
       return state;
     },
+  },
+  extraReducers(builder) {
+    builder.addCase(getAllAppThunk.pending, (state) => {
+      // console.log('33');
+      // state.loading = true;
+    });
+    builder.addCase(getAllAppThunk.fulfilled, (state, { payload }) => {
+      console.log('4 TODOSLICE', payload);
+      // state.loading = false;
+      // state.accessToken = payload.authenticationResponse.jwtToken;
+      // state.refreshToken = payload.authenticationResponse.refreshToken;
+      // state.role = payload.role;
+      // state.firstName = payload.firstName;
+      // state.lastName = payload.lastName;
+    });
+    // builder.addCase(
+    //   loginUserThunk.rejected,
+    //   (state, { payload }: PayloadAction<any>) => {
+    //     state.loading = false;
+    //     state.error = payload;
+    //   }
+    // );
   },
 });
 

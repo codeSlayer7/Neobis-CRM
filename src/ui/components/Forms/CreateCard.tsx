@@ -1,6 +1,62 @@
+import { useState } from 'react';
+import {
+  IApplication,
+  IApplicationPost,
+} from '../../../redux/service/applications/applications';
+import {
+  marketingOptions,
+  StateStatusType,
+  MarketingStrategyType,
+} from '../../../interfaces/enum';
 import More from '../../icons/More';
+import DropDown from '../DropDown';
+import { Select, MenuItem, styled } from '@mui/material';
+import { borderRadius } from '@mui/system';
+import { applyInitialState } from '@mui/x-data-grid/hooks/features/columns/gridColumnsUtils';
+
+const CustomSelect = styled(Select)(() => ({
+  height: '40px',
+  width: '100%',
+  borderRadius: 'none',
+  '&.MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: 'black',
+    },
+    '&:hover fieldset': {
+      borderColor: 'black',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: 'black',
+    },
+  },
+}));
+type Entries<T> = {
+  [K in keyof T]: [key: K, value: T[K]];
+}[keyof T][];
 
 function CreateCard() {
+  const [postApp, setPostApp] = useState<IApplicationPost>({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phoneNumber: '',
+    gender: '',
+    hasLaptop: false,
+    marketingStrategy: 'INSTAGRAM',
+    applicationInitialStatusNum: 1,
+    department: {
+      name: '',
+      status: '',
+    },
+    reason: '',
+    education: '',
+  });
+  console.log(postApp);
+
+  // const handleChange = (e: InputEvent) => {
+  //   setPostApp({ ...postApp, creator: e.target.value });
+  // };
+
   return (
     <div className="flex h-auto w-full items-center justify-center">
       <div className="my-10 h-[798px] w-[886px] rounded-lg  border bg-[#FAFAFA] ">
@@ -21,10 +77,30 @@ function CreateCard() {
               <input
                 type="name"
                 id="name"
+                value={postApp.firstName}
                 className="mb-3 block h-[40px] w-[377px] rounded-sm border border-black bg-white p-2.5 text-sm"
+                onChange={(e) =>
+                  setPostApp({ ...postApp, firstName: e.target.value })
+                }
                 required
               />
+              <label
+                htmlFor="name"
+                className="mb-3 block text-lg font-semibold text-gray-900"
+              >
+                ФИО
+              </label>
 
+              <input
+                type="name"
+                id="name"
+                value={postApp.firstName}
+                className="mb-3 block h-[40px] w-[377px] rounded-sm border border-black bg-white p-2.5 text-sm"
+                onChange={(e) =>
+                  setPostApp({ ...postApp, firstName: e.target.value })
+                }
+                required
+              />
               <label
                 htmlFor="department"
                 className="mb-3 block text-lg font-semibold text-gray-900"
@@ -37,7 +113,39 @@ function CreateCard() {
                 id="department"
                 className="mb-3 block h-[40px] w-[377px] rounded-sm border border-black bg-white p-2.5 text-sm"
                 required
+                value={postApp.department.name}
+                onChange={(e) =>
+                  setPostApp({
+                    ...postApp,
+                    department: {
+                      ...postApp.department,
+                      name: e.target.value,
+                    },
+                  })
+                }
               />
+
+              <label
+                htmlFor="date"
+                className="mb-3 block text-lg font-semibold text-gray-900"
+              >
+                Дата заявки
+              </label>
+              <CustomSelect
+                value={postApp.applicationInitialStatusNum}
+                onChange={(e) =>
+                  setPostApp({
+                    ...postApp,
+                    applicationInitialStatusNum: e.target.value as number,
+                  })
+                }
+              >
+                <MenuItem value={1}>Ждет звонка</MenuItem>
+                <MenuItem value={2}>Звонок зовершен</MenuItem>
+                <MenuItem value={3}>Записан на пробный урок</MenuItem>
+                <MenuItem value={4}>Посетил пробный урок</MenuItem>
+              </CustomSelect>
+
               <label
                 htmlFor="status"
                 className="mb-3 block text-lg font-semibold text-gray-900"
@@ -51,19 +159,7 @@ function CreateCard() {
                 className="mb-3 block h-[40px] w-[377px] rounded-sm border border-black bg-white p-2.5 text-sm"
                 required
               />
-              <label
-                htmlFor="date"
-                className="mb-3 block text-lg font-semibold text-gray-900"
-              >
-                Дата заявки
-              </label>
 
-              <input
-                type="date"
-                id="date"
-                className="mb-3 block h-[40px] w-[377px] rounded-sm border border-black bg-white p-2.5 text-sm"
-                required
-              />
               <label
                 htmlFor="payment"
                 className="mb-3 block text-lg font-semibold text-gray-900"
@@ -95,19 +191,25 @@ function CreateCard() {
                 required
               />
 
-              <label
-                htmlFor="group"
-                className="mb-3 block text-lg font-semibold text-gray-900"
+              <CustomSelect
+                value={postApp.marketingStrategy}
+                onChange={(e) =>
+                  setPostApp({
+                    ...postApp,
+                    marketingStrategy: e.target.value as MarketingStrategyType,
+                  })
+                }
               >
-                Группа
-              </label>
-
-              <input
-                type="group"
-                id="group"
-                className="mb-3 block h-[40px] w-[377px] rounded-sm border border-black bg-white p-2.5 text-sm"
-                required
-              />
+                {(
+                  Object.entries(marketingOptions) as Entries<
+                    typeof marketingOptions
+                  >
+                ).map(([key, option]) => (
+                  <MenuItem key={option} value={key}>
+                    {option}
+                  </MenuItem>
+                ))}
+              </CustomSelect>
               <label
                 htmlFor="laptop"
                 className="mb-3 block text-lg font-semibold text-gray-900"

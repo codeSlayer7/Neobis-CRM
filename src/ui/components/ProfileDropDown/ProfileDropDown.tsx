@@ -2,12 +2,14 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { BiUser, BiHistory, BiExit } from 'react-icons/bi';
 import Profile from '../../icons/Profile';
-import { useAppSelector } from '../../../constants/global';
+import { useAppDispatch, useAppSelector } from '../../../constants/global';
 import { removeCookie } from '../../../utils/cookie';
+import { logout } from '../../../redux/slices/userSlice';
 
 function ProfileDropDown() {
   const navigate = useNavigate();
   const [openProfile, setOpenProfile] = useState(false);
+  const dispatch = useAppDispatch();
 
   const { firstName, lastName } = useAppSelector((state) => {
     return state.user;
@@ -16,6 +18,7 @@ function ProfileDropDown() {
   const handleClick = () => {
     setOpenProfile(false);
     removeCookie('token');
+    dispatch(logout());
     navigate('/login');
   };
 

@@ -8,10 +8,17 @@ import { useAppDispatch, useAppSelector } from '../../../constants/global';
 import useMediaQuery from '../../../hook/useMediaQuery';
 import HistoryModal from '../../pages/HistoryOperation/history/history-modal';
 import HistoryTable from '../../pages/HistoryOperation/history/HistoryTable';
+import { useEffect } from 'react';
+import axiosInteceptor from '../../../api/interceptor';
+import { getSortedThunk } from '../../../redux/service/applications/applicationAction';
 
 function TrelloContainer() {
   const dispatch = useAppDispatch();
   const matches = useMediaQuery('(min-width: 1280px)');
+
+  useEffect(() => {
+    dispatch(getSortedThunk());
+  }, []);
 
   const columns = useAppSelector((trello) => trello.trello?.columns);
   const onDragEnd = (result: any): void => {
