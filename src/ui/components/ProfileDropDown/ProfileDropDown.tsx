@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { BiUser, BiHistory, BiExit } from 'react-icons/bi';
-import Profile from '../../icons/Profile';
+import { CgProfile } from 'react-icons/cg';
 import { useAppSelector } from '../../../constants/global';
 import { removeCookie } from '../../../utils/cookie';
 
@@ -21,8 +21,11 @@ function ProfileDropDown() {
 
   return (
     <div>
-      <div className="relative" onClick={() => setOpenProfile((prev) => !prev)}>
-        <Profile />
+      <div
+        className="relative left-10  h-10 w-10 rounded-full bg-white flex justify-center items-center border-2 border-gray-400"
+        onClick={() => setOpenProfile((prev) => !prev)}
+      >
+        <CgProfile className="absolute text-3xl   " />
       </div>
       {openProfile && (
         <div className=" absolute  right-[52px] z-40 mt-3  h-44 w-52 rounded-lg border-4 border-[#D9BFFF] bg-white">

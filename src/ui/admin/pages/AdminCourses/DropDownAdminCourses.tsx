@@ -17,7 +17,7 @@ function DropDownAdminCourses() {
         <HiDotsVertical className="t-2  text-2xl text-white" />
       </button>
       {open && (
-        <div className="absolute left-[180px] z-10 mt-[-180px] h-24 w-48 rounded-lg border-2 border-[#70BF44] bg-white text-black">
+        <div className="absolute left-[180px] z-10 mt-[-180px] h-24 w-48 rounded-lg border-2 border-[#4588C6] bg-white text-black">
           <ul className="text-center">
             <li className="p-1 text-lg hover:bg-[#F1F1F1]">Архивировать</li>
             <li className="p-1 text-lg hover:bg-[#F1F1F1]">Редактировать</li>

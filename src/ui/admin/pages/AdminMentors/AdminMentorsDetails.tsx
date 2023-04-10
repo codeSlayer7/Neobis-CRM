@@ -1,16 +1,15 @@
-
-import Edit from '../../../icons/Edit';
+import EditWhite from '../../../icons/EditWhite';
 import photo from '../../../images/Photo.png';
 
 function AdminMentorsDetails() {
   return (
-    <div className="mx-10 h-auto w-full items-center justify-center">
+    <div className="mx-10 h-[100vh] w-full items-center justify-center">
       <button
         type="button"
-        className="my-10 ml-[80%] inline-flex h-[43px] w-[212px] items-center justify-around rounded-lg border bg-[#E2E2E2] text-xl font-normal"
+        className="my-10 ml-[80%] inline-flex h-[43px] w-[212px] items-center justify-around rounded-lg border bg-[#4588C6] text-white text-xl font-normal transition duration-150 hover:scale-95"
       >
         Редактировать
-        <Edit />
+        <EditWhite />
       </button>
       <div className="relative mb-12 flex h-[797px] w-[1318px] rounded-xl border border-black bg-[#FCFDFE]">
         <div className="mt-12 ml-8">

@@ -44,7 +44,7 @@ const schedule = [
 ];
 function Schedule() {
   return (
-    <div className="grid h-[60%] w-[90%] grid-cols-8 bg-white ">
+    <div className="grid  mt-[-200px] h-[50vh] w-[90%]  grid-cols-8 bg-white ">
       {schedule.map((el, idx) => (
         <div
           className=" [&:nth-child(-n+8)]:bg-neobis-bg-green flex items-center justify-center border-[1px] border-[#D4D4D4] text-xl hover:bg-[#D4D4D4] [&:nth-child(-n+8)]:text-2xl [&:nth-child(-n+8)]:text-white "

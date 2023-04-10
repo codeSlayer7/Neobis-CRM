@@ -20,11 +20,11 @@ const DonutChart: React.FC<Props> = () => {
     legend: {
       // show: false
       fontSize: '20px',
-      offsetX:  200,
+      offsetX: 200,
     },
     chart: {
       offsetX: -320,
-      offsetY: -50
+      offsetY: -50,
     },
     dataLabels: {
       enabled: true,
@@ -33,35 +33,35 @@ const DonutChart: React.FC<Props> = () => {
 
   const series = [44, 55, 41, 17, 15, 20, 22, 50];
   return (
-    <div className="w-[1290px] bg-white rounded-[20px] mb-[102px]">
+    <div className="mb-[102px] w-[1290px] rounded-[20px] bg-white">
       <div className="flex flex-col pl-[39px] pt-[10px]">
         <span className="text-[#9291A5] ">Статистика</span>
-        <div className="text-[20px] font-semibold pb-[32px]">
+        <div className="pb-[32px] text-[20px] font-semibold">
           Часто записываемые курсы
         </div>
       </div>
-      <div className="border -[1px solid #E5E5EF]"></div>
-      <div className='flex'>
-      <div className="w-[100%] mt-[-40px]">
-        <Grid
-          xs={12}
-          style={{ height: `${window.innerHeight}`, marginTop: '100px' }}
-        >
-          <Grid xs={12} item>
-            <Grid xs={2} item></Grid>
-            <Grid xs={8} item>
-              <Chart
-                options={options}
-                series={series}
-                type="donut"
-                height={400}
-              />
+      <div className="-[1px solid #E5E5EF] border" />
+      <div className="flex">
+        <div className="mt-[-40px] w-[100%]">
+          <Grid
+            xs={12}
+            style={{ height: `${window.innerHeight}`, marginTop: '100px' }}
+          >
+            <Grid xs={12} item>
+              <Grid xs={2} item />
+              <Grid xs={8} item>
+                <Chart
+                  options={options}
+                  series={series}
+                  type="donut"
+                  height={400}
+                />
+              </Grid>
             </Grid>
+            <Grid xs={2} item />
           </Grid>
-          <Grid xs={2} item></Grid>
-        </Grid>
-      </div>
-      {/* <div className='flex justify-between'>
+        </div>
+        {/* <div className='flex justify-between'>
         <div>
           <div>JavaScript</div>
           <div>Python</div>

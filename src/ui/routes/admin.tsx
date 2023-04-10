@@ -10,6 +10,9 @@ import SidebarAdmin from '../admin/components/SidebarAdmin/SidebarAdmin';
 import AdminStudents from '../admin/pages/AdminStudents/AdminStudents';
 import AdminArchive from '../admin/pages/AdminArchive/AdminArchive';
 import UserPage from '../admin/pages/Manager/UserPage';
+import MentorArchive from '../admin/components/Modals/MentorArchive';
+import MentorEdit from '../admin/components/Modals/MentorEdit';
+import CreateCourse from '../admin/components/Modals/CreateCourse';
 
 function RouteWrapperAdmin({ children }: any) {
   return (
@@ -25,7 +28,7 @@ function RouteWrapperAdmin({ children }: any) {
 export default function Admin() {
   return (
     <RouteWrapperAdmin>
-      <div className="bg-[#F4F7FD] w-[100%]">
+      <div className="h-[100vh] w-[100%] bg-[#F4F7FD]">
         <Routes>
           <Route index element={<UserPage />} />
           <Route path="createUser" element={<CreateUser />} />,
@@ -36,6 +39,9 @@ export default function Admin() {
           <Route path="course/details" element={<DropDownAdminCourses />} />
           <Route path="students" element={<AdminStudents />} />
           <Route path="archive" element={<AdminArchive />} />
+          <Route path="mentor/mentorarchive" element={<MentorArchive />} />
+          <Route path="mentor/mentoredit" element={<MentorEdit />} />
+          <Route path="course/create" element={<CreateCourse />} />
         </Routes>
       </div>
     </RouteWrapperAdmin>

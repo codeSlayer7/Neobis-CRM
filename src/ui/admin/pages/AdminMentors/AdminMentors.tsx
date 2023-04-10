@@ -19,7 +19,7 @@ function AdminMentors() {
         />
         <button
           type="button"
-          className="bg-neobis-bg-green h-[43px] w-[251px] rounded-lg border text-lg text-white transition duration-150 hover:scale-95"
+          className="h-[43px] w-[251px] rounded-lg border bg-[#4588C6] text-lg text-white transition duration-150 hover:scale-95"
           onClick={handleOpen}
         >
           Добавить преподавателя
@@ -30,7 +30,7 @@ function AdminMentors() {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-          <AdminMentorsForm />
+          <AdminMentorsForm open={open} onClose={handleClose} />
         </Modal>
       </div>
 
