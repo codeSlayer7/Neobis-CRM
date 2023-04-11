@@ -28,7 +28,7 @@ function RouteWrapperAdmin({ children }: any) {
 export default function Admin() {
   return (
     <RouteWrapperAdmin>
-      <div className="h-[100vh] w-[100%] bg-[#F4F7FD]">
+      <div>
         <Routes>
           <Route index element={<UserPage />} />
           <Route path="createUser" element={<CreateUser />} />,

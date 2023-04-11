@@ -10,7 +10,7 @@ function AdminMentors() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   return (
-    <div className="ml-[110px] h-auto w-[100%] pt-12 ">
+    <div className="ml-[110px] h-auto w-[100%] pt-12  ">
       <div className="ml-[500px] mr-[150px] flex h-[43px] items-center justify-around ">
         <DropDown
           label={<div className="font-sans text-base">Направление</div>}

@@ -10,13 +10,13 @@ function CourseCard(props) {
       {props.details.map((value, index) => (
         <div key={index}>
           <Link to="/groups">
-            <div className="m-5 h-[398px] w-[382px] rounded-3xl border border-black shadow-sm">
+            <div className="m-5 h-[398px] w-[382px] bg-white rounded-3xl border border-black shadow-sm">
               <img src={value.img} alt="#" className="rounded-t-3xl border-0" />
               <h3 className="my-3 ml-[26px] text-[32px] font-bold ">
                 {value.title}
               </h3>
               <hr className="ml-6 w-[330px] border border-black " />
-              <div className="mt-3 ml-6 flex w-[330px]  flex-wrap">
+              <div className="mt-3 ml-6 flex w-[330px] bg-white flex-wrap">
                 <div className="flex">
                   <ProfileUser />
                   <p className="ml-4 text-lg font-normal">2 группы</p>

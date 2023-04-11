@@ -5,8 +5,8 @@ function AdminMentorsCard(props: any) {
   return (
     <>
       {props.details.map((value: any, index: any) => (
-        <div className="mr-[50px] h-[500px]" key={index}>
-          <div className="mb-10 h-[351px] w-[323px] rounded-3xl border border-[#C7C7C7] shadow-md">
+        <div className="mr-[50px] h-[500px] " key={index}>
+          <div className="mb-10 h-[351px] w-[323px] bg-white rounded-3xl border border-[#C7C7C7] shadow-md">
             <DropDownAdminMentor />
 
             <div className="mt-[-41px] flex w-full">
