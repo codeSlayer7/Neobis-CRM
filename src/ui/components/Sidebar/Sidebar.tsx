@@ -98,7 +98,7 @@ function Sidebar({ children }: Props) {
           <HistoryHeader />
           <main
             className={
-              !isOpen ? 'flex w-[100%] h-[100vh] flex-col ' : 'flex w-[73%] flex-col'
+              !isOpen ? 'flex w-[100%] h-[1500px] flex-col ' : 'flex w-[73%] flex-col'
             }
           >
             {children}
@@ -107,7 +107,7 @@ function Sidebar({ children }: Props) {
       ) : (
         <main
           className={
-            !isOpen ? 'flex w-[100%] flex-col h-[100vh] ' : 'flex w-[73%] flex-col'
+            !isOpen ? 'flex w-[100%] flex-col h-[1500px] ' : 'flex w-[73%] flex-col'
           }
         >
           {children}

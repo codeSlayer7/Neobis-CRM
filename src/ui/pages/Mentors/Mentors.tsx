@@ -4,7 +4,7 @@ import MentorsData from './MentorsData';
 
 function Mentors() {
   return (
-    <div className="ml-[110px] h-auto w-[100%] pt-12 ">
+    <div className="ml-[110px]  w-[100%] pt-12 ">
       <div className="ml-[800px] flex h-[43px] w-[199px] items-center justify-around ">
         <DropDown
           label={<div className="font-sans text-base">Направление</div>}

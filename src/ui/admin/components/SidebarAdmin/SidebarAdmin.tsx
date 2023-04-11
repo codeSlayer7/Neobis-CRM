@@ -102,7 +102,13 @@ function SidebarAdmin({ children }: Props) {
         ))}
       </div>
 
-      <main className={!isOpen ? 'flex w-[100%]' : 'flex w-[73%] '}>
+      <main
+        className={
+          !isOpen
+            ? 'flex h-[1500px] w-[100%] bg-[##F4F7FD]'
+            : 'flex h-[1500px] w-[73%] bg-[##F4F7FD]'
+        }
+      >
         {children}
       </main>
     </div>
