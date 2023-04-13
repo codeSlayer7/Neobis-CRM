@@ -15,7 +15,7 @@ import {
 
 function AdminCourseCard(props: any) {
   const dispatch = useAppDispatch();
-  const {course, } = useAppSelector((state) => {
+  const {course } = useAppSelector((state) => {
     return state.courses.course;
   });
 
