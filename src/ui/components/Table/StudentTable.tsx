@@ -31,6 +31,7 @@ interface MyColums {
 }
 
 const StudentTable = () => {
+
   const rows: MyRows[] = [
     {
       id: 1,
@@ -40,89 +41,7 @@ const StudentTable = () => {
       email: 'jolaman23@gmail.com',
       group: 'Product Manager',
       payment: '50 %',
-    },
-    {
-      id: 2,
-      name: 'Жоломан Шаршенбеков',
-      status: 'Активен',
-      number: '+996 555 123 123',
-      email: 'jolaman23@gmail.com',
-      group: 'Product Manager',
-      payment: '50 %',
-      style: {},
-    },
-    {
-      id: 3,
-      name: 'Жоломан Шаршенбеков',
-      status: 'Неактивен',
-      number: '+996 555 123 123',
-      email: 'jolaman23@gmail.com',
-      group: 'Product Manager',
-      payment: '50 %',
-    },
-    {
-      id: 4,
-      name: 'Жоломан Шаршенбеков',
-      status: 'Заморожен',
-      number: '+996 555 123 123',
-      email: 'jolaman23@gmail.com',
-      group: 'Product Manager',
-      payment: '50 %',
-    },
-    {
-      id: 5,
-      name: 'Жоломан Шаршенбеков',
-      status: 'Неактивен',
-      number: '+996 555 123 123',
-      email: 'jolaman23@gmail.com',
-      group: 'Product Manager',
-      payment: '50 %',
-    },
-    {
-      id: 6,
-      name: 'Жоломан Шаршенбеков',
-      status: 'Активен',
-      number: '+996 555 123 123',
-      email: 'jolaman23@gmail.com',
-      group: 'Product Manager',
-      payment: '50 %',
-    },
-    {
-      id: 7,
-      name: 'Жоломан Шаршенбеков',
-      status: 'Заморожен',
-      number: '+996 555 123 123',
-      email: 'jolaman23@gmail.com',
-      group: 'Product Manager',
-      payment: '50 %',
-    },
-    {
-      id: 8,
-      name: 'Жоломан Шаршенбеков',
-      status: 'Активен',
-      number: '+996 555 123 123',
-      email: 'jolaman23@gmail.com',
-      group: 'Product Manager',
-      payment: '50 %',
-    },
-    {
-      id: 9,
-      name: 'Жоломан Шаршенбеков',
-      status: 'Неактивен',
-      number: '+996 555 123 123',
-      email: 'jolaman23@gmail.com',
-      group: 'Product Manager',
-      payment: '50 %',
-    },
-    {
-      id: 10,
-      name: 'Жоломан Шаршенбеков',
-      status: 'Заморожен',
-      number: '+996 555 123 123',
-      email: 'jolaman23@gmail.com',
-      group: 'Product Manager',
-      payment: '50 %',
-    },
+    }
   ];
 
   const colors = (status: 'Неактивен' | 'Активен' | 'Заморожен') =>

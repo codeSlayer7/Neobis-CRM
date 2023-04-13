@@ -1,5 +1,4 @@
 import { Route, Routes } from 'react-router-dom';
-import CreateUser from '../admin/components/Modals/CreateUser';
 import Analytics from '../admin/pages/Analytics/Analytics';
 import AdminMentors from '../admin/pages/AdminMentors/AdminMentors';
 import AdminMentorsDetails from '../admin/pages/AdminMentors/AdminMentorsDetails';
@@ -28,10 +27,8 @@ function RouteWrapperAdmin({ children }: any) {
 export default function Admin() {
   return (
     <RouteWrapperAdmin>
-      <div>
         <Routes>
           <Route index element={<UserPage />} />
-          <Route path="createUser" element={<CreateUser />} />,
           <Route path="analytics" element={<Analytics />} />,
           <Route path="mentors" element={<AdminMentors />} />
           <Route path="mentor/details" element={<AdminMentorsDetails />} />
@@ -43,7 +40,6 @@ export default function Admin() {
           <Route path="mentor/mentoredit" element={<MentorEdit />} />
           <Route path="course/create" element={<CreateCourse />} />
         </Routes>
-      </div>
     </RouteWrapperAdmin>
   );
 }

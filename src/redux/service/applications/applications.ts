@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
-import axiosInteceptor from '../../../api/interceptor';
+import axiosInteceptor from '../../../api/base/interceptor';
 import { ColumnName } from '../../../interfaces/enum';
 import {
   ApplicationStatusType,

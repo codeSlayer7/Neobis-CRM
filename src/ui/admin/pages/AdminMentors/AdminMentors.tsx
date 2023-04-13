@@ -1,16 +1,17 @@
-import { Modal } from '@mui/material';
+import React from 'react';
 import { useState } from 'react';
 import AdminMentorsCard from './AdminMentorsCard';
 import AdminMentorsData from './AdminMentorsData';
 import AdminMentorsForm from './AdminMentorsForm';
 import DropDown from '../../../components/DropDown';
+import Modal from '../../components/Modals/Modal';
 
 function AdminMentors() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   return (
-    <div className="ml-[110px] h-auto w-[100%] pt-12  ">
+    <div className="pb-0 pl-[80px] pr-[20px] h-auto w-[100%] pt-[40px] ">
       <div className="ml-[500px] mr-[150px] flex h-[43px] items-center justify-around ">
         <DropDown
           label={<div className="font-sans text-base">Направление</div>}
@@ -25,12 +26,11 @@ function AdminMentors() {
           Добавить преподавателя
         </button>
         <Modal
+          title='Создать преподавателя'
           open={open}
           onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
         >
-          <AdminMentorsForm open={open} onClose={handleClose} />
+          <AdminMentorsForm/>
         </Modal>
       </div>
 
@@ -40,4 +40,5 @@ function AdminMentors() {
     </div>
   );
 }
+
 export default AdminMentors;

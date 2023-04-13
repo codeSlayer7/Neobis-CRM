@@ -1,4 +1,4 @@
-import { getCookie, setCookie, removeCookie } from '../utils/cookie';
+import { getCookie, setCookie, removeCookie } from '../../utils/cookie';
 import axios, { AxiosRequestConfig } from 'axios';
 
 const axiosInteceptor = axios.create({
@@ -37,7 +37,7 @@ axiosInteceptor.interceptors.response.use(
 
         try {
           const cokie = getCookie('refresh');
-          console.log('oldToken', cokie);
+          // console.log('oldToken', cokie);
 
           const rs = await axiosInteceptor
             .post('/user/refresh', {
@@ -49,8 +49,6 @@ axiosInteceptor.interceptors.response.use(
 
           console.log(rs, 'tokeniji');
           const { accessToken } = rs.data;
-        
-          // console.log(cookie2)
           removeCookie('token');
           setCookie('token', accessToken, 4);
 
