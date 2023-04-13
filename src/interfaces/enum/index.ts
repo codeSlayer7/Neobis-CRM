@@ -20,6 +20,8 @@ export const Endpoints = {
   ApplicationsStatusId: '/api/v1/applications/status',
   ApplicationsConvert: '/api/v1/applications/conver',
   ApplicationsSorted: '/api/v1/applications/sort-by-status',
+  CourseGetAll: '/api/v1/course',
+  CourseCreate: '/api/v1/course',
 } as const;
 
 type ApplicationStatusType =
@@ -39,7 +41,6 @@ type MarketingStrategyType =
   | 'FRIENDS'
   | 'NEWS'
   | 'OTHER';
-
 
 type KeyValue = {
   [key in MarketingStrategyType]: string;

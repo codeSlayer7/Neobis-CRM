@@ -18,7 +18,7 @@ function AdminCourseCard(props: any) {
               alt="#"
               className="mt-[-81px] rounded-t-3xl border-0 bg-fixed"
             />
-            <Link to="/groups">
+            <Link to="/admin/course/admingroup">
               <h3 className="my-3 ml-[26px] text-[32px] font-bold ">
                 {value.title}
               </h3>
