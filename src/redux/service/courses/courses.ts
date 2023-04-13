@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
-import axiosInteceptor from '../../../api/interceptor';
+import axiosInteceptor from '../../../api/base/interceptor';
 import { Endpoints } from '../../../interfaces/enum';
 
 export const getAllCourses = async () => {

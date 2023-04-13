@@ -1,11 +1,27 @@
 import { Link } from 'react-router-dom';
+import { useEffect} from 'react';
 import DropDownAdminCourses from './DropDownAdminCourses';
 import ProfileUser from '../../../icons/ProfileUser';
 import Time from '../../../icons/Time';
 import Money from '../../../icons/Money';
 import Book from '../../../icons/Book';
+import {
+  useAppSelector,
+  useAppDispatch,
+} from '../../../../constants/global';
+import {
+  getAllCoursesThunk,
+} from '../../../../redux/service/courses/coursesAction';
 
 function AdminCourseCard(props: any) {
+  const dispatch = useAppDispatch();
+  const {course, } = useAppSelector((state) => {
+    return state.courses.course;
+  });
+
+  useEffect(() => {
+    dispatch(getAllCoursesThunk());
+  }, [dispatch]);
   return (
     <>
       {props.details.map((value: any, index: any) => (
@@ -48,4 +64,5 @@ function AdminCourseCard(props: any) {
     </>
   );
 }
+
 export default AdminCourseCard;

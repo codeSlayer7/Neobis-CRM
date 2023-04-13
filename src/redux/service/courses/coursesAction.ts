@@ -3,7 +3,7 @@ import { getApiErrorMessage } from '../../../utils/utils';
 import { getAllCourses } from './courses';
 
 const initialState = {
-  courses: [],
+  course: [],
   loading: false,
   error: '',
 };
