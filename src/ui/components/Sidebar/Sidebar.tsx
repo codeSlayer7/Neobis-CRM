@@ -93,7 +93,7 @@ function Sidebar({ children }: Props) {
       {/* <div className="flex flex-col"> */}
 
       {location.pathname === '/analytics' ? (
-        <div className="flex flex-col">
+        <div className="flex flex-col h-[100vh]" >
           {' '}
           <HistoryHeader />
           <main

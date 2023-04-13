@@ -4,6 +4,7 @@ import { getApiErrorMessage } from '../../utils/utils';
 import { getAllUsers } from '../../api/adminApi';
 import { UserData } from '../types/adminTypes';
 import { Api } from '../../api/base';
+import axiosInteceptor from '../../api/base/interceptor';
 
 const initialState = {
   users: [],
@@ -16,7 +17,6 @@ export const getAllUserThunk = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await getAllUsers();
-      console.log('response2', response);
       return response.data;
     } catch (err) {
       return rejectWithValue(getApiErrorMessage(err));
@@ -35,7 +35,6 @@ const adminSlice = createSlice({
       builder.addCase(
         getAllUserThunk.fulfilled,
         (state, { payload }: PayloadAction<any>) => {
-          console.log('8', payload);
           state.loading = false;
           state.users = payload;
         }
@@ -52,16 +51,16 @@ const adminSlice = createSlice({
 
 export default adminSlice.reducer;
 
-export const adminCreateUser = createAsyncThunk(
-  'users/adminCreateUser',
-  async (user: UserData, { rejectWithValue, dispatch }) => {
-    try {
-      const response = await Api.post('registration', user.data);
-      user.handleClose?.();
-      dispatch(getAllUserThunk());
-      return response;
-    } catch (err) {
-      console.log(err);
-    }
-  }
-);
+// export const adminCreateUser = createAsyncThunk(
+//   'users/adminCreateUser',
+//   async (user: UserData, { rejectWithValue, dispatch }) => {
+//     try {
+//       const response = await axiosInteceptor.post('registration', user);
+//       // user.handleClose?.();
+//       dispatch(getAllUserThunk());
+//       return response;
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   }
+// );

@@ -4,7 +4,7 @@ import AdminCourseData from './AdminCourseData';
 
 export default function AdminCourses() {
   return (
-    <div className="ml-[20px] h-auto w-[100%] pt-12 ">
+    <div className="pb-0 pl-[20px] pr-[0px] pt-[40px] h-auto w-[100%] ">
       <Link to="/admin/course/create">
         <button
           type="button"

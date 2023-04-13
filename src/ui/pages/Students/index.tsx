@@ -1,6 +1,7 @@
+import StudentTableAdmin from '../../admin/components/TableAdmin/ArchiveAdmin/StudentAdmin';
+import StudentAdminTable from '../../admin/components/TableAdmin/StudentAdminTable';
 import DropDown from '../../components/DropDown';
 import Search from '../../components/Search';
-import StudentTable from '../../components/Table/StudentTable';
 
 export default function Students() {
   return (
@@ -30,7 +31,8 @@ export default function Students() {
         <Search />
       </div>
       <div>
-        <StudentTable />
+        {/* <StudentTable /> */}
+        <StudentAdminTable/>
       </div>
     </div>
   );

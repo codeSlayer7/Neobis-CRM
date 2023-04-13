@@ -9,7 +9,7 @@ import useMediaQuery from '../../../hook/useMediaQuery';
 import HistoryModal from '../../pages/HistoryOperation/history/history-modal';
 import HistoryTable from '../../pages/HistoryOperation/history/HistoryTable';
 import { useEffect } from 'react';
-import axiosInteceptor from '../../../api/interceptor';
+import axiosInteceptor from '../../../api/base/interceptor';
 import { getSortedThunk } from '../../../redux/service/applications/applicationAction';
 
 function TrelloContainer() {
