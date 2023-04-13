@@ -9,9 +9,26 @@ function CreateCourse() {
 
   function handleFile(event) {
     setFile(event.target.files[0]);
+    // console.log(event.target.files[0]);
+  }
+
+  function handleUpload() {
+    const formData = new FormData();
+    formData.append('file', file);
+    fetch('url', {
+      method: 'POST',
+      body: formData,
+    })
+      .then((responce) => responce.json())
+      .then((result) => {
+        console.log('success', result);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   }
   return (
-    <div className="h-[100vh] w-[100%] ">
+    <div className="mx-28 h-[100vh] w-[100%]">
       <div className="mx-auto my-20 h-[520px] w-[990px] rounded-lg border-2 border-slate-200 bg-white shadow-lg ">
         <div className="flex h-14 w-full items-center justify-between rounded-t-lg border-2 bg-[#4588C6]">
           <h1 className="ml-5 text-left text-3xl  font-semibold text-white">
@@ -28,12 +45,14 @@ function CreateCourse() {
                 Перетащите сюда файл
               </h2>
             </div>
-            <input
-              type="file"
-              name="file"
-              onChange={handleFile}
-              className="mt-5 h-11 w-80 rounded-lg border bg-[#4588C6] text-lg text-white "
-            />
+            <form onSubmit={handleUpload}>
+              <input
+                type="file"
+                name="file"
+                onChange={handleFile}
+                className="mt-5 h-11 w-80 rounded-lg border bg-[#4588C6] p-1 text-lg text-white "
+              />
+            </form>
           </div>
 
           <div className=" mt-5 flex w-[50%] flex-col">

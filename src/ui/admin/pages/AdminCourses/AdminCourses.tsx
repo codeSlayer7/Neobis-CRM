@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 import AdminCourseCard from './AdminCourseCard';
 import AdminCourseData from './AdminCourseData';
+import { getAllCourses } from '../../../../redux/service/courses/courses';
 
 export default function AdminCourses() {
+  getAllCourses();
   return (
     <div className="ml-[20px] h-auto w-[100%] pt-12 ">
       <Link to="/admin/course/create">
