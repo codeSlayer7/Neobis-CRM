@@ -45,12 +45,20 @@ const StudentAdminTable = () => {
       ? '#DF3939'
       : '';
 
+
+      const renderCell = (params: any) => (
+        <div>
+          {params.row.firstName} {params.row.lastName}
+        </div>
+      );
+
   const columns: MyColums[] = [
     { field: 'id', headerName: '', width: 0 },
     {
-      field: 'name',
+      field: 'fullName',
       headerName: <div className="text-[16px] font-semibold">Имя студента</div>,
       width: 235,
+      renderCell: renderCell,
     },
     {
       field: 'status',
@@ -72,7 +80,7 @@ const StudentAdminTable = () => {
       },
     },
     {
-      field: 'number',
+      field: 'phoneNumber',
       headerName: <div className="text-[16px] font-semibold">Телефон</div>,
       width: 180,
     },
@@ -82,12 +90,12 @@ const StudentAdminTable = () => {
       width: 219,
     },
     {
-      field: 'group',
+      field: 'groups',
       headerName: <div className="text-[16px] font-semibold">Группа</div>,
       width: 165,
     },
     {
-      field: 'payment',
+      field: 'paymentPercentage',
       headerName: <div className="text-[16px] font-semibold">Оплата</div>,
       width: 120,
     }

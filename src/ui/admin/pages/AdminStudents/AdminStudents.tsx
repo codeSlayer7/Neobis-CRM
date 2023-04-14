@@ -2,6 +2,8 @@ import { useState } from 'react';
 import DropDown from '../../../components/DropDown';
 import Search from '../../../components/Search';
 import StudentTableAdmin from '../../components/TableAdmin/StudentAdminTable';
+import Modal from '../../components/Modals/Modal';
+import { StudentForm } from './StudentForm';
 
 export default function AdminStudents() {
   const [open, setOpen] = useState(false);
@@ -40,6 +42,9 @@ export default function AdminStudents() {
           Добавить студента
         </button>
       </div>
+      <Modal title="Создать студента" open={open} onClose={handleClose}>
+        <StudentForm />
+      </Modal>
       <div>
         <StudentTableAdmin />
       </div>
