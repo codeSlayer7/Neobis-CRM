@@ -1,19 +1,18 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getApiErrorMessage } from '../../../utils/utils';
-import { getAllCourses } from './courses';
+import { getAllGroups } from './groups';
 
 const initialState = {
-  courses: [],
-  course: {},
+  groups: [],
   loading: false,
   error: '',
 };
 
-export const getAllCoursesThunk = createAsyncThunk(
-  'course/getAllCourses',
+export const getAllGroupsThunk = createAsyncThunk(
+  'group/getAllGroups',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await getAllCourses();
+      const response = await getAllGroups();
       return response.data;
     } catch (err) {
       return rejectWithValue(getApiErrorMessage(err));
@@ -22,24 +21,24 @@ export const getAllCoursesThunk = createAsyncThunk(
 );
 // console.log('data', data)
 
-const coursesAction = createSlice({
-  name: 'courses',
+const groupsAction = createSlice({
+  name: 'groups',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getAllCoursesThunk.pending, (state) => {
+    builder.addCase(getAllGroupsThunk.pending, (state) => {
       state.loading = true;
     }),
       builder.addCase(
-        getAllCoursesThunk.fulfilled,
+        getAllGroupsThunk.fulfilled,
         (state, { payload }: PayloadAction<any>) => {
           console.log('8', payload);
           state.loading = false;
-          state.courses = payload;
+          state.groups = payload;
         }
       ),
       builder.addCase(
-        getAllCoursesThunk.rejected,
+        getAllGroupsThunk.rejected,
         (state, { payload }: PayloadAction<any>) => {
           state.loading = false;
           state.error = payload;
@@ -48,4 +47,4 @@ const coursesAction = createSlice({
   },
 });
 
-export default coursesAction.reducer;
+export default groupsAction.reducer;

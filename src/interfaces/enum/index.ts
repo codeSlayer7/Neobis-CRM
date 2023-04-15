@@ -20,8 +20,10 @@ export const Endpoints = {
   ApplicationsStatusId: '/api/v1/applications/status',
   ApplicationsConvert: '/api/v1/applications/conver',
   ApplicationsSorted: '/api/v1/applications/sort-by-status',
-  CourseGetAll: '/api/v1/course',
+  CourseGetAll: '/api/v1/courses',
   CourseCreate: '/api/v1/course',
+  GroupGetAll: '/api/v1/groups',
+  MentorsGetAll: '/api/v1/mentors/all-cards',
 } as const;
 
 type ApplicationStatusType =

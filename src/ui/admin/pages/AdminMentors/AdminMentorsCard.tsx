@@ -1,26 +1,35 @@
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 import DropDownAdminMentor from './DropDownAdminMentor';
+import { useAppDispatch, useAppSelector } from '../../../../constants/global';
+import { getAllMentorsThunk } from '../../../../redux/service/mentors/mentorsAction';
 
-function AdminMentorsCard(props: any) {
+function AdminMentorsCard() {
+  const dispatch = useAppDispatch();
+  const mentors = useAppSelector((state) => {
+    return state.mentors.mentors;
+  });
+  useEffect(() => {
+    dispatch(getAllMentorsThunk());
+  }, [dispatch]);
   return (
-    <>
-      {props.details.map((value: any, index: any) => (
-        <div className="mr-[50px] h-[500px] " key={index}>
-          <div className="mb-10 h-[351px] w-[323px] bg-white rounded-3xl border border-[#C7C7C7] shadow-md">
+    <div>
+      {mentors.map((mentor: any) => (
+        <div className="mr-[50px] h-[500px] " key={mentor.id}>
+          <div className="mb-10 h-[351px] w-[323px] rounded-3xl border border-[#C7C7C7] bg-white shadow-md">
             <DropDownAdminMentor />
 
-            <div className="mt-[-41px] flex w-full">
-              <img src={value.img} alt="#" className="ml-[101px]" />
-              <div>{value.logo}</div>
+            <div className="mt-[-50px] flex items-center w-full justify-center  ">
+              <img src={mentor.imageUrl} alt="#" className="rounded-full  border w-[120px] h-[120px] " />
             </div>
             <div className="mt-2 flex w-full flex-col justify-center text-center">
-              <h3 className="text-xl font-semibold">{value.name}</h3>
+              <h3 className="text-xl font-semibold transform- ">{mentor.firstName} {mentor.lastName}</h3>
               <p className="text-base font-normal text-[#959595]">
-                {value.gmail}
+                {mentor.email}
               </p>
             </div>
-            <div className="mt-[19px] h-[127px] w-full rounded-b-3xl border bg-[#4588C6] text-center text-white">
-              <p className=" mt-2 text-xl font-semibold">{value.mentor}</p>
+            <div className="mt-3 h-[127px] w-full rounded-b-3xl border bg-[#4588C6] text-center text-white">
+              <p className=" mt-2 text-xl font-semibold">{mentor.course}</p>
               <Link to="/admin/mentor/details">
                 <button
                   type="button"
@@ -33,7 +42,7 @@ function AdminMentorsCard(props: any) {
           </div>
         </div>
       ))}
-    </>
+    </div>
   );
 }
 export default AdminMentorsCard;

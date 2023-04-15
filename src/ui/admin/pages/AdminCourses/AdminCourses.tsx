@@ -1,12 +1,9 @@
 import { Link } from 'react-router-dom';
 import AdminCourseCard from './AdminCourseCard';
-import AdminCourseData from './AdminCourseData';
-import { getAllCourses } from '../../../../redux/service/courses/courses';
 
 export default function AdminCourses() {
-  getAllCourses();
   return (
-    <div className="pb-0 pl-[20px] pr-[0px] pt-[40px] h-auto w-[100%] ">
+    <div className="h-auto w-[100%] pb-0 pl-[20px] pr-[0px] pt-[40px] ">
       <Link to="/admin/course/create">
         <button
           type="button"
@@ -17,7 +14,7 @@ export default function AdminCourses() {
       </Link>
 
       <div className="justify-around] flex flex-wrap">
-        <AdminCourseCard details={AdminCourseData} />
+        <AdminCourseCard />
       </div>
     </div>
   );
