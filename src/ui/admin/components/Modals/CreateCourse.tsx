@@ -29,7 +29,7 @@ function CreateCourse() {
   }
   return (
     <div className="mx-28 h-[100vh] w-[100%]">
-      <div className="mx-auto my-20 h-[520px] w-[990px] rounded-lg border-2 border-slate-200 bg-white shadow-lg ">
+      <div className="mx-auto my-20 h-[620px] w-[990px] rounded-lg border-2 border-slate-200 bg-white shadow-lg ">
         <div className="flex h-14 w-full items-center justify-between rounded-t-lg border-2 bg-[#4588C6]">
           <h1 className="ml-5 text-left text-3xl  font-semibold text-white">
             Создать новый курс
@@ -37,7 +37,7 @@ function CreateCourse() {
           <IoClose onClick={handleClose} className="mr-5 text-3xl text-white" />
         </div>
         <div className="flex w-full p-5">
-          <div className=" ml-20 mt-5 w-[50%]">
+          <div className=" ml-20 mt-[60px] w-[50%]">
             <div className="flex h-72 w-80 flex-col items-center rounded-lg border-2 border-dashed border-black bg-[#f1f1f1] pt-20 text-center ">
               <FiUpload className="text-5xl" />
 
@@ -50,13 +50,20 @@ function CreateCourse() {
                 type="file"
                 name="file"
                 onChange={handleFile}
-                className="mt-5 h-11 w-80 rounded-lg border bg-[#4588C6] p-1 text-lg text-white "
+                className="mt-[72px] h-11 w-80 rounded-lg border bg-[#4588C6] p-1 text-lg text-white "
               />
             </form>
           </div>
 
           <div className=" mt-5 flex w-[50%] flex-col">
-            <label className="mb-3 text-lg  font-semibold">
+          <label className="mb-3 text-lg  font-semibold">
+              Название курса
+            </label>
+            <input
+              type="text"
+              className="h-10 w-80 rounded-lg border border-slate-300 "
+            />
+            <label className="my-3 text-lg  font-semibold">
               Длительность курса
             </label>
             <input

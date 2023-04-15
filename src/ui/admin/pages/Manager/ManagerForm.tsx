@@ -15,8 +15,8 @@ const initialValues = {
   password: '',
 };
 
-const ManagerForm = () => {
-// const dispatch = useAppDispatch() 
+function ManagerForm() {
+  // const dispatch = useAppDispatch()
   const onSubmit = (data: UserData) => {
     console.log('in onsubmit', data);
 
@@ -57,7 +57,7 @@ const ManagerForm = () => {
         label="Фамилия"
       />
       <InputField
-      type='number'
+        type="number"
         name="phoneNumber"
         value={formik.values.phoneNumber}
         onChange={formik.handleChange}
@@ -78,6 +78,6 @@ const ManagerForm = () => {
       <SendButton name="Создать" />
     </form>
   );
-};
+}
 
 export default ManagerForm;

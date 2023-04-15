@@ -1,45 +1,45 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getApiErrorMessage } from '../../../utils/utils';
-import { getAllCourses } from './courses';
+import { getAllMentors } from './mentors';
 
 const initialState = {
-  courses: [],
-  course: {},
+  mentors: [],
+  mentor: {},
   loading: false,
   error: '',
 };
 
-export const getAllCoursesThunk = createAsyncThunk(
-  'course/getAllCourses',
+export const getAllMentorsThunk = createAsyncThunk(
+  'mentors/getAllMentors',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await getAllCourses();
-      return response.data;
+      const response = await getAllMentors();
+      console.log('response2', response);
+      return response.data.result;
     } catch (err) {
       return rejectWithValue(getApiErrorMessage(err));
     }
   }
 );
-// console.log('data', data)
 
-const coursesAction = createSlice({
-  name: 'courses',
+const mentorsAction = createSlice({
+  name: 'mentors',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getAllCoursesThunk.pending, (state) => {
+    builder.addCase(getAllMentorsThunk.pending, (state) => {
       state.loading = true;
     }),
       builder.addCase(
-        getAllCoursesThunk.fulfilled,
+        getAllMentorsThunk.fulfilled,
         (state, { payload }: PayloadAction<any>) => {
           console.log('8', payload);
           state.loading = false;
-          state.courses = payload;
+          state.mentors = payload;
         }
       ),
       builder.addCase(
-        getAllCoursesThunk.rejected,
+        getAllMentorsThunk.rejected,
         (state, { payload }: PayloadAction<any>) => {
           state.loading = false;
           state.error = payload;
@@ -48,4 +48,4 @@ const coursesAction = createSlice({
   },
 });
 
-export default coursesAction.reducer;
+export default mentorsAction.reducer;

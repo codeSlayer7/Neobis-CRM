@@ -22,19 +22,18 @@ interface MyColums {
   renderCell?: any;
 }
 
-const StudentAdminTable = () => {
+function StudentAdminTable() {
   const dispatch = useAppDispatch();
-  const isAdmin = true; 
+  const isAdmin = true;
 
   const students = useAppSelector((state) => {
     return state.student.students;
   });
-  console.log('students', students );
+  console.log('students', students);
 
-    useEffect(() => {
+  useEffect(() => {
     dispatch(getAllStudentsThunk());
   }, [dispatch]);
-
 
   const colors = (status: 'Неактивен' | 'Активен' | 'Заморожен') =>
     status === 'Активен'
@@ -98,7 +97,7 @@ const StudentAdminTable = () => {
       field: 'paymentPercentage',
       headerName: <div className="text-[16px] font-semibold">Оплата</div>,
       width: 120,
-    }
+    },
   ];
   if (isAdmin) {
     columns.push({
@@ -110,18 +109,16 @@ const StudentAdminTable = () => {
   }
 
   return (
-    <>
-      <div>
-        <DataGrid
-          autoHeight
-          className=" bg-white border rounded-lg shadow-lg"
-          rows={students}
-          columns={columns}
-          getRowClassName={(params) => 'even:bg-[#dee7f3]'}
-        />
-      </div>
-    </>
+    <div>
+      <DataGrid
+        autoHeight
+        className=" rounded-lg border bg-white shadow-lg"
+        rows={students}
+        columns={columns}
+        getRowClassName={(params) => 'even:bg-[#dee7f3]'}
+      />
+    </div>
   );
-};
+}
 
 export default StudentAdminTable;
