@@ -1,48 +1,66 @@
+import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../../../constants/global';
 import EditWhite from '../../../icons/EditWhite';
 import photo from '../../../images/Photo.png';
+import { getMentorByIdThunk } from '../../../../redux/service/mentors/mentorsAction';
 
 function AdminMentorsDetails() {
+  const dispatch = useAppDispatch();
+  const { id } = useParams();
+
+  const mentor = useAppSelector((state) => state.mentors.mentor);
+
+  useEffect(() => {
+    dispatch(getMentorByIdThunk(id));
+  }, [id, dispatch]);
+
   return (
     <div className="mx-10 h-[100vh] w-full items-center justify-center">
       <button
         type="button"
-        className="my-10 ml-[80%] inline-flex h-[43px] w-[212px] items-center justify-around rounded-lg border bg-[#4588C6] text-white text-xl font-normal transition duration-150 hover:scale-95"
+        className="my-10 ml-[80%] inline-flex h-[43px] w-[212px] items-center justify-around rounded-lg border bg-[#4588C6] text-xl font-normal text-white transition duration-150 hover:scale-95"
       >
         Редактировать
         <EditWhite />
       </button>
       <div className="relative mb-12 flex h-[797px] w-[1318px] rounded-xl border border-black bg-[#FCFDFE]">
         <div className="mt-12 ml-8">
-          <img src={photo} alt="#" />
+          <img src={mentor.imageUrl} alt="#" />
           <h3 className="mt-12 text-lg font-semibold">
-            Преподаватель JavaScript
+            Преподаватель <br />
+            {mentor.courseName}
           </h3>
         </div>
-        <div className="mt-12 ml-28 flex flex-wrap">
-          <ul className="mr-24 pb-5">
+        <div className="mt-12 ml-28 w-[60%] ">
+          <div className='flex flex- my-10 justify-between w-full'>
+          <ul >
             <li className="text-2xl font-semibold">Имя</li>
-            <li className="text-xl font-normal">Жылдыз Маратовна</li>
+            <li className="text-xl font-normal">
+              {mentor.firstName} {mentor.lastName}
+            </li>
           </ul>
-          <ul className="mr-24 pb-5">
+          <ul className="mr-20">
             <li className="text-2xl font-semibold">Номер телефона</li>
-            <li className="text-xl font-normal">+996 554 555 312</li>
+            <li className="text-xl font-normal">{mentor.phoneNumber}</li>
           </ul>
-          <ul className=" pb-5">
+          <ul className=" ">
             <li className="text-2xl font-semibold">Gmail</li>
-            <li className="text-xl font-normal">zhyldyz.maratovna@gmail.com</li>
+            <li className="text-xl font-normal">{mentor.email}</li>
           </ul>
-          <ul className="mr-24 pb-5">
+          </div>
+          <div className='flex flex-row mb-10'>
+          <ul className="mr-20">
             <li className="text-2xl font-semibold">Номер патента</li>
-            <li className="text-xl font-normal">№421</li>
+            <li className="text-xl font-normal">{mentor.patentNumber}</li>
           </ul>
-          <ul className="mr-24 pb-5">
-            <li className="text-2xl font-semibold"> Срок патента</li>
-            <li className="text-xl font-normal">23.01.2022 - 23.01.2024</li>
-          </ul>
-          <ul className="pb-5">
+          <ul className="mr-20">
             <li className="text-2xl font-semibold">Обучение в группах</li>
-            <li className="text-xl font-normal">JavaScript</li>
+            <li className="text-xl font-normal">{mentor.courseName}</li>
           </ul>
+          </div>
+         
+         
           <div className="mt-5 ">
             <h3 className="mb-8 text-2xl font-semibold">Расписание</h3>
             <div className="rounded-lg border ">

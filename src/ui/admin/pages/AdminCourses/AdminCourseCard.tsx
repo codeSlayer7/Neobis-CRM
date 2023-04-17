@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import DropDownAdminCourses from './DropDownAdminCourses';
 import ProfileUser from '../../../icons/ProfileUser';
@@ -9,6 +9,7 @@ import { useAppSelector, useAppDispatch } from '../../../../constants/global';
 import { getAllCoursesThunk } from '../../../../redux/service/courses/coursesAction';
 
 function AdminCourseCard() {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const courses = useAppSelector((state) => {
     return state.courses.courses;
@@ -22,7 +23,10 @@ function AdminCourseCard() {
     <div>
       {courses &&
         courses.map((course: any) => (
-          <div key={course.id}>
+          <div
+            key={course.id}
+            onClick={() => navigate(`/admin/courses/${course.id}`)}
+          >
             <div className="relative m-5 h-[398px] w-[382px] rounded-3xl border border-black bg-fixed shadow-sm">
               <DropDownAdminCourses />
 
@@ -31,18 +35,18 @@ function AdminCourseCard() {
                 alt="#"
                 className="mt-[-81px] rounded-t-3xl border-0 bg-fixed"
               />
-              <Link to="/admin/course/admingroup">
-                <h3 className="my-3 ml-[26px] text-[32px] font-bold ">
-                  {course.name}
-                </h3>
-              </Link>
+
+              <h3 className="my-3 ml-[26px] text-[32px] font-bold ">
+                {course.name}
+              </h3>
+
               <hr className="ml-6 w-[330px] border border-black " />
               <div className="mt-3 ml-6 flex w-[330px]  flex-wrap">
                 <div className="flex flex-col">
                   <div className="flex ">
                     <ProfileUser />
                     <p className="ml-3 text-lg font-normal">
-                      {course.numberOfLessons} группы
+                      {course.numberOfGroups} группы
                     </p>
                   </div>
                   <div className="flex">
@@ -56,7 +60,9 @@ function AdminCourseCard() {
                 <div className="ml-[15%] flex flex-col ">
                   <div className="flex">
                     <Money />
-                    <p className=" ml-3 text-lg font-normal">{course.cost} тыс.сом</p>
+                    <p className=" ml-3 text-lg font-normal">
+                      {course.cost} тыс.сом
+                    </p>
                   </div>
 
                   <div className="flex">

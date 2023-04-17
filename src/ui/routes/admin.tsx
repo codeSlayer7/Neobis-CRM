@@ -13,6 +13,7 @@ import MentorArchive from '../admin/components/Modals/MentorArchive';
 import MentorEdit from '../admin/components/Modals/MentorEdit';
 import CreateCourse from '../admin/components/Modals/CreateCourse';
 import AdminGroups from '../admin/pages/AdminCourses/AdminGroups';
+// import AdminGroups from '../admin/pages/AdminCourses/AdminGroups';
 
 function RouteWrapperAdmin({ children }: any) {
   return (
@@ -28,21 +29,20 @@ function RouteWrapperAdmin({ children }: any) {
 export default function Admin() {
   return (
     <RouteWrapperAdmin>
-        <Routes>
-          <Route index element={<UserPage />} />
-          <Route path="analytics" element={<Analytics />} />,
-          <Route path="mentors" element={<AdminMentors />} />
-          <Route path="mentor/details" element={<AdminMentorsDetails />} />
-          <Route path="courses" element={<AdminCourses />} />
-          <Route path="course/details" element={<DropDownAdminCourses />} />
-          <Route path="students" element={<AdminStudents />} />
-          <Route path="archive" element={<AdminArchive />} />
-          <Route path="mentor/mentorarchive" element={<MentorArchive />} />
-          <Route path="mentor/mentoredit" element={<MentorEdit />} />
-          <Route path="course/create" element={<CreateCourse />} />
-          <Route path="course/admingroup" element={<AdminGroups />} />
-
-        </Routes>
+      <Routes>
+        <Route index element={<UserPage />} />
+        <Route path="analytics" element={<Analytics />} />,
+        <Route path="mentors" element={<AdminMentors />} />
+        <Route path="mentors/:id" element={<AdminMentorsDetails />} />
+        <Route path="courses" element={<AdminCourses />} />
+        <Route path="courses/:id" element={<AdminGroups />} />
+        <Route path="course/details" element={<DropDownAdminCourses />} />
+        <Route path="students" element={<AdminStudents />} />
+        <Route path="archive" element={<AdminArchive />} />
+        <Route path="mentor/mentorarchive" element={<MentorArchive />} />
+        <Route path="mentor/mentoredit" element={<MentorEdit />} />
+        <Route path="course/create" element={<CreateCourse />} />
+      </Routes>
     </RouteWrapperAdmin>
   );
 }

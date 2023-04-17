@@ -1,14 +1,12 @@
 import React from 'react';
 import { useState } from 'react';
 import AdminMentorsCard from './AdminMentorsCard';
-// import AdminMentorsData from './AdminMentorsData';
 import AdminMentorsForm from './AdminMentorsForm';
 import DropDown from '../../../components/DropDown';
 import Modal from '../../components/Modals/Modal';
-import { getAllMentors } from '../../../../redux/service/mentors/mentors';
+
 
 function AdminMentors() {
-  getAllMentors();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

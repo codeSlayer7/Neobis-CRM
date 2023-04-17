@@ -15,7 +15,7 @@ export default function CourseStudents() {
       status: 'Активен',
       number: '+996550141414',
       laptop: 'есть',
-      cash: '100%',
+      email: 'qwerty@gmail.com',
     },
     {
       id: 2,
@@ -23,7 +23,7 @@ export default function CourseStudents() {
       status: 'Активен',
       number: '+996 555 123 123',
       laptop: 'есть',
-      cash: '50%',
+      email: 'qwerty@gmail.com',
     },
     {
       id: 3,
@@ -31,7 +31,7 @@ export default function CourseStudents() {
       status: 'Активен',
       number: '+996 555 123 123',
       laptop: 'выдан ноутбук',
-      cash: '70%',
+      email: 'qwerty@gmail.com',
     },
   ];
 
@@ -40,12 +40,12 @@ export default function CourseStudents() {
     {
       field: 'name',
       headerName: <div className="text-[16px] font-semibold">Ф.И.О.</div>,
-      width: 300,
+      width: 250,
     },
     {
       field: 'status',
       headerName: <div className="text-[16px] font-semibold">Статус</div>,
-      width: 250,
+      width: 200,
     },
     {
       field: 'number',
@@ -57,12 +57,12 @@ export default function CourseStudents() {
       headerName: (
         <div className="text-[16px] font-semibold">Наличие ноутбука</div>
       ),
-      width: 300,
+      width: 250,
     },
     {
-      field: 'cash',
-      headerName: <div className="text-[16px] font-semibold">Оплата</div>,
-      width: 150,
+      field: 'email',
+      headerName: <div className="text-[16px] font-semibold">Почта</div>,
+      width: 250,
     },
   ];
 

@@ -1,44 +1,78 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import Book from '../../icons/Book';
 import Money from '../../icons/Money';
 import ProfileUser from '../../icons/ProfileUser';
 import Time from '../../icons/Time';
+import { useAppDispatch, useAppSelector } from '../../../constants/global';
+import { getAllCoursesThunk } from '../../../redux/service/courses/coursesAction';
 
-function CourseCard(props) {
+function CourseCard() {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const courses = useAppSelector((state) => {
+    return state.courses.courses;
+  });
+
+  useEffect(() => {
+    dispatch(getAllCoursesThunk());
+  }, [dispatch]);
   return (
-    <>
-      {props.details.map((value, index) => (
-        <div key={index}>
-          <Link to="/groups">
-            <div className="m-5 h-[398px] w-[382px] bg-white rounded-3xl border border-black shadow-sm">
-              <img src={value.img} alt="#" className="rounded-t-3xl border-0" />
+    <div>
+      {courses &&
+        courses.map((course: any) => (
+          <div
+            key={course.id}
+            onClick={() => navigate(`/courses/${course.id}`)}
+          >
+            <div className="relative  h-[398px] w-[382px] rounded-3xl border border-black bg-fixed shadow-sm">
+              <img
+                src={course.imageUrl}
+                alt="#"
+                className="rounded-t-3xl border-0 bg-fixed"
+              />
+
               <h3 className="my-3 ml-[26px] text-[32px] font-bold ">
-                {value.title}
+                {course.name}
               </h3>
+
               <hr className="ml-6 w-[330px] border border-black " />
-              <div className="mt-3 ml-6 flex w-[330px] bg-white flex-wrap">
-                <div className="flex">
-                  <ProfileUser />
-                  <p className="ml-4 text-lg font-normal">2 группы</p>
+              <div className="mt-3 ml-6 flex w-[330px]  flex-wrap">
+                <div className="flex flex-col">
+                  <div className="flex ">
+                    <ProfileUser />
+                    <p className="ml-3 text-lg font-normal">
+                      {course.numberOfGroups} группы
+                    </p>
+                  </div>
+                  <div className="flex">
+                    <Time />
+                    <p className="ml-3 text-lg font-normal">
+                      {' '}
+                      {course.durationInMonth} месяца
+                    </p>
+                  </div>
                 </div>
-                <div className="ml-[75px] flex">
-                  <Time />
-                  <p className="ml-4 text-lg font-normal"> 3 месяца</p>
-                </div>
-                <div className="mt-2 flex">
-                  <Money />
-                  <p className="ml-4 text-lg font-normal ">20 тыс.сом</p>
-                </div>
-                <div className="ml-[60px] mt-2 flex">
-                  <Book />
-                  <p className="ml-4 text-lg font-normal">24 занятий</p>
+                <div className="ml-[15%] flex flex-col ">
+                  <div className="flex">
+                    <Money />
+                    <p className=" ml-3 text-lg font-normal">
+                      {course.cost} тыс.сом
+                    </p>
+                  </div>
+
+                  <div className="flex">
+                    <Book />
+                    <p className=" ml-3 text-lg font-normal">
+                      {course.numberOfLessons} занятий
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </Link>
-        </div>
-      ))}
-    </>
+          </div>
+        ))}
+    </div>
   );
 }
 export default CourseCard;

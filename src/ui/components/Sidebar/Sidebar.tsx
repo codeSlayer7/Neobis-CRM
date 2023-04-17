@@ -92,13 +92,13 @@ function Sidebar({ children }: Props) {
       </div>
       {/* <div className="flex flex-col"> */}
 
-      {location.pathname === '/analytics' ? (
+      {location.pathname === '/history' ? (
         <div className="flex flex-col h-[100vh]" >
           {' '}
           <HistoryHeader />
           <main
             className={
-              !isOpen ? 'flex w-[100%] h-[1500px] flex-col ' : 'flex w-[73%] flex-col'
+              !isOpen ? 'flex w-[100%] flex-col ' : 'flex w-[73%] flex-col'
             }
           >
             {children}
@@ -107,7 +107,7 @@ function Sidebar({ children }: Props) {
       ) : (
         <main
           className={
-            !isOpen ? 'flex w-[100%] flex-col h-[1500px] ' : 'flex w-[73%] flex-col'
+            !isOpen ? 'flex w-[100%] flex-col  ' : 'flex w-[73%] flex-col'
           }
         >
           {children}

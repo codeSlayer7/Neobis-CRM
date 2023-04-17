@@ -1,3 +1,4 @@
+import { useParams } from 'react-router-dom';
 import mentor from '../../images/mentor.png';
 import room from '../../images/room.png';
 import python from '../../images/pythonIcon.png';
@@ -5,39 +6,50 @@ import student from '../../images/student.png';
 import DropDown from '../../components/DropDown';
 import SearchIcon from '../../icons/SearchIcon';
 import CourseStudents from '../../components/Table/CourseStudents';
-import Schedule from '../../components/Schedule/schedule';
-import Calendar from '../../components/Schedule/calendar';
+// import Schedule from '../../components/Schedule/schedule';
+// import Calendar from '../../components/Schedule/calendar';
+import { useAppDispatch, useAppSelector } from '../../../constants/global';
+import { getCourseByIdThunk } from '../../../redux/service/courses/coursesAction';
+import { useEffect } from 'react';
 
 function Groups() {
+  const dispatch = useAppDispatch();
+  const { id } = useParams();
+
+  const course = useAppSelector((state) => state.courses.course);
+  useEffect(() => {
+    dispatch(getCourseByIdThunk(id));
+  }, [id, dispatch]);
+
   return (
-    <div className="h-[100vh] my-10 ml-[36px] w-full">
+    <div className="my-10 ml-[36px] h-[100vh] w-full">
       <div className="flex h-24 w-[1287px] items-center justify-around rounded-lg border-2 border-slate-200 shadow-md ">
         <div className="flex">
           <img className="h-[65px] w-[65px]" src={mentor} alt="#" />
           <span className="ml-4">
-            <h3 className="text-xl font-semibold">Адилет Масалиев</h3>
             <p className="tetx-lg font-normal">Преподаватель</p>
+            <h3 className="text-xl font-semibold">{course.numberOfMentors}</h3>
           </span>
         </div>
         <div className="flex">
           <img className="h-[65px] w-[65px]" src={room} alt="#" />
           <span className="ml-4">
-            <h3 className="text-xl font-semibold">Маленькая комната</h3>
-            <p className="tetx-lg font-normal">Аудитория</p>
+            <p className="tetx-lg font-normal">Занятия</p>
+            <h3 className="text-xl font-semibold">{course.numberOfLessons}</h3>
           </span>
         </div>
         <div className="flex">
           <img className="h-[65px] w-[65px]" src={python} alt="#" />
           <span className="ml-4">
-            <h3 className="text-xl font-semibold">Python 1</h3>
             <p className="tetx-lg font-normal">Группа</p>
+            <h3 className="text-xl font-semibold">{course.numberOfGroups}</h3>
           </span>
         </div>
         <div className="flex">
           <img className="h-[65px] w-[65px]" src={student} alt="#" />
           <span className="ml-4">
-            <h3 className="text-xl font-semibold">26</h3>
-            <p className="tetx-lg font-normal">Студентов</p>
+            <p className="tetx-lg font-normal">Студенты</p>
+            <h3 className="text-xl font-semibold">{course.numberOfStudents}</h3>
           </span>
         </div>
       </div>
@@ -64,10 +76,10 @@ function Groups() {
           </span>
         </div>
       </div>
-      <div className=" w-full  h-[1200px] items-left ">
+      <div className=" items-left  h-[1200px] w-full ">
         <CourseStudents />
-        <Calendar />
-        <Schedule />
+        {/* <Calendar />
+        <Schedule /> */}
       </div>
     </div>
   );

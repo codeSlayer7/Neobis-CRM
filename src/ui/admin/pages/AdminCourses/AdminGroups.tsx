@@ -1,5 +1,5 @@
-import { FiEdit } from 'react-icons/fi';
-import { MdOutlineSaveAlt } from 'react-icons/md';
+import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 import mentor from '../../../images/mentor.png';
 import room from '../../../images/room.png';
 import python from '../../../images/pythonIcon.png';
@@ -9,42 +9,49 @@ import SearchIcon from '../../../icons/SearchIcon';
 import CourseStudents from '../../../components/Table/CourseStudents';
 import Schedule from '../../../components/Schedule/schedule';
 import Calendar from '../../../components/Schedule/calendar';
+import { useAppDispatch, useAppSelector } from '../../../../constants/global';
+import { getCourseByIdThunk } from '../../../../redux/service/courses/coursesAction';
 
 function AdminGroups() {
+  const dispatch = useAppDispatch();
+  const { id } = useParams();
+
+  const course = useAppSelector((state) => state.courses.course);
+  useEffect(() => {
+    dispatch(getCourseByIdThunk(id));
+  }, [id, dispatch]);
+
   return (
     <div className="my-10 ml-[36px] h-[100vh] w-full">
       <div className="flex h-24 w-[1287px] items-center justify-around rounded-lg border-2 border-slate-200 bg-white shadow-md ">
         <div className="flex">
           <img className="h-[65px] w-[65px]" src={mentor} alt="#" />
           <span className="ml-3">
-            <h3 className="text-xl font-semibold">Адилет Масалиев</h3>
             <p className="tetx-lg font-normal">Преподаватель</p>
+            <h3 className="text-xl font-semibold">{course.numberOfMentors}</h3>
           </span>
         </div>
         <div className="flex">
           <img className="h-[65px] w-[65px]" src={room} alt="#" />
           <span className="ml-3">
-            <h3 className="text-xl font-semibold">Маленькая комната</h3>
-            <p className="tetx-lg font-normal">Аудитория</p>
+            <p className="tetx-lg font-normal">Занятия</p>
+            <h3 className="text-xl font-semibold">{course.numberOfLessons}</h3>
           </span>
         </div>
         <div className="flex">
           <img className="h-[65px] w-[65px]" src={python} alt="#" />
           <span className="ml-3">
-            <h3 className="text-xl font-semibold">Python 1</h3>
             <p className="tetx-lg font-normal">Группа</p>
+            <h3 className="text-xl font-semibold">{course.numberOfGroups}</h3>
           </span>
         </div>
         <div className="flex">
           <img className="h-[65px] w-[65px]" src={student} alt="#" />
           <span className="ml-3">
-            <h3 className="text-xl font-semibold">26</h3>
-            <p className="tetx-lg font-normal">Студентов</p>
+            <p className="tetx-lg font-normal">Студенты</p>
+            <h3 className="text-xl font-semibold">{course.numberOfStudents}</h3>
           </span>
-          <div className="ml-16 flex w-20 items-center justify-around  ">
-            <MdOutlineSaveAlt className="  text-3xl  font-bold text-slate-400 hover:text-[#4588C6]" />
-            <FiEdit className="text-2xl  text-slate-400 hover:text-[#4588C6]" />
-          </div>
+         
         </div>
       </div>
       <div className="my-20 mb-10 flex w-[60%] justify-between">
@@ -71,9 +78,9 @@ function AdminGroups() {
         </div>
       </div>
       <div className=" items-left  h-[1200px] w-full ">
-        <CourseStudents />
+         <CourseStudents />
         <Calendar />
-        <Schedule />
+        <Schedule /> 
       </div>
     </div>
   );

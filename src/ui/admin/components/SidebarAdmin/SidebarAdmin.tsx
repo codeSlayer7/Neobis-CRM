@@ -13,57 +13,70 @@ interface IMenuItem {
   name: string;
   path: string;
   icon: React.ReactNode;
+  selected: boolean;
 }
 type Props = {
   children: React.ReactNode;
 };
 
 function SidebarAdmin({ children }: Props) {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggle = () => setIsOpen(!isOpen);
-  const activeMenu =
-    'text-slate-100 text-xl flex gap-3.5 rounded-full p-5 m-1 bg-[#4588C6]';
-  const normalMenu =
-    'text-slate-400 group flex rounded-full gap-3.5 text-xl p-5 m-1 hover:bg-[#B4D9FF] hover:text-[#4588C6]';
-
-  const menuItem: IMenuItem[] = [
+  const Items: IMenuItem[] = [
     {
       name: 'Менеджер',
       path: '/admin',
       icon: <MdOutlineManageAccounts className="text-3xl" />,
+      selected: false,
     },
     {
       name: 'Заявки',
       path: '/admin/applications',
       icon: <TiMessages className="text-3xl" />,
+      selected: false,
     },
 
     {
       name: 'Преподаватели',
       path: '/admin/mentors',
       icon: <VscBook className="text-3xl" />,
+      selected: false,
     },
     {
       name: 'Курсы',
       path: '/admin/courses',
       icon: <BsPersonWorkspace className="text-3xl" />,
+      selected: false,
     },
     {
       name: 'Студенты',
       path: '/admin/students',
       icon: <SlGraduation className="text-3xl" />,
+      selected: false,
     },
     {
       name: 'Архивы',
       path: '/admin/archive',
       icon: <BsFolder className="text-3xl" />,
+      selected: false,
     },
     {
       name: 'Аналитика',
       path: '/admin/analytics',
       icon: <TbBrandGoogleAnalytics className="text-3xl" />,
+      selected: false,
     },
   ];
+
+  const [menuItem, setMenuItem] = useState(Items);
+
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => setIsOpen(!isOpen);
+  const [isBurger, setIsBurger] = useState(false);
+
+  const activeMenu =
+    'text-slate-100 text-xl flex gap-3.5 rounded-full p-5 m-1 bg-[#A062F7]';
+  const normalMenu =
+    'relative text-slate-400 group flex rounded-full gap-3.5 text-xl p-5 m-1 hover:bg-[#D9BFFF] hover:text-[#A062F7]';
+
   return (
     <div className="flex">
       <div
@@ -90,9 +103,12 @@ function SidebarAdmin({ children }: Props) {
 
         {menuItem?.map((item, index) => (
           <NavLink
-            to={item.path}
+            to={item?.path}
             key={index}
-            className={({ isActive }) => (isActive ? activeMenu : normalMenu)}
+            onClick={() => {
+              setMenuItem({ ...item, selected: !item.selected });
+            }}
+            className={`${item.selected ? activeMenu : normalMenu}`}
           >
             <div>{item.icon}</div>
             <div style={{ display: isOpen ? 'block' : 'none' }}>
@@ -104,9 +120,7 @@ function SidebarAdmin({ children }: Props) {
 
       <main
         className={
-          !isOpen
-            ? 'flex h-[1500px] w-[100%] bg-[#F4F7FD]'
-            : 'flex h-[1500px] w-[73%] bg-[#F4F7FD]'
+          !isOpen ? 'flex  w-[100%] bg-[#F4F7FD]' : 'flex w-[73%] bg-[#F4F7FD]'
         }
       >
         {children}

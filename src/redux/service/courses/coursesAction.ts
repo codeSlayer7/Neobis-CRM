@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getApiErrorMessage } from '../../../utils/utils';
-import { getAllCourses } from './courses';
+import { getAllCourses, getCourseById } from './courses';
+// import id from 'date-fns/esm/locale/id/index';
 
 const initialState = {
   courses: [],
@@ -9,8 +10,9 @@ const initialState = {
   error: '',
 };
 
+//get all courses
 export const getAllCoursesThunk = createAsyncThunk(
-  'course/getAllCourses',
+  'courses/getAllCourses',
   async (_, { rejectWithValue }) => {
     try {
       const response = await getAllCourses();
@@ -21,6 +23,19 @@ export const getAllCoursesThunk = createAsyncThunk(
   }
 );
 // console.log('data', data)
+
+//get course by id
+export const getCourseByIdThunk = createAsyncThunk(
+  'courses/getCourseById',
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await getCourseById(id);
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(getApiErrorMessage(err));
+    }
+  }
+);
 
 const coursesAction = createSlice({
   name: 'courses',
@@ -33,7 +48,7 @@ const coursesAction = createSlice({
       builder.addCase(
         getAllCoursesThunk.fulfilled,
         (state, { payload }: PayloadAction<any>) => {
-          console.log('8', payload);
+          // console.log('8', payload);
           state.loading = false;
           state.courses = payload;
         }
@@ -45,6 +60,25 @@ const coursesAction = createSlice({
           state.error = payload;
         }
       );
+
+      builder.addCase(getCourseByIdThunk.pending, (state) => {
+        state.loading = true;
+      }),
+        builder.addCase(
+          getCourseByIdThunk.fulfilled,
+          (state, {payload}: PayloadAction<any>) => {
+            // console.log('8', payload);
+            state.loading = false;
+            state.course = payload;
+          }
+        ),
+        builder.addCase(
+          getCourseByIdThunk.rejected,
+          (state, {payload}: PayloadAction<any>) => {
+            state.loading = false;
+            state.error = payload;
+          }
+        );
   },
 });
 

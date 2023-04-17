@@ -1,6 +1,8 @@
+import { getMentorById } from '../../../../redux/service/mentors/mentors';
 import photo from '../../../images/Photo.png';
 
 function MentorsDetails() {
+  getMentorById()
   return (
     <div className="flex h-auto w-full items-center justify-center">
       <div className="relative my-12 flex h-[797px] w-[1318px] rounded-xl border border-black bg-[#FCFDFE]">

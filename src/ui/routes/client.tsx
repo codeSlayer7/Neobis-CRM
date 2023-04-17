@@ -39,11 +39,11 @@ export default function Client() {
         <Route path="createcard" element={<CreateCard />} />
         <Route path="archiveclient" element={<ArchiveClient />} />
         <Route path="rejectionreason" element={<RejectionReason />} />
-        <Route path="groups" element={<Groups />} />
         <Route path="courses" element={<Courses />} />
+        <Route path="courses/:id" element={<Groups />} />
         <Route path="students" element={<Students />} />
         <Route path="mentors" element={<Mentors />} />
-        <Route path="mentorsdetails" element={<MentorsDetails />} />
+        <Route path="mentors/:id" element={<MentorsDetails />} />
         <Route path="archive" element={<Archive />} />
         <Route path="profile" element={<Profile />} />
         <Route path="history" element={<HistoryTitle />} />

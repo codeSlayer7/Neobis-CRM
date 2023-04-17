@@ -1,6 +1,5 @@
 import DropDown from '../../components/DropDown';
 import MentorsCard from './MentorsCard';
-import MentorsData from './MentorsData';
 
 function Mentors() {
   return (
@@ -13,7 +12,7 @@ function Mentors() {
         />
       </div>
       <div className="mt-14 flex flex-wrap">
-        <MentorsCard details={MentorsData} />
+        <MentorsCard />
       </div>
     </div>
   );

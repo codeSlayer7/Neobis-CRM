@@ -7,3 +7,9 @@ export const getAllMentors = async () => {
   // console.log(data, 'getallmentors');
   return data;
 };
+
+export const getMentorById = async (id) => {
+  const data = await axiosInteceptor.get(`${Endpoints.MentorGetById}/${id}`);
+  // console.log(data, 'getmentorbyid');
+  return data;
+};
