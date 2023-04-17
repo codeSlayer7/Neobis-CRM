@@ -4,13 +4,15 @@ import {
   ApplicationPost,
   getAllApplicatins,
   getSortedApplication,
+  IApplicationPost,
+  postAppliction,
 } from './applications';
 
 export const getAllAppThunk = createAsyncThunk(
   '/getAllApplications',
   async (_data, { rejectWithValue }) => {
     try {
-      const response = await getSortedApplication();
+      const response = await getAllApplicatins();
       return response;
     } catch (err) {
       return rejectWithValue(getApiErrorMessage(err));
@@ -35,6 +37,19 @@ export const getSortedThunk = createAsyncThunk(
   async (_data, { rejectWithValue }) => {
     try {
       const response = await getSortedApplication();
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(getApiErrorMessage(err));
+    }
+  }
+);
+
+export const postAppThunk = createAsyncThunk(
+  '/postApplications',
+  async (data: IApplicationPost, { rejectWithValue }) => {
+    try {
+      const response = await postAppliction(data);
+      console.log(response, 'post app response');
       return response;
     } catch (err) {
       return rejectWithValue(getApiErrorMessage(err));

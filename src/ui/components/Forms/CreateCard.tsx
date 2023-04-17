@@ -7,12 +7,18 @@ import {
   marketingOptions,
   StateStatusType,
   MarketingStrategyType,
+  eductionOption,
+  EducationType,
+  GenderType,
+  hasLaptopOption,
 } from '../../../interfaces/enum';
 import More from '../../icons/More';
 import DropDown from '../DropDown';
-import { Select, MenuItem, styled } from '@mui/material';
+import { Select, MenuItem, styled, SelectChangeEvent } from '@mui/material';
 import { borderRadius } from '@mui/system';
 import { applyInitialState } from '@mui/x-data-grid/hooks/features/columns/gridColumnsUtils';
+import { useAppDispatch } from '../../../constants/global';
+import { postAppThunk } from '../../../redux/service/applications/applicationAction';
 
 const CustomSelect = styled(Select)(() => ({
   height: '40px',
@@ -35,6 +41,7 @@ type Entries<T> = {
 }[keyof T][];
 
 function CreateCard() {
+  const [laptop, setLaptop] = useState(hasLaptopOption);
   const [postApp, setPostApp] = useState<IApplicationPost>({
     firstName: '',
     lastName: '',
@@ -45,17 +52,41 @@ function CreateCard() {
     marketingStrategy: 'INSTAGRAM',
     applicationInitialStatusNum: 1,
     department: {
-      name: '',
-      status: '',
+      name: 'JavaScript',
+      status: 'ACTIVE',
     },
+    departmentId: 100,
     reason: '',
     education: '',
   });
-  console.log(postApp);
 
-  // const handleChange = (e: InputEvent) => {
-  //   setPostApp({ ...postApp, creator: e.target.value });
-  // };
+  const dispatch = useAppDispatch();
+
+  const laptopHandler = (e: any) => {
+    if (e.target.value === 'Нету') {
+      setPostApp({
+        ...postApp,
+        hasLaptop: !postApp.hasLaptop,
+      });
+      setLaptop({ ...laptop, hasLaptopText: e.target.value });
+    }
+    setLaptop({ ...laptop, hasLaptopText: e.target.value });
+    setPostApp({
+      ...postApp,
+      hasLaptop: !postApp.hasLaptop,
+    });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const splitFullName = postApp.firstName.split(' ');
+    const newPostData = {
+      ...postApp,
+      firstName: splitFullName[1],
+      lastName: splitFullName[0],
+    };
+    dispatch(postAppThunk(newPostData));
+  };
 
   return (
     <div className="flex h-auto w-full items-center justify-center">
@@ -88,18 +119,35 @@ function CreateCard() {
                 htmlFor="name"
                 className="mb-3 block text-lg font-semibold text-gray-900"
               >
-                ФИО
+                Электронная почта
               </label>
 
               <input
-                type="name"
+                type="email"
                 id="name"
-                value={postApp.firstName}
+                value={postApp.email}
                 className="mb-3 block h-[40px] w-[377px] rounded-sm border border-black bg-white p-2.5 text-sm"
                 onChange={(e) =>
-                  setPostApp({ ...postApp, firstName: e.target.value })
+                  setPostApp({ ...postApp, email: e.target.value })
                 }
                 required
+              />
+              <label
+                htmlFor="phone"
+                className="mb-3 block text-lg font-semibold text-gray-900"
+              >
+                Номер телефона
+              </label>
+
+              <input
+                type="phone"
+                id="phone"
+                className="mb-3 block h-[40px] w-[377px] rounded-sm border border-black bg-white p-2.5 text-sm"
+                required
+                value={postApp.phoneNumber}
+                onChange={(e) =>
+                  setPostApp({ ...postApp, phoneNumber: e.target.value })
+                }
               />
               <label
                 htmlFor="department"
@@ -126,10 +174,31 @@ function CreateCard() {
               />
 
               <label
+                htmlFor="payment"
+                className="mb-3 block text-lg font-semibold text-gray-900"
+              >
+                Причина
+              </label>
+
+              <input
+                value={postApp.reason}
+                onChange={(e) =>
+                  setPostApp({ ...postApp, reason: e.target.value as string })
+                }
+                type="payment"
+                id="payment"
+                className="mb-3 block h-[40px] w-[377px] rounded-sm border border-black bg-white p-2.5 text-sm"
+                required
+              />
+            </form>
+          </div>
+          <div>
+            <form onSubmit={handleSubmit}>
+              <label
                 htmlFor="date"
                 className="mb-3 block text-lg font-semibold text-gray-900"
               >
-                Дата заявки
+                Статус заявки
               </label>
               <CustomSelect
                 value={postApp.applicationInitialStatusNum}
@@ -150,46 +219,27 @@ function CreateCard() {
                 htmlFor="status"
                 className="mb-3 block text-lg font-semibold text-gray-900"
               >
-                Статус
+                Пол
               </label>
-
-              <input
-                type="status"
-                id="status"
-                className="mb-3 block h-[40px] w-[377px] rounded-sm border border-black bg-white p-2.5 text-sm"
-                required
-              />
+              <CustomSelect
+                value={postApp.gender}
+                onChange={(e) =>
+                  setPostApp({
+                    ...postApp,
+                    gender: e.target.value as GenderType,
+                  })
+                }
+              >
+                <MenuItem value="MALE">Мужчина</MenuItem>
+                <MenuItem value="FEMALE">Женщина</MenuItem>
+              </CustomSelect>
 
               <label
-                htmlFor="payment"
+                htmlFor="signup"
                 className="mb-3 block text-lg font-semibold text-gray-900"
               >
-                Способ оплаты
+                Откуда записался
               </label>
-
-              <input
-                type="payment"
-                id="payment"
-                className="mb-3 block h-[40px] w-[377px] rounded-sm border border-black bg-white p-2.5 text-sm"
-                required
-              />
-            </form>
-          </div>
-          <div>
-            <form>
-              <label
-                htmlFor="phone"
-                className="mb-3 block text-lg font-semibold text-gray-900"
-              >
-                Номер телефона
-              </label>
-
-              <input
-                type="phone"
-                id="phone"
-                className="mb-3 block h-[40px] w-[377px] rounded-sm border border-black bg-white p-2.5 text-sm"
-                required
-              />
 
               <CustomSelect
                 value={postApp.marketingStrategy}
@@ -216,26 +266,41 @@ function CreateCard() {
               >
                 Ноутбук
               </label>
+              <CustomSelect
+                value={laptop.hasLaptopText}
+                onChange={(e) => laptopHandler(e)}
+              >
+                <MenuItem value="Нету">Нету</MenuItem>
 
-              <input
-                type="laptop"
-                id="laptop"
-                className="mb-3 block h-[40px] w-[377px] rounded-sm border border-black bg-white p-2.5 text-sm"
-                required
-              />
+                <MenuItem value="Eсть">Есть</MenuItem>
+              </CustomSelect>
               <label
                 htmlFor="signup"
                 className="mb-3 block text-lg font-semibold text-gray-900"
               >
-                Откуда записался
+                Оброзование
               </label>
 
-              <input
-                type="signup"
-                id="signup"
-                className="mb-3 block h-[40px] w-[377px] rounded-sm border border-black bg-white p-2.5 text-sm"
-                required
-              />
+              <CustomSelect
+                value={postApp.education}
+                onChange={(e) =>
+                  setPostApp({
+                    ...postApp,
+                    education: e.target.value as EducationType,
+                  })
+                }
+              >
+                {(
+                  Object.entries(eductionOption) as Entries<
+                    typeof eductionOption
+                  >
+                ).map(([key, option]) => (
+                  <MenuItem key={option} value={key}>
+                    {option}
+                  </MenuItem>
+                ))}
+              </CustomSelect>
+
               <label
                 htmlFor="notes"
                 className="mb-3 block text-lg font-semibold text-gray-900"
@@ -247,7 +312,6 @@ function CreateCard() {
                 // type="notes"
                 id="notes"
                 className="mb-3 block h-[162px] w-[377px] rounded-sm border border-black bg-white p-2.5 text-sm"
-                required
               />
               <button
                 type="submit"

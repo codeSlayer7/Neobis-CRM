@@ -3,13 +3,15 @@ import { ItemBack, Column, DragResult } from '../../interfaces';
 import { CardStatus } from '../../interfaces/enum';
 import { IApplication } from '../service/applications/applications';
 import {
-  getAllApplications,
+  getSortedThunk,
   getAllAppThunk,
+  postAppThunk,
 } from '../service/applications/applicationAction';
 
 const itemsFromBackend: IApplication[] | [] = [];
 
 const initialState: Column = {
+  loading: false,
   columns: {
     waitingForCall: {
       name: 'Ждет звонка',
@@ -103,13 +105,15 @@ const todoSlice = createSlice({
       return state;
     },
   },
+
   extraReducers(builder) {
     builder.addCase(getAllAppThunk.pending, (state) => {
       // console.log('33');
       // state.loading = true;
     });
     builder.addCase(getAllAppThunk.fulfilled, (state, { payload }) => {
-      console.log('4 TODOSLICE', payload);
+      console.log('get state', payload);
+      
       // state.loading = false;
       // state.accessToken = payload.authenticationResponse.jwtToken;
       // state.refreshToken = payload.authenticationResponse.refreshToken;
@@ -117,13 +121,20 @@ const todoSlice = createSlice({
       // state.firstName = payload.firstName;
       // state.lastName = payload.lastName;
     });
-    // builder.addCase(
-    //   loginUserThunk.rejected,
-    //   (state, { payload }: PayloadAction<any>) => {
-    //     state.loading = false;
-    //     state.error = payload;
-    //   }
-    // );
+
+    builder.addCase(postAppThunk.fulfilled, (state) => {
+      console.log('33');
+      // state.loading = true;
+    });
+    builder.addCase(getSortedThunk.fulfilled, (state, { payload }) => {
+      console.log('post data ', payload);
+      // state.loading = false;
+      // state.accessToken = payload.authenticationResponse.jwtToken;
+      // state.refreshToken = payload.authenticationResponse.refreshToken;
+      // state.role = payload.role;
+      // state.firstName = payload.firstName;
+      // state.lastName = payload.lastName;
+    });
   },
 });
 

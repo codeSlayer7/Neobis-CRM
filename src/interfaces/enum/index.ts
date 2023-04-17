@@ -40,12 +40,11 @@ type MarketingStrategyType =
   | 'NEWS'
   | 'OTHER';
 
-
-type KeyValue = {
-  [key in MarketingStrategyType]: string;
+type KeyValue<T> = {
+  [key in T]: string;
 };
 
-export const marketingOptions: KeyValue = {
+export const marketingOptions: KeyValue<MarketingStrategyType> = {
   INSTAGRAM: 'Instagram',
   SCHOOL_OR_UNIVERSITY: 'Школа или университет',
   WEBSITE: 'Веб-сайт',
@@ -59,6 +58,17 @@ type StateStatusType = 'ACTIVE' | 'DELETED' | 'ARCHIVED';
 type GenderType = 'MALE' | 'FEMALE';
 type EducationType = 'SCHOOL' | 'BACHELOR' | 'MASTER' | 'GRADUATED' | 'NONE';
 
+export const eductionOption: KeyValue<EducationType> = {
+  BACHELOR: 'Бакалавриат',
+  SCHOOL: 'Школа',
+  MASTER: 'Магистратура',
+  GRADUATED: 'Выпускник',
+  NONE: 'Ничего',
+};
+
+export const hasLaptopOption = {
+  hasLaptopText: 'Нету',
+};
 export type {
   ApplicationStatusType,
   MarketingStrategyType,

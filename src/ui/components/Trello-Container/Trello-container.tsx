@@ -10,7 +10,7 @@ import HistoryModal from '../../pages/HistoryOperation/history/history-modal';
 import HistoryTable from '../../pages/HistoryOperation/history/HistoryTable';
 import { useEffect } from 'react';
 import axiosInteceptor from '../../../api/interceptor';
-import { getSortedThunk } from '../../../redux/service/applications/applicationAction';
+import { getAllAppThunk, getSortedThunk } from '../../../redux/service/applications/applicationAction';
 
 function TrelloContainer() {
   const dispatch = useAppDispatch();

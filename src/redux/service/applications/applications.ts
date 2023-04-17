@@ -10,6 +10,10 @@ import {
   StateStatusType,
 } from '../../../interfaces/enum';
 
+interface IRegestBase<Data> {
+  data: Data;
+}
+
 export interface IApplication {
   id: number;
   firstName: string;
@@ -54,19 +58,14 @@ export interface IApplicationPost {
   education: EducationType | '';
 }
 
-export const getAllApplicatins = async (
-  id?: number
-): Promise<IApplication[] | IApplication | undefined> => {
+export const getAllApplicatins = async (): Promise<
+  IApplication[] | IApplication | undefined
+> => {
   try {
-    if (typeof id === 'number') {
-      const res = await axiosInteceptor.get(
-        `/api/v1/applications${id.toString()}`
-      );
-      console.log(res);
-      const data: IApplication[] | IApplication = res.data;
-      return data;
-    }
-    return await axiosInteceptor.get('/api/v1/applications');
+    const res = await axiosInteceptor.get(`/api/v1/applications`);
+    console.log(res);
+    const { data }: IApplication[] | IApplication = res;
+    return data;
   } catch (error) {
     if (error instanceof Error) {
       console.log(error.message);
@@ -75,7 +74,9 @@ export const getAllApplicatins = async (
   return undefined;
 };
 
-export const getSortedApplication = async (): Promise<IApplication[]> => {
+export const getSortedApplication = async (): Promise<
+  IRegestBase<IApplication[]>
+> => {
   try {
     return await axiosInteceptor.get(`${Endpoints.ApplicationsSorted}`);
   } catch (e) {
@@ -83,11 +84,9 @@ export const getSortedApplication = async (): Promise<IApplication[]> => {
   }
 };
 
-export const postAppliction = async (
-  data: AxiosRequestConfig<IApplicationPost>
-) => {
+export const postAppliction = async (data: IApplicationPost) => {
   try {
-    await axiosInteceptor.get(`${Endpoints.Applicatins}`, data);
+    return await axiosInteceptor.post(`${Endpoints.Applicatins}`, data);
   } catch (e) {
     throw new Error(e.message);
   }
