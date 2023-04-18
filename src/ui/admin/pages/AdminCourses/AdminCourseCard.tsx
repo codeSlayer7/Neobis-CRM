@@ -20,7 +20,7 @@ function AdminCourseCard() {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className='flex flex-wrap mt-10'>
       {courses &&
         courses.map((course: any) => (
           <div

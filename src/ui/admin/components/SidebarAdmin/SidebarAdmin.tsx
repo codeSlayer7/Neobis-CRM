@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { HiOutlineArrowLongRight } from 'react-icons/hi2';
 import { HiOutlineMenuAlt1 } from 'react-icons/hi';
 import React, { useState } from 'react';
@@ -102,7 +102,7 @@ function SidebarAdmin({ children }: Props) {
         </div>
 
         {menuItem?.map((item, index) => (
-          <NavLink
+          <Link
             to={item?.path}
             key={index}
             onClick={() => {
@@ -114,7 +114,7 @@ function SidebarAdmin({ children }: Props) {
             <div style={{ display: isOpen ? 'block' : 'none' }}>
               {item.name}
             </div>
-          </NavLink>
+          </Link>
         ))}
       </div>
 

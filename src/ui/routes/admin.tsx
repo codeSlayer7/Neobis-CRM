@@ -11,9 +11,7 @@ import AdminArchive from '../admin/pages/AdminArchive/AdminArchive';
 import UserPage from '../admin/pages/Manager/UserPage';
 import MentorArchive from '../admin/components/Modals/MentorArchive';
 import MentorEdit from '../admin/components/Modals/MentorEdit';
-import CreateCourse from '../admin/components/Modals/CreateCourse';
 import AdminGroups from '../admin/pages/AdminCourses/AdminGroups';
-// import AdminGroups from '../admin/pages/AdminCourses/AdminGroups';
 
 function RouteWrapperAdmin({ children }: any) {
   return (
@@ -41,7 +39,6 @@ export default function Admin() {
         <Route path="archive" element={<AdminArchive />} />
         <Route path="mentor/mentorarchive" element={<MentorArchive />} />
         <Route path="mentor/mentoredit" element={<MentorEdit />} />
-        <Route path="course/create" element={<CreateCourse />} />
       </Routes>
     </RouteWrapperAdmin>
   );

@@ -18,14 +18,14 @@ function CourseCard() {
     dispatch(getAllCoursesThunk());
   }, [dispatch]);
   return (
-    <div>
+    <div className='flex flex-wrap w-[90%]'>
       {courses &&
         courses.map((course: any) => (
           <div
             key={course.id}
             onClick={() => navigate(`/courses/${course.id}`)}
           >
-            <div className="relative  h-[398px] w-[382px] rounded-3xl border border-black bg-fixed shadow-sm">
+            <div className="relative  h-[398px] w-[382px] rounded-3xl border border-2 bg-fixed shadow-sm m-5">
               <img
                 src={course.imageUrl}
                 alt="#"

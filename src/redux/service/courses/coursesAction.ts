@@ -30,6 +30,8 @@ export const getCourseByIdThunk = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const response = await getCourseById(id);
+  // console.log(response, 'lll')
+
       return response.data;
     } catch (err) {
       return rejectWithValue(getApiErrorMessage(err));

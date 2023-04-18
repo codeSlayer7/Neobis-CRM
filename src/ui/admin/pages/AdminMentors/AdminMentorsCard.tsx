@@ -14,17 +14,17 @@ function AdminMentorsCard() {
     dispatch(getAllMentorsThunk());
   }, [dispatch]);
   return (
-    <div>
+    <div className="flex w-full flex-wrap">
       {mentors.map((mentor: any) => (
-        <div className="mr-[50px] h-[500px] " key={mentor.id}>
-          <div className="mb-10 h-[351px] w-[323px] rounded-3xl border border-[#C7C7C7] bg-white shadow-md">
+        <div className="mr-[50px] " key={mentor.id}>
+          <div className="m-5 h-[351px] w-[323px] rounded-3xl border border-[#C7C7C7] bg-white shadow-md">
             <DropDownAdminMentor />
 
-            <div className="mt-[-50px] flex w-full items-center justify-center  ">
+            <div className=" flex w-full items-center justify-center  ">
               <img
                 src={mentor.imageUrl}
                 alt="#"
-                className="h-[120px]  w-[120px] rounded-full border "
+                className="mt-[-50px]  h-[120px] w-[120px] rounded-full border "
               />
             </div>
             <div className="mt-2 flex w-full flex-col justify-center text-center">

@@ -11,16 +11,13 @@ export const getAllCourses = async () => {
 // get course by id
 export const getCourseById = async (id) => {
   const data = await axiosInteceptor.get(`${Endpoints.CourseAPI}/${id}`);
-  // console.log('getbyid', data);
   return data;
 };
 
 // add new course
-// export const addNewCourse = async ({ courseData, formData }) => {
-//   const response = await axiosInteceptor.post(
-//     `${Endpoints.CourseAPI}`,
-//     courseData
-//   );
+// export const addNewCourse = async () => {
+//   const response = await axiosInteceptor.post(`${Endpoints.CourseAPI}`);
+
 //   const result = await axiosInteceptor.post(
 //     `${Endpoints.CourseCreate}/${id}/${response.data}`,
 //     formdata,

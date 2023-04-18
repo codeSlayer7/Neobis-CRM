@@ -1,4 +1,8 @@
 import { DataGrid } from '@mui/x-data-grid';
+import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../../constants/global';
+import { getCourseByIdThunk } from '../../../redux/service/courses/coursesAction';
 
 interface Columns {
   field: string;
@@ -8,33 +12,39 @@ interface Columns {
 }
 
 export default function CourseStudents() {
-  const studentRows = [
-    {
-      id: 1,
-      name: 'Жаныш Мамытов',
-      status: 'Активен',
-      number: '+996550141414',
-      laptop: 'есть',
-      email: 'qwerty@gmail.com',
-    },
-    {
-      id: 2,
-      name: 'Жаныш Мамытов',
-      status: 'Активен',
-      number: '+996 555 123 123',
-      laptop: 'есть',
-      email: 'qwerty@gmail.com',
-    },
-    {
-      id: 3,
-      name: 'Жаныш Мамытов',
-      status: 'Активен',
-      number: '+996 555 123 123',
-      laptop: 'выдан ноутбук',
-      email: 'qwerty@gmail.com',
-    },
-  ];
+  const dispatch = useAppDispatch();
+  const { id } = useParams();
 
+  const students = useAppSelector((state) => state.courses.courses);
+  useEffect(() => {
+    dispatch(getCourseByIdThunk(id));
+  }, [id, dispatch]);
+
+  //   {
+  //     id: 1,
+  //     name: 'Жаныш Мамытов',
+  //     status: 'Активен',
+  //     number: '+996550141414',
+  //     laptop: 'есть',
+  //     email: 'qwerty@gmail.com',
+  //   },
+  //   {
+  //     id: 2,
+  //     name: 'Жаныш Мамытов',
+  //     status: 'Активен',
+  //     number: '+996 555 123 123',
+  //     laptop: 'есть',
+  //     email: 'qwerty@gmail.com',
+  //   },
+  //   {
+  //     id: 3,
+  //     name: 'Жаныш Мамытов',
+  //     status: 'Активен',
+  //     number: '+996 555 123 123',
+  //     laptop: 'выдан ноутбук',
+  //     email: 'qwerty@gmail.com',
+  //   },
+  // ];
   const studentColumns: Columns[] = [
     { field: 'id', headerName: '', width: 0 },
     {
@@ -70,7 +80,7 @@ export default function CourseStudents() {
     <DataGrid
       autoHeight
       className=" hover:none w-[1300px] rounded-lg border bg-white shadow-lg"
-      rows={studentRows}
+      rows={students}
       columns={studentColumns}
       getRowClassName={(params) => 'even:bg-[#F4F7FD]'}
     />

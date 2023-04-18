@@ -16,51 +16,50 @@ function AdminMentorsDetails() {
   }, [id, dispatch]);
 
   return (
-    <div className="mx-10 h-[100vh] w-full items-center justify-center">
+    <div className="mx-10 mb-20 h-auto w-full items-center justify-center">
       <button
         type="button"
-        className="my-10 ml-[80%] inline-flex h-[43px] w-[212px] items-center justify-around rounded-lg border bg-[#4588C6] text-xl font-normal text-white transition duration-150 hover:scale-95"
+        className="my-10 ml-[80%] inline-flex h-[43px] w-[212px] items-center justify-around rounded-lg border bg- text-xl font-normal text-white transition duration-150 hover:scale-95"
       >
         Редактировать
         <EditWhite />
       </button>
-      <div className="relative mb-12 flex h-[797px] w-[1318px] rounded-xl border border-black bg-[#FCFDFE]">
-        <div className="mt-12 ml-8">
-          <img src={mentor.imageUrl} alt="#" />
-          <h3 className="mt-12 text-lg font-semibold">
+      <div className="relative mb-12 flex h-[797px] w-[1318px] rounded-xl border-2 shadow-md bg-[#FCFDFE]">
+        <div className="mt-12 ml-20">
+          <img
+            src={mentor.imageUrl}
+            alt="#"
+            className="h-[120px] w-[120px] rounded-full border"
+          />
+          <h3 className="mt-12 text-lg font-semibold text-[#4588C6]">
             Преподаватель <br />
             {mentor.courseName}
           </h3>
         </div>
-        <div className="mt-12 ml-28 w-[60%] ">
-          <div className='flex flex- my-10 justify-between w-full'>
-          <ul >
-            <li className="text-2xl font-semibold">Имя</li>
-            <li className="text-xl font-normal">
-              {mentor.firstName} {mentor.lastName}
-            </li>
-          </ul>
-          <ul className="mr-20">
-            <li className="text-2xl font-semibold">Номер телефона</li>
-            <li className="text-xl font-normal">{mentor.phoneNumber}</li>
-          </ul>
-          <ul className=" ">
-            <li className="text-2xl font-semibold">Gmail</li>
-            <li className="text-xl font-normal">{mentor.email}</li>
-          </ul>
+        <div className="mt-12 ml-28 flex w-[60%] flex-wrap justify-between ">
+          <div>
+            <ul className="my-5">
+              <li className="text-2xl font-semibold">Имя</li>
+              <li className="text-xl font-normal">
+                {mentor.firstName} {mentor.lastName}
+              </li>
+            </ul>
+            <ul>
+              <li className="text-2xl font-semibold">Номер телефона</li>
+              <li className="text-xl font-normal">{mentor.phoneNumber}</li>
+            </ul>
           </div>
-          <div className='flex flex-row mb-10'>
-          <ul className="mr-20">
-            <li className="text-2xl font-semibold">Номер патента</li>
-            <li className="text-xl font-normal">{mentor.patentNumber}</li>
-          </ul>
-          <ul className="mr-20">
-            <li className="text-2xl font-semibold">Обучение в группах</li>
-            <li className="text-xl font-normal">{mentor.courseName}</li>
-          </ul>
+          <div className='mr-20'>
+            <ul className="my-5">
+              <li className="text-2xl font-semibold">Обучение в группах</li>
+              <li className="text-xl font-normal">{mentor.groupName}</li>
+            </ul>
+            <ul className=" ">
+              <li className="text-2xl font-semibold">Gmail</li>
+              <li className="text-xl font-normal">{mentor.email}</li>
+            </ul>
           </div>
-         
-         
+
           <div className="mt-5 ">
             <h3 className="mb-8 text-2xl font-semibold">Расписание</h3>
             <div className="rounded-lg border ">
@@ -151,7 +150,7 @@ function AdminMentorsDetails() {
             </div>
           </div>
         </div>
-        <div className="r-5 absolute bottom-0 left-[-1px] h-0 w-0 rounded-bl-xl border border-b-[150px] border-r-[150px] border-[#FCFDFE] border-l-black border-b-[#4588C6]" />
+        <div className="mr-5 absolute bottom-0 left-[1px] h-0 w-0 rounded-bl-xl border border-b-[150px] border-r-[150px] border-[#FCFDFE] border-2 shadow-md border-b-[#4588C6]" />
       </div>
     </div>
   );
