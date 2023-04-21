@@ -86,10 +86,6 @@ const GroupField: React.FC<Props> = ({ options, value, name, onChange  }) => {
 {options.map(({ value, label}) => (
         <option value={value}>{label}</option>
       ))}
-        {/* <option value="">{options}</option> */}
-        {/* <option value="wallet">Электронный кошелек</option>
-        <option value="card">Кредитная карта</option>
-        // <option value="cash">Наличными</option> */}
       </select>
     </div>
   );

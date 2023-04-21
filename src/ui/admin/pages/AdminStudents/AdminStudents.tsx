@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import DropDown from '../../../components/DropDown';
 import Search from '../../../components/Search';
 import Modal from '../../components/Modals/Modal';
 import { StudentForm } from './StudentForm';
 import StudentTable from '../../../components/Table/StudentTable';
-import { searchStudent } from '../../../../api/studentApi';
-import debounce from 'lodash/debounce';
 import { array } from '../../components/AdminDropDown/GroupField';
+import { useAppDispatch } from '../../../../constants/global';
+import { getAllStudentsThunk } from '../../../../redux/slices/studentSlice';
 
 export const status = [
   {
@@ -26,47 +26,24 @@ export const status = [
 export default function AdminStudents() {
 const [searchValue, setSearchValue] = useState('');
 const [searchResults, setSearchResults] = useState([]);
+const [groups, setGroups] = useState('')
+const [status, setStatus] = useState('')
+const [sortType, setSortType] = useState('id')
 const [open, setOpen] = useState(false);
 const handleOpen = () => setOpen(true);
 const handleClose = () => setOpen(false);
+const dispatch = useAppDispatch();
 
-  // const filter = () => {
-  //   return filterStudent()
-  //     .then(response => {
-  //       console.log('Ответ от сервера:', response.data);
-  //       return response.data;
-  //     })
-  //     .catch(error => {
-  //       console.error('Ошибка при выполнении запроса:', error);
-  //       throw error;
-  //     });
-  // }
 
-  // const search = debounce(() => {
-  //   return (value: string) => {
-  //     const params={
-  //       status: "",
-  //       groupId:  2,
-  //       search: searchValue
-  //     }
-  //     return searchStudent(params)
-  //       .then(response => {
-  //         console.log('Ответ от сервера:', response.data);
-  //         return setSearchResults(response.data);
-  //       })
-  //       .catch(error => {
-  //         console.error('Ошибка при выполнении запроса:', error);
-  //         throw error;
-  //       });
-  //   }
-  // });
-  
-
-  // const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   const { value } = event.target;
-  //   setSearchValue(value);
-  //   // search(value);
-  // };
+useEffect(() => {
+  dispatch(getAllStudentsThunk({
+    groupId: groups,
+    page: 0,
+    size: 25,
+    sortBy: sortType,
+    status: status,
+  }));
+}, [groups, sortType, status, searchValue]);
 
 
   return (
@@ -76,20 +53,20 @@ const handleClose = () => setOpen(false);
         <div className="mr-[40px]">
           <DropDown
             label={<div className="text-base">Группа</div>}
-            onOptionClick={(option) => console.log(option)}
+            onOptionClick={(option) => setGroups(option.value)}
             options={array}
           />
         </div>
         <div className="mr-[40px]">
           <DropDown
             label={<div className="text-[16px]">Статус</div>}
-            onOptionClick={(option) => console.log(option)}
+            onOptionClick={(option) => setStatus(option.value)}
             options={status}
           />
         </div>
         <Search
-        //  value={searchValue} 
-        // onChange={handleSearchChange}
+         value={searchValue} 
+        onChange={(e) => setSearchValue(e.target.value)}
          />
         <button
           type="button"
@@ -103,7 +80,7 @@ const handleClose = () => setOpen(false);
         <StudentForm onClose={handleClose} />
       </Modal>
       <div>
-        <StudentTable/>
+        <StudentTable sortBy={(s: string) => () => setSortType(s)}/>
       </div>
 
     </div>

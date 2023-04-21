@@ -11,8 +11,7 @@ interface MyColums {
   renderCell?: any;
 }
 
-const StudentTable = ({ searchValue }: any) => {
-  const dispatch = useAppDispatch();
+const StudentTable = ({ searchValue, sortBy }: any) => {
 
   const students = useAppSelector((state) => {
     return state.student.students;
@@ -22,9 +21,6 @@ const StudentTable = ({ searchValue }: any) => {
     return state.user;
   });
 
-  useEffect(() => {
-    dispatch(getAllStudentsThunk());
-  }, [dispatch]);
 
   const colors = (status: 'Неактивный' | 'Активный' | 'Заморожен') =>
     status === 'Активный'
@@ -47,7 +43,7 @@ const StudentTable = ({ searchValue }: any) => {
     { field: 'id', headerName: '', width: 0 },
     {
       field: 'fullName',
-      headerName: <div className="text-[16px] font-semibold">Фио студента</div>,
+      headerName: <div onClick={sortBy('firstName')} className="text-[16px] font-semibold">Фио студента</div>,
       width: 215,
       renderCell: (params: any) => (
         <div>
@@ -57,7 +53,7 @@ const StudentTable = ({ searchValue }: any) => {
     },
     {
       field: 'status',
-      headerName: <div className="text-[16px] font-semibold">Статус</div>,
+      headerName: <div onClick={sortBy('status')} className="text-[16px] font-semibold">Статус</div>,
       width: 150,
       renderCell: (params: any) => {
         return (
@@ -76,28 +72,28 @@ const StudentTable = ({ searchValue }: any) => {
     },
     {
       field: 'phoneNumber',
-      headerName: <div className="text-[16px] font-semibold">Телефон</div>,
+      headerName: <div onClick={sortBy('phoneNumber')} className="text-[16px] font-semibold">Телефон</div>,
       width: 170,
     },
     {
       field: 'email',
-      headerName: <div className="text-[16px] font-semibold">Почта</div>,
+      headerName: <div onClick={sortBy('email')} className="text-[16px] font-semibold">Почта</div>,
       width: 195,
     },
     {
       field: 'gender',
-      headerName: <div className="text-[16px] font-semibold">Пол</div>,
+      headerName: <div onClick={sortBy('gender')} className="text-[16px] font-semibold">Пол</div>,
       width: 100,
     },
     {
       field: 'groups',
-      headerName: <div className="text-[16px] font-semibold">Группа</div>,
+      headerName: <div onClick={sortBy('groups')} className="text-[16px] font-semibold">Группа</div>,
       width: 140,
       renderCell: renderCell,
     },
     {
       field: 'totalPaymentPercentage',
-      headerName: <div className="text-[16px] font-semibold">Оплата</div>,
+      headerName: <div onClick={sortBy('totalPaymentPercentage')} className="text-[16px] font-semibold">Оплата</div>,
       width: 110,
     },
   ];

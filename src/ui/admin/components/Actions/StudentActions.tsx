@@ -4,14 +4,16 @@ import { useState } from 'react';
 import ArchiveClient from '../../../components/Modals/ArchiveClient';
 import Modal from '../Modals/Modal';
 import { UpdateStudentForm } from '../../pages/AdminStudents/UpdateStudentForm';
+import { PaymentForm } from '../../pages/AdminStudents/PaymentForm';
 
 interface Props{
 student: any
 }
-const StudentActions:React.FC<Props> = ({student})=> {
+const StudentActions = ({student}: Props)=> {
   
   const [openModalArchive, setOpenModalArchive] = useState(false);
   const [openModalEditStudent, setOpenModalEditStudent] = useState(false);
+  const [openModalPayment, setOpenModalPayment] = useState(false);
 
   const handleOpenModalEditStudent = () => {
     setOpenModalEditStudent(true)
@@ -28,6 +30,14 @@ const StudentActions:React.FC<Props> = ({student})=> {
   const handleClose = () => {
     setOpenModalArchive(false);
   };
+
+  const handleOpenModalPayment = () => {
+    setOpenModalPayment(true)
+  }
+
+  const handleCloseModalPayment = () => {
+    setOpenModalPayment(false)
+  }
 
 
   return (
@@ -48,7 +58,10 @@ const StudentActions:React.FC<Props> = ({student})=> {
       </Modal>
 
       {/* ------PAYMENT--------------- */}
-        <MdPayment className="text-[30px] mt-[2px] text-slate-400 hover:text-[#4588C6]" />
+        <MdPayment className="text-[30px] mt-[2px] text-slate-400 hover:text-[#4588C6]" onClick={handleOpenModalPayment}/>
+        <Modal title="Добавление оплаты" open={openModalPayment} onClose={handleCloseModalPayment}>
+          <PaymentForm onClose={handleCloseModalPayment} student={student} />
+        </Modal>
     </div>
   );
 }

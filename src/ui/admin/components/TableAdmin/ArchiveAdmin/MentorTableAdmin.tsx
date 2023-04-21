@@ -17,6 +17,8 @@ export default function MentorTableAdmin() {
   const mentors = useAppSelector((state) => {
     return state.archive.mentors;
   }) 
+  console.log('mentors',mentors);
+  
   
   useEffect(() => {
     dispatch(getAllMentorsArchiveThunk())

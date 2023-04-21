@@ -1,12 +1,21 @@
 import { useState } from 'react';
 import Modal from '@mui/material/Modal';
 import AdminCourseCard from './AdminCourseCard';
-import CreateCourse from '../../components/Modals/CreateCourse';
+import CreateCourse, { CourseType } from '../../components/Modals/CreateCourse';
+import { CourseData } from '../../../../redux/types/courseTypes';
 
 export default function AdminCourses() {
   const [open, setOpen] = useState(false);
+  const [type, setType] = useState<'create' | 'edit'>('create')
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [editingCourse, setEditingCourse] = useState<CourseType | undefined>()
+
+  const openEditMenu = (course: CourseType) => {
+    setType('edit')
+    setEditingCourse(course)
+    setOpen(true)
+  }
   return (
     <div className="h-auto w-[100%] pb-0 pl-[20px] pr-[0px] pt-[40px] ">
       <button
@@ -23,11 +32,11 @@ export default function AdminCourses() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <CreateCourse handleClose={handleClose} />
+        <CreateCourse type={type} editingCourse={editingCourse} handleClose={handleClose} />
       </Modal>
 
       <div className="flex w-full flex-wrap justify-between">
-        <AdminCourseCard />
+        <AdminCourseCard openEditMenu={openEditMenu} />
       </div>
     </div>
   );
