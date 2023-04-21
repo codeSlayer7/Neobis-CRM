@@ -8,7 +8,6 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const EmailInput: React.FC<Props> = ({ error, helperText, ...rest }) => {
-  console.log('err', error);
   return (
     <div>
       <div className="mb-[10px] text-[20px] font-medium">Email</div>
@@ -21,9 +20,6 @@ const EmailInput: React.FC<Props> = ({ error, helperText, ...rest }) => {
           {...rest}
           id="email"
           type="text"
-          // style={
-          //   error ? { border: '1px solid red' } : { border: '1px solid gray' }
-          // }
           className="inline-flex justify-around h-[60px] w-96 rounded-lg border bg-gray-50 p-2.5 pl-16 pb-5 pt-4 text-[20px] 
           font-normal text-gray-900  focus:ring-blue-500 dark:placeholder:text-gray-400"
           placeholder="введите ваш email"

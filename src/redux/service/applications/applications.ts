@@ -78,10 +78,12 @@ export const getAllApplicatins = async (
 export const getSortedApplication = async (): Promise<IApplication[]> => {
   try {
     return await axiosInteceptor.get(`${Endpoints.ApplicationsSorted}`);
-  } catch (e) {
-    throw new Error(e.message);
+  } catch (err) {
+    console.log(err);
+    throw new Error("Failed to fetch sorted applications"); 
   }
 };
+
 
 export const postAppliction = async (
   data: AxiosRequestConfig<IApplicationPost>
@@ -89,7 +91,7 @@ export const postAppliction = async (
   try {
     await axiosInteceptor.get(`${Endpoints.Applicatins}`, data);
   } catch (e) {
-    throw new Error(e.message);
+    throw new Error("Failed to post application")
   }
 };
 
@@ -100,7 +102,7 @@ export const updateApplication = async (
   try {
     return await axiosInteceptor.put(`${Endpoints.Applicatins}/${id}`, data);
   } catch (e) {
-    throw new Error(e.message);
+    throw new Error('Failed to update application with id ${id}');
   }
 };
 

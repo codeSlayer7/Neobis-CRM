@@ -24,8 +24,8 @@ export const usePagination = (
   const [items, setItems] = React.useState(itemList);
   const [currentPage, setCurrentPage] = React.useState(1);
 
-  const isPaginating = items.length > maxItemsPerPage;
-  const totalPages = Math.ceil(items.length / maxItemsPerPage);
+  const isPaginating = items?.length > maxItemsPerPage;
+  const totalPages = Math.ceil(items?.length / maxItemsPerPage);
 
   const pageItems: any[] = items.filter((val, index) => {
     if (!isPaginating) {

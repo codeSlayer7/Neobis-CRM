@@ -1,4 +1,4 @@
-function HistoryModal({ show, manager }) {
+function HistoryModal({ show, manager }: any) {
   if (!show) {
     return null;
   }

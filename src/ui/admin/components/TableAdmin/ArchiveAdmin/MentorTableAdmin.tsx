@@ -1,8 +1,8 @@
 import { DataGrid } from '@mui/x-data-grid';
 import { useAppDispatch, useAppSelector } from '../../../../../constants/global';
 import { useEffect } from 'react';
+import { getAllMentorsArchiveThunk } from '../../../../../redux/slices/archiveSlice';
 import ArchiveAction from '../../Actions/ArchiveAction';
-import { getAllUsersArchiveThunk } from '../../../../../redux/slices/archiveSlice';
 
 interface Columns {
   field: string;
@@ -11,56 +11,54 @@ interface Columns {
   renderCell?: any;
 }
 
-export default function UserTableAdmin() {
+export default function MentorTableAdmin() {
   const dispatch = useAppDispatch()
 
-  const archiveUsers = useAppSelector((state) => {
-    return state.archive.users
-  })
-
-  console.log("users", archiveUsers);
+  const mentors = useAppSelector((state) => {
+    return state.archive.mentors;
+  }) 
   
-
-  useEffect(()=>{
-    dispatch(getAllUsersArchiveThunk())
+  useEffect(() => {
+    dispatch(getAllMentorsArchiveThunk())
   }, [dispatch])
 
 
-  const userColumns: Columns[] = [
+
+  const mentorColumns: Columns[] = [
     { field: 'id', headerName: '', width: 0 },
     {
       field: 'fullName',
       headerName: <div className="text-[16px] font-semibold">Ф.И.О.</div>,
-      width: 209,
+      width: 210,
       renderCell: (params: any) => (
         <div>
           {params.row.firstName} {params.row.lastName}
         </div>
-      ),
+      )
     },
     {
       field: 'email',
       headerName: <div className="text-[16px] font-semibold">Email</div>,
-      width: 210,
+      width: 219,
     },
     {
-      field: 'phoneNumber',
-      headerName: <div className="text-[16px] font-semibold">Телефон</div>,
-      width: 180,
+      field: 'course',
+      headerName: <div className="text-[16px] font-semibold">Курс</div>,
+      width: 170,
     },
     {
       field: 'dateArchive',
       headerName: (
         <div className="text-[16px] font-semibold">Дата архивации</div>
       ),
-      width: 200,
+      width: 190,
     },
     {
       field: 'reasonArchive',
       headerName: (
         <div className="text-[16px] font-semibold">Причина архивации</div>
       ),
-      width: 330,
+      width: 320,
     },
     {
         field: 'actions',
@@ -74,8 +72,8 @@ export default function UserTableAdmin() {
     <DataGrid
       autoHeight
       className=" bg-white border rounded-lg shadow-lg w-[1300px] hover:none"
-      rows={archiveUsers}
-      columns={userColumns}
+      rows={mentors}
+      columns={mentorColumns}
       getRowClassName={(params) => 'even:bg-[#dee7f3]'}
     />
   );

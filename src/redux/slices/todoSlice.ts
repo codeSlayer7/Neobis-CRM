@@ -3,7 +3,6 @@ import { ItemBack, Column, DragResult } from '../../interfaces';
 import { CardStatus } from '../../interfaces/enum';
 import { IApplication } from '../service/applications/applications';
 import {
-  getAllApplications,
   getAllAppThunk,
 } from '../service/applications/applicationAction';
 
@@ -13,7 +12,7 @@ const initialState: Column = {
   columns: {
     waitingForCall: {
       name: 'Ждет звонка',
-      items: itemsFromBackend || [],
+      items: [],
     },
     callReceived: {
       name: 'Звонок совершен',

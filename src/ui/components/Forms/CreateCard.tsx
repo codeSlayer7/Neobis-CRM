@@ -9,10 +9,7 @@ import {
   MarketingStrategyType,
 } from '../../../interfaces/enum';
 import More from '../../icons/More';
-import DropDown from '../DropDown';
 import { Select, MenuItem, styled } from '@mui/material';
-import { borderRadius } from '@mui/system';
-import { applyInitialState } from '@mui/x-data-grid/hooks/features/columns/gridColumnsUtils';
 
 const CustomSelect = styled(Select)(() => ({
   height: '40px',

@@ -9,6 +9,7 @@ import SearchIcon from '../../../icons/SearchIcon';
 import CourseStudents from '../../../components/Table/CourseStudents';
 import Schedule from '../../../components/Schedule/schedule';
 import Calendar from '../../../components/Schedule/calendar';
+import { array } from '../../components/AdminDropDown/GroupField';
 import { useAppDispatch, useAppSelector } from '../../../../constants/global';
 import { getCourseByIdThunk } from '../../../../redux/service/courses/coursesAction';
 
@@ -79,11 +80,16 @@ function AdminGroups() {
           </span>
         </div>
       </div>
-      <div className="my-20 mb-10 flex w-[45%] justify-between">
+      <div className="my-20 mb-10 flex w-[60%] justify-between">
+        {/* <DropDown
+          label={<div className="font-sans text-base">Оплата</div>}
+          onOptionClick={(option) => `(option)`}
+          options={['Наличными', 'Карта']}
+        /> */}
         <DropDown
           label={<div className="font-sans text-base">Группы</div>}
           onOptionClick={(option) => `(option)`}
-          options={['Python 1', 'Python 2']}
+          options={array}
         />
         <div className="flex w-[420px] items-center justify-between">
           <input

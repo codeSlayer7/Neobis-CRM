@@ -13,9 +13,9 @@ import Courses from '../pages/Groups/Courses';
 import Students from '../pages/Students';
 import Mentors from '../pages/Mentors/Mentors';
 import MentorsDetails from '../pages/Mentors/MentorsDetails/MentorsDetails';
-import Archive from '../pages/Archive/Archive';
-import Profile from '../icons/Profile';
 import HistoryTitle from '../pages/HistoryOperation/history/history-title';
+import Profile from '../pages/Profile/Profile';
+import Archive from '../pages/Archive/Archive';
 
 const RouteWrapper = ({ children }: any) => {
   return (
@@ -37,8 +37,7 @@ export default function Client() {
         <Route path="infomodal" element={<InfoModal />} />
         <Route path="fullinfomodal" element={<FullInfoModal />} />
         <Route path="createcard" element={<CreateCard />} />
-        <Route path="archiveclient" element={<ArchiveClient />} />
-        <Route path="rejectionreason" element={<RejectionReason />} />
+        <Route path="groups" element={<Groups />} />
         <Route path="courses" element={<Courses />} />
         <Route path="courses/:id" element={<Groups />} />
         <Route path="students" element={<Students />} />
@@ -46,6 +45,7 @@ export default function Client() {
         <Route path="mentors/:id" element={<MentorsDetails />} />
         <Route path="archive" element={<Archive />} />
         <Route path="profile" element={<Profile />} />
+        <Route path="archive" element={<Archive />} />
         <Route path="history" element={<HistoryTitle />} />
       </Routes>
     </RouteWrapper>

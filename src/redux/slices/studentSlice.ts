@@ -9,15 +9,16 @@ const initialState = {
 };
 
 export const getAllStudentsThunk = createAsyncThunk(
-  'users/getAllStudents',
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await getAllStudents();
-      return response.data;
-    } catch (err) {
-      return rejectWithValue(getApiErrorMessage(err));
+    'users/getAllStudents',
+    async (_, { rejectWithValue }) => {
+      try {
+        const response = await getAllStudents();
+        
+        return response.data;
+      } catch (err) {
+        return rejectWithValue(getApiErrorMessage(err));
+      }
     }
-  }
 );
 
 const studentSlice = createSlice({

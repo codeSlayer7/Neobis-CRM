@@ -1,32 +1,67 @@
+import ReactApexChart from 'react-apexcharts';
 
-    // import ReactApexChart from 'react-apexcharts';
-    
-    // const options = {
-    //   series: [{ data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380] }],
-    //   chart: {
-    //     type: 'bar',
-    //     height: 350,
-    //   },
-    //   plotOptions: {
-    //     bar: {
-    //       borderRadius: 4,
-    //       horizontal: true,
-    //     },
-    //   },
-    //   dataLabels: {
-    //     enabled: false,
-    //   },
-    //   xaxis: {
-    //     categories: [
-    //         'не получается совмещать с работой', 'финансовые трудности', 'не успеваю по учебе', 'непосещающие ', 'другое'
-    //     ],
-    //   },
-    // };
-    
-    // export default function ReasonsForLosingClient = () => {
-    //   return (
-    //     <ReactApexChart options={options} series={options.series} type="bar" height={350} />
-    //   );
-    // };
-    
-    
+const ReasonsForLosingClient = () => {
+  const options: ApexCharts.ApexOptions = {
+    series: [{ data: [400, 430, 448, 470, 540] }],
+    chart: {
+      type: 'bar',
+      height: 250,
+    },
+    plotOptions: {
+      bar: {
+        borderRadius: 4,
+        horizontal: true,
+        colors: {
+          ranges: [
+            {
+              from: 0,
+              to: 1000,
+              color: '#A78BFA', // Устанавливаем фиолетовый цвет для баров
+            },
+          ],
+        },
+      },
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    xaxis: {
+      categories: [
+        'не получается совмещать с работой',
+        'финансовые трудности',
+        'не успеваю по учебе',
+        'непосещающие',
+        'другое',
+      ],
+    },
+    yaxis: {
+      labels: {
+        show: true, // Показываем лейблы
+        rotate: -45, // Максимальная высота лейблов
+        style: {
+          fontSize: '12px', // Размер шрифта лейблов
+          fontWeight: 'bold', // Жирность шрифта лейблов
+          colors: '#000000', // Цвет шрифта лейблов
+        },
+        offsetY: 0, // Смещение лейблов по оси Y
+      },
+    },
+  };
+
+  return (
+    <div className="border-2 bg-[#F4F7FD] text-gray-900 p-4 rounded-md">
+              <div className="flex flex-col pl-[39px] pt-[10px]">
+        <span className="text-[#9291A5] ">Статистика</span>
+        <div className="mb-[20px] text-[20px] font-semibold">
+        Причины потери клиента
+        </div>
+      </div>
+      <div className="border -[1px solid #E5E5EF]"></div>
+      <div className='ml-[-55px]'>
+      <ReactApexChart options={options} series={options.series} type="bar" width={1320}  height={280} />
+      </div>
+    </div>
+  );
+};
+
+export default ReasonsForLosingClient;

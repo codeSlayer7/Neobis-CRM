@@ -1,7 +1,7 @@
 import BlackListAdmin from "./BlackListAdmin";
 import GroupAdmin from "./GroupsAdmin";
 import StudentTableAdmin from "./StudentAdmin";
-import TeacherTableAdmin from "./TeacherAdmin";
+import TeacherTableAdmin from "./MentorTableAdmin";
 import UserTableAdmin from "./UserAdmin";
 
 

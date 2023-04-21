@@ -88,6 +88,7 @@ const colStartClasses = [
   'col-start-6',
   'col-start-7',
 ];
+//@ts-ignore
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
@@ -101,7 +102,7 @@ export default function Calendar() {
   const [currentMonth, setCurrentMonth] = useState(format(today, 'MMM-yyyy'));
   const firstDayCurrentMonth = parse(currentMonth, 'MMM-yyyy', new Date());
 
-  function getDatesInRange(startDate, endDate) {
+  function getDatesInRange(startDate:any, endDate:any) {
     return eachDayOfInterval({
       start: new Date(startDate),
       end: new Date(endDate),
@@ -259,7 +260,7 @@ export default function Calendar() {
               </time>
             </h2>
             <ol className="mt-4 space-y-1 text-sm leading-6 text-gray-500">
-              {selectedDayMeetings.length > 0 ? (
+              {selectedDayMeetings?.length > 0 ? (
                 selectedDayMeetings.map((meeting) => (
                   <Meeting meeting={meeting} key={meeting.id} />
                 ))
@@ -277,7 +278,7 @@ export default function Calendar() {
   );
 }
 
-function Meeting({ meeting }) {
+function Meeting({ meeting }:any) {
   const startDateTime = parseISO(meeting.startDatetime);
   const endDateTime = parseISO(meeting.endDatetime);
 

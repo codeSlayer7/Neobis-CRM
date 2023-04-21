@@ -1,6 +1,6 @@
 import { DataGrid } from '@mui/x-data-grid';
 import { useAppDispatch, useAppSelector } from '../../../../constants/global';
-import React from 'react';
+import React, { useState } from 'react';
 import { getAllUserThunk } from '../../../../redux/slices/adminSlice';
 import Actions from '../Actions/Actions';
 
@@ -18,17 +18,13 @@ export default function UserTable() {
     return state.admin.users;
   });
 
-  const renderCell = (params: any) => (
-    <div>
-      {params.row.firstName} {params.row.lastName}
-    </div>
-  );
-
-  const renderCellDate = (params: any) => (
-    <div>
-      {params.row.lastVisitDate} {params.row.lastVisitTime}
-    </div>
-  );
+  const renderCellDate = (params: any) => {
+    return (
+      <div>
+        {params.row.lastVisitDate} {params.row.lastVisitTime}
+      </div>
+    );
+  };
 
   React.useEffect(() => {
     dispatch(getAllUserThunk());
@@ -40,7 +36,7 @@ export default function UserTable() {
       field: 'fullName',
       headerName: <div className="text-[16px] font-semibold">Ф.И.О</div>,
       width: 270,
-      renderCell: renderCell,
+      renderCell: (params: any) => ( <div> {params.row.firstName} {params.row.lastName}</div>)
     },
     {
       field: 'email',
@@ -68,7 +64,9 @@ export default function UserTable() {
       headerName: <div className="text-[16px] font-semibold">Действия</div>,
 
       width: 120,
-      renderCell: (params: any) => <Actions {...params} />,
+      renderCell: (params: any) => {
+        return <Actions user={params.row} />;
+      },
     },
   ];
 
@@ -79,7 +77,6 @@ export default function UserTable() {
       rows={users}
       columns={userColumns}
       getRowClassName={(params) => 'even:bg-[#dee7f3]'}
-      // experimentalFeatures={{ : true }}
     />
   );
 }

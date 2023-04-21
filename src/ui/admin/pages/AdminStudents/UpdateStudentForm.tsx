@@ -1,26 +1,18 @@
 import { useFormik } from 'formik';
-import { createStudent } from '../../../../api/studentApi';
 import { StudentData } from '../../../../redux/types/adminTypes';
 import InputField from '../../components/Input/InputField';
 import SendButton from '../../components/Button';
 import { useAppDispatch } from '../../../../constants/global';
 import { getAllStudentsThunk } from '../../../../redux/slices/studentSlice';
 import { schemaCreate } from '../../../../utils/schema';
+import { updateStudent } from '../../../../api/studentApi';
 import GroupField, { array } from '../../components/AdminDropDown/GroupField';
 
-const initialValues = {
-  firstName: '',
-  lastName: '',
-  email: '',
-  phoneNumber: '',
-  gender: '',
-  enrollmentGroupId: '',
-};
 
-export const StudentForm = ({ onClose }: any) => {
+export const UpdateStudentForm = ({ onClose, student }: any) => {
   const dispatch = useAppDispatch();
   const onSubmit = (data: StudentData) => {
-    createStudent(data)
+    updateStudent(student.id,data)
       .then((res) => {
         dispatch(getAllStudentsThunk());
         /// add popup
@@ -33,7 +25,7 @@ export const StudentForm = ({ onClose }: any) => {
   };
 
   const formik = useFormik({
-    initialValues,
+    initialValues: student,
     validationSchema: schemaCreate,
     validateOnChange: false,
     onSubmit,
@@ -56,12 +48,6 @@ export const StudentForm = ({ onClose }: any) => {
         onChange={formik.handleChange}
       />
       <InputField
-        label="Пол"
-        name="gender"
-        value={formik.values.gender}
-        onChange={formik.handleChange}
-      />
-      <InputField
         label="Почта"
         name="email"
         value={formik.values.email}
@@ -69,12 +55,11 @@ export const StudentForm = ({ onClose }: any) => {
       />
       <InputField
         label="Номер телефона"
-        type="number"
         name="phoneNumber"
         value={formik.values.phoneNumber}
         onChange={formik.handleChange}
       />
-      <label className="mb-3 block text-lg font-semibold text-gray-900">
+      {/* <label className="mb-3 block text-lg font-semibold text-gray-900">
         Группа
       </label>
       <GroupField
@@ -82,8 +67,8 @@ export const StudentForm = ({ onClose }: any) => {
       onChange={(e)=> formik.setFieldValue("enrollmentGroupId", e.target.value)}
       value={formik.values.enrollmentGroupId}
       options={array}
-      />
-      <SendButton name="Добавить" />
+      /> */}
+      <SendButton name="Изменить" />
     </form>
   );
 };

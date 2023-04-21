@@ -1,38 +1,31 @@
 import { useFormik } from 'formik';
-import { schema } from '../../../../utils/schema';
 import InputField from '../../components/Input/InputField';
-import { createUser } from '../../../../api/adminApi';
-import { UserData } from '../../../../redux/types/adminTypes';
 import SendButton from '../../components/Button';
 import { useAppDispatch } from '../../../../constants/global';
 import { getAllUserThunk } from '../../../../redux/slices/adminSlice';
-import { useState } from 'react';
+import { updateUser } from '../../../../api/adminApi';
+import { UserData } from '../../../../redux/types/adminTypes';
+import { schemaUpdate } from '../../../../utils/schema';
 
-const initialValues = {
-  firstName: '',
-  lastName: '',
-  phoneNumber: '',
-  email: '',
-  password: '',
-};
+const UpdateManagerForm = ({ onClose, user : oldUser }: any) => {
+  const {lastVisitDate, lastVisitTime, ...user  } = oldUser;;
+  
 
-const ManagerForm = ({onClose} : any) => {
-const dispatch = useAppDispatch() 
-
-    const onSubmit = (data: UserData) => {
-        createUser(data)
-          .then((res) => {
-            dispatch(getAllUserThunk());
-            onClose();
-          })
-          .catch((error) => {
-            console.log('error', error);
-          });
-      }
+  const dispatch = useAppDispatch();
+  const onSubmit = (data: UserData) => {
+    updateUser(user.id, data)
+      .then((res) => {
+        dispatch(getAllUserThunk());
+        onClose();
+      })
+      .catch((error) => {
+        console.log('error', error);
+      });
+  };
 
   const formik = useFormik({
-    initialValues,
-    validationSchema: schema,
+    initialValues: user,
+    validationSchema: schemaUpdate,
     validateOnChange: false,
     onSubmit,
   });
@@ -52,7 +45,6 @@ const dispatch = useAppDispatch()
         label="Фамилия"
       />
       <InputField
-        type="number"
         name="phoneNumber"
         value={formik.values.phoneNumber}
         onChange={formik.handleChange}
@@ -64,15 +56,9 @@ const dispatch = useAppDispatch()
         onChange={formik.handleChange}
         label="Почта"
       />
-      <InputField
-        name="password"
-        value={formik.values.password}
-        onChange={formik.handleChange}
-        label="Пароль"
-      />
-      <SendButton name={'Создать'} />
+      <SendButton name={'Изменить'} />
     </form>
   );
-  }
+};
 
-export default ManagerForm;
+export default UpdateManagerForm;

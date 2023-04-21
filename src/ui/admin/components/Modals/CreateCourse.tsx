@@ -8,11 +8,11 @@ import FormData from 'form-data';
 import { useAppDispatch } from '../../../../constants/global';
 import { addNewCourseThunk } from '../../../../redux/service/courses/coursesAction';
 
-function CreateCourse({ handleClose }) {
+function CreateCourse({ handleClose }: any) {
   const [selectedImage, setSelectedImage] = useState(null);
   const dispatch = useAppDispatch();
 
-  const onSubmit = (values) => {
+  const onSubmit = (values: any) => {
     const formData = new FormData();
     formData.append('multipartFile', selectedImage as Blob);
     dispatch(addNewCourseThunk({ formData ,values}));
