@@ -13,6 +13,8 @@ export default function ApplicationIcon() {
         strokeWidth="1.5"
         strokeMiterlimit="10"
         strokeLinecap="round"
+        className="group-hover:stroke-[#A062F7]"
+
         strokeLinejoin="round"
       />
       <path
@@ -22,6 +24,8 @@ export default function ApplicationIcon() {
         strokeMiterlimit="10"
         strokeLinecap="round"
         strokeLinejoin="round"
+        className="group-hover:stroke-[#A062F7]"
+
       />
       <path
         d="M9.25 27.5H18.25"
@@ -30,6 +34,8 @@ export default function ApplicationIcon() {
         strokeMiterlimit="10"
         strokeLinecap="round"
         strokeLinejoin="round"
+        className="group-hover:stroke-[#A062F7]"
+
       />
       <path
         d="M13.75 23V27.5"
@@ -38,6 +44,8 @@ export default function ApplicationIcon() {
         strokeMiterlimit="10"
         strokeLinecap="round"
         strokeLinejoin="round"
+        className="group-hover:stroke-[#A062F7]"
+
       />
       <path
         d="M23.1194 9.0625H23.1306"
@@ -45,12 +53,16 @@ export default function ApplicationIcon() {
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
+        className="group-hover:stroke-[#A062F7]"
+
       />
       <path
         d="M19.6196 9.0625H19.6309"
         stroke="#C7C7C7"
         strokeWidth="1.5"
         strokeLinecap="round"
+        className="group-hover:stroke-[#A062F7]"
+
         strokeLinejoin="round"
       />
       <path
@@ -58,6 +70,8 @@ export default function ApplicationIcon() {
         stroke="#C7C7C7"
         strokeWidth="1.5"
         strokeLinecap="round"
+        className="group-hover:stroke-[#A062F7]"
+
         strokeLinejoin="round"
       />
     </svg>

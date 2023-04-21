@@ -58,7 +58,7 @@ export const addNewCourseThunk = createAsyncThunk(
 // export const 
 
 const coursesAction = createSlice({
-  name: 'course',
+  name: 'courses',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -70,7 +70,9 @@ const coursesAction = createSlice({
         (state, { payload }: PayloadAction<any>) => {
           // console.log('8', payload);
           state.loading = false;
-          state.course = payload;
+          // state.course = payload;
+          state.courses = payload;
+
         }
       ),
       builder.addCase(

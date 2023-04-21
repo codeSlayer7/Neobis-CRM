@@ -47,7 +47,7 @@ function ProfileDropDown() {
             <Link to="/history">
               <li className="mt-2 inline-flex w-full items-center justify-start hover:text-[#A062F7]">
                 <BiHistory className="mx-2" />
-                История операции
+                Мои операции
               </li>
             </Link>
             <button

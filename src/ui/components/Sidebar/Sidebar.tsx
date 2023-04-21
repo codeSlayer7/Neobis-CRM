@@ -1,18 +1,19 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import { HiOutlineArrowLongRight } from 'react-icons/hi2';
 import { HiOutlineMenuAlt1 } from 'react-icons/hi';
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import StudentIcon from '../../icons/StudentIcon';
 import ArchiveIcon from '../../icons/ArchiveIcon';
 import MentorsIcon from '../../icons/MentorsIcon';
 import ApplicationIcon from '../../icons/ApplicationIcon';
-// import AnalyticsIcon from '../../icons/AnalyticsIcon';
 import Education from '../../icons/Education';
-// import Course from '../../icons/Course';
 import HistoryHeader from './history-header';
 import HoverText from './hoverText';
 import { useAppDispatch } from '../../../constants/global';
 import { toggleStore } from '../../../redux/slices/toggleSidebar';
+// import History from '../../icons/History';
+import HistoryIcon from '../../icons/HistoryIcon';
+import HistoryIcon1 from '../../icons/HistoryIcon1';
 
 interface IMenuItem {
   name: string;
@@ -46,6 +47,7 @@ function Sidebar({ children }: Props) {
     { name: 'Студенты', path: '/students', icon: <StudentIcon /> },
     { name: 'Преподаватели', path: '/mentors', icon: <MentorsIcon /> },
     { name: 'Архивы', path: '/archive', icon: <ArchiveIcon /> },
+    { name: 'История операции', path: '/history', icon: <HistoryIcon1 /> },
   ];
   return (
     <div className="flex ">
@@ -93,7 +95,7 @@ function Sidebar({ children }: Props) {
       {/* <div className="flex flex-col"> */}
 
       {location.pathname === '/history' ? (
-        <div className="flex flex-col h-[100vh]" >
+        <div className="flex h-[100vh] flex-col">
           {' '}
           <HistoryHeader />
           <main

@@ -1,9 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
-import mentor from '../../../icons/female.png';
+import mentor from '../../../images/online-learning.png';
 import room from '../../../icons/video-lesson.png';
 import python from '../../../icons/it-department.png';
-import student from '../../../icons/classmates.png';
+import student from '../../../images/classmates.png';
 import DropDown from '../../../components/DropDown';
 import SearchIcon from '../../../icons/SearchIcon';
 import CourseStudents from '../../../components/Table/CourseStudents';
@@ -28,12 +28,12 @@ function AdminGroups() {
       <div className="flex h-24 w-[1287px] items-center justify-around rounded-lg border-2 border-slate-200 bg-white shadow-md ">
         <div className="flex">
           <img
-            className="h-[65px] w-[65px]  rounded-full border-4 border-blue-200 p-1"
+            className="h-[65px] w-[65px]  rounded-full border-[3px] border-[#4588C6] p-1"
             src={mentor}
             alt="#"
           />
           <span className="ml-3">
-            <p className="text-xl font-normal">Преподаватель</p>
+            <p className="text-xl font-normal">Преподаватели</p>
             <h3 className="text-2xl font-semibold text-[#4588C6]">
               {course.numberOfMentors}
             </h3>
@@ -41,12 +41,12 @@ function AdminGroups() {
         </div>
         <div className="flex">
           <img
-            className="h-[65px] w-[65px]  rounded-full border-4 border-blue-200 p-1"
+            className="h-[65px] w-[65px]  rounded-full border-[3px] border-[#4588C6] p-1"
             src={python}
             alt="#"
           />
           <span className="ml-3">
-            <p className="text-2xl font-normal">Группа</p>
+            <p className="text-2xl font-normal">Группы</p>
             <h3 className="text-xl font-semibold text-[#4588C6] ">
               {course.numberOfGroups}
             </h3>
@@ -54,7 +54,7 @@ function AdminGroups() {
         </div>
         <div className="flex">
           <img
-            className="h-[65px] w-[65px]  rounded-full border-4 border-blue-200 p-1"
+            className="h-[65px] w-[65px]  rounded-full border-[3px] border-[#4588C6] p-1"
             src={room}
             alt="#"
           />
@@ -68,7 +68,7 @@ function AdminGroups() {
 
         <div className="flex">
           <img
-            className="h-[65px] w-[65px] rounded-full border-4 border-blue-200 p-1"
+            className="h-[65px] w-[65px] rounded-full border-[3px] border-[#4588C6] p-1"
             src={student}
             alt="#"
           />
