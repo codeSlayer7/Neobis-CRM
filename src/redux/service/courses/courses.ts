@@ -1,6 +1,7 @@
 // import { AxiosRequestConfig } from 'axios';
 import axiosInteceptor from '../../../api/base/interceptor';
 import { Endpoints } from '../../../interfaces/enum/index';
+import { getApiErrorMessage } from '../../../utils/utils';
 
 // get all courses
 export const getAllCourses = async () => {
@@ -14,7 +15,7 @@ export const getCourseById = async (id) => {
   return data;
 };
 
-// add new course
+// add new course ApplicationsArchiveWithId
 export const addNewCourse = async ({ values, formData }) => {
   const response = await axiosInteceptor.post(`${Endpoints.CourseAPI}`, values);
 
@@ -32,16 +33,22 @@ export const addNewCourse = async ({ values, formData }) => {
 
 //update course
 export const updateCourse = async({values, formData}) =>{
-  const response = await axiosInteceptor.put(`${Endpoints.CourseAPI}`, values);
+  return axiosInteceptor.put(`${Endpoints.CourseAPI}/${values.id}`, values)
+    .then(res => {
+      if(res.status === 200 && typeof formData !== 'string') {
+        axiosInteceptor.post(
+          `${Endpoints.CourseCreate}/${values.id}`,
+          formData,
+          {
+            headers: {
+              'Content-Type': `multipart/form-data`,
+            },
+          }
+        );
+      }
+    })
+}
 
-  const result = await axiosInteceptor.put(
-    `${Endpoints.CourseAPI}/${values.id}`,
-    formData,
-    {
-      headers: {
-        'Content-Type': `multipart/form-data`,
-      },
-    }
-  )
-  return result.data;
+export const archiveCourse = (id: number) => {
+  return axiosInteceptor.put(`${Endpoints.CourseAPI}/archive?courseId=${id}`, { reason: 'kurs govno' })
 }

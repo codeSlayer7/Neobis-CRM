@@ -13,7 +13,9 @@ export const updateStudent = (id: any,student: any) => {
   return axiosInteceptor.put(`/api/v1/students/${id}`, student)
 }
 
-export const searchStudent = (params:any) => {
+export const searchStudent = (params:{string: string; page: number; status: string; groupId: number; sortBy: string; size: number;  }) => {
+  const query = new URLSearchParams(params).toString()
+  console.log(query)
   return axiosInteceptor.get('/api/v1/students/find?',{params})
 }
 

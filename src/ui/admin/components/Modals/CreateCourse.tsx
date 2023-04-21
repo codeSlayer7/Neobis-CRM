@@ -1,22 +1,62 @@
+import React, { useState } from 'react';
 import { IoClose } from 'react-icons/io5';
 import { FiUpload } from 'react-icons/fi';
-import { useState } from 'react';
 import { MdDeleteOutline } from 'react-icons/md';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import FormData from 'form-data';
 import { useAppDispatch } from '../../../../constants/global';
-import { addNewCourseThunk } from '../../../../redux/service/courses/coursesAction';
+import { addNewCourseThunk, getAllCoursesThunk } from '../../../../redux/service/courses/coursesAction';
+import { updateCourse } from '../../../../redux/service/courses/courses';
+import { CourseData } from '../../../../redux/types/courseTypes';
 
-function CreateCourse({ handleClose }: any) {
+export type CourseType = {
+    "id": number,
+    "name": string,
+    "cost": number,
+    "durationInMonth": number,
+    "numberOfLessons": number,
+    "numberOfGroups": number,
+    "imageUrl": string
+}
+type Props = {
+  handleClose: () => void;
+  type: 'edit' | 'create';
+  editingCourse?: CourseType;
+}
+
+function CreateCourse({ handleClose, type, editingCourse }: Props) {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [formValues, setFormValues] = useState<CourseData>({
+    name: '',
+    cost: 0,
+    durationInMonth: 0,
+    numberOfLessons: 0
+  })
   const dispatch = useAppDispatch();
 
+  React.useEffect(() => {
+    if(type === 'edit' && editingCourse) {
+      setSelectedImage(editingCourse.imageUrl)
+    }
+  }, [editingCourse, type])
   const onSubmit = (values: any) => {
-    const formData = new FormData();
-    formData.append('multipartFile', selectedImage as Blob);
-    dispatch(addNewCourseThunk({ formData ,values}));
-    handleClose();
+    if(type === 'create') {
+      const formData = new FormData();
+      formData.append('multipartFile', selectedImage as Blob);
+      dispatch(addNewCourseThunk({ formData ,values}));
+      handleClose();
+    } else if(type === 'edit') {
+      const formData = new FormData();
+      formData.append('multipartFile', selectedImage as Blob);
+      // dispatch(updateCours({ formData ,values}));
+      updateCourse({ formData, values: { ...values, id: editingCourse.id } })
+        .then(res => {
+          dispatch(getAllCoursesThunk())
+          handleClose();
+        })
+        .catch(err => alert('Произошла ошибка!'))
+    }
   };
 
   return (
@@ -36,13 +76,12 @@ function CreateCourse({ handleClose }: any) {
               <FiUpload
                 className={selectedImage ? 'hidden' : 'mt-20 text-5xl'}
               />
-
               {selectedImage && (
                 <div className="mb-5  h-72 w-80 ">
                   <img
                     alt="not found"
                     className="w-[100%] rounded-xl border p-1"
-                    src={URL.createObjectURL(selectedImage)}
+                    src={typeof selectedImage !== 'string' ? URL.createObjectURL(selectedImage) : selectedImage}
                   />
                 </div>
               )}
@@ -72,10 +111,10 @@ function CreateCourse({ handleClose }: any) {
           <div>
             <Formik
               initialValues={{
-                name: '',
-                cost: '',
-                durationInMonth: '',
-                numberOfLessons: '',
+                name: type === 'create' ? '' : editingCourse?.name,
+                cost: type === 'create' ? '' : editingCourse?.cost,
+                durationInMonth: type === 'create' ? '' : editingCourse?.durationInMonth,
+                numberOfLessons: type === 'create' ? '' : editingCourse?.numberOfLessons,
                 // numberOfGroups: '',
               }}
               validationSchema={Yup.object({
@@ -103,6 +142,7 @@ function CreateCourse({ handleClose }: any) {
                     placeholder=" Название курса"
                     className="my-5 h-10 w-[330px] rounded-lg border border-slate-300 p-2 "
                     required
+                    
                   />
 
                   <Field
@@ -122,7 +162,6 @@ function CreateCourse({ handleClose }: any) {
                     className="my-5 h-10 w-[330px] rounded-lg border border-slate-300 p-2"
                     required
                   />
-
                   <Field
                     id="lessons"
                     placeholder="Количество занятий"

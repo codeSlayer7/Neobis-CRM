@@ -1,5 +1,5 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getAllStudents } from '../../api/studentApi';
+import { getAllStudents, searchStudent } from '../../api/studentApi';
 import { getApiErrorMessage } from '../../utils/utils';
 
 const initialState = {
@@ -9,16 +9,16 @@ const initialState = {
 };
 
 export const getAllStudentsThunk = createAsyncThunk(
-    'users/getAllStudents',
-    async (_, { rejectWithValue }) => {
-      try {
-        const response = await getAllStudents();
-        
-        return response.data;
-      } catch (err) {
-        return rejectWithValue(getApiErrorMessage(err));
-      }
+  'users/getAllStudents',
+  async (params: { string: string; page: number; status: string; groupId: number; sortBy: string; size: number; }, { rejectWithValue }) => {
+    try {
+      const response = await searchStudent(params);
+      
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(getApiErrorMessage(err));
     }
+  }
 );
 
 const studentSlice = createSlice({

@@ -20,6 +20,10 @@ export const schema = yup.object().shape({
   });
 
 
+  export const schemaPayment = yup.object().shape({
+      payment: yup.number().required(),
+  });
+
   export const schemaUpdate = yup.object().shape({
     email: yup.string().required('Укажите логин !').email('Неверный email!'),
     phoneNumber: yup.number().required(),
