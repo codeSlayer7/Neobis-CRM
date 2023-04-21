@@ -5,6 +5,7 @@ import { getAllUsers } from '../../api/adminApi';
 import { UserData } from '../types/adminTypes';
 import { Api } from '../../api/base';
 import axiosInteceptor from '../../api/base/interceptor';
+import { StatusType } from '../../types/global';
 
 const initialState = {
   users: [],
@@ -12,16 +13,18 @@ const initialState = {
   error: '',
 };
 
+
 export const getAllUserThunk = createAsyncThunk(
   'users/getAllUserThunk',
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await getAllUsers();
-      return response.data;
-    } catch (err) {
+  async (_,{rejectWithValue}) => {
+    try{
+      const response: any = await getAllUsers()
+      return response.data
+    }catch(err){
       return rejectWithValue(getApiErrorMessage(err));
     }
   }
+
 );
 
 const adminSlice = createSlice({
@@ -50,17 +53,3 @@ const adminSlice = createSlice({
 });
 
 export default adminSlice.reducer;
-
-// export const adminCreateUser = createAsyncThunk(
-//   'users/adminCreateUser',
-//   async (user: UserData, { rejectWithValue, dispatch }) => {
-//     try {
-//       const response = await axiosInteceptor.post('registration', user);
-//       // user.handleClose?.();
-//       dispatch(getAllUserThunk());
-//       return response;
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   }
-// );

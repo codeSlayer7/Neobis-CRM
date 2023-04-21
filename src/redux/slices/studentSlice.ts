@@ -14,7 +14,6 @@ export const getAllStudentsThunk = createAsyncThunk(
     async (_, { rejectWithValue }) => {
       try {
         const response = await getAllStudents();
-        console.log('res', response);
         
         return response.data;
       } catch (err) {

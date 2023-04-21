@@ -11,8 +11,9 @@ function ProfileDropDown() {
   const [openProfile, setOpenProfile] = useState(false);
   const dispatch = useAppDispatch();
 
-  const { firstName, lastName } = useAppSelector((state) => {
+  const user = useAppSelector((state) => {
     return state.user;
+    
   });
 
   const handleClick = () => {
@@ -34,7 +35,7 @@ function ProfileDropDown() {
         <div className=" absolute  ml-[10px] z-10 mt-10  h-44 w-52 rounded-lg border-4 border-[#8874C8] bg-white">
           <div className="absolute top-[-0.7rem] right-[0.4rem] h-5 w-5 rotate-45 border-4 border-b-0 border-r-0 border-[#8874C8] bg-white before:content-['']" />
           <h5 className="my-2 border-b-4 border-[#8874C8]  text-center text-lg font-normal">
-            {firstName} {lastName}
+            {user.firstName} {user.lastName}
           </h5>
           <ul className=" text-left text-lg">
             <Link to="/profile">

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 function MentorsCard(props: any) {
   return (
     <>
-      {props.details.map((value, index) => (
+      {props.details.map((value?: any, index?: any) => (
         <div className="mr-[50px]" key={index}>
           <div className="mb-10 h-[351px] w-[323px] rounded-3xl border border-[#C7C7C7] shadow-md">
             <div className="mt-6 flex w-full">

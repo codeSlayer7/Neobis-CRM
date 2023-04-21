@@ -4,10 +4,10 @@ import Money from '../../icons/Money';
 import ProfileUser from '../../icons/ProfileUser';
 import Time from '../../icons/Time';
 
-function CourseCard(props) {
+function CourseCard(props?: any) {
   return (
     <>
-      {props.details.map((value, index) => (
+      {props.details.map((value?: any, index?: any) => (
         <div key={index}>
           <Link to="/groups">
             <div className="m-5 h-[398px] w-[382px] bg-white rounded-3xl border border-black shadow-sm">

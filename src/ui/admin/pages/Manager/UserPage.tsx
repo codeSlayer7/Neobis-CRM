@@ -19,8 +19,8 @@ function UserPage() {
         Добавить менеджера
       </button>
 
-      <Modal title="Создать менеджера" open={open} onClose={handleClose}>
-        <ManagerForm />
+      <Modal title="Создать менеджера" open={open}  onClose={handleClose}>
+        <ManagerForm onClose={handleClose} />
       </Modal>
 
       <div className="ml-[36px] pb-[20px]">

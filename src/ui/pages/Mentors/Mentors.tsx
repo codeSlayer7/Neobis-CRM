@@ -1,3 +1,4 @@
+import { array } from '../../admin/components/AdminDropDown/GroupField';
 import DropDown from '../../components/DropDown';
 import MentorsCard from './MentorsCard';
 import MentorsData from './MentorsData';
@@ -9,7 +10,7 @@ function Mentors() {
         <DropDown
           label={<div className="font-sans text-base">Направление</div>}
           onOptionClick={(option) => console.log(option)}
-          options={['Python', 'Java', 'JavaScript', 'Product Manager', 'UI8']}
+          options={array}
         />
       </div>
       <div className="mt-14 flex flex-wrap">

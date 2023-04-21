@@ -1,27 +1,8 @@
 import { DataGrid, GridRowClassNameParams } from '@mui/x-data-grid';
 import { useEffect, useState } from 'react';
-
-interface MyGridRowClassNameParams extends GridRowClassNameParams {
-  api: {
-    _gridParams: {
-      api: {
-        currentRoute: string;
-      }
-    }
-  }
-}
-
-
-interface MyRows {
-  id: number;
-  name: string;
-  status: string;
-  number: string;
-  email: string;
-  group: string;
-  payment: string;
-  style?: React.CSSProperties;
-}
+import { useAppDispatch, useAppSelector } from '../../../constants/global';
+import { getAllStudentsThunk } from '../../../redux/slices/studentSlice';
+import StudentActions from '../../admin/components/Actions/StudentActions';
 
 interface MyColums {
   field: string;
@@ -30,40 +11,54 @@ interface MyColums {
   renderCell?: any;
 }
 
-const StudentTable = () => {
+const StudentTable = ({ searchValue }: any) => {
+  const dispatch = useAppDispatch();
 
-  const rows: MyRows[] = [
-    {
-      id: 1,
-      name: 'Жоломан Шаршенбеков',
-      status: 'Заморожен',
-      number: '+996 555 123 123',
-      email: 'jolaman23@gmail.com',
-      group: 'Product Manager',
-      payment: '50 %',
-    }
-  ];
+  const students = useAppSelector((state) => {
+    return state.student.students;
+  });
 
-  const colors = (status: 'Неактивен' | 'Активен' | 'Заморожен') =>
-    status === 'Активен'
+  const { role } = useAppSelector((state) => {
+    return state.user;
+  });
+
+  useEffect(() => {
+    dispatch(getAllStudentsThunk());
+  }, [dispatch]);
+
+  const colors = (status: 'Неактивный' | 'Активный' | 'Заморожен') =>
+    status === 'Активный'
       ? '#2CAE49'
       : status === 'Заморожен'
       ? '#2C77AE'
-      : status === 'Неактивен'
+      : status === 'Неактивный'
       ? '#DF3939'
       : '';
+
+  const renderCell = (params: any) => (
+    <div>
+      {params.row.groups.map((value: any, index: any) => (
+        <div key={index}>{value.name}</div>
+      ))}
+    </div>
+  );
 
   const columns: MyColums[] = [
     { field: 'id', headerName: '', width: 0 },
     {
-      field: 'name',
-      headerName: <div className="text-[16px] font-semibold">Имя студента</div>,
-      width: 255,
+      field: 'fullName',
+      headerName: <div className="text-[16px] font-semibold">Фио студента</div>,
+      width: 215,
+      renderCell: (params: any) => (
+        <div>
+          {params.row.firstName} {params.row.lastName}
+        </div>
+      ),
     },
     {
       field: 'status',
       headerName: <div className="text-[16px] font-semibold">Статус</div>,
-      width: 148,
+      width: 150,
       renderCell: (params: any) => {
         return (
           <div
@@ -80,37 +75,57 @@ const StudentTable = () => {
       },
     },
     {
-      field: 'number',
+      field: 'phoneNumber',
       headerName: <div className="text-[16px] font-semibold">Телефон</div>,
-      width: 180,
+      width: 170,
     },
     {
       field: 'email',
-      headerName: <div className="text-[16px] font-semibold">Email</div>,
-      width: 219,
+      headerName: <div className="text-[16px] font-semibold">Почта</div>,
+      width: 195,
     },
     {
-      field: 'group',
+      field: 'gender',
+      headerName: <div className="text-[16px] font-semibold">Пол</div>,
+      width: 100,
+    },
+    {
+      field: 'groups',
       headerName: <div className="text-[16px] font-semibold">Группа</div>,
-      width: 185,
+      width: 140,
+      renderCell: renderCell,
     },
     {
-      field: 'payment',
+      field: 'totalPaymentPercentage',
       headerName: <div className="text-[16px] font-semibold">Оплата</div>,
-      width: 140,
+      width: 110,
     },
   ];
+
+  if (role) {
+    role === 'ROLE_ADMIN' &&
+      columns.push({
+        field: 'actions',
+        headerName: <div className="text-[16px] font-semibold">Действия</div>,
+        width: 120,
+        renderCell: (params: any) => <StudentActions student={params.row} />,
+      });
+  }
+
+  // const filteredStudents = students.filter(students => students.includes(searchValue))
 
   return (
     <>
       <div>
+        {/* {filteredStudents.map(students => ( */}
         <DataGrid
           autoHeight
           className=" bg-white border rounded-lg shadow-lg"
-          rows={rows}
+          rows={students}
           columns={columns}
-          getRowClassName={(params) => 'even:bg-[#F4F7FD]'}
+          getRowClassName={(params) => 'even:bg-[#dee7f3]'}
         />
+        {/* ))} */}
       </div>
     </>
   );

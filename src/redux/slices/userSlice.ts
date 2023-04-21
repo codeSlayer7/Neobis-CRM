@@ -35,7 +35,6 @@ export const loginUserThunk = createAsyncThunk(
   async (user: UserData, { rejectWithValue }) => {
     try {
       const response = await loginUser(user);
-      console.log('response', response);
       console.warn(response.data.resultCode === Status.SUCCESS);
 
       if (response.data.resultCode === Status.SUCCESS) {
@@ -80,17 +79,15 @@ const userSlice = createSlice({
   },
   extraReducers(builder) {
     builder.addCase(loginUserThunk.pending, (state) => {
-      console.log('33');
       state.loading = true;
     });
     builder.addCase(loginUserThunk.fulfilled, (state, { payload }) => {
-      console.log('4sdsad', payload.data);
       state.loading = false;
       state.accessToken = payload.authenticationResponse.jwtToken;
       state.refreshToken = payload.authenticationResponse.refreshToken;
       state.role = payload.role;
-      state.firstName = payload.firstName;
-      state.lastName = payload.lastName;
+      // state.firstName = payload.firstName;
+      // state.lastName = payload.lastName;
     });
     // builder.addCase(
     //   loginUserThunk.rejected,
@@ -111,7 +108,6 @@ export const forgotPasswordThunk = createAsyncThunk(
   async (user: UserForgotPassword, { rejectWithValue }) => {
     try {
       const response = await forgotPassword(user);
-      console.log(response);
     } catch (err) {
       console.log(err);
     }
@@ -123,7 +119,6 @@ export const confirmCodeThunk = createAsyncThunk(
   async (code: UserConfirmCode, { rejectWithValue }) => {
     try {
       const response = await confirmCode(code);
-      console.log(response);
     } catch (err) {
       console.log(err);
     }
@@ -135,7 +130,6 @@ export const resetPasswordThunk = createAsyncThunk(
   async (code: UserResetPassword, { rejectWithValue }) => {
     try {
       const response = await resetPassword(code);
-      console.log(response);
     } catch (err) {
       console.log(err);
     }

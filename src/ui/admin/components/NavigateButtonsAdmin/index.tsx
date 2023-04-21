@@ -35,6 +35,7 @@ export default function NavigateButtonsAdmin({ buttonType, setButtonType }: Prop
       {buttons.map((btn) => {
         return (
           <button
+          key={btn.value}
             onClick={() => setButtonType(btn.value)}
             className={
               buttonType === btn.value

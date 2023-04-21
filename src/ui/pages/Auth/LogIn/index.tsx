@@ -20,7 +20,6 @@ export interface ILoginForm {
   password: string;
 }
 
-
 const initialValues = {
   email: '',
   password: '',
@@ -43,7 +42,6 @@ export const LogIn: React.FC = () => {
       role === 'ROLE_MANAGER' && navigate('/');
     }
   }, [role]);
-  console.log('role', role);
 
   const formik = useFormik({
     initialValues,

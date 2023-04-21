@@ -14,7 +14,7 @@ export const getAllCoursesThunk = createAsyncThunk(
     try {
       const response = await getAllCourses();
       console.log('response2', response);
-      return response.data;
+      return response
     } catch (err) {
       return rejectWithValue(getApiErrorMessage(err));
     }
@@ -22,7 +22,7 @@ export const getAllCoursesThunk = createAsyncThunk(
 );
 
 const coursesAction = createSlice({
-  name: 'courses',
+  name: 'course',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -34,7 +34,7 @@ const coursesAction = createSlice({
         (state, { payload }: PayloadAction<any>) => {
           console.log('8', payload);
           state.loading = false;
-          state.users = payload;
+          state.course = payload;
         }
       ),
       builder.addCase(

@@ -1,4 +1,4 @@
-import { forwardRef, InputHTMLAttributes, useState } from 'react';
+import { InputHTMLAttributes, useState } from 'react';
 import Lock from '../../../icons/lock';
 import Unlock from '../../../icons/unlock';
 import clsx from 'clsx';

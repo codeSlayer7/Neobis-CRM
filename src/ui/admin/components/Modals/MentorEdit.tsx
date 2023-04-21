@@ -13,7 +13,7 @@ function MentorEdit() {
         <h3 className="mt-6 text-3xl font-bold ">
           Редактировать преподавателя
         </h3>
-        <button type="button" onClose={handleClick}>
+        <button type="button">
           <GrFormClose className="absolute left-[550px] top-3 text-3xl " />
         </button>
 

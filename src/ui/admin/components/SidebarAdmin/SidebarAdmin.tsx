@@ -105,8 +105,8 @@ function SidebarAdmin({ children }: Props) {
       <main
         className={
           !isOpen
-            ? 'flex h-[1500px] w-[100%] bg-[#F4F7FD]'
-            : 'flex h-[1500px] w-[73%] bg-[#F4F7FD]'
+            ? 'flex h-[1500px] w-[100%]'
+            : 'flex h-[1500px] w-[73%]'
         }
       >
         {children}

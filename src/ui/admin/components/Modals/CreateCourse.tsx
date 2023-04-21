@@ -3,11 +3,11 @@ import { FiUpload } from 'react-icons/fi';
 import { useState } from 'react';
 
 function CreateCourse() {
-  const [file, setFile] = useState();
+  const [file, setFile] = useState('');
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen;
 
-  function handleFile(event) {
+  function handleFile(event? : any) {
     setFile(event.target.files[0]);
     // console.log(event.target.files[0]);
   }

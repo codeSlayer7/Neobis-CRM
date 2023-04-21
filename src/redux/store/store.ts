@@ -5,6 +5,8 @@ import userSlice from "../slices/userSlice";
 import  adminSlice  from "../slices/adminSlice";
 import coursesAction from "../service/courses/coursesAction";
 import studentSlice from "../slices/studentSlice";
+import {  loadState, saveState } from "../../api/localStorage";
+import archiveSlice from "../slices/archiveSlice";
 
 export const reducer = combineReducers({
     user: userSlice,
@@ -12,9 +14,18 @@ export const reducer = combineReducers({
     toggle: toggleSidebar,
     admin: adminSlice,
     courses: coursesAction,
-    student: studentSlice
+    student: studentSlice,
+    archive: archiveSlice
 });
+
 
 export const store = configureStore({
   reducer,
+  preloadedState: loadState()
 });
+
+
+store.subscribe(() => {
+  saveState(store.getState())
+})
+ 

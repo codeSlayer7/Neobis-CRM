@@ -30,11 +30,11 @@ function HistoryTitle() {
       </div>
 
       <div className="mt-2">
-        <DropDown
+        {/* <DropDown
           label={<div className="text-[16px] ">Оплата</div>}
           onOptionClick={(option) => console.log(option)}
           options={['Тип операций', '50%', '75%', '100%']}
-        />
+        /> */}
       </div>
       <HistoryTable />
     </div>

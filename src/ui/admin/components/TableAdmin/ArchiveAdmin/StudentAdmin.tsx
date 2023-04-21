@@ -1,5 +1,8 @@
 import { DataGrid } from '@mui/x-data-grid';
-import Actions from '../../Actions/Actions';
+import ArchiveAction from '../../Actions/ArchiveAction';
+import { useAppDispatch, useAppSelector } from '../../../../../constants/global';
+import { useEffect } from 'react';
+import { getAllStudentsArchiveThunk } from '../../../../../redux/slices/archiveSlice';
 
 interface Columns {
   field: string;
@@ -9,59 +12,38 @@ interface Columns {
 }
 
 export default function StudentTableAdmin() {
-  const studentRows = [
-    {
-      id: 1,
-      name: 'Жаныш Мамытов',
-      email: 'zhanysh12@gmail.com',
-      number: '+996 555 123 123',
-      group: 'Python',
-      date: 'Октябрь 14',
-      cause: 'Курс завершился ',
-    },
-    {
-      id: 2,
-      name: 'Жаныш Мамытов',
-      email: 'zhanysh12@gmail.com',
-      number: '+996 555 123 123',
-      group: 'Python',
-      date: 'Октябрь 14',
-      cause: 'По состоянию здоровью',
-    },
-    {
-      id: 3,
-      name: 'Мамытов Алтын',
-      email: 'altynka12@gmail.com',
-      number: '+996 555 123 123',
-      group: 'IOS',
-      date: 'Октябрь 14',
-      cause: 'По состоянию здоровью',
-    },
-    {
-      id: 4,
-      name: 'Мамытов Алтын',
-      email: 'altynkaa12347@gmail.com',
-      number: '+996 555 123 123',
-      group: 'Android',
-      date: 'Октябрь 14',
-      cause: 'По состоянию здоровью',
-    },
-  ];
+  const dispatch = useAppDispatch()
+
+  const archiveStudents = useAppSelector((state) => {
+    return state.archive.students;
+  }) 
+  console.log("archiveStudents", archiveStudents);
+  
+  
+  useEffect(() => {
+    dispatch(getAllStudentsArchiveThunk())
+  }, [dispatch])
+
 
   const studentColumns: Columns[] = [
     { field: 'id', headerName: '', width: 0 },
     {
-      field: 'name',
+      field: 'fullName',
       headerName: <div className="text-[16px] font-semibold">Ф.И.О.</div>,
-      width: 219,
+      width: 209,
+      renderCell: (params: any) => (
+        <div>
+          {params.row.firstName} {params.row.lastName}
+        </div>
+      )
     },
     {
       field: 'email',
       headerName: <div className="text-[16px] font-semibold">Email</div>,
-      width: 219,
+      width: 210,
     },
     {
-      field: 'number',
+      field: 'phoneNumber',
       headerName: <div className="text-[16px] font-semibold">Телефон</div>,
       width: 180,
     },
@@ -71,24 +53,24 @@ export default function StudentTableAdmin() {
       width: 140,
     },
     {
-      field: 'date',
+      field: 'dateArchive',
       headerName: (
         <div className="text-[16px] font-semibold">Дата архивации</div>
       ),
       width: 160,
     },
     {
-      field: 'cause',
+      field: 'reasonArchive',
       headerName: (
         <div className="text-[16px] font-semibold">Причина архивации</div>
       ),
-      width: 220,
+      width: 240,
     },
     {
       field: 'actions',
       headerName: <div className="text-[16px] font-semibold">Действия</div>,
-      width: 100,
-      renderCell: (params: any) => <Actions {...params} />,
+      width: 150,
+      renderCell: (params: any) => <ArchiveAction {...params} />,
     },
   ];
 
@@ -96,7 +78,7 @@ export default function StudentTableAdmin() {
     <DataGrid
       autoHeight
       className=" bg-white border rounded-lg shadow-lg w-[1300px] hover:none"
-      rows={studentRows}
+      rows={archiveStudents}
       columns={studentColumns}
       getRowClassName={(params) => 'even:bg-[#dee7f3]'}
     />

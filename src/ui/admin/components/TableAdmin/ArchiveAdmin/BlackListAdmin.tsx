@@ -75,21 +75,15 @@ export default function BlackListAdmin() {
       headerName: (
         <div className="text-[16px] font-semibold">Дата архивации</div>
       ),
-      width: 160,
+      width: 170,
     },
     {
       field: 'cause',
       headerName: (
         <div className="text-[16px] font-semibold">Причина архивации</div>
       ),
-      width: 200,
-    },
-    {
-        field: 'actions',
-        headerName: <div className="text-[16px] font-semibold">Действия</div>,
-        width: 100,
-        renderCell: (params: any) => <Actions {...params} />,
-      },
+      width: 300,
+    }
   ];
   return (
     <DataGrid
