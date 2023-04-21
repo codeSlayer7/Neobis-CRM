@@ -15,17 +15,33 @@ export const getCourseById = async (id) => {
 };
 
 // add new course
-// export const addNewCourse = async () => {
-//   const response = await axiosInteceptor.post(`${Endpoints.CourseAPI}`);
+export const addNewCourse = async ({ values, formData }) => {
+  const response = await axiosInteceptor.post(`${Endpoints.CourseAPI}`, values);
 
-//   const result = await axiosInteceptor.post(
-//     `${Endpoints.CourseCreate}/${id}/${response.data}`,
-//     formdata,
-//     {
-//       headers: {
-//         'Content-Type': `multipart/form-data`,
-//       },
-//     }
-//   );
-//   return result.data;
-// };
+  const result = await axiosInteceptor.post(
+    `${Endpoints.CourseCreate}/${response.data.id}`,
+    formData,
+    {
+      headers: {
+        'Content-Type': `multipart/form-data`,
+      },
+    }
+  );
+  return result.data;
+};
+
+//update course
+export const updateCourse = async({values, formData}) =>{
+  const response = await axiosInteceptor.put(`${Endpoints.CourseAPI}`, values);
+
+  const result = await axiosInteceptor.put(
+    `${Endpoints.CourseAPI}/${values.id}`,
+    formData,
+    {
+      headers: {
+        'Content-Type': `multipart/form-data`,
+      },
+    }
+  )
+  return result.data;
+}

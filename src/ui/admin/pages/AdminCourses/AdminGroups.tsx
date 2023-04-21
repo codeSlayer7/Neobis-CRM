@@ -1,9 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
-import mentor from '../../../images/mentor.png';
-import room from '../../../images/room.png';
-import python from '../../../images/pythonIcon.png';
-import student from '../../../images/student.png';
+import mentor from '../../../icons/female.png';
+import room from '../../../icons/video-lesson.png';
+import python from '../../../icons/it-department.png';
+import student from '../../../icons/classmates.png';
 import DropDown from '../../../components/DropDown';
 import SearchIcon from '../../../icons/SearchIcon';
 import CourseStudents from '../../../components/Table/CourseStudents';
@@ -20,46 +20,66 @@ function AdminGroups() {
   useEffect(() => {
     dispatch(getCourseByIdThunk(id));
   }, [id, dispatch]);
+  // console.log(course, 'dddd')
 
   return (
     <div className="my-10 ml-[36px] h-[100vh] w-full">
       <div className="flex h-24 w-[1287px] items-center justify-around rounded-lg border-2 border-slate-200 bg-white shadow-md ">
         <div className="flex">
-          <img className="h-[65px] w-[65px]" src={mentor} alt="#" />
+          <img
+            className="h-[65px] w-[65px]  rounded-full border-4 border-blue-200 p-1"
+            src={mentor}
+            alt="#"
+          />
           <span className="ml-3">
-            <p className="tetx-lg font-normal">Преподаватель</p>
-            <h3 className="text-xl font-semibold">{course.numberOfMentors}</h3>
+            <p className="text-xl font-normal">Преподаватель</p>
+            <h3 className="text-2xl font-semibold text-[#4588C6]">
+              {course.numberOfMentors}
+            </h3>
           </span>
         </div>
         <div className="flex">
-          <img className="h-[65px] w-[65px]" src={room} alt="#" />
+          <img
+            className="h-[65px] w-[65px]  rounded-full border-4 border-blue-200 p-1"
+            src={python}
+            alt="#"
+          />
           <span className="ml-3">
-            <p className="tetx-lg font-normal">Занятия</p>
-            <h3 className="text-xl font-semibold">{course.numberOfLessons}</h3>
+            <p className="text-2xl font-normal">Группа</p>
+            <h3 className="text-xl font-semibold text-[#4588C6] ">
+              {course.numberOfGroups}
+            </h3>
           </span>
         </div>
         <div className="flex">
-          <img className="h-[65px] w-[65px]" src={python} alt="#" />
+          <img
+            className="h-[65px] w-[65px]  rounded-full border-4 border-blue-200 p-1"
+            src={room}
+            alt="#"
+          />
           <span className="ml-3">
-            <p className="tetx-lg font-normal">Группа</p>
-            <h3 className="text-xl font-semibold">{course.numberOfGroups}</h3>
+            <p className="text-xl font-normal">Занятия</p>
+            <h3 className="text-2xl font-semibold text-[#4588C6] ">
+              {course.numberOfLessons}
+            </h3>
           </span>
         </div>
+
         <div className="flex">
-          <img className="h-[65px] w-[65px]" src={student} alt="#" />
+          <img
+            className="h-[65px] w-[65px] rounded-full border-4 border-blue-200 p-1"
+            src={student}
+            alt="#"
+          />
           <span className="ml-3">
-            <p className="tetx-lg font-normal">Студенты</p>
-            <h3 className="text-xl font-semibold">{course.numberOfStudents}</h3>
+            <p className="text-xl font-normal">Студенты</p>
+            <h3 className="text-2xl font-semibold text-[#4588C6]">
+              {course.numberOfStudents}
+            </h3>
           </span>
-         
         </div>
       </div>
-      <div className="my-20 mb-10 flex w-[60%] justify-between">
-        <DropDown
-          label={<div className="font-sans text-base">Оплата</div>}
-          onOptionClick={(option) => `(option)`}
-          options={['Наличными', 'Карта']}
-        />
+      <div className="my-20 mb-10 flex w-[45%] justify-between">
         <DropDown
           label={<div className="font-sans text-base">Группы</div>}
           onOptionClick={(option) => `(option)`}
@@ -78,9 +98,9 @@ function AdminGroups() {
         </div>
       </div>
       <div className=" items-left  h-[1200px] w-full ">
-         <CourseStudents />
-        <Calendar />
-        <Schedule /> 
+        <CourseStudents />
+        {/* <Calendar />
+        <Schedule />  */}
       </div>
     </div>
   );

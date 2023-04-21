@@ -30,7 +30,7 @@ function AdminMentors() {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-          <AdminMentorsForm handleClose={handleClose}/>
+          <AdminMentorsForm handleClose={handleClose} />
         </Modal>
       </div>
 

@@ -23,7 +23,8 @@ export const Endpoints = {
   CourseAPI: '/api/v1/courses',
   CourseCreate: '/api/v1/courses/save-image',
   MentorsGetAll: '/api/v1/mentors/cards',
-  MentorGetById: '/api/v1/mentors',
+  MentorAPI: '/api/v1/mentors',
+  MentorCreate: '/api/v1/mentors/save-image',
 } as const;
 
 type ApplicationStatusType =

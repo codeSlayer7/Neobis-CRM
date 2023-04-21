@@ -20,13 +20,10 @@ function AdminCourseCard() {
   }, [dispatch]);
 
   return (
-    <div className='flex flex-wrap mt-10'>
+    <div className="mt-10 flex flex-wrap">
       {courses &&
         courses.map((course: any) => (
-          <div
-            key={course.id}
-            onClick={() => navigate(`/admin/courses/${course.id}`)}
-          >
+          <div key={course.id}>
             <div className="relative m-5 h-[398px] w-[382px] rounded-3xl border border-black bg-fixed shadow-sm">
               <DropDownAdminCourses />
 
@@ -36,7 +33,10 @@ function AdminCourseCard() {
                 className="mt-[-81px] rounded-t-3xl border-0 bg-fixed"
               />
 
-              <h3 className="my-3 ml-[26px] text-[32px] font-bold ">
+              <h3
+                className="my-3 ml-[26px] text-[32px] font-bold "
+                onClick={() => navigate(`/admin/courses/${course.id}`)}
+              >
                 {course.name}
               </h3>
 

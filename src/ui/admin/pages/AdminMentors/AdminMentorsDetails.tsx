@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../../constants/global';
 import EditWhite from '../../../icons/EditWhite';
-import photo from '../../../images/Photo.png';
+// import photo from '../../../images/Photo.png';
 import { getMentorByIdThunk } from '../../../../redux/service/mentors/mentorsAction';
 
 function AdminMentorsDetails() {
@@ -19,12 +19,12 @@ function AdminMentorsDetails() {
     <div className="mx-10 mb-20 h-auto w-full items-center justify-center">
       <button
         type="button"
-        className="my-10 ml-[80%] inline-flex h-[43px] w-[212px] items-center justify-around rounded-lg border bg- text-xl font-normal text-white transition duration-150 hover:scale-95"
+        className="bg- my-10 ml-[80%] inline-flex h-[43px] w-[212px] items-center justify-around rounded-lg border text-xl font-normal text-white transition duration-150 hover:scale-95"
       >
         Редактировать
         <EditWhite />
       </button>
-      <div className="relative mb-12 flex h-[797px] w-[1318px] rounded-xl border-2 shadow-md bg-[#FCFDFE]">
+      <div className="relative mb-12 flex h-[797px] w-[1318px] rounded-xl border-2 bg-[#FCFDFE] shadow-md">
         <div className="mt-12 ml-20">
           <img
             src={mentor.imageUrl}
@@ -49,11 +49,25 @@ function AdminMentorsDetails() {
               <li className="text-xl font-normal">{mentor.phoneNumber}</li>
             </ul>
           </div>
-          <div className='mr-20'>
-            <ul className="my-5">
+          <div className="mr-20">
+            {mentor.groupNames && mentor.groupNames.length > 0 ? (
+              <ul className="my-5">
+                <li className="text-2xl font-semibold">Обучение в группах</li>
+                {mentor.groupNames.map((groupName, index) => (
+                  <li key={index} className="text-xl font-normal">
+                    {groupName}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>Данные о группах отсутствуют</p>
+            )}
+
+            {/* <ul className="my-5">
               <li className="text-2xl font-semibold">Обучение в группах</li>
-              <li className="text-xl font-normal">{mentor.groupName}</li>
-            </ul>
+              {mentor.groupNames.map((groupName, index) => (
+            <li key={index} className="text-xl font-normal">{groupName}</li>))}
+              </ul> */}
             <ul className=" ">
               <li className="text-2xl font-semibold">Gmail</li>
               <li className="text-xl font-normal">{mentor.email}</li>
@@ -150,7 +164,7 @@ function AdminMentorsDetails() {
             </div>
           </div>
         </div>
-        <div className="mr-5 absolute bottom-0 left-[1px] h-0 w-0 rounded-bl-xl border border-b-[150px] border-r-[150px] border-[#FCFDFE] border-2 shadow-md border-b-[#4588C6]" />
+        <div className="absolute bottom-0 left-[1px] mr-5 h-0 w-0 rounded-bl-xl border-2 border-b-[150px] border-r-[150px] border-[#FCFDFE] border-b-[#4588C6] shadow-md" />
       </div>
     </div>
   );
