@@ -47,7 +47,6 @@ export const addNewCourseThunk = createAsyncThunk(
   async ({ values, formData }, { rejectWithValue }) => {
     try {
       const response = await addNewCourse({ values, formData });
-      console.log (response.data, 'oooo')
       return response.data;
     } catch (err) {
       return rejectWithValue(getApiErrorMessage(err));

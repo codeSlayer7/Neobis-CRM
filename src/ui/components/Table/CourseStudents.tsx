@@ -32,7 +32,6 @@ export default function CourseStudents() {
       headerName: <div className="text-[16px] font-semibold">Почта</div>,
       width: 250,
     },
-   
     {
       field: 'status',
       headerName: <div className="text-[16px] font-semibold">Статус</div>,

@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 import mentor from '../../images/mentor.png';
 import room from '../../images/room.png';
 import python from '../../images/pythonIcon.png';
@@ -10,7 +11,6 @@ import CourseStudents from '../../components/Table/CourseStudents';
 // import Calendar from '../../components/Schedule/calendar';
 import { useAppDispatch, useAppSelector } from '../../../constants/global';
 import { getCourseByIdThunk } from '../../../redux/service/courses/coursesAction';
-import { useEffect } from 'react';
 import { array } from '../../admin/components/AdminDropDown/GroupField';
 
 function Groups() {
@@ -55,14 +55,9 @@ function Groups() {
         </div>
       </div>
       <div className="my-20 mb-10 flex w-[60%] justify-between">
-        {/* <DropDown
-          label={<div className="font-sans text-base">Оплата</div>}
-          onOptionClick={(option) => (option)}
-          options={['Наличными', 'Карта']}
-        /> */}
         <DropDown
           label={<div className="font-sans text-base">Группы</div>}
-          onOptionClick={(option) => (option)}
+          onOptionClick={(option) => option}
           options={array}
         />
         <div className="flex w-[420px] items-center justify-between">
