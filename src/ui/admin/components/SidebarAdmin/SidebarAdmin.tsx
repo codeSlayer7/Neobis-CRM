@@ -2,7 +2,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { HiOutlineArrowLongRight } from 'react-icons/hi2';
 import { HiOutlineMenuAlt1 } from 'react-icons/hi';
 import React, { useState } from 'react';
-import { MdOutlineManageAccounts, MdManageHistory } from 'react-icons/md';
+import { MdOutlineManageAccounts, MdManageHistory, MdLaptopMac } from 'react-icons/md';
 import { VscBook } from 'react-icons/vsc';
 import { BsFolder, BsPersonWorkspace } from 'react-icons/bs';
 import { SlGraduation } from 'react-icons/sl';
@@ -68,7 +68,7 @@ function SidebarAdmin({ children }: Props) {
     {
       name: 'Курсы',
       path: '/admin/courses',
-      icon: <BsPersonWorkspace className="text-3xl" />,
+      icon: <MdLaptopMac className="text-3xl" />,
     },
     {
       name: 'Студенты',
