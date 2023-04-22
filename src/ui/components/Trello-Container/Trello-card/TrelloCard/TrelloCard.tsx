@@ -50,7 +50,8 @@ function TrelloCard({ card, index }: Props) {
               <div className="flex justify-between">
                 <p
                   className={
-                    card.applicationStatus === CardStatus.WaitCall
+                    (card.status ? card.status : card.applicationStatus) ===
+                    CardStatus.WaitCall
                       ? 'text-base font-normal text-white xl:text-lg  2xl:text-xl '
                       : 'text-base font-normal  text-black xl:text-lg  2xl:text-xl '
                   }
@@ -61,22 +62,43 @@ function TrelloCard({ card, index }: Props) {
                   <More />
                 </Link>
               </div>
-              <p
+              <div
                 className="flex pt-2 text-base font-normal"
                 style={{
-                  color:
-                    card.status === CardStatus.WaitCall ? 'white' : 'black',
+                  color: (
+                    card.status
+                      ? card.status
+                      : card.applicationStatus === CardStatus.WaitCall
+                  )
+                    ? 'white'
+                    : 'black',
                 }}
               >
                 <div className="mr-2 h-6 w-6 ">
                   <img
                     className="h-full w-full"
-                    src={card.status === CardStatus.WaitCall ? Clock : Clock2}
+                    src={
+                      (card.status ? card.status : card.applicationStatus) ===
+                      CardStatus.WaitCall
+                        ? Clock
+                        : Clock2
+                    }
                     alt="clack"
                   />
                 </div>
-                {card.creationDate}
-              </p>
+                <p
+                  style={{
+                    color:
+                      (card.status ? card.status : card.applicationStatus) ===
+                      CardStatus.WaitCall
+                        ? 'white'
+                        : 'black',
+                  }}
+                >
+                  {' '}
+                  {card.creationDate}{' '}
+                </p>
+              </div>
               <div className="mt-3 flex w-[100%] justify-around ">
                 <span
                   className={classNames(
