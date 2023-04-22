@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ItemBack, Column, DragResult } from '../../interfaces';
-import { CardStatus } from '../../interfaces/enum';
+import { createSlice, current, PayloadAction } from '@reduxjs/toolkit';
+import {  DragResult } from '../../interfaces';
+
 import { IApplication } from '../service/applications/applications';
 import {
   getSortedThunk,
@@ -10,31 +10,51 @@ import {
 
 const itemsFromBackend: IApplication[] | [] = [];
 
-const initialState: Column = {
-  loading: false,
-  columns: {
-    WAITING_FOR_CALL: {
-      name: 'Ждет звонка',
-      items: [],
-    },
-    CALL_RECEIVED: {
-      name: 'Звонок совершен',
-      items: [],
-    },
-    APPLIED_FOR_TRIAL: {
-      name: 'Записан на проб.урок',
-      items: [],
-    },
-    ATTENDED_TRIAL: {
-      name: 'Посетил проб.урок',
-      items: [],
-    },
-  },
-};
+// const initialState: any = {
+//   loading: false,
+//   columns: {
+//     WAITING_FOR_CALL: {
+//       name: 'Ждет звонка',
+//       items: [],
+//     },
+//     CALL_RECEIVED: {
+//       name: 'Звонок совершен',
+//       items: [],
+//     },
+//     APPLIED_FOR_TRIAL: {
+//       name: 'Записан на проб.урок',
+//       items: [],
+//     },
+//     ATTENDED_TRIAL: {
+//       name: 'Посетил проб.урок',
+//       items: [],
+//     },
+//   },
+// };
 
 const todoSlice = createSlice({
   name: 'trello',
-  initialState,
+  initialState: {
+    loading: false,
+    columns: {
+      WAITING_FOR_CALL: {
+        name: 'Ждет звонка',
+        items: [],
+      },
+      CALL_RECEIVED: {
+        name: 'Звонок совершен',
+        items: [],
+      },
+      APPLIED_FOR_TRIAL: {
+        name: 'Записан на проб.урок',
+        items: [],
+      },
+      ATTENDED_TRIAL: {
+        name: 'Посетил проб.урок',
+        items: [],
+      },
+    },
+  },
   reducers: {
     // fetchMockData: (state, action) {
     //   console.log(action.payload);
@@ -128,6 +148,7 @@ const todoSlice = createSlice({
       const { appliedForTrial, attendedTrial, callReceived, waitingForCall } =
         payload;
       console.log('get state sorte', waitingForCall);
+      console.log(current(state), 'see satee');
       state.columns.WAITING_FOR_CALL.items = waitingForCall;
       state.columns.CALL_RECEIVED.items = callReceived;
       state.columns.APPLIED_FOR_TRIAL.items = appliedForTrial;

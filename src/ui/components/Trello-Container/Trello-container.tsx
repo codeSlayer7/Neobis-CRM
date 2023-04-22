@@ -1,7 +1,7 @@
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import TrelloColumn from './Trello-card/TrelloColumn';
 import TrelloCard from './Trello-card/TrelloCard/TrelloCard';
-import { moveTask, sort } from '../../../redux/slices/todoSlice';
+import { moveTask, sort } from '../../../redux/slices/adminSlice';
 import { ColumnName, CardStatus } from '../../../interfaces/enum';
 import PageTitle from './PageTitle';
 import { useAppDispatch, useAppSelector } from '../../../constants/global';
