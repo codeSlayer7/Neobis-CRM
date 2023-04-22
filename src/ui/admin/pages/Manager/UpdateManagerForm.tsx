@@ -6,15 +6,14 @@ import { getAllUserThunk } from '../../../../redux/slices/adminSlice';
 
 import { UserData } from '../../../../redux/types/adminTypes';
 import { schemaUpdate } from '../../../../utils/schema';
-import { updateUser1 } from '../../../../api/adminApi';
+import { updateUser } from '../../../../api/adminApi';
 
-const UpdateManagerForm = ({ onClose, user : oldUser }: any) => {
-  const {lastVisitDate, lastVisitTime, ...user  } = oldUser;;
-  
+const UpdateManagerForm = ({ onClose, user: oldUser }: any) => {
+  const { lastVisitDate, lastVisitTime, ...user } = oldUser;
 
   const dispatch = useAppDispatch();
   const onSubmit = (data: UserData) => {
-    updateUser1(user.id, data)
+    updateUser(user.id, data)
       .then((res) => {
         dispatch(getAllUserThunk());
         onClose();
