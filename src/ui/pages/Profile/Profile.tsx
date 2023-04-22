@@ -8,7 +8,11 @@ import Photo from '../../images/photo.png';
 function Profile() {
   const [show, setShow] = useState(false);
   const [change, setChange] = useState(false);
+  // const storedData = JSON.parse(localStorage.getItem('cms'));
+  // const [user, setUser] = useState(storedData.user)
 
+  
+ 
   const handleClick = () => {
     setChange(!change);
     setShow(!show);
@@ -26,7 +30,7 @@ function Profile() {
             <img src={Photo} alt="#" />
           </div>
           <div className="ml-7">
-            <h2 className="text-3xl font-bold">{user.firstName}{user.lastName}</h2>
+            <h2 className="text-3xl font-bold"> {user.firstName} {user.lastName}</h2>
             <div className="mt-10">
               <button
                 type="button"
