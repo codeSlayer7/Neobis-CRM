@@ -62,6 +62,12 @@ export const PaymentForm = ({ onClose, student }: Props) => {
         value={formik.values.payment}
         onChange={formik.handleChange}
       />
+      <InputField
+        label="Сумма оплаты"
+        name="payment"
+        value={formik.values.payment}
+        onChange={formik.handleChange}
+      />
 
       <label className="mb-3 block text-lg font-semibold text-gray-900">
       Тип транзакции
