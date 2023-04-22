@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../../../../constants/global';
 import useMediaQuery from '../../../../../hook/useMediaQuery';
 import { ItemBack } from '../../../../../interfaces';
-import { CardStatus } from '../../../../../interfaces/enum';
+import { CardStatus, extraCardStatus } from '../../../../../interfaces/enum';
 import Clock from '../../../../icons/clock.svg';
 import Clock2 from '../../../../icons/clockBlack.svg';
 import More from '../../../../icons/More';
@@ -21,7 +21,10 @@ function TrelloCard({ card, index }: Props) {
   const toggle = useAppSelector((trello) => trello.toggle.toggle);
 
   const colorChange =
-    (card.status ? card.status : card.applicationStatus) === CardStatus.WaitCall
+    (card.status ? card.status : card.applicationStatus) ===
+    extraCardStatus.WaitCall
+      ? '#8874C8'
+      : CardStatus.WaitCall === card.status
       ? '#8874C8'
       : '#FFFFFF';
   return (
@@ -51,7 +54,9 @@ function TrelloCard({ card, index }: Props) {
                 <p
                   className={
                     (card.status ? card.status : card.applicationStatus) ===
-                    CardStatus.WaitCall
+                    extraCardStatus.WaitCall
+                      ? 'text-base font-normal text-white xl:text-lg  2xl:text-xl '
+                      : CardStatus.WaitCall === card.status
                       ? 'text-base font-normal text-white xl:text-lg  2xl:text-xl '
                       : 'text-base font-normal  text-black xl:text-lg  2xl:text-xl '
                   }
@@ -65,13 +70,13 @@ function TrelloCard({ card, index }: Props) {
               <div
                 className="flex pt-2 text-base font-normal"
                 style={{
-                  color: (
-                    card.status
-                      ? card.status
-                      : card.applicationStatus === CardStatus.WaitCall
-                  )
-                    ? 'white'
-                    : 'black',
+                  color:
+                    (card.status ? card.status : card.applicationStatus) ===
+                    extraCardStatus.WaitCall
+                      ? 'white'
+                      : CardStatus.WaitCall === card.status
+                      ? 'white'
+                      : 'black',
                 }}
               >
                 <div className="mr-2 h-6 w-6 ">
@@ -79,7 +84,9 @@ function TrelloCard({ card, index }: Props) {
                     className="h-full w-full"
                     src={
                       (card.status ? card.status : card.applicationStatus) ===
-                      CardStatus.WaitCall
+                      extraCardStatus.WaitCall
+                        ? Clock
+                        : CardStatus.WaitCall === card.status
                         ? Clock
                         : Clock2
                     }
@@ -90,7 +97,9 @@ function TrelloCard({ card, index }: Props) {
                   style={{
                     color:
                       (card.status ? card.status : card.applicationStatus) ===
-                      CardStatus.WaitCall
+                      extraCardStatus.WaitCall
+                        ? 'white'
+                        : CardStatus.WaitCall === card.status
                         ? 'white'
                         : 'black',
                   }}

@@ -84,7 +84,6 @@ export const getSortedApplication = async (): Promise<
   }
 };
 
-
 export const postAppliction = async (data: IApplicationPost) => {
   try {
     const res = await axiosInteceptor.post(`${Endpoints.Applicatins}`, data);
@@ -148,10 +147,10 @@ export const changeStatusApplication = async (data) => {
       console.log(application, 'one app');
 
       const statusObj = {
-        WAITING_FOR_CALL: 1,
-        CALL_RECEIVED: 2,
-        APPLIED_FOR_TRIAL: 3,
-        ATTENDED_TRIAL: 4,
+        waitingForCall: 1,
+        callReceived: 2,
+        appliedForTrial: 3,
+        attendedTrial: 4,
       };
       if (application.status) {
         requests.push(
