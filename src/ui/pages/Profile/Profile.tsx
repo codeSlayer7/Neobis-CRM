@@ -74,6 +74,7 @@ function Profile() {
                 aria-describedby="modal-modal-description"
               >
                 <Box sx={style}>
+                  <h2 className='text-lg font-semibold m-3'>Изменить пароль</h2>
                   <input
                     type="text"
                     placeholder="старый пароль"
