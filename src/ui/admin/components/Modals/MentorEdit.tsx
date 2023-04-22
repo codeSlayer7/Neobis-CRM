@@ -8,12 +8,12 @@ function MentorEdit() {
   };
 
   return (
-    <div className="my-10 ml-[30%] h-[100vh] ">
+    <div className="my-10 ml-[50%] h-[100vh] ">
       <div className="relative flex h-[700px] w-[598px] flex-col items-center rounded-lg border-2 bg-[#fff]">
         <h3 className="mt-6 text-3xl font-bold ">
           Редактировать преподавателя
         </h3>
-        <button type="button" onClose={handleClick}>
+        <button type="button">
           <GrFormClose className="absolute left-[550px] top-3 text-3xl " />
         </button>
 

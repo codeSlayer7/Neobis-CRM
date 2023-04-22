@@ -6,7 +6,7 @@ export default function Archive() {
   const [buttonType, setButtonType] = useState<number>(0);
 
   return (
-    <div className="p-[40px]">
+    <div className="pt-[40px] pb-0 pl-[40px] pr-[20px]">
       <div className="mb-[50px]">
         <NavigateButtons
           buttonType={buttonType}

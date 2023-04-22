@@ -3,7 +3,7 @@ import Attention from '../../../icons/Attention';
 
 function MentorArchive() {
   return (
-    <div className="flex h-[100vh] w-full items-center justify-center bg-[#FAFAFA]">
+    <div className="flex h-[100vh] w-full mx-60 items-center  justify-center ">
       <div className="h-[551px] w-[512px] rounded-lg border-2 border-gray-400 bg-white  shadow-lg">
         <div className="justify-left flex h-[68px] w-[512px] items-center rounded-t-lg bg-[#4588C6] text-white">
           <p className="mx-5 text-3xl font-semibold">Внимание</p>

@@ -97,7 +97,7 @@ export default function ColumnChart() {
   };
 
   return (
-    <div className="w-[1290px] bg-white rounded-[20px] mb-[102px]">
+    <div className="w-[1290px] border-2 bg-[#F4F7FD] rounded-[20px] mb-[102px]">
             <div className="flex flex-col pl-[39px] pt-[10px]">
         <span className="text-[#9291A5] ">Статистика</span>
         <div className="text-[20px] font-semibold pb-[32px]">

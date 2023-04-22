@@ -15,7 +15,7 @@ const initialState: Column = {
   columns: {
     WAITING_FOR_CALL: {
       name: 'Ждет звонка',
-      items: itemsFromBackend || [],
+      items: [],
     },
     CALL_RECEIVED: {
       name: 'Звонок совершен',

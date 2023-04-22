@@ -10,7 +10,7 @@ function NavbarAdmin() {
           <img
             src={Logo}
             alt="#"
-            className="rounded-xl border-2 border-[#4588C6]"
+            className="rounded-xl"
           />
         </Link>
       </div>

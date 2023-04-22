@@ -1,6 +1,8 @@
 import { DataGrid, GridRowClassNameParams } from '@mui/x-data-grid';
 import { useEffect, useState } from 'react';
 import Actions from '../Actions/Actions';
+import { useAppDispatch, useAppSelector } from '../../../../constants/global';
+// import { getAllStudentsThunk } from '../../../../redux/slices/studentSlice';
 
 interface MyRows {
   id: number;
@@ -20,100 +22,18 @@ interface MyColums {
   renderCell?: any;
 }
 
-const StudentTableAdmin = () => {
-  const rows: MyRows[] = [
-    {
-      id: 1,
-      name: 'ХАБИБЧИК МАГИБЧИК',
-      status: 'Заморожен',
-      number: '+996 555 123 123',
-      email: 'khabibchik@gmail.com',
-      group: 'Product Manager',
-      payment: '50 %',
-    },
-    {
-      id: 2,
-      name: 'ХАБИБЧИК МАГИБЧИК',
-      status: 'Активен',
-      number: '+996 555 123 123',
-      email: 'khabibchik@gmail.com',
-      group: 'Python',
-      payment: '50 %',
-      style: {},
-    },
-    {
-      id: 3,
-      name: 'ХАБИБЧИК МАГИБЧИК',
-      status: 'Неактивен',
-      number: '+996 555 123 123',
-      email: 'khabibchik@gmail.com',
-      group: 'Python',
-      payment: '50 %',
-    },
-    {
-      id: 4,
-      name: 'ХАБИБЧИК МАГИБЧИК',
-      status: 'Заморожен',
-      number: '+996 555 123 123',
-      email: 'khabibchik@gmail.com',
-      group: 'Python',
-      payment: '50 %',
-    },
-    {
-      id: 5,
-      name: 'ХАБИБЧИК МАГИБЧИК',
-      status: 'Неактивен',
-      number: '+996 555 123 123',
-      email: 'khabibchik@gmail.com',
-      group: 'Python',
-      payment: '50 %',
-    },
-    {
-      id: 6,
-      name: 'ХАБИБЧИК МАГИБЧИК',
-      status: 'Активен',
-      number: '+996 555 123 123',
-      email: 'khabibchik@gmail.com',
-      group: 'Python',
-      payment: '50 %',
-    },
-    {
-      id: 7,
-      name: 'ХАБИБЧИК МАГИБЧИК',
-      status: 'Заморожен',
-      number: '+996 555 123 123',
-      email: 'khabibchik@gmail.com',
-      group: 'Python',
-      payment: '50 %',
-    },
-    {
-      id: 8,
-      name: 'ХАБИБЧИК МАГИБЧИК',
-      status: 'Активен',
-      number: '+996 555 123 123',
-      email: 'khabibchik@gmail.com',
-      group: 'Python',
-      payment: '50 %',
-    },
-    {
-      id: 9,
-      name: 'ХАБИБЧИК МАГИБЧИК',
-      status: 'Неактивен',
-      number: '+996 555 123 123',
-      email: 'khabibchik@gmail.com',
-      group: 'Python',
-      payment: '50 %',
-    },
-    {
-      id: 10,
-      name: 'ХАБИБЧИК МАГИБЧИК',
-      status: 'Заморожен',
-      number: '+996 555 123 123',
-      email: 'khabibchik@gmail.com',
-      group: 'Product Manager',
-      payment: '50 %',
-    },
-  ];
+function StudentAdminTable() {
+  const dispatch = useAppDispatch();
+  const isAdmin = true;
+
+  const students = useAppSelector((state) => {
+    return state.student.students;
+  });
+  console.log('students', students);
+
+  // useEffect(() => {
+  //   dispatch(getAllStudentsThunk());
+  // }, [dispatch]);
 
   const colors = (status: 'Неактивен' | 'Активен' | 'Заморожен') =>
     status === 'Активен'
@@ -124,17 +44,25 @@ const StudentTableAdmin = () => {
       ? '#DF3939'
       : '';
 
+
+      const renderCell = (params: any) => (
+        <div>
+          {params.row.firstName} {params.row.lastName}
+        </div>
+      );
+
   const columns: MyColums[] = [
     { field: 'id', headerName: '', width: 0 },
     {
-      field: 'name',
+      field: 'fullName',
       headerName: <div className="text-[16px] font-semibold">Имя студента</div>,
-      width: 255,
+      width: 235,
+      renderCell: renderCell,
     },
     {
       field: 'status',
       headerName: <div className="text-[16px] font-semibold">Статус</div>,
-      width: 148,
+      width: 158,
       renderCell: (params: any) => {
         return (
           <div
@@ -151,7 +79,7 @@ const StudentTableAdmin = () => {
       },
     },
     {
-      field: 'number',
+      field: 'phoneNumber',
       headerName: <div className="text-[16px] font-semibold">Телефон</div>,
       width: 180,
     },
@@ -161,37 +89,36 @@ const StudentTableAdmin = () => {
       width: 219,
     },
     {
-      field: 'group',
+      field: 'groups',
       headerName: <div className="text-[16px] font-semibold">Группа</div>,
-      width: 155,
+      width: 165,
     },
     {
-      field: 'payment',
+      field: 'paymentPercentage',
       headerName: <div className="text-[16px] font-semibold">Оплата</div>,
-      width: 110,
+      width: 120,
     },
-    {
-        field: 'actions',
-        headerName: <div className="text-[16px] font-semibold">Действия</div>,
-  
-        width: 120,
-        renderCell: (params: any) => <Actions {...params} />,
-      },
   ];
+  if (isAdmin) {
+    columns.push({
+      field: 'actions',
+      headerName: <div className="text-[16px] font-semibold">Действия</div>,
+      width: 150,
+      renderCell: (params: any) => <Actions {...params} />,
+    });
+  }
 
   return (
-    <>
-      <div>
-        <DataGrid
-          autoHeight
-          className=" bg-white border rounded-lg shadow-lg"
-          rows={rows}
-          columns={columns}
-          getRowClassName={(params) => 'even:bg-[#dee7f3]'}
-        />
-      </div>
-    </>
+    <div>
+      <DataGrid
+        autoHeight
+        className=" rounded-lg border bg-white shadow-lg"
+        rows={students}
+        columns={columns}
+        getRowClassName={(params) => 'even:bg-[#dee7f3]'}
+      />
+    </div>
   );
-};
+}
 
-export default StudentTableAdmin;
+export default StudentAdminTable;

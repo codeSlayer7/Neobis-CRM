@@ -1,21 +1,42 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import Modal from '@mui/material/Modal';
 import AdminCourseCard from './AdminCourseCard';
-import AdminCourseData from './AdminCourseData';
+import CreateCourse, { CourseType } from '../../components/Modals/CreateCourse';
+import { CourseData } from '../../../../redux/types/courseTypes';
 
 export default function AdminCourses() {
-  return (
-    <div className="ml-[20px] h-auto w-[100%] pt-12 ">
-      <Link to="/admin/course/create">
-        <button
-          type="button"
-          className="ml-[980px] h-[43px] w-[251px] rounded-lg border bg-[#4588C6] text-lg text-white transition duration-150 hover:scale-95"
-        >
-          Создать новый курс
-        </button>
-      </Link>
+  const [open, setOpen] = useState(false);
+  const [type, setType] = useState<'create' | 'edit'>('create')
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const [editingCourse, setEditingCourse] = useState<CourseType | undefined>()
 
-      <div className="justify-around] flex flex-wrap">
-        <AdminCourseCard details={AdminCourseData} />
+  const openEditMenu = (course: CourseType) => {
+    setType('edit')
+    setEditingCourse(course)
+    setOpen(true)
+  }
+  return (
+    <div className="h-auto w-[100%] pb-0 pl-[20px] pr-[0px] pt-[40px] ">
+      <button
+        onClick={handleOpen}
+        type="button"
+        className="ml-[980px] h-[43px] w-[251px] rounded-lg border bg-[#4588C6] text-lg text-white transition duration-150 hover:scale-95"
+      >
+        Создать новый курс
+      </button>
+
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <CreateCourse type={type} editingCourse={editingCourse} handleClose={handleClose} />
+      </Modal>
+
+      <div className="flex w-full flex-wrap justify-between">
+        <AdminCourseCard openEditMenu={openEditMenu} />
       </div>
     </div>
   );

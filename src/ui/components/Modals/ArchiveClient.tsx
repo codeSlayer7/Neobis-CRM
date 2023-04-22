@@ -1,38 +1,56 @@
 import { Link, useNavigate } from 'react-router-dom';
-import Attention from '../../icons/Attention';
+import { archiveStudent } from '../../../api/studentApi';
+import { useState } from 'react';
+import { createPortal } from 'react-dom';
+import Modal from '../../admin/components/Modals/Modal';
+import RejectionReason from './RejectionReason';
 
-function ArchiveClient() {
+function ArchiveClient({userId}: any ) {
+  console.log("99", userId);
   const navigate = useNavigate();
+  const [openModalReason, setOpenModalReason] = useState(false);
+  
+
+  const handleClose = () => {
+    setOpenModalReason(false);
+  };
+
+  const handleOpen = () => {
+    setOpenModalReason(true);
+  }
 
   return (
-    <div className="flex h-[100vh] w-full items-center justify-center bg-[#FAFAFA]">
-      <div className="h-[266px] w-[512px] rounded-lg border border-black bg-white">
-        <div className="justify-left flex h-[68px] w-[512px] items-center rounded-t-lg bg-black text-white">
-          <p className="m-5 text-3xl font-semibold">Внимание</p>
-          <Attention />
-        </div>
+    <div className="flex flex-col items-center justify-center ">
         <p className="mt-[47px] text-center text-xl font-semibold">
-          Вы уверены, что хотите архивировать клиента ?
+    Что вы хотите сделать с этими данными?      
         </p>
-        <div className="mt-12 ml-5 ">
-          <Link to="/rejectionreason">
+        <div className="mt-12 ml-5 flex mb-[40px]">
             <button
-              type="button"
-              className="hover:easy-in h-[42px] w-[98px] rounded-lg border bg-red-500 text-white transition duration-150 hover:scale-110"
+              type="submit"
+              onClick={handleOpen}
+              className="hover:easy-in p-[10px] rounded-lg border bg-red-500 text-white transition duration-150 hover:scale-110"
             >
-              Да
+              Архивировать
             </button>
-          </Link>
+
+          {openModalReason && (
+        <div className="bg-[rgba(0, 0, 0, 0.5)] z-999" onClick={handleClose} />
+      )}
+      {createPortal(
+        <Modal title="Внимание" open={openModalReason} onClose={handleClose}>
+          <RejectionReason/>
+      </Modal>, document.body
+      )}
           <button
-            type="button"
-            className="hover:easy-in ml-5 h-[42px] w-[98px] rounded-lg border bg-gray-400 text-white transition duration-150 hover:scale-110"
+            type="submit"
+            className="hover:easy-in ml-5 p-[10px] rounded-lg border bg-gray-400 text-white transition duration-150 hover:scale-110"
             onClick={() => navigate(-1)}
           >
-            Нет
+            Добавить в ЧС
           </button>
         </div>
       </div>
-    </div>
   );
 }
+
 export default ArchiveClient;

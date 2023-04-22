@@ -4,6 +4,7 @@ import Search from '../../../components/Search';
 interface Props {
   setButtonType: (v: number) => void;
   buttonType: number;
+  setSearchValue?: (v: string) => void;
 }
 
 const buttons = [
@@ -29,12 +30,13 @@ const buttons = [
   },
 ];
 
-export default function NavigateButtonsAdmin({ buttonType, setButtonType }: Props) {
+export default function NavigateButtonsAdmin({ buttonType, setButtonType , setSearchValue}: Props) {
   return (
     <div className="bg-[#6AAAEB] p-[16px] rounded-[16px] flex">
       {buttons.map((btn) => {
         return (
           <button
+          key={btn.value}
             onClick={() => setButtonType(btn.value)}
             className={
               buttonType === btn.value
@@ -46,7 +48,7 @@ export default function NavigateButtonsAdmin({ buttonType, setButtonType }: Prop
           </button> 
         );
       })}
-      <Search />
+      <Search setSearchValue={setSearchValue} />
     </div>
   );
 }

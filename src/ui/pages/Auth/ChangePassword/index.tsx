@@ -36,7 +36,6 @@ export default function ChangePassword() {
   };
 
   const onSubmit = (values: UserResetPassword) => {
-    console.log('here');
     dispatch(resetPasswordThunk(values));
     navigate('/login');
   };
@@ -46,7 +45,6 @@ export default function ChangePassword() {
     validationSchema: schema,
     onSubmit,
   });
-  console.log('formik', formik);
 
   return (
     <div className="flex h-screen items-center justify-around">

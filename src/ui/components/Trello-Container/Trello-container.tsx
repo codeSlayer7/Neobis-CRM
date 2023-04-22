@@ -78,7 +78,7 @@ function TrelloContainer() {
               <TrelloColumn
                 key={columnId}
                 columnTitle={column.name}
-                count={column.items.length}
+                count={column.items?.length}
               >
                 <Droppable droppableId={columnId} key={columnId}>
                   {(provided, snapshot) => {

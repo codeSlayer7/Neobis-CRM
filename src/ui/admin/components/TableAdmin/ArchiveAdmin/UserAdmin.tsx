@@ -1,5 +1,8 @@
 import { DataGrid } from '@mui/x-data-grid';
-import Actions from '../../Actions/Actions';
+import { useAppDispatch, useAppSelector } from '../../../../../constants/global';
+import { useEffect } from 'react';
+import ArchiveAction from '../../Actions/ArchiveAction';
+import { getAllUsersArchiveThunk } from '../../../../../redux/slices/archiveSlice';
 
 interface Columns {
   field: string;
@@ -9,42 +12,31 @@ interface Columns {
 }
 
 export default function UserTableAdmin() {
-  const userRows = [
-    {
-      id: 1,
-      name: 'Жаныш Мамытов',
-      email: 'zhanysh12@gmail.com',
-      number: '+996 555 123 123',
-      post: 'Office Manager',
-      date: 'Октябрь 14',
-      cause: 'Курс завершился ',
-    },
-    {
-      id: 2,
-      name: 'Жаныш Мамытов',
-      email: 'zhanysh12@gmail.com',
-      number: '+996 555 123 123',
-      post: 'Office Manager',
-      date: 'Октябрь 14',
-      cause: 'По состоянию здоровью',
-    },
-    {
-      id: 3,
-      name: 'Алтынай Бекешова',
-      email: 'altysha_b@gmai.com',
-      number: '+996 555 123 123',
-      post: 'Office Manager',
-      date: 'Октябрь 14',
-      cause: 'плохое понимание кыргызского языка',
-    },
-  ];
+  const dispatch = useAppDispatch()
+
+  const archiveUsers = useAppSelector((state) => {
+    return state.archive.users
+  })
+
+  console.log("users", archiveUsers);
+  
+
+  useEffect(()=>{
+    dispatch(getAllUsersArchiveThunk())
+  }, [dispatch])
+
 
   const userColumns: Columns[] = [
     { field: 'id', headerName: '', width: 0 },
     {
-      field: 'name',
+      field: 'fullName',
       headerName: <div className="text-[16px] font-semibold">Ф.И.О.</div>,
-      width: 219,
+      width: 209,
+      renderCell: (params: any) => (
+        <div>
+          {params.row.firstName} {params.row.lastName}
+        </div>
+      ),
     },
     {
       field: 'email',
@@ -52,34 +44,29 @@ export default function UserTableAdmin() {
       width: 210,
     },
     {
-      field: 'number',
+      field: 'phoneNumber',
       headerName: <div className="text-[16px] font-semibold">Телефон</div>,
-      width: 170,
+      width: 180,
     },
     {
-      field: 'post',
-      headerName: <div className="text-[16px] font-semibold">Должность</div>,
-      width: 150,
-    },
-    {
-      field: 'date',
+      field: 'dateArchive',
       headerName: (
         <div className="text-[16px] font-semibold">Дата архивации</div>
       ),
-      width: 160,
+      width: 200,
     },
     {
-      field: 'cause',
+      field: 'reasonArchive',
       headerName: (
         <div className="text-[16px] font-semibold">Причина архивации</div>
       ),
-      width: 230,
+      width: 330,
     },
     {
         field: 'actions',
         headerName: <div className="text-[16px] font-semibold">Действия</div>,
         width: 100,
-        renderCell: (params: any) => <Actions {...params} />,
+        renderCell: (params: any) => <ArchiveAction {...params} />,
       },
   ];
 
@@ -87,7 +74,7 @@ export default function UserTableAdmin() {
     <DataGrid
       autoHeight
       className=" bg-white border rounded-lg shadow-lg w-[1300px] hover:none"
-      rows={userRows}
+      rows={archiveUsers || []}
       columns={userColumns}
       getRowClassName={(params) => 'even:bg-[#dee7f3]'}
     />

@@ -1,33 +1,38 @@
 import { Link } from 'react-router-dom';
-import Attention from '../../icons/Attention';
+import { archiveStudent } from '../../../api/studentApi';
 
 function RejectionReason() {
+
+const handleArchiveClick = (reason: string,id: number) => {
+  archiveStudent(reason, id)
+    .then(response => {
+      console.log('Студент успешно архивирован:', response.data);
+    })
+    .catch(error => {
+      console.error('Ошибка при архивации студента:', error);
+    });
+}
   return (
-    <div className="flex h-[100vh] w-full items-center justify-center bg-[#FAFAFA]">
-      <div className="h-[551px] w-[512px] rounded-lg border border-black bg-white">
-        <div className="justify-left flex h-[68px] w-[512px] items-center rounded-t-lg bg-black text-white">
-          <p className="mx-5 text-3xl font-semibold">Внимание</p>
-          <Attention />
-        </div>
+<>
         <p className="mt-[47px] pl-10 text-left text-xl font-semibold">
-          Напишите причину, почему клиент не захотел записываться на курс ?
-        </p>
-        <div className="mt-4 ml-9  ">
+          Напишите причину
+          </p>
+        <div className="mt-4 ml-9 flex justify-center flex-col  ">
           <textarea
             className="h-[262px] w-[440px] rounded-lg border border-gray-800 p-2"
             placeholder="Введите текст"
           />
-          <Link to="/">
+          {/* <Link to="/"> */}
             <button
               type="submit"
-              className="hover:easy-in bg-neobis-bg-green mt-4 h-[42px] w-[440px] rounded-lg border text-lg text-white transition duration-150 hover:scale-95"
+              // onClick={() => handleArchiveClick(reason, id)}
+              className="hover:easy-in bg-neobis-bg-green mt-4 pt-[10px] pb-[10px] w-[440px] mb-[20px] rounded-lg border text-lg text-white transition duration-150 hover:scale-95"
             >
               Сохранить
             </button>
-          </Link>
+          {/* </Link> */}
         </div>
-      </div>
-    </div>
+        </>
   );
 }
 export default RejectionReason;

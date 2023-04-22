@@ -1,9 +1,8 @@
 import { DataGrid } from '@mui/x-data-grid';
-import UserActions from '../../pages/Manager/UserActions';
 import { useAppDispatch, useAppSelector } from '../../../../constants/global';
-import { useNavigate } from 'react-router-dom';
-import React from 'react';
+import React, { useState } from 'react';
 import { getAllUserThunk } from '../../../../redux/slices/adminSlice';
+import Actions from '../Actions/Actions';
 
 interface Columns {
   field: string;
@@ -14,68 +13,61 @@ interface Columns {
 
 export default function UserTable() {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const users = useAppSelector((state) => {
     return state.admin.users;
   });
-  console.log('users', users);
+
+  const renderCellDate = (params: any) => {
+    return (
+      <div>
+        {params.row.lastVisitDate} {params.row.lastVisitTime}
+      </div>
+    );
+  };
+console.log("users", users);
 
   React.useEffect(() => {
     dispatch(getAllUserThunk());
   }, [dispatch]);
 
-  const userRows = [
-    {
-      id: 1,
-      name: 'Жаныш Мамытов',
-      email: 'zh.mamytov@gmail.com',
-      phoneNumber: '+996 555 123 123',
-      lastVisit: '24.03.2023',
-    },
-    {
-      id: 2,
-      name: 'Жаныш Мамытов',
-      email: 'zh.mamytov@gmail.com',
-      phoneNumber: '+996 555 123 123',
-      lastVisit: '24.03.2023',
-    },
-  ];
-
   const userColumns: Columns[] = [
-    { field: 'id', headerName: '', width: 0 },
+    { field: 'id', headerName: '', width: 20 },
     {
-      field: 'firstName',
+      field: 'fullName',
       headerName: <div className="text-[16px] font-semibold">Ф.И.О</div>,
-      width: 250,
+      width: 270,
+      renderCell: (params: any) => ( <div> {params.row.firstName} {params.row.lastName}</div>)
     },
-
     {
       field: 'email',
       headerName: <div className="text-[16px] font-semibold">Почта</div>,
-      width: 250,
+      width: 280,
     },
     {
       field: 'phoneNumber',
       headerName: (
         <div className="text-[16px] font-semibold">Номер телефона</div>
       ),
-      width: 250,
+      width: 280,
     },
     {
-      field: 'lastVisitTime',
+      field: 'date',
       headerName: (
         <div className="text-[16px] font-semibold">Последний визит</div>
       ),
-      width: 250,
+      width: 280,
+      renderCell: renderCellDate,
     },
 
     {
       field: 'actions',
       headerName: <div className="text-[16px] font-semibold">Действия</div>,
 
-      width: 150,
-      renderCell: (params: any) => <UserActions {...params} />,
+      width: 120,
+      renderCell: (params: any) => {
+        return <Actions user={params.row} />;
+      },
     },
   ];
 
@@ -83,7 +75,7 @@ export default function UserTable() {
     <DataGrid
       autoHeight
       className=" hover:none w-[1300px] rounded-lg border bg-white shadow-lg"
-      rows={users}
+      rows={users || []}
       columns={userColumns}
       getRowClassName={(params) => 'even:bg-[#dee7f3]'}
     />
