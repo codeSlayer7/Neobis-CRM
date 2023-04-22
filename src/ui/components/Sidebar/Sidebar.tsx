@@ -7,10 +7,11 @@ import ArchiveIcon from '../../icons/ArchiveIcon';
 import MentorsIcon from '../../icons/MentorsIcon';
 import ApplicationIcon from '../../icons/ApplicationIcon';
 import Education from '../../icons/Education';
-import HistoryHeader from './history-header';
+import HistoryHeader from '../../admin/components/SidebarAdmin/history-header';
 import HoverText from './hoverText';
 import { useAppDispatch } from '../../../constants/global';
 import { toggleStore } from '../../../redux/slices/toggleSidebar';
+
 
 interface IMenuItem {
   name: string;
@@ -44,6 +45,7 @@ function Sidebar({ children }: Props) {
     { name: 'Студенты', path: '/students', icon: <StudentIcon /> },
     { name: 'Преподаватели', path: '/mentors', icon: <MentorsIcon /> },
     { name: 'Архивы', path: '/archive', icon: <ArchiveIcon /> },
+  
   ];
   return (
     <div className="flex ">

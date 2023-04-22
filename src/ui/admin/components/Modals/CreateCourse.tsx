@@ -63,6 +63,7 @@ function CreateCourse({ handleClose, type, editingCourse }: Props) {
     }
   };
 
+
   return (
     <div className=" h-[100vh] w-[100%]">
       <div className="mx-auto my-20 h-[620px] w-[990px] rounded-lg border-2 border-slate-200 bg-white shadow-lg ">
@@ -99,7 +100,7 @@ function CreateCourse({ handleClose, type, editingCourse }: Props) {
                 type="file"
                 name="file"
                 onChange={(event) => {
-                  setSelectedImage(event.target.files[0]);
+                  setSelectedImage(event.target.files?.[0] || null)
                 }}
                 className=" :selected-bg-red h-11 w-80 rounded-lg border bg-[#4588C6] p-1 text-lg text-white transition duration-150 hover:scale-95"
               />

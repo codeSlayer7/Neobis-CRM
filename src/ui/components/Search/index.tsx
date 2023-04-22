@@ -1,6 +1,6 @@
 import SearchIcon from '../../icons/SearchIcon';
 
-export default function Search(props: any) {
+export default function Search({ setSearchValue, ...props }: any) {
   return (
     <div className="flex w-[350px] items-center justify-between">
       <input
@@ -9,6 +9,7 @@ export default function Search(props: any) {
         placeholder="Поиск..."
         type="text"
         name="search"
+        onChange={(e: any) => setSearchValue(e.target.value)}
       />
       <span className="relative left-[290px]">
         <SearchIcon />

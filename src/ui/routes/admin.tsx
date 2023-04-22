@@ -31,7 +31,8 @@ export default function Admin() {
     <RouteWrapperAdmin>
       <Routes>
         <Route index element={<UserPage />} />
-        <Route path="applications" element={<AdminApplications />}/>
+        {/* <Route path="admin" element={<UserPage />} /> */}
+
         <Route path="analytics" element={<Analytics />} />,
         <Route path="mentors" element={<AdminMentors />} />
         <Route path="mentors/:id" element={<AdminMentorsDetails />} />

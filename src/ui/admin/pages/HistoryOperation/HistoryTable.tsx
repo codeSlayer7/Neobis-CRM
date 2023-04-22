@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -10,8 +10,10 @@ import { styled } from '@mui/material/styles';
 import { Avatar, Typography, Box, Pagination } from '@mui/material';
 import { usePagination } from '../../../../hook/use-pagination';
 import data from './HIstoryData.json';
-import HistoryHeader from '../../../components/Sidebar/history-header';
+import HistoryHeader from '../../components/SidebarAdmin/history-header';
 import HistoryModal from './history-modal';
+import axiosInteceptor from '../../../../api/base/interceptor';
+// import { getOperations } from '../../../../api/adminApi';
 
 // const StyledTableCell = styled(TableCell)(({ theme }) => ({
 //   [`&.${tableCellClasses.head}`]: {
@@ -43,7 +45,13 @@ export default function HistoryTable() {
     setItemList(data);
     setIsInitialized(true);
   }
-  console.log(pageItems);
+
+  useEffect(() => {
+    axiosInteceptor.get('api/v1/operations')
+      .then(res => {
+        console.log(res)
+      })
+  },[])
   return (
     <>
       {/* <HistoryHeader /> */}

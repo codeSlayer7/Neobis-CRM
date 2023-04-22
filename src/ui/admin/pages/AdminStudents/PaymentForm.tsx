@@ -7,24 +7,30 @@ import { schemaPayment } from '../../../../utils/schema';
 
 const initialValues = {
   payment: '',
-  enrollmentGroupId: '',
+  transactionType: '',
+  monthlyBillID: ''
 };
 
 export const payment = [{
         label: 'Электронный кошелек',
-        value: 0
+        value: 'WITH_ONLINE_WALLET'
 },
 {
     label: 'Кредитная карта',
-    value: 1
+    value: 'WITH_CARD'
 },
 {
     label: 'Наличными',
-    value: 2
+    value: 'WITH_CASH'
 },
 ]
 
-export const PaymentForm = ({ onClose }: any) => {
+type Props = {
+  onClose: () => void;
+  student: any
+}
+
+export const PaymentForm = ({ onClose, student }: Props) => {
   const dispatch = useAppDispatch();
   const onSubmit = () => {
     // payment(data)
@@ -50,6 +56,12 @@ export const PaymentForm = ({ onClose }: any) => {
   
   return (
     <form className="mt-6" onSubmit={formik.handleSubmit}>
+      <InputField
+        label="Сумма оплаты"
+        name="payment"
+        value={formik.values.payment}
+        onChange={formik.handleChange}
+      />
       <InputField
         label="Сумма оплаты"
         name="payment"

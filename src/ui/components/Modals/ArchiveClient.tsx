@@ -5,8 +5,7 @@ import { createPortal } from 'react-dom';
 import Modal from '../../admin/components/Modals/Modal';
 import RejectionReason from './RejectionReason';
 
-function ArchiveClient({userId}: any ) {
-  console.log("99", userId);
+function ArchiveClient({student}: any ) {
   const navigate = useNavigate();
   const [openModalReason, setOpenModalReason] = useState(false);
   
@@ -38,7 +37,7 @@ function ArchiveClient({userId}: any ) {
       )}
       {createPortal(
         <Modal title="Внимание" open={openModalReason} onClose={handleClose}>
-          <RejectionReason/>
+          <RejectionReason onSuccess={handleClose} id={student?.id}/>
       </Modal>, document.body
       )}
           <button

@@ -18,6 +18,10 @@ export const createUser = (user: UserData) => {
 //   return axiosInteceptor.put(`/api/v1/admin/update/${id}`, user)
 // }
 
-export const updateUser1 = (id: any, user: any) => {
-  return axiosInteceptor.put(`/api/v1/admin/update/${id}`, user);
-};
+export const updateUser = (id: any, user: any) => {
+  return axiosInteceptor.put(`/api/v1/admin/update/${id}`, user)
+}
+
+export const getOperations = () => {
+  return axiosInteceptor.get('api/v1/operations')
+}

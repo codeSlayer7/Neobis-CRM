@@ -15,6 +15,7 @@ const StudentActions = ({student}: Props)=> {
   const [openModalEditStudent, setOpenModalEditStudent] = useState(false);
   const [openModalPayment, setOpenModalPayment] = useState(false);
 
+  console.log(student)
   const handleOpenModalEditStudent = () => {
     setOpenModalEditStudent(true)
   }

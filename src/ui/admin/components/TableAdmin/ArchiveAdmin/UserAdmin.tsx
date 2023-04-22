@@ -49,14 +49,14 @@ export default function UserTableAdmin() {
       width: 180,
     },
     {
-      field: 'dateArchive',
+      field: 'archiveDate',
       headerName: (
         <div className="text-[16px] font-semibold">Дата архивации</div>
       ),
       width: 200,
     },
     {
-      field: 'reasonArchive',
+      field: 'archiveReason',
       headerName: (
         <div className="text-[16px] font-semibold">Причина архивации</div>
       ),
@@ -74,7 +74,7 @@ export default function UserTableAdmin() {
     <DataGrid
       autoHeight
       className=" bg-white border rounded-lg shadow-lg w-[1300px] hover:none"
-      rows={archiveUsers}
+      rows={archiveUsers || []}
       columns={userColumns}
       getRowClassName={(params) => 'even:bg-[#dee7f3]'}
     />
