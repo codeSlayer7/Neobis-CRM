@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getApiErrorMessage } from '../../../utils/utils';
 import { addNewMentor, getAllMentors, getMentorById } from './mentors';
 
-const initialState = {
+const initialState:any = {
   mentors: [],
   mentor: {},
   loading: false,

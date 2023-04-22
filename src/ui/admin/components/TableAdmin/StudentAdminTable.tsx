@@ -2,7 +2,7 @@ import { DataGrid, GridRowClassNameParams } from '@mui/x-data-grid';
 import { useEffect, useState } from 'react';
 import Actions from '../Actions/Actions';
 import { useAppDispatch, useAppSelector } from '../../../../constants/global';
-import { getAllStudentsThunk } from '../../../../redux/slices/studentSlice';
+// import { getAllStudentsThunk } from '../../../../redux/slices/studentSlice';
 
 interface MyRows {
   id: number;
@@ -31,9 +31,9 @@ function StudentAdminTable() {
   });
   console.log('students', students);
 
-  useEffect(() => {
-    dispatch(getAllStudentsThunk());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getAllStudentsThunk());
+  // }, [dispatch]);
 
   const colors = (status: 'Неактивен' | 'Активен' | 'Заморожен') =>
     status === 'Активен'

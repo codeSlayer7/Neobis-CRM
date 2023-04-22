@@ -4,8 +4,9 @@ import { getAllMentorsArchive, getAllStudentsArchive, getAllUsersArchive } from 
 
 const initialState = {
   mentors: [],
-  students:[],
+  students: [],
   users: [],
+  archive:{},
   loading: false,
   error: '',
 };

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { CaretDown, CaretUp } from 'phosphor-react';
 
 type Option = {
-  label: string; value: number
+  label: string; value:any;
 }
 interface Props {
   label: any;
@@ -16,7 +16,7 @@ const DropDown: React.FC<Props> = ({ options, onOptionClick, label }) => {
   const showCaretDown = isExpended;
   const showCaretUp = !isExpended;
 
-  console.log('options', options);
+  // console.log('options', options);
   return (
     <div className="relative inline-block text-left shadow-lg border rounded-lg">
       <button
