@@ -5,7 +5,6 @@ import { useAppSelector } from '../../../constants/global';
 import ProfileInput from '../../components/Forms/ProfileInput';
 import Edit from '../../icons/Edit';
 import EditWhite from '../../icons/EditWhite';
-import Photo from '../../images/photo.png';
 
 const style = {
   position: 'absolute' as const,
@@ -40,9 +39,6 @@ function Profile() {
     <div className="mx-auto flex h-auto w-full items-center justify-center">
       <div className="my-10 mx-auto h-[798px] w-[886px]">
         <div className="flex">
-          <div>
-            <img src={Photo} alt="#" />
-          </div>
           <div className="ml-7">
             <h2 className="text-3xl font-bold">
               {user.firstName}

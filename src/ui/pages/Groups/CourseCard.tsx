@@ -17,6 +17,7 @@ function CourseCard() {
   useEffect(() => {
     dispatch(getAllCoursesThunk());
   }, [dispatch]);
+  
   return (
     <div className="flex w-[90%] flex-wrap ">
       {courses &&
