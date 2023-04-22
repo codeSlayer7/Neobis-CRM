@@ -1,5 +1,5 @@
-import axios, { AxiosRequestConfig } from 'axios';
 import { getCookie, setCookie, removeCookie } from '../../utils/cookie';
+import axios, { AxiosRequestConfig } from 'axios';
 
 const axiosInteceptor = axios.create({
   baseURL: 'http://68.183.88.191:8080',
@@ -14,7 +14,7 @@ axiosInteceptor.interceptors.request.use(
     console.log(token, 'access token');
     if (token) {
       // config.headers["Authorization"] = 'Bearer ' + token;  // for Spring Boot back-end
-      config.headers.Authorization = `Bearer ${token}`; // for Node.js Express back-end
+      config.headers['Authorization'] = 'Bearer ' + token; // for Node.js Express back-end
     }
     return config;
   },
@@ -52,7 +52,7 @@ axiosInteceptor.interceptors.response.use(
           removeCookie('token');
           setCookie('token', accessToken, 4);
 
-          return await axiosInteceptor(originalConfig);
+          return axiosInteceptor(originalConfig);
         } catch (_error) {
           return Promise.reject(_error);
         }

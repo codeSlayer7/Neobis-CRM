@@ -62,13 +62,13 @@ export default function AdminApplications() {
   useEffect(() => {
     dispatch(getSortedThunk());
   }, []);
-  const filter = {
-    '0': 'waitingForCall',
-    '1': 'callReceived',
-    '2': 'appliedForTrial',
-    '3': 'attendedTrial',
-  };
 
+  const filter = {
+    '0': 'WAITING_FOR_CALL',
+    '1': 'CALL_RECEIVED',
+    '2': 'APPLIED_FOR_TRIAL',
+    '3': 'ATTENDED_TRIAL',
+  };
 
   const rowsApp = useAppSelector(
     (state) => state.trello.columns[filter[String(buttonType)]]

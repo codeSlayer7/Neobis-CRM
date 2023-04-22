@@ -31,7 +31,7 @@ function TrelloContainer() {
     dispatch(getSortedThunk());
     return () => {
       if (willMount.current) {
-        console.log('odok', copyData);
+        console.log('odoklllll data copy', copyData);
       }
 
       willMount.current = false;

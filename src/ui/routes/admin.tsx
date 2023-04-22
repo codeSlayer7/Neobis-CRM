@@ -34,6 +34,7 @@ export default function Admin() {
         {/* <Route path="admin" element={<UserPage />} /> */}
 
         <Route path="analytics" element={<Analytics />} />,
+          <Route path="applications" element={<AdminApplications />} />,
         <Route path="mentors" element={<AdminMentors />} />
         <Route path="mentors/:id" element={<AdminMentorsDetails />} />
         <Route path="courses" element={<AdminCourses />} />

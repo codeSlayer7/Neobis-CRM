@@ -1,16 +1,23 @@
 // eslint-disable-next-line import/prefer-default-export
 export enum ColumnName {
-  WaitCall = 'WAITING_FOR_CALL',
-  CallEnded = 'CALL_RECEIVED',
-  TrialLesson = 'APPLIED_FOR_TRIAL',
-  PassedTrialLesson = 'ATTENDED_TRIAL',
+  WaitCall = 'waitingForCall',
+  CallEnded = 'callReceived',
+  TrialLesson = 'appliedForTrial',
+  PassedTrialLesson = 'attendedTrial',
 }
 
-export const CardStatus = {
+
+export const extraCardStatus = {
   WaitCall: 'WAITING_FOR_CALL',
   CallEnded: 'CALL_RECEIVED',
   TrialLesson: 'APPLIED_FOR_TRIAL',
   PassedTrialLesson: 'ATTENDED_TRIAL',
+} as const;
+export const CardStatus = {
+  WaitCall: 'waitingForCall',
+  CallEnded: 'callReceived',
+  TrialLesson: 'appliedForTrial',
+  PassedTrialLesson: 'attendedTrial',
 } as const;
 
 export const Endpoints = {
@@ -46,8 +53,8 @@ type MarketingStrategyType =
   | 'NEWS'
   | 'OTHER';
 
-type KeyValue = {
-  [key in MarketingStrategyType]: string;
+type KeyValue<T> = {
+  [key in T]: string;
 };
 
 export const marketingOptions: KeyValue<MarketingStrategyType> = {
