@@ -11,7 +11,7 @@ interface MyColums {
   renderCell?: any;
 }
 
-const StudentTable = ({ searchValue, sortBy }: any) => {
+const StudentTable = ({ searchValue, sortBy=()=> {} }: any) => {
 
   const students = useAppSelector((state) => {
     return state.student.students;

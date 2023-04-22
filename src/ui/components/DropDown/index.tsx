@@ -16,7 +16,6 @@ const DropDown: React.FC<Props> = ({ options, onOptionClick, label }) => {
   const showCaretDown = isExpended;
   const showCaretUp = !isExpended;
 
-  console.log('options', options);
   return (
     <div className="relative inline-block text-left shadow-lg border rounded-lg">
       <button

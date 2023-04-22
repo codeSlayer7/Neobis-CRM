@@ -7,6 +7,7 @@ import StudentTable from '../../../components/Table/StudentTable';
 import { array } from '../../components/AdminDropDown/GroupField';
 import { useAppDispatch } from '../../../../constants/global';
 import { getAllStudentsThunk } from '../../../../redux/slices/studentSlice';
+import { useDebounce } from '../../../../hook/useDebounce';
 
 export const status = [
   {
@@ -23,6 +24,16 @@ export const status = [
   },
 ] 
 
+interface PaginateProsType<T = Record<string, any>> {
+  data: T[],
+  pageSize: number,
+  page: number
+}
+
+export const paginateData = <T = Record<string, any>>({data, pageSize, page}: PaginateProsType<T> ): T[] => {
+  return data.slice((page * pageSize) - pageSize, page * pageSize)
+}
+
 export default function AdminStudents() {
 const [searchValue, setSearchValue] = useState('');
 const [searchResults, setSearchResults] = useState([]);
@@ -34,17 +45,21 @@ const handleOpen = () => setOpen(true);
 const handleClose = () => setOpen(false);
 const dispatch = useAppDispatch();
 
+const debouncedSearch = useDebounce(searchValue, 2000)
 
 useEffect(() => {
-  dispatch(getAllStudentsThunk({
+  const filters = {
     groupId: groups,
     page: 0,
-    size: 25,
+    size: 10,
     sortBy: sortType,
     status: status,
-  }));
-}, [groups, sortType, status, searchValue]);
-
+    string: searchValue
+  }
+  const { string, ...rest } = filters
+  const query = searchValue ? filters : rest
+  dispatch(getAllStudentsThunk(query));
+}, [groups, sortType, status, debouncedSearch]);
 
   return (
     <div className="pb-0 pl-[60px] pr-[15px] pt-[60px]">

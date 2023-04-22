@@ -43,7 +43,6 @@ export default function HistoryTable() {
     setItemList(data);
     setIsInitialized(true);
   }
-  console.log(pageItems);
   return (
     <>
       {/* <HistoryHeader /> */}
