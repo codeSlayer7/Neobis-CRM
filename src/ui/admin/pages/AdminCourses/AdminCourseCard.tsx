@@ -10,7 +10,11 @@ import { getAllCoursesThunk } from '../../../../redux/service/courses/coursesAct
 import { CourseType } from '../../components/Modals/CreateCourse';
 import { archiveCourse } from '../../../../redux/service/courses/courses';
 
-function AdminCourseCard({openEditMenu} : {openEditMenu: (course: CourseType) => void}) {
+function AdminCourseCard({
+  openEditMenu,
+}: {
+  openEditMenu: (course: CourseType) => void;
+}) {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const courses = useAppSelector((state) => {
@@ -19,43 +23,46 @@ function AdminCourseCard({openEditMenu} : {openEditMenu: (course: CourseType) =>
 
   const archive = (id: number) => {
     archiveCourse(id)
-      .then(res => {
-        if(res.status === 200) {
-          alert('Успешно архивирован')
+      .then((res) => {
+        if (res.status === 200) {
+          alert('Успешно архивирован');
           dispatch(getAllCoursesThunk());
         }
       })
-      .catch(err => {
-        alert('Ошибка при архивации')
-      })
-  }
+      .catch((err) => {
+        alert('Ошибка при архивации');
+      });
+  };
 
   useEffect(() => {
     dispatch(getAllCoursesThunk());
   }, [dispatch]);
 
   return (
-    <div className="mt-10 flex flex-wrap">
+    <div className="mx-20 my-10 flex flex-wrap">
       {courses &&
         courses.map((course: any) => (
           <div key={course.id}>
-            <div className="relative m-5 h-[398px] w-[382px] rounded-3xl border border-black bg-fixed shadow-sm">
-              <DropDownAdminCourses archive={() => archive(course.id)} openEditMenu={() => openEditMenu(course)} />
+            <div className="relative m-5 h-[360px] w-[350px] rounded-3xl border-2 border-[#B4D9FF] bg-white bg-fixed shadow-lg ">
+              <DropDownAdminCourses
+                archive={() => archive(course.id)}
+                openEditMenu={() => openEditMenu(course)}
+              />
 
               <img
                 src={course.imageUrl}
                 alt="#"
-                className="mt-[-81px] rounded-t-3xl border-0 bg-fixed"
+                className="mt-[-81px] h-[200px] w-[100%] rounded-t-3xl border-0 bg-fixed"
               />
 
               <h3
-                className="my-3 ml-[26px] text-[32px] font-bold "
+                className="my-3 ml-[26px] text-[28px] font-semibold text-[#4588C6]"
                 onClick={() => navigate(`/admin/courses/${course.id}`)}
               >
                 {course.name}
               </h3>
 
-              <hr className="ml-6 w-[330px] border border-black " />
+              <hr className="ml-6 w-[300px] border-2" />
               <div className="mt-3 ml-6 flex w-[330px]  flex-wrap">
                 <div className="flex flex-col">
                   <div className="flex ">
@@ -72,11 +79,11 @@ function AdminCourseCard({openEditMenu} : {openEditMenu: (course: CourseType) =>
                     </p>
                   </div>
                 </div>
-                <div className="ml-[15%] flex flex-col ">
+                <div className="ml-[11%] flex flex-col ">
                   <div className="flex">
                     <Money />
                     <p className=" ml-3 text-lg font-normal">
-                      {course.cost} тыс.сом
+                      {course.cost} сом
                     </p>
                   </div>
 

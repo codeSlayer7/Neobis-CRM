@@ -8,7 +8,7 @@ type Props = {
 }
 function DropDownAdminCourses({openEditMenu, archive} : Props) {
   const [open, setOpen] = useState(false);
-  const handleClick = () => {
+   const handleClick = () => {
     setOpen(!open);
   };
 
@@ -16,8 +16,10 @@ function DropDownAdminCourses({openEditMenu, archive} : Props) {
     <>
       <button
         type="button"
-        className=" z-100 relative left-[300px] m-5 flex h-[41px] w-[41px] items-center  justify-center rounded-full bg-[#51A3F6]"
+        className=" z-100 relative left-[260px] m-5 flex h-[41px] w-[41px] items-center  justify-center rounded-full bg-[#51A3F6]"
         onClick={handleClick}
+        
+        
       >
         <HiDotsVertical className="t-2  text-2xl text-white" />
       </button>

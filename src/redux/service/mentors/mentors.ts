@@ -28,3 +28,29 @@ export const addNewMentor = async ({ values, formData }) => {
   );
   return result.data;
 };
+
+//update mentor
+export const updateMentor = async ({values}) => {
+  console.log(values, 'tttttttt')
+  return axiosInteceptor
+    .put(`${Endpoints.MentorUpdate}/${values.id}`)
+    // .then((res) => {
+    //   if (res.status === 200 && typeof formData !== 'string') {
+    //     axiosInteceptor.post(
+    //       `${Endpoints.MentorCreate}/${values.id}`,
+    //       formData,
+    //       {
+    //         headers: {
+    //           'Content-Type': `multipart/form-data`,
+    //         },
+    //       }
+    //     );
+      // }
+    // });
+};
+
+export const archiveMentor = (id: number) => {
+  return axiosInteceptor.put(`${Endpoints.MentorAPI}/archive=${id}`, {
+    reason: 'kurs',
+  });
+};

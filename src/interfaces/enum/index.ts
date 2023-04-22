@@ -25,6 +25,7 @@ export const Endpoints = {
   MentorsGetAll: '/api/v1/mentors/cards',
   MentorAPI: '/api/v1/mentors',
   MentorCreate: '/api/v1/mentors/save-image',
+  MentorUpdate: '/api/v1/mentors/update',
 } as const;
 
 type ApplicationStatusType =

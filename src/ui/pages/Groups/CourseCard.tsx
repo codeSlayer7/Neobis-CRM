@@ -25,18 +25,18 @@ function CourseCard() {
             key={course.id}
             onClick={() => navigate(`/courses/${course.id}`)}
           >
-            <div className="relative  h-[398px] w-[382px] rounded-3xl border border-2 bg-fixed shadow-sm m-5">
+            <div className="relative  h-[360px] w-[350px] rounded-3xl border border-2 bg-fixed shadow-lg m-5 border-[#D9BFFF]">
               <img
                 src={course.imageUrl}
                 alt="#"
-                className="rounded-t-3xl border-0 bg-fixed"
+                className="rounded-t-3xl border-0 bg-fixed w-[100%] h-[200px]"
               />
 
-              <h3 className="my-3 ml-[26px] text-[32px] font-bold ">
+              <h3 className="my-3 ml-[26px] text-[28px] font-semibold text-[#70BF44]">
                 {course.name}
               </h3>
 
-              <hr className="ml-6 w-[330px] border border-black " />
+              <hr className="ml-6 w-[300px] border border-[#8874C8] " />
               <div className="mt-3 ml-6 flex w-[330px]  flex-wrap">
                 <div className="flex flex-col">
                   <div className="flex ">
@@ -53,11 +53,11 @@ function CourseCard() {
                     </p>
                   </div>
                 </div>
-                <div className="ml-[15%] flex flex-col ">
+                <div className="ml-[11%] flex flex-col ">
                   <div className="flex">
                     <Money />
                     <p className=" ml-3 text-lg font-normal">
-                      {course.cost} тыс.сом
+                      {course.cost} сом
                     </p>
                   </div>
 

@@ -15,7 +15,7 @@ export const getCourseById = async (id) => {
   return data;
 };
 
-// add new course ApplicationsArchiveWithId
+// add new course
 export const addNewCourse = async ({ values, formData }) => {
   const response = await axiosInteceptor.post(`${Endpoints.CourseAPI}`, values);
 
@@ -31,11 +31,12 @@ export const addNewCourse = async ({ values, formData }) => {
   return result.data;
 };
 
-//update course
-export const updateCourse = async({values, formData}) =>{
-  return axiosInteceptor.put(`${Endpoints.CourseAPI}/${values.id}`, values)
-    .then(res => {
-      if(res.status === 200 && typeof formData !== 'string') {
+// update course
+export const updateCourse = async ({ values, formData }) => {
+  return axiosInteceptor
+    .put(`${Endpoints.CourseAPI}/${values.id}`, values)
+    .then((res) => {
+      if (res.status === 200 && typeof formData !== 'string') {
         axiosInteceptor.post(
           `${Endpoints.CourseCreate}/${values.id}`,
           formData,
@@ -46,9 +47,11 @@ export const updateCourse = async({values, formData}) =>{
           }
         );
       }
-    })
-}
+    });
+};
 
 export const archiveCourse = (id: number) => {
-  return axiosInteceptor.put(`${Endpoints.CourseAPI}/archive?courseId=${id}`, { reason: 'kurs govno' })
-}
+  return axiosInteceptor.put(`${Endpoints.CourseAPI}/archive?courseId=${id}`, {
+    reason: 'kurs',
+  });
+};

@@ -6,24 +6,27 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import FormData from 'form-data';
 import { useAppDispatch } from '../../../../constants/global';
-import { addNewCourseThunk, getAllCoursesThunk } from '../../../../redux/service/courses/coursesAction';
+import {
+  addNewCourseThunk,
+  getAllCoursesThunk,
+} from '../../../../redux/service/courses/coursesAction';
 import { updateCourse } from '../../../../redux/service/courses/courses';
 import { CourseData } from '../../../../redux/types/courseTypes';
 
 export type CourseType = {
-    "id": number,
-    "name": string,
-    "cost": number,
-    "durationInMonth": number,
-    "numberOfLessons": number,
-    "numberOfGroups": number,
-    "imageUrl": string
-}
+  id: number;
+  name: string;
+  cost: number;
+  durationInMonth: number;
+  numberOfLessons: number;
+  numberOfGroups: number;
+  imageUrl: string;
+};
 type Props = {
   handleClose: () => void;
   type: 'edit' | 'create';
   editingCourse?: CourseType;
-}
+};
 
 function CreateCourse({ handleClose, type, editingCourse }: Props) {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -31,31 +34,32 @@ function CreateCourse({ handleClose, type, editingCourse }: Props) {
     name: '',
     cost: 0,
     durationInMonth: 0,
-    numberOfLessons: 0
-  })
+    numberOfLessons: 0,
+  });
   const dispatch = useAppDispatch();
 
   React.useEffect(() => {
-    if(type === 'edit' && editingCourse) {
-      setSelectedImage(editingCourse.imageUrl)
+    if (type === 'edit' && editingCourse) {
+      setSelectedImage(editingCourse.imageUrl);
     }
-  }, [editingCourse, type])
+  }, [editingCourse, type]);
+  
   const onSubmit = (values: any) => {
-    if(type === 'create') {
+    if (type === 'create') {
       const formData = new FormData();
       formData.append('multipartFile', selectedImage as Blob);
-      dispatch(addNewCourseThunk({ formData ,values}));
+      dispatch(addNewCourseThunk({ formData, values }));
       handleClose();
-    } else if(type === 'edit') {
+    } else if (type === 'edit') {
       const formData = new FormData();
       formData.append('multipartFile', selectedImage as Blob);
       // dispatch(updateCours({ formData ,values}));
       updateCourse({ formData, values: { ...values, id: editingCourse.id } })
-        .then(res => {
-          dispatch(getAllCoursesThunk())
+        .then((res) => {
+          dispatch(getAllCoursesThunk());
           handleClose();
         })
-        .catch(err => alert('Произошла ошибка!'))
+        .catch((err) => alert('Произошла ошибка!'));
     }
   };
 
@@ -81,7 +85,11 @@ function CreateCourse({ handleClose, type, editingCourse }: Props) {
                   <img
                     alt="not found"
                     className="w-[100%] rounded-xl border p-1"
-                    src={typeof selectedImage !== 'string' ? URL.createObjectURL(selectedImage) : selectedImage}
+                    src={
+                      typeof selectedImage !== 'string'
+                        ? URL.createObjectURL(selectedImage)
+                        : selectedImage
+                    }
                   />
                 </div>
               )}
@@ -113,8 +121,10 @@ function CreateCourse({ handleClose, type, editingCourse }: Props) {
               initialValues={{
                 name: type === 'create' ? '' : editingCourse?.name,
                 cost: type === 'create' ? '' : editingCourse?.cost,
-                durationInMonth: type === 'create' ? '' : editingCourse?.durationInMonth,
-                numberOfLessons: type === 'create' ? '' : editingCourse?.numberOfLessons,
+                durationInMonth:
+                  type === 'create' ? '' : editingCourse?.durationInMonth,
+                numberOfLessons:
+                  type === 'create' ? '' : editingCourse?.numberOfLessons,
                 // numberOfGroups: '',
               }}
               validationSchema={Yup.object({
@@ -130,7 +140,7 @@ function CreateCourse({ handleClose, type, editingCourse }: Props) {
                 numberOfLessons: Yup.string()
                   .min(1, 'Must be number')
                   .required('This field is required'),
-               })}
+              })}
               onSubmit={onSubmit}
             >
               {({ values }) => (
@@ -142,7 +152,6 @@ function CreateCourse({ handleClose, type, editingCourse }: Props) {
                     placeholder=" Название курса"
                     className="my-5 h-10 w-[330px] rounded-lg border border-slate-300 p-2 "
                     required
-                    
                   />
 
                   <Field
@@ -183,15 +192,12 @@ function CreateCourse({ handleClose, type, editingCourse }: Props) {
                     name="lessons"
                     component="div"
                   />
-                  {/* <ErrorMessage className="error" name="text" component="div" /> */}
-
                   <button
                     type="submit"
                     className="mt-11 h-11 w-[330px] rounded-lg border bg-[#4588C6] text-lg text-white transition duration-150 hover:scale-95 "
                   >
                     Сохранить
                   </button>
-                  {/* <SendButton name="Сохранить" type="submit" /> */}
                 </Form>
               )}
             </Formik>

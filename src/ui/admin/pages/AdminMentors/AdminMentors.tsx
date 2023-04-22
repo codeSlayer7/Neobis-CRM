@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
 import Modal from '@mui/material/Modal';
 import AdminMentorsCard from './AdminMentorsCard';
-import AdminMentorsForm from './AdminMentorsForm';
+import AdminMentorsForm, { MentorType } from './AdminMentorsForm';
 import DropDown from '../../../components/DropDown';
 import { array } from '../../components/AdminDropDown/GroupField';
 
 function AdminMentors() {
   const [open, setOpen] = useState(false);
+  const [type, setType] = useState<'create' | 'edit'>('create');
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [editingMentor, setEditingMentor] = useState<MentorType | undefined>();
+
+  const openEditMenu = (mentor: MentorType) => {
+    setType('edit');
+    setEditingMentor(mentor);
+    setOpen(true);
+  };
+
   return (
     <div className="h-auto w-[100%] pb-0 pl-[80px] pr-[20px] pt-[40px] ">
       <div className="ml-[500px] mr-[150px] flex h-[43px] items-center justify-around ">
@@ -30,12 +39,16 @@ function AdminMentors() {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-          <AdminMentorsForm handleClose={handleClose} />
+          <AdminMentorsForm
+            type={type}
+            editingMentor={editingMentor}
+            handleClose={handleClose}
+          />
         </Modal>
       </div>
 
       <div className="mt-14 flex flex-wrap">
-        <AdminMentorsCard />
+        <AdminMentorsCard openEditMenu={openEditMenu} />
       </div>
     </div>
   );

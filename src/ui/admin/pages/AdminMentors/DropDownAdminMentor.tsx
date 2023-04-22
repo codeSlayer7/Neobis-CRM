@@ -2,7 +2,12 @@ import { useState } from 'react';
 import { HiDotsVertical } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 
-function DropDownAdminMentor() {
+type Props = {
+  openEditMenu: (course: MentorType) => void;
+  archive: (id: number) => void;
+};
+
+function DropDownAdminMentor({ openEditMenu, archive }: Props) {
   const [open, setOpen] = useState(false);
   const handleClick = () => {
     setOpen(!open);
@@ -20,12 +25,15 @@ function DropDownAdminMentor() {
       {open && (
         <div className="absolute z-10 mt-[-180px] h-24  w-48 rounded-lg border-2 border-[#4588C6] bg-white text-black">
           <ul className="text-center">
-            <Link to="/admin/mentor/mentorarchive">
-              <li className="p-1 text-lg hover:bg-[#F1F1F1]">Архивировать</li>
-            </Link>
-            <Link to="/admin/mentor/mentoredit">
-              <li className="p-1 text-lg hover:bg-[#F1F1F1]">Редактировать</li>
-            </Link>
+            <li onClick={archive} className="p-1 text-lg hover:bg-[#F1F1F1]">
+              Архивировать
+            </li>
+            <li
+              onClick={openEditMenu}
+              className="p-1 text-lg hover:bg-[#F1F1F1]"
+            >
+              Редактировать
+            </li>
           </ul>
         </div>
       )}

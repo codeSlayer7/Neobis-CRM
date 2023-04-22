@@ -7,7 +7,6 @@ const initialState = {
   courses: [],
   course: {},
   students: [],
-  // courseId: {},
   loading: false,
   error: '',
 };
@@ -24,7 +23,6 @@ export const getAllCoursesThunk = createAsyncThunk(
     }
   }
 );
-// console.log('data', data)
 
 // get course by id
 export const getCourseByIdThunk = createAsyncThunk(
@@ -53,9 +51,6 @@ export const addNewCourseThunk = createAsyncThunk(
     }
   }
 );
-
-//edit course
-// export const 
 
 const coursesAction = createSlice({
   name: 'courses',
@@ -87,7 +82,6 @@ const coursesAction = createSlice({
       builder.addCase(
         getCourseByIdThunk.fulfilled,
         (state, { payload }: PayloadAction<any>) => {
-          // console.log('8', payload);
           state.students = payload.students;
           state.loading = false;
           state.course = payload.course;
@@ -107,7 +101,6 @@ const coursesAction = createSlice({
       builder.addCase(
         addNewCourseThunk.fulfilled,
         (state, { payload }: PayloadAction<any>) => {
-          console.log('8create', payload);
           state.loading = false;
           state.course = payload;
         }

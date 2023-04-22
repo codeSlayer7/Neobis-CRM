@@ -1,22 +1,67 @@
 import { FiUpload } from 'react-icons/fi';
 import { IoClose } from 'react-icons/io5';
 import { MdDeleteOutline } from 'react-icons/md';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import FormData from 'form-data';
 import { useAppDispatch } from '../../../../constants/global';
-import { addNewMentorThunk } from '../../../../redux/service/mentors/mentorsAction';
+import {
+  addNewMentorThunk,
+  getAllMentorsThunk,
+} from '../../../../redux/service/mentors/mentorsAction';
+import { MentorData } from '../../../../redux/types/mentorTypes';
+import { updateMentor } from '../../../../redux/service/mentors/mentors';
 
-function AdminMentorsForm({ handleClose }) {
+export type MentorType = {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: number;
+  courseId: number;
+  imageUrl: string;
+};
+type Props = {
+  handleClose: () => void;
+  type: 'edit' | 'create';
+  editingMentor?: MentorType;
+};
+
+function AdminMentorsForm({ handleClose, type, editingMentor }: Props) {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [formValues, setFormValues] = useState<MentorData>({
+    email: '',
+    firstName: '',
+    lastName: '',
+    phoneNumber: '',
+    courseId: 0,
+  });
   const dispatch = useAppDispatch();
 
-  const onSubmit = (values) => {
-    const formData = new FormData();
-    formData.append('multipartFile', selectedImage as Blob);
-    dispatch(addNewMentorThunk({ formData, values }));
-    handleClose();
+  React.useEffect(() => {
+    if (type === 'edit' && editingMentor) {
+      setSelectedImage(editingMentor.imageUrl);
+    }
+  }, [editingMentor, type]);
+
+  const onSubmit = (values: any) => {
+    if (type === 'create') {
+      const formData = new FormData();
+      formData.append('multipartFile', selectedImage as Blob);
+      dispatch(addNewMentorThunk({ formData, values }));
+      handleClose();
+    } else if (type === 'edit') {
+      const formData = new FormData();
+      formData.append('multipartFile', selectedImage as Blob);
+      updateMentor({ values: { ...values, id: editingMentor.id } })
+      
+        .then((res) => {
+          dispatch(getAllMentorsThunk());
+          handleClose();
+        })
+        .catch((err) => alert('Произошла ошибка!'));
+    }
   };
 
   return (
@@ -31,7 +76,7 @@ function AdminMentorsForm({ handleClose }) {
       </div>
       <div className="flex">
         <div className=" ml-20 mt-[63px] w-[50%]">
-          <div className="flex mt-5 h-72 w-80 flex-col items-center rounded-lg border-2 border-dashed border-slate-400 bg-[#f1f1f1]  text-center ">
+          <div className="mt-5 flex h-72 w-80 flex-col items-center rounded-lg border-2 border-dashed border-slate-400 bg-[#f1f1f1]  text-center ">
             <FiUpload className={selectedImage ? 'hidden' : 'mt-20 text-5xl'} />
 
             {selectedImage && (
@@ -39,7 +84,11 @@ function AdminMentorsForm({ handleClose }) {
                 <img
                   alt="not found"
                   className="w-[100%]"
-                  src={URL.createObjectURL(selectedImage)}
+                  src={
+                    typeof selectedImage !== 'string'
+                      ? URL.createObjectURL(selectedImage)
+                      : selectedImage
+                  }
                 />
               </div>
             )}
@@ -56,7 +105,6 @@ function AdminMentorsForm({ handleClose }) {
             <button
               type="button"
               className={
-                // selectedImage ? 'image-remove' : 'image-remove disabled-btn '
                 selectedImage
                   ? 'mr-5 text-4xl text-[#4588C6]'
                   : 'mt-[172px] hidden'
@@ -69,11 +117,11 @@ function AdminMentorsForm({ handleClose }) {
         </div>
         <Formik
           initialValues={{
-            email: '',
-            firstName: '',
-            lastName: '',
-            phoneNumber: '',
-            courseId: 0,
+            email: type === 'create' ? '' : editingMentor?.email,
+            firstName: type === 'create' ? '' : editingMentor?.firstName,
+            lastName: type === 'create' ? '' : editingMentor?.lastName,
+            phoneNumber: type === 'create' ? '' : editingMentor?.phoneNumber,
+            courseId: type === 0 ? '' : editingMentor?.courseId,
           }}
           validationSchema={Yup.object({
             email: Yup.string()
@@ -131,19 +179,18 @@ function AdminMentorsForm({ handleClose }) {
                 className="my-5 h-10 w-[330px] rounded-lg border border-slate-300 p-2"
                 required
               />
-              <Field 
-              type="number"
+              <Field
+                type="number"
                 placeholder="Направление"
                 id="courseId"
                 name="courseId"
                 className="my-5 h-10 w-[330px] rounded-lg border border-slate-300 p-2"
               />
 
-                {/* <option value="js">JavaScript</option>
+              {/* <option value="js">JavaScript</option>
                 <option value="python">Python</option>
                 <option value="java">Java</option>
                 <option value="ui8">UI8</option> */}
-              
 
               <ErrorMessage className="error" name="lessons" component="div" />
 

@@ -4,21 +4,41 @@ import DropDownAdminMentor from './DropDownAdminMentor';
 import { useAppDispatch, useAppSelector } from '../../../../constants/global';
 import { getAllMentorsThunk } from '../../../../redux/service/mentors/mentorsAction';
 
-function AdminMentorsCard() {
+function AdminMentorsCard({
+  openEditMenu,
+}: {
+  openEditMenu: (course: CourseType) => void;
+}) {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const mentors = useAppSelector((state) => {
     return state.mentors.mentors;
   });
+
+  const archive = (id: number) => {
+    archiveMentor(id)
+      .then((res) => {
+        if (res.status === 200) {
+          alert('Успешно архивирован');
+          dispatch(getAllMentorsThunk());
+        }
+      })
+      .catch((err) => {
+        alert('Ошибка при архивации');
+      });
+  };
   useEffect(() => {
     dispatch(getAllMentorsThunk());
   }, [dispatch]);
+  
   return (
     <div className="flex w-full flex-wrap">
       {mentors.map((mentor: any) => (
         <div className="mr-[50px] " key={mentor.id}>
           <div className="m-5 h-[351px] w-[323px] rounded-3xl border border-[#C7C7C7] bg-white shadow-md">
-            <DropDownAdminMentor />
+            <DropDownAdminMentor 
+             archive={() => archive(mentor.id)}
+             openEditMenu={() => openEditMenu(mentor)}/>
 
             <div className=" flex w-full items-center justify-center  ">
               <img
