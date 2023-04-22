@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../constants/global';
 import { getAllStudentsThunk } from '../../../redux/slices/studentSlice';
 import StudentActions from '../../admin/components/Actions/StudentActions';
+import { StudentData } from '../../../redux/types/adminTypes';
 
 interface MyColums {
   field: string;
@@ -10,17 +11,15 @@ interface MyColums {
   width: number;
   renderCell?: any;
 }
-
-const StudentTable = ({ searchValue, sortBy }: any) => {
-
-  const students = useAppSelector((state) => {
-    return state.student.students;
-  });
-
+interface Props {
+  sortBy: any;
+  students: {}[];
+}
+const StudentTable = ({ sortBy, students }: Props) => {
   const { role } = useAppSelector((state) => {
     return state.user;
   });
-
+console.log("students", students);
 
   const colors = (status: 'Неактивный' | 'Активный' | 'Заморожен') =>
     status === 'Активный'
@@ -43,7 +42,14 @@ const StudentTable = ({ searchValue, sortBy }: any) => {
     { field: 'id', headerName: '', width: 0 },
     {
       field: 'fullName',
-      headerName: <div onClick={sortBy('firstName')} className="text-[16px] font-semibold">Фио студента</div>,
+      headerName: (
+        <div
+          onClick={sortBy('firstName')}
+          className="text-[16px] font-semibold"
+        >
+          Фио студента
+        </div>
+      ),
       width: 215,
       renderCell: (params: any) => (
         <div>
@@ -53,7 +59,11 @@ const StudentTable = ({ searchValue, sortBy }: any) => {
     },
     {
       field: 'status',
-      headerName: <div onClick={sortBy('status')} className="text-[16px] font-semibold">Статус</div>,
+      headerName: (
+        <div onClick={sortBy('status')} className="text-[16px] font-semibold">
+          Статус
+        </div>
+      ),
       width: 150,
       renderCell: (params: any) => {
         return (
@@ -72,28 +82,54 @@ const StudentTable = ({ searchValue, sortBy }: any) => {
     },
     {
       field: 'phoneNumber',
-      headerName: <div onClick={sortBy('phoneNumber')} className="text-[16px] font-semibold">Телефон</div>,
+      headerName: (
+        <div
+          onClick={sortBy('phoneNumber')}
+          className="text-[16px] font-semibold"
+        >
+          Телефон
+        </div>
+      ),
       width: 170,
     },
     {
       field: 'email',
-      headerName: <div onClick={sortBy('email')} className="text-[16px] font-semibold">Почта</div>,
+      headerName: (
+        <div onClick={sortBy('email')} className="text-[16px] font-semibold">
+          Почта
+        </div>
+      ),
       width: 195,
     },
     {
       field: 'gender',
-      headerName: <div onClick={sortBy('gender')} className="text-[16px] font-semibold">Пол</div>,
+      headerName: (
+        <div onClick={sortBy('gender')} className="text-[16px] font-semibold">
+          Пол
+        </div>
+      ),
       width: 100,
     },
     {
       field: 'groups',
-      headerName: <div onClick={sortBy('groups')} className="text-[16px] font-semibold">Группа</div>,
+      headerName: (
+        <div onClick={sortBy('groups')} className="text-[16px] font-semibold">
+          Группа
+        </div>
+      ),
       width: 140,
       renderCell: renderCell,
     },
     {
       field: 'totalPaymentPercentage',
-      headerName: <div onClick={sortBy('totalPaymentPercentage')} className="text-[16px] font-semibold">Оплата</div>,
+      headerName: (
+        <div
+          onClick={sortBy('totalPaymentPercentage')}
+          className="text-[16px] font-semibold"
+        >
+          Оплата
+        </div>
+      ),
       width: 110,
     },
   ];
@@ -113,7 +149,6 @@ const StudentTable = ({ searchValue, sortBy }: any) => {
   return (
     <>
       <div>
-        {/* {filteredStudents.map(students => ( */}
         <DataGrid
           autoHeight
           className=" bg-white border rounded-lg shadow-lg"
@@ -121,10 +156,11 @@ const StudentTable = ({ searchValue, sortBy }: any) => {
           columns={columns}
           getRowClassName={(params) => 'even:bg-[#dee7f3]'}
         />
-        {/* ))} */}
+
       </div>
     </>
   );
 };
 
 export default StudentTable;
+

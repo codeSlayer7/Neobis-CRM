@@ -1,5 +1,11 @@
 import { StudentData } from '../redux/types/adminTypes';
 import axiosInteceptor from './base/interceptor';
+export interface SearchStudentParams{
+  string?: string | null;
+  status?: string | null
+  groupId?: number | null;
+}
+
 
 export const getAllStudents = () => {
   return axiosInteceptor.get('/api/v1/students?size=10000');
@@ -13,11 +19,11 @@ export const updateStudent = (id: any,student: any) => {
   return axiosInteceptor.put(`/api/v1/students/${id}`, student)
 }
 
-export const searchStudent = (params:{string: string; page: number; status: string; groupId: number; sortBy: string; size: number;  }) => {
-  const query = new URLSearchParams(params).toString()
-  console.log(query)
-  return axiosInteceptor.get('/api/v1/students/find?',{params})
-}
+export const searchStudent = (params?: SearchStudentParams) => {
+  // const query = new URLSearchParams(params).toString();
+  return axiosInteceptor.get(`/api/v1/students/find`,{params});
+};
+
 
 // export const filterStudent = () => {
 //   return axiosInteceptor.get('/api/v1/students/filter?')

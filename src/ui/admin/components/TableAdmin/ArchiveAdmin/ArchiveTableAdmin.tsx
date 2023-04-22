@@ -7,15 +7,16 @@ import UserTableAdmin from "./UserAdmin";
 
 interface Props {
   buttonType: number;
+  searchValue: string;
 }
 
-export default function ArchiveTable({ buttonType }: Props) {
+export default function ArchiveTable({ buttonType,searchValue }: Props) {
   type Table = { [key: string]: any };
 
   const tables: Table = {
     '0': <GroupAdmin />,
     '1': <TeacherTableAdmin />,
-    '2': <StudentTableAdmin />,
+    '2': <StudentTableAdmin searchValue={searchValue} />,
     '3': <UserTableAdmin />,
     '4': <BlackListAdmin />,
   };

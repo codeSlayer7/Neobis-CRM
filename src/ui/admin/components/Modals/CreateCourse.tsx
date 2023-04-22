@@ -17,22 +17,16 @@ export type CourseType = {
     "durationInMonth": number,
     "numberOfLessons": number,
     "numberOfGroups": number,
-    "imageUrl": string
+    "imageUrl": any
 }
 type Props = {
   handleClose: () => void;
   type: 'edit' | 'create';
-  editingCourse?: CourseType;
+  editingCourse?: CourseType | null | undefined;
 }
 
 function CreateCourse({ handleClose, type, editingCourse }: Props) {
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [formValues, setFormValues] = useState<CourseData>({
-    name: '',
-    cost: 0,
-    durationInMonth: 0,
-    numberOfLessons: 0
-  })
+  const [selectedImage, setSelectedImage] = useState<null | File>(null);
   const dispatch = useAppDispatch();
 
   React.useEffect(() => {
@@ -40,6 +34,7 @@ function CreateCourse({ handleClose, type, editingCourse }: Props) {
       setSelectedImage(editingCourse.imageUrl)
     }
   }, [editingCourse, type])
+
   const onSubmit = (values: any) => {
     if(type === 'create') {
       const formData = new FormData();
@@ -50,7 +45,7 @@ function CreateCourse({ handleClose, type, editingCourse }: Props) {
       const formData = new FormData();
       formData.append('multipartFile', selectedImage as Blob);
       // dispatch(updateCours({ formData ,values}));
-      updateCourse({ formData, values: { ...values, id: editingCourse.id } })
+      updateCourse({ formData, values: { ...values, id: editingCourse } })
         .then(res => {
           dispatch(getAllCoursesThunk())
           handleClose();
@@ -58,6 +53,7 @@ function CreateCourse({ handleClose, type, editingCourse }: Props) {
         .catch(err => alert('Произошла ошибка!'))
     }
   };
+
 
   return (
     <div className=" h-[100vh] w-[100%]">
@@ -91,7 +87,7 @@ function CreateCourse({ handleClose, type, editingCourse }: Props) {
                 type="file"
                 name="file"
                 onChange={(event) => {
-                  setSelectedImage(event.target.files[0]);
+                  setSelectedImage(event.target.files?.[0] || null)
                 }}
                 className=" :selected-bg-red h-11 w-80 rounded-lg border bg-[#4588C6] p-1 text-lg text-white transition duration-150 hover:scale-95"
               />
