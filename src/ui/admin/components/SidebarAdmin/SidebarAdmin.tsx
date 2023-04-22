@@ -96,9 +96,9 @@ function SidebarAdmin({ children }: Props) {
     <div className="flex">
       <div
         style={{ width: isOpen ? '240px' : '80px' }}
-        className="h-auto  w-60 rounded-md border-solid border-r-slate-300  shadow-md"
+        className="h-auto  w-60 "
       >
-        <div className="my-3.5 flex items-center">
+        <div className="my-3.5 flex items-center  ">
           <div
             style={{ marginLeft: isOpen ? '80px' : '0px' }}
             className="ml-20 flex text-2xl"
@@ -134,7 +134,7 @@ function SidebarAdmin({ children }: Props) {
         ))}
       </div>
 
-      {location.pathname === '/history' ? (
+      {location.pathname === '/admin/history' ? (
         <div className="flex h-[100vh] flex-col">
           {' '}
           <HistoryHeader />

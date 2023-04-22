@@ -12,6 +12,7 @@ import CourseStudents from '../../components/Table/CourseStudents';
 import { useAppDispatch, useAppSelector } from '../../../constants/global';
 import { getCourseByIdThunk } from '../../../redux/service/courses/coursesAction';
 import { array } from '../../admin/components/AdminDropDown/GroupField';
+import ActiveStudents from '../../components/Table/ActiveStudents';
 
 function Groups() {
   const dispatch = useAppDispatch();
@@ -98,6 +99,12 @@ function Groups() {
             Добавить группу
           </button>
         </div>
+
+        
+
+      </div>
+      <div>
+        <ActiveStudents />
       </div>
       <div className="my-20  mb-10 flex w-[93%] justify-between">
         <h3 className="text-3xl font-semibold leading-10 ">Список студентов</h3>

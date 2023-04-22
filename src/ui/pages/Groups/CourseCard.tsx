@@ -17,22 +17,23 @@ function CourseCard() {
   useEffect(() => {
     dispatch(getAllCoursesThunk());
   }, [dispatch]);
+  
   return (
-    <div className='flex flex-wrap w-[90%]'>
+    <div className="flex w-[90%] flex-wrap ">
       {courses &&
         courses.map((course: any) => (
           <div
             key={course.id}
             onClick={() => navigate(`/courses/${course.id}`)}
           >
-            <div className="relative  h-[360px] w-[350px] rounded-3xl border border-2 bg-fixed shadow-lg m-5 border-[#D9BFFF]">
+            <div className="relative  m-5 h-[360px] w-[350px] rounded-3xl border border-2 border-[#D9BFFF] bg-fixed shadow-lg">
               <img
                 src={course.imageUrl}
                 alt="#"
-                className="rounded-t-3xl border-0 bg-fixed w-[100%] h-[200px]"
+                className="h-[200px] w-[100%] rounded-t-3xl border-0 bg-fixed"
               />
 
-              <h3 className="my-3 ml-[26px] text-[28px] font-semibold text-[#70BF44]">
+              <h3 className="my-3 ml-[26px] cursor-pointer text-[28px] font-semibold text-[#70BF44]">
                 {course.name}
               </h3>
 

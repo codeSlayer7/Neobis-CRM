@@ -33,7 +33,7 @@ const DonutChart: React.FC<Props> = () => {
 
   const series = [44, 55, 41, 17, 15, 20, 22, 50];
   return (
-    <div className="mb-[102px] relative w-[90%] rounded-[20px] bg-white">
+    <div className="mb-[102px] w-[1290px] rounded-[20px] border-2 bg-white">
       <div className="flex flex-col pl-[39px] pt-[10px]">
         <span className="text-[#9291A5] ">Статистика</span>
         <div className="pb-[32px] text-[20px] font-semibold">

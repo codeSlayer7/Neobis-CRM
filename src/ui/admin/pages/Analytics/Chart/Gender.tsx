@@ -52,7 +52,7 @@ export default function Gender() {
   };
 
   return (
-    <div className="w-[1290px] border-2 bg-[#F4F7FD] mb-[100px] rounded-[20px] ">
+    <div className="w-[1290px] border-2 bg-white mb-[100px] rounded-[20px] ">
                   <div className="flex flex-col pl-[39px] pt-[10px]">
         <span className="text-[#9291A5] ">Статистика</span>
         <div className="text-[20px] font-semibold pb-[32px]">
