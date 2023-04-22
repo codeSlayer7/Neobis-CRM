@@ -89,7 +89,7 @@ function SidebarAdmin({ children }: Props) {
     {
       name: 'История операции',
       path: '/admin/history',
-      icon: <GrHistory className="text-3xl" />,
+      icon: <GrHistory className="text-3xl text-white" />,
     },
   ];
 
