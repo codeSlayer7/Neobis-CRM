@@ -10,6 +10,10 @@ import {
   StateStatusType,
 } from '../../../interfaces/enum';
 
+interface IRegestBase<Data> {
+  data: Data;
+}
+
 export interface IApplication {
   id: number;
   firstName: string;
@@ -19,19 +23,22 @@ export interface IApplication {
   gender: GenderType;
   hasLaptop: true;
   marketingStrategy: MarketingStrategyType;
-  department: {
+  courseCardDto: {
     id: number;
     name: string;
-    status: StateStatusType;
+    cost: number;
+    durationInMonth: number;
+    numberOfLessons: number;
   };
   isArchived: true;
   reason: string;
-  applicationStatusName: ApplicationStatusType;
+  applicationStatus: ApplicationStatusType;
   applicationStatusNum: number;
   applicationStatusUpdateDate: string;
   applicationStatusUpdateTime: string;
   creationDate: string;
   updateDate: string;
+  status?: string;
   education: EducationType;
   isUrgent: true;
 }
@@ -43,30 +50,21 @@ export interface IApplicationPost {
   phoneNumber: string;
   gender: GenderType | '';
   hasLaptop: boolean;
-  marketingStrategy: MarketingStrategyType | '';
-  department: {
-    name: string;
-    status: StateStatusType | '';
-  };
-  departmentId?: number;
+  marketingStrategyEnum: MarketingStrategyType | '';
+  courseId?: number;
   reason: string;
-  applicationInitialStatusNum?: number;
+  applicationStatusInitialNum: number | '';
   education: EducationType | '';
 }
 
-export const getAllApplicatins = async (
-  id?: number
-): Promise<IApplication[] | IApplication | undefined> => {
+export const getAllApplicatins = async (): Promise<
+  IApplication[] | IApplication | undefined
+> => {
   try {
-    if (typeof id === 'number') {
-      const res = await axiosInteceptor.get(
-        `/api/v1/applications${id.toString()}`
-      );
-      console.log(res);
-      const data: IApplication[] | IApplication = res.data;
-      return data;
-    }
-    return await axiosInteceptor.get('/api/v1/applications');
+    const res = await axiosInteceptor.get(`/api/v1/applications`);
+    console.log(res);
+    const { data }: IApplication[] | IApplication = res;
+    return data;
   } catch (error) {
     if (error instanceof Error) {
       console.log(error.message);
@@ -75,23 +73,66 @@ export const getAllApplicatins = async (
   return undefined;
 };
 
-export const getSortedApplication = async (): Promise<IApplication[]> => {
+export const getSortedApplication = async (): Promise<
+  IRegestBase<IApplication[]>
+> => {
   try {
     return await axiosInteceptor.get(`${Endpoints.ApplicationsSorted}`);
   } catch (err) {
     console.log(err);
-    throw new Error("Failed to fetch sorted applications"); 
+    throw new Error('Failed to fetch sorted applications');
   }
 };
 
-
-export const postAppliction = async (
-  data: AxiosRequestConfig<IApplicationPost>
-) => {
+export const postAppliction = async (data: IApplicationPost) => {
   try {
-    await axiosInteceptor.get(`${Endpoints.Applicatins}`, data);
+    const res = await axiosInteceptor.post(`${Endpoints.Applicatins}`, data);
+    console.log(res, 'poijiojio');
+    return res;
   } catch (e) {
-    throw new Error("Failed to post application")
+    throw new Error(e.message);
+  }
+};
+
+export const postAppliction = async (data: IApplicationPost) => {
+  try {
+    const res = await axiosInteceptor.post(`${Endpoints.Applicatins}`, data);
+    console.log(res, 'poijiojio');
+    return res;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+export const archiveAppliction = async ({ id, reason }) => {
+  try {
+    const res = await axiosInteceptor.post(
+      `${Endpoints.ApplicationsArchiveWithId}/${id}`,
+      reason
+    );
+    return res;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+export const unArchiveAppliction = async ({ id, reason }) => {
+  try {
+    const res = await axiosInteceptor.post(
+      `${Endpoints.ApplicationsArchiveWithId}/${id}`,
+      reason
+    );
+    return res;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+export const unArchiveAppliction = async ({ id }) => {
+  try {
+    const res = await axiosInteceptor.post(
+      `${Endpoints.ApplicationsUnArchiveWithId}/${id}`
+    );
+    return res;
+  } catch (e) {
+    throw new Error('Failed to post application');
   }
 };
 
@@ -114,8 +155,44 @@ export const unArchiveApplication = async (id: string) => {
   await axiosInteceptor.put(`${Endpoints.ApplicationsUnArchiveWithId}/${id}`);
 };
 
-export const changeStatusApplication = async (id: string) => {
-  await axiosInteceptor.put(`${Endpoints.ApplicationsStatusId}/${id}`);
+export const changeStatusApplication = async (data) => {
+  let requests = [];
+
+  for (const [key, value] of Object.entries(data)) {
+    console.log(data[key].items, 'items'); //www.google.com
+
+    for (let y = 0; y < data[key].items.length; y++) {
+      let application = data[key].items[y];
+
+      console.log(application, 'one app');
+
+      const statusObj = {
+        WAITING_FOR_CALL: 1,
+        CALL_RECEIVED: 2,
+        APPLIED_FOR_TRIAL: 3,
+        ATTENDED_TRIAL: 4,
+      };
+      if (application.status) {
+        requests.push(
+          axiosInteceptor.put(
+            `${Endpoints.ApplicationsStatusId}?application_id=${
+              application.id
+            }&new_status=${statusObj[application.status]}`
+          )
+        );
+      }
+    }
+  }
+  console.log('Left For Loop');
+
+  // wait until all requests are done!
+  await Promise.all(requests).then((results) => {
+    // here we have all the results
+    console.log('all requests finished!', results);
+    for (let i = 0; i < requests.length; i++) {
+      console.log(i, 'request resultet in', results[i]);
+    }
+  });
 };
 
 export const addToGroup = async (id: string) => {

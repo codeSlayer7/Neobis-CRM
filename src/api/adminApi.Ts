@@ -1,12 +1,9 @@
 import { UserData } from "../redux/types/adminTypes";
-import { StatusType } from "../types/global";
-import axiosInteceptor from './base/interceptor';
-
+import axiosInteceptor from './interceptor';
 
 
 export const getAllUsers = () => {
     return axiosInteceptor.get('/api/v1/admin/users');   
-
 };
 
 export const getUser = (id: number) => {
@@ -14,10 +11,11 @@ export const getUser = (id: number) => {
 };
 
 export const createUser = (user: UserData) => {
-  return axiosInteceptor.post('/api/v1/admin/registration',user)
+  return axiosInteceptor.post('/api/v1/admin/registration',{email: user.data.email, password: user.data.password,
+    firstName: user.data.firstName, lastName: user.data.lastName, phoneNumber: user.data.phoneNumber})
 } 
 
 
-export const updateUser = (id: any, user: any) => {
-  return axiosInteceptor.put(`/api/v1/admin/update/${id}`, user)
+export const editUser = (user: UserData) => {
+  return axiosInteceptor.put('/api/v1/admin/update/{id}', user)
 }

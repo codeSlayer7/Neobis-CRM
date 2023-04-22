@@ -1,16 +1,16 @@
 // eslint-disable-next-line import/prefer-default-export
 export enum ColumnName {
-  WaitCall = 'waitingForCall',
-  CallEnded = 'callReceived',
-  TrialLesson = 'attendedTrial',
-  PassedTrialLesson = 'appliedForTrial',
+  WaitCall = 'WAITING_FOR_CALL',
+  CallEnded = 'CALL_RECEIVED',
+  TrialLesson = 'APPLIED_FOR_TRIAL',
+  PassedTrialLesson = 'ATTENDED_TRIAL',
 }
 
 export const CardStatus = {
-  WaitCall: 'waitCall',
-  CallEnded: 'callEnded',
-  TrialLesson: 'trialLesson',
-  PassedTrialLesson: 'PassedTrial',
+  WaitCall: 'WAITING_FOR_CALL',
+  CallEnded: 'CALL_RECEIVED',
+  TrialLesson: 'APPLIED_FOR_TRIAL',
+  PassedTrialLesson: 'ATTENDED_TRIAL',
 } as const;
 
 export const Endpoints = {
@@ -50,7 +50,7 @@ type KeyValue = {
   [key in MarketingStrategyType]: string;
 };
 
-export const marketingOptions: KeyValue = {
+export const marketingOptions: KeyValue<MarketingStrategyType> = {
   INSTAGRAM: 'Instagram',
   SCHOOL_OR_UNIVERSITY: 'Школа или университет',
   WEBSITE: 'Веб-сайт',
@@ -64,6 +64,17 @@ type StateStatusType = 'ACTIVE' | 'DELETED' | 'ARCHIVED';
 type GenderType = 'MALE' | 'FEMALE';
 type EducationType = 'SCHOOL' | 'BACHELOR' | 'MASTER' | 'GRADUATED' | 'NONE';
 
+export const eductionOption: KeyValue<EducationType> = {
+  BACHELOR: 'Бакалавриат',
+  SCHOOL: 'Школа',
+  MASTER: 'Магистратура',
+  GRADUATED: 'Выпускник',
+  NONE: 'Ничего',
+};
+
+export const hasLaptopOption = {
+  hasLaptopText: 'Нету',
+};
 export type {
   ApplicationStatusType,
   MarketingStrategyType,

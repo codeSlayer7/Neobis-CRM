@@ -1,13 +1,9 @@
-export interface ItemBack {
-  name: string;
-  time: string;
-  specific: string;
-  phoneNumber: string;
-  status: string;
-  id: number;
-}
+import { IApplication } from '../redux/service/applications/applications';
+
+export interface ItemBack extends IApplication {}
 
 export interface Column {
+  loading: boolean;
   columns: {
     [key: string]: {
       name: string;

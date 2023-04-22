@@ -4,7 +4,7 @@ import AppRoutes from './ui/routes';
 function App(): JSX.Element {
   return (
     <>
-    <AppRoutes/>
+      <AppRoutes />
     </>
   );
 }

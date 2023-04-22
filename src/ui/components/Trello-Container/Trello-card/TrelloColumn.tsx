@@ -8,7 +8,7 @@ interface Props {
 
 function TrelloColumn({ columnTitle, children, count }: Props) {
   return (
-    <div className="bg-neobis-bg-column-color mx-4 mt-4 inline-block h-[100%] w-[24%] w-[100%] rounded-3xl px-1.5 py-4 ">
+    <div className="bg-neobis-bg-column-color mx-4 mt-4 inline-block h-[100%]  rounded-3xl px-1.5 py-4 ">
       <div className="flex w-[100%] justify-between rounded-md bg-[#2E353A] p-2   text-white ">
         <p className="text-base font-semibold xl:text-lg  2xl:text-xl ">
           {' '}

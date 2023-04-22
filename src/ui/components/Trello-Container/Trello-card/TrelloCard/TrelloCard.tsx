@@ -21,7 +21,9 @@ function TrelloCard({ card, index }: Props) {
   const toggle = useAppSelector((trello) => trello.toggle.toggle);
 
   const colorChange =
-    card.status === CardStatus.WaitCall ? '#8874C8' : '#FFFFFF';
+    (card.status ? card.status : card.applicationStatus) === CardStatus.WaitCall
+      ? '#8874C8'
+      : '#FFFFFF';
   return (
     <Draggable key={card.id} draggableId={card.id.toString()} index={index}>
       {(provided, snapshot) => {
@@ -35,8 +37,8 @@ function TrelloCard({ card, index }: Props) {
             className="bg-neobis-bg-violet my-2 w-[100%] rounded-3xl border-2 border-[#DADADA] "
             style={{
               userSelect: 'none',
-              minHeight: matches ? '190px' : '175px',
-              width: toggle ? '16vw' : '19vw',
+              minHeight: matches ? '195px' : '175px',
+              width: toggle ? '100%' : '100%',
               // ...(toggle ? { width: '16vw' } : { width: '19vw' }),
               borderRadius: '24px',
               backgroundColor: snapshot.isDragging ? '#DADADA' : colorChange,
@@ -48,44 +50,66 @@ function TrelloCard({ card, index }: Props) {
               <div className="flex justify-between">
                 <p
                   className={
-                    card.status === CardStatus.WaitCall
+                    (card.status ? card.status : card.applicationStatus) ===
+                    CardStatus.WaitCall
                       ? 'text-base font-normal text-white xl:text-lg  2xl:text-xl '
                       : 'text-base font-normal  text-black xl:text-lg  2xl:text-xl '
                   }
                 >
-                  {card.name}
+                  {card.firstName} {card.lastName}
                 </p>
                 <Link to="/infomodal">
                   <More />
                 </Link>
               </div>
-              <p
+              <div
                 className="flex pt-2 text-base font-normal"
                 style={{
-                  color:
-                    card.status === CardStatus.WaitCall ? 'white' : 'black',
+                  color: (
+                    card.status
+                      ? card.status
+                      : card.applicationStatus === CardStatus.WaitCall
+                  )
+                    ? 'white'
+                    : 'black',
                 }}
               >
                 <div className="mr-2 h-6 w-6 ">
                   <img
                     className="h-full w-full"
-                    src={card.status === CardStatus.WaitCall ? Clock : Clock2}
+                    src={
+                      (card.status ? card.status : card.applicationStatus) ===
+                      CardStatus.WaitCall
+                        ? Clock
+                        : Clock2
+                    }
                     alt="clack"
                   />
                 </div>
-                {card.time}
-              </p>
+                <p
+                  style={{
+                    color:
+                      (card.status ? card.status : card.applicationStatus) ===
+                      CardStatus.WaitCall
+                        ? 'white'
+                        : 'black',
+                  }}
+                >
+                  {' '}
+                  {card.creationDate}{' '}
+                </p>
+              </div>
               <div className="mt-3 flex w-[100%] justify-around ">
                 <span
                   className={classNames(
                     `bg-neobis-bg-card-text text-skin-text-darkViolet whitespace-nowrap rounded-lg ${
-                      toggle ? 'text-[0.9vw]' : 'text-[1vw]'
-                    } px-1 font-normal `
+                      toggle ? 'text-[0.7vw]' : 'text-[1vw]'
+                    } px-2 font-normal `
                   )}
                 >
-                  {card.specific}
+                  {card.reason}
                 </span>
-                <span className="bg-neobis-bg-card-text text-skin-text-darkViolet ml-2 whitespace-nowrap rounded-lg text-[1vw] px-1 ">
+                <span className="bg-neobis-bg-card-text text-skin-text-darkViolet ml-2 whitespace-nowrap rounded-lg font-normal px-2 ">
                   {card.phoneNumber}
                 </span>
               </div>
@@ -94,7 +118,7 @@ function TrelloCard({ card, index }: Props) {
               {' '}
             </div>
 
-            <div className="mt-2 flex justify-around px-2 mx-2 ">
+            <div className="mt-2 flex justify-around px-2 mx-2 md:mt-2">
               <Link to="/enrollclient">
                 <button
                   type="button"
