@@ -49,14 +49,14 @@ export default function UserTableAdmin() {
       width: 180,
     },
     {
-      field: 'dateArchive',
+      field: 'archiveDate',
       headerName: (
         <div className="text-[16px] font-semibold">Дата архивации</div>
       ),
       width: 200,
     },
     {
-      field: 'reasonArchive',
+      field: 'archiveReason',
       headerName: (
         <div className="text-[16px] font-semibold">Причина архивации</div>
       ),
