@@ -2,13 +2,13 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { HiOutlineArrowLongRight } from 'react-icons/hi2';
 import { HiOutlineMenuAlt1 } from 'react-icons/hi';
 import React, { useState } from 'react';
-import { MdOutlineManageAccounts } from 'react-icons/md';
+import { MdOutlineManageAccounts, MdManageHistory } from 'react-icons/md';
 import { VscBook } from 'react-icons/vsc';
 import { BsFolder, BsPersonWorkspace } from 'react-icons/bs';
 import { SlGraduation } from 'react-icons/sl';
 import { TiMessages } from 'react-icons/ti';
 import { TbBrandGoogleAnalytics } from 'react-icons/tb';
-import { GrHistory } from 'react-icons/gr';
+
 import { useAppDispatch } from '../../../../constants/global';
 import HoverText from './HoverText';
 import { toggleStore } from '../../../../redux/slices/toggleSidebar';
@@ -42,7 +42,6 @@ function SidebarAdmin({ children }: Props) {
     setIsOpen(!isOpen);
   };
   const location = useLocation();
-
 
   const activeMenu =
     'text-slate-100 text-xl flex gap-3.5 rounded-full p-5 m-1 bg-[#4588C6]';
@@ -89,7 +88,7 @@ function SidebarAdmin({ children }: Props) {
     {
       name: 'История операции',
       path: '/admin/history',
-      icon: <GrHistory className="text-3xl text-white" />,
+      icon: <MdManageHistory className="text-3xl " />,
     },
   ];
 
