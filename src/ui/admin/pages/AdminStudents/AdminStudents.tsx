@@ -5,24 +5,29 @@ import Modal from '../../components/Modals/Modal';
 import { StudentForm } from './StudentForm';
 import StudentTable from '../../../components/Table/StudentTable';
 import { array } from '../../components/AdminDropDown/GroupField';
-import { useAppDispatch } from '../../../../constants/global';
+import {
+  Status,
+  useAppDispatch,
+  useAppSelector,
+} from '../../../../constants/global';
 import { getAllStudentsThunk } from '../../../../redux/slices/studentSlice';
+import { SearchStudentParams, searchStudent } from '../../../../api/studentApi';
 import { useDebounce } from '../../../../hook/useDebounce';
 
-export const status = [
+export const statuses = [
   {
-    label:"Неактивный",
-    value: 1
+    label: 'Неактивный',
+    value: "BLOCKED",
   },
   {
-    label:"Активный",
-    value: 2
+    label: 'Активный',
+    value: 'ACTIVE',
   },
   {
-    label:"Заморожен",
-    value: 3
+    label: 'Заморожен',
+    value: 'FROZEN',
   },
-] 
+];
 
 interface PaginateProsType<T = Record<string, any>> {
   data: T[],
@@ -35,32 +40,63 @@ export const paginateData = <T = Record<string, any>>({data, pageSize, page}: Pa
 }
 
 export default function AdminStudents() {
-const [searchValue, setSearchValue] = useState('');
-const [searchResults, setSearchResults] = useState([]);
-const [groups, setGroups] = useState('')
-const [status, setStatus] = useState('')
-const [sortType, setSortType] = useState('id')
-const [open, setOpen] = useState(false);
-const handleOpen = () => setOpen(true);
-const handleClose = () => setOpen(false);
-const dispatch = useAppDispatch();
+  const [open, setOpen] = useState(false);
+  const fetchedStudents = useAppSelector((state) => state.student.students)
 
-const debouncedSearch = useDebounce(searchValue, 2000)
+  const [groupId, setGroupId] = useState<number | null>(null);
+  const [status, setStatus] = useState<string | null>(null);
+  const [sortType, setSortType] = useState<string | null>(null);
+  const [searchValue, setSearchValue] = useState<string | null>(null);
+  const [filteredStudents, setFilteredStudents] = useState(fetchedStudents);
 
-useEffect(() => {
-  const filters = {
-    groupId: groups,
-    page: 0,
-    size: 10,
-    sortBy: sortType,
-    status: status,
-    string: searchValue
-  }
-  const { string, ...rest } = filters
-  const query = searchValue ? filters : rest
-  dispatch(getAllStudentsThunk(query));
-}, [groups, sortType, status, debouncedSearch]);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
+  const students = useAppSelector((state) => state.student.students);
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (!students?.length) {
+      dispatch(getAllStudentsThunk());
+    }
+  }, []);
+
+  const debouncedSearch = useDebounce(`${searchValue}`, 500)
+
+  useEffect(() => {
+    const allParams: SearchStudentParams = {
+      status :status,
+      groupId,
+      string: searchValue,
+    };
+    const params={}
+
+    for(let [key,value] of Object.entries(allParams)) {
+      if(value){
+        //@ts-ignore
+        params[key] = String(value)
+      }
+     }
+
+    console.log(searchValue)
+    searchStudent(params)
+      .then((res) => {
+        console.log("res: " , res);
+        
+        if (res.status === 200) {
+          
+          setFilteredStudents(res.data);
+        } else {
+          //todo error  popup
+        }
+      })
+      .catch((err) => {
+        //todo error popup
+      });
+  }, [groupId, debouncedSearch, status]);
+
+  
   return (
     <div className="pb-0 pl-[60px] pr-[15px] pt-[60px]">
       {open && <div className="background-overlay" onClick={handleClose} />}
@@ -68,7 +104,7 @@ useEffect(() => {
         <div className="mr-[40px]">
           <DropDown
             label={<div className="text-base">Группа</div>}
-            onOptionClick={(option) => setGroups(option.value)}
+            onOptionClick={(option) => setGroupId(option.value)}
             options={array}
           />
         </div>
@@ -76,13 +112,13 @@ useEffect(() => {
           <DropDown
             label={<div className="text-[16px]">Статус</div>}
             onOptionClick={(option) => setStatus(option.value)}
-            options={status}
+            options={statuses}
           />
         </div>
         <Search
-         value={searchValue} 
-        onChange={(e) => setSearchValue(e.target.value)}
-         />
+          value={searchValue}
+          setSearchValue={(e: any) => setSearchValue(e)}
+        />
         <button
           type="button"
           className="h-[43px] ml-[310px] w-[251px] rounded-lg border bg-[#4588C6] text-lg text-white transition duration-150 hover:scale-95"
@@ -95,9 +131,8 @@ useEffect(() => {
         <StudentForm onClose={handleClose} />
       </Modal>
       <div>
-        <StudentTable sortBy={(s: string) => () => setSortType(s)}/>
+        <StudentTable sortBy={(s: string) => () => setSortType(s)}  students={filteredStudents}/>
       </div>
-
     </div>
   );
 }

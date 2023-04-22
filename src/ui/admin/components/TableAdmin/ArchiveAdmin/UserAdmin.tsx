@@ -74,7 +74,7 @@ export default function UserTableAdmin() {
     <DataGrid
       autoHeight
       className=" bg-white border rounded-lg shadow-lg w-[1300px] hover:none"
-      rows={archiveUsers}
+      rows={archiveUsers || []}
       columns={userColumns}
       getRowClassName={(params) => 'even:bg-[#dee7f3]'}
     />

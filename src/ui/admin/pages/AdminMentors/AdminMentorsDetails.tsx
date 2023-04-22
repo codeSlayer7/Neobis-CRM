@@ -12,8 +12,12 @@ function AdminMentorsDetails() {
   const mentor = useAppSelector((state) => state.mentors.mentor);
 
   useEffect(() => {
+    //@ts-ignore
     dispatch(getMentorByIdThunk(id));
   }, [id, dispatch]);
+
+  console.log("mentore", mentor);
+
 
   return (
     <div className="mx-10 mb-20 h-auto w-full items-center justify-center">
@@ -50,10 +54,10 @@ function AdminMentorsDetails() {
             </ul>
           </div>
           <div className="mr-20">
-            {mentor.groupNames && mentor.groupNames.length > 0 ? (
+            {mentor.groupNames && mentor.groupNames?.length > 0 ? (
               <ul className="my-5">
                 <li className="text-2xl font-semibold">Обучение в группах</li>
-                {mentor.groupNames.map((groupName, index) => (
+                {mentor.groupNames.map((groupName:any, index:any) => (
                   <li key={index} className="text-xl font-normal">
                     {groupName}
                   </li>

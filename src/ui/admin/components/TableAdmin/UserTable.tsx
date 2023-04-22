@@ -25,6 +25,7 @@ export default function UserTable() {
       </div>
     );
   };
+console.log("users", users);
 
   React.useEffect(() => {
     dispatch(getAllUserThunk());
@@ -74,7 +75,7 @@ export default function UserTable() {
     <DataGrid
       autoHeight
       className=" hover:none w-[1300px] rounded-lg border bg-white shadow-lg"
-      rows={users}
+      rows={users || []}
       columns={userColumns}
       getRowClassName={(params) => 'even:bg-[#dee7f3]'}
     />

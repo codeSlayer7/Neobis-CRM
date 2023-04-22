@@ -30,7 +30,7 @@ export const getCourseByIdThunk = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const response = await getCourseById(id);
-      const array = response.data.groups.map((item) => item.students);
+      const array = response.data.groups.map((item: any) => item.students);
       const data = { course: response.data, students: array.flat() };
       return data;
     } catch (err) {
@@ -42,7 +42,7 @@ export const getCourseByIdThunk = createAsyncThunk(
 // create course
 export const addNewCourseThunk = createAsyncThunk(
   'courses/addNewCourse',
-  async ({ values, formData }, { rejectWithValue }) => {
+  async ({ values, formData }: { values: any, formData: any }, { rejectWithValue }) => {
     try {
       const response = await addNewCourse({ values, formData });
       return response.data;
