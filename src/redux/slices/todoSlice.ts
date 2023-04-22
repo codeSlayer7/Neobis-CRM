@@ -126,12 +126,11 @@ const todoSlice = createSlice({
     });
     builder.addCase(getSortedThunk.fulfilled, (state, { payload }) => {
       const { appliedForTrial, attendedTrial, callReceived, waitingForCall } =
-        payload;
-      console.log('get state sorte', current(state));
-      state.columns.waitingForCall.items = waitingForCall;
-      state.columns.callReceived.items = callReceived;
-      state.columns.appliedForTrial.items = appliedForTrial;
-      state.columns.attendedTrial.items = attendedTrial;
+        payload
+      state.columns.WAITING_FOR_CALL.items = waitingForCall;
+      state.columns.CALL_RECEIVED.items = callReceived;
+      state.columns.APPLIED_FOR_TRIAL.items = appliedForTrial;
+      state.columns.ATTENDED_TRIAL.items = attendedTrial;
       // state.accessToken = payload.authenticationResponse.jwtToken;
       // state.refreshToken = payload.authenticationResponse.refreshToken;
       // state.role = payload.role;
