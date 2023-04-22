@@ -42,12 +42,12 @@ const studentColumns: Columns[] = [
     width: 140,
   },
   {
-    field: 'dateArchive',
+    field: 'archiveDate',
     headerName: <div className="text-[16px] font-semibold">Дата архивации</div>,
     width: 160,
   },
   {
-    field: 'reasonArchive',
+    field: 'archiveReason',
     headerName: (
       <div className="text-[16px] font-semibold">Причина архивации</div>
     ),

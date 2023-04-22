@@ -1,12 +1,12 @@
 import axiosInteceptor from "./base/interceptor";
 
 export const getAllMentorsArchive = () => {
-    return axiosInteceptor.get('/api/v1/mentors/cards/filter?status=ARCHIVED');   
+    return axiosInteceptor.get('/api/v1/mentors/cards?status=ARCHIVED');   
 };
 
 
 export const getAllStudentsArchive = () => {
-    return axiosInteceptor.get('/api/v1/students/filter?status=ARCHIVED');   
+    return axiosInteceptor.get('/api/v1/students/find?status=ARCHIVED');   
 };
 
 export const getAllUsersArchive = () => {

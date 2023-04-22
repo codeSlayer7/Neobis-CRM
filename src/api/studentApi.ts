@@ -24,11 +24,6 @@ export const searchStudent = (params?: SearchStudentParams) => {
   return axiosInteceptor.get(`/api/v1/students/find`,{params});
 };
 
-
-// export const filterStudent = () => {
-//   return axiosInteceptor.get('/api/v1/students/filter?')
-// }
-
 export const archiveStudent = (reason: string, id: number) => {
   const params = {studentId: id}
   return axiosInteceptor.put('/api/v1/students/archive', {reason}, {params})

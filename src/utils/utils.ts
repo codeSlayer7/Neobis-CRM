@@ -35,7 +35,7 @@ export function filterData<T>({ data, keys, value }: ArgTypes<T>) {
         return keys.some(key => {
             const currentItem = item[key]
             if (isString(currentItem)) {
-                return currentItem.toLowerCase().includes(value)
+                return currentItem.toLowerCase().includes(value.toString())
             }else if(typeof currentItem === 'number') {
                 return currentItem === +value
             }
