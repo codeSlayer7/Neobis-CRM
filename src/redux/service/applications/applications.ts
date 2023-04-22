@@ -84,15 +84,7 @@ export const getSortedApplication = async (): Promise<
   }
 };
 
-export const postAppliction = async (data: IApplicationPost) => {
-  try {
-    const res = await axiosInteceptor.post(`${Endpoints.Applicatins}`, data);
-    console.log(res, 'poijiojio');
-    return res;
-  } catch (e) {
-    throw new Error(e.message);
-  }
-};
+
 
 export const postAppliction = async (data: IApplicationPost) => {
   try {
@@ -125,16 +117,7 @@ export const unArchiveAppliction = async ({ id, reason }) => {
     throw new Error(e.message);
   }
 };
-export const unArchiveAppliction = async ({ id }) => {
-  try {
-    const res = await axiosInteceptor.post(
-      `${Endpoints.ApplicationsUnArchiveWithId}/${id}`
-    );
-    return res;
-  } catch (e) {
-    throw new Error('Failed to post application');
-  }
-};
+
 
 export const updateApplication = async (
   id: string,

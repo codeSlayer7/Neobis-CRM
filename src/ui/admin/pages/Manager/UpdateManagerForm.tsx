@@ -3,9 +3,10 @@ import InputField from '../../components/Input/InputField';
 import SendButton from '../../components/Button';
 import { useAppDispatch } from '../../../../constants/global';
 import { getAllUserThunk } from '../../../../redux/slices/adminSlice';
-import { updateUser } from '../../../../api/adminApi';
+
 import { UserData } from '../../../../redux/types/adminTypes';
 import { schemaUpdate } from '../../../../utils/schema';
+import { updateUser1 } from '../../../../api/adminApi';
 
 const UpdateManagerForm = ({ onClose, user : oldUser }: any) => {
   const {lastVisitDate, lastVisitTime, ...user  } = oldUser;;
@@ -13,7 +14,7 @@ const UpdateManagerForm = ({ onClose, user : oldUser }: any) => {
 
   const dispatch = useAppDispatch();
   const onSubmit = (data: UserData) => {
-    updateUser(user.id, data)
+    updateUser1(user.id, data)
       .then((res) => {
         dispatch(getAllUserThunk());
         onClose();

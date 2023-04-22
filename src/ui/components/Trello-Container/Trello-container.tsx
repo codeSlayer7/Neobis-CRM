@@ -19,7 +19,9 @@ import { changeStatusApplication } from '../../../redux/service/applications/app
 function TrelloContainer() {
   const dispatch = useAppDispatch();
   const matches = useMediaQuery('(min-width: 1280px)');
-  const columns = useAppSelector((trello) => trello.trello?.columns);
+  const columns = useAppSelector((trello) => trello.trello.columns);
+  console.log(columns);
+  
   const [Data, setData] = useState<any>(null);
   const willMount = useRef(true);
   const copyData = useRef(null);
