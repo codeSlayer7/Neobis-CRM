@@ -1,27 +1,9 @@
 import { DataGrid, GridRowClassNameParams } from '@mui/x-data-grid';
 import { useEffect, useState } from 'react';
-
-interface MyGridRowClassNameParams extends GridRowClassNameParams {
-  api: {
-    _gridParams: {
-      api: {
-        currentRoute: string;
-      }
-    }
-  }
-}
-
-
-interface MyRows {
-  id: number;
-  name: string;
-  status: string;
-  number: string;
-  email: string;
-  group: string;
-  payment: string;
-  style?: React.CSSProperties;
-}
+import { useAppDispatch, useAppSelector } from '../../../constants/global';
+import { getAllStudentsThunk } from '../../../redux/slices/studentSlice';
+import StudentActions from '../../admin/components/Actions/StudentActions';
+import { StudentData } from '../../../redux/types/adminTypes';
 
 interface MyColums {
   field: string;
@@ -29,122 +11,60 @@ interface MyColums {
   width: number;
   renderCell?: any;
 }
+interface Props {
+  sortBy: any;
+  students: {}[];
+}
+const StudentTable = ({ sortBy, students }: Props) => {
+  const { role } = useAppSelector((state) => {
+    return state.user;
+  });
+console.log("students", students);
 
-const StudentTable = () => {
-  const rows: MyRows[] = [
-    {
-      id: 1,
-      name: 'Жоломан Шаршенбеков',
-      status: 'Заморожен',
-      number: '+996 555 123 123',
-      email: 'jolaman23@gmail.com',
-      group: 'Product Manager',
-      payment: '50 %',
-    },
-    {
-      id: 2,
-      name: 'Жоломан Шаршенбеков',
-      status: 'Активен',
-      number: '+996 555 123 123',
-      email: 'jolaman23@gmail.com',
-      group: 'Product Manager',
-      payment: '50 %',
-      style: {},
-    },
-    {
-      id: 3,
-      name: 'Жоломан Шаршенбеков',
-      status: 'Неактивен',
-      number: '+996 555 123 123',
-      email: 'jolaman23@gmail.com',
-      group: 'Product Manager',
-      payment: '50 %',
-    },
-    {
-      id: 4,
-      name: 'Жоломан Шаршенбеков',
-      status: 'Заморожен',
-      number: '+996 555 123 123',
-      email: 'jolaman23@gmail.com',
-      group: 'Product Manager',
-      payment: '50 %',
-    },
-    {
-      id: 5,
-      name: 'Жоломан Шаршенбеков',
-      status: 'Неактивен',
-      number: '+996 555 123 123',
-      email: 'jolaman23@gmail.com',
-      group: 'Product Manager',
-      payment: '50 %',
-    },
-    {
-      id: 6,
-      name: 'Жоломан Шаршенбеков',
-      status: 'Активен',
-      number: '+996 555 123 123',
-      email: 'jolaman23@gmail.com',
-      group: 'Product Manager',
-      payment: '50 %',
-    },
-    {
-      id: 7,
-      name: 'Жоломан Шаршенбеков',
-      status: 'Заморожен',
-      number: '+996 555 123 123',
-      email: 'jolaman23@gmail.com',
-      group: 'Product Manager',
-      payment: '50 %',
-    },
-    {
-      id: 8,
-      name: 'Жоломан Шаршенбеков',
-      status: 'Активен',
-      number: '+996 555 123 123',
-      email: 'jolaman23@gmail.com',
-      group: 'Product Manager',
-      payment: '50 %',
-    },
-    {
-      id: 9,
-      name: 'Жоломан Шаршенбеков',
-      status: 'Неактивен',
-      number: '+996 555 123 123',
-      email: 'jolaman23@gmail.com',
-      group: 'Product Manager',
-      payment: '50 %',
-    },
-    {
-      id: 10,
-      name: 'Жоломан Шаршенбеков',
-      status: 'Заморожен',
-      number: '+996 555 123 123',
-      email: 'jolaman23@gmail.com',
-      group: 'Product Manager',
-      payment: '50 %',
-    },
-  ];
-
-  const colors = (status: 'Неактивен' | 'Активен' | 'Заморожен') =>
-    status === 'Активен'
+  const colors = (status: 'Неактивный' | 'Активный' | 'Заморожен') =>
+    status === 'Активный'
       ? '#2CAE49'
       : status === 'Заморожен'
       ? '#2C77AE'
-      : status === 'Неактивен'
+      : status === 'Неактивный'
       ? '#DF3939'
       : '';
+
+  const renderCell = (params: any) => (
+    <div>
+      {params.row.groups.map((value: any, index: any) => (
+        <div key={index}>{value.name}</div>
+      ))}
+    </div>
+  );
 
   const columns: MyColums[] = [
     { field: 'id', headerName: '', width: 0 },
     {
-      field: 'name',
-      headerName: <div className="text-[16px] font-semibold">Имя студента</div>,
-      width: 255,
+      field: 'fullName',
+      headerName: (
+        <div
+          onClick={sortBy('firstName')}
+          className="text-[16px] font-semibold"
+        >
+          Фио студента
+        </div>
+      ),
+      width: 215,
+      renderCell: (params: any) => (
+        <div>
+          {params.row.firstName} {params.row.lastName}
+        </div>
+      ),
     },
     {
       field: 'status',
-      headerName: <div className="text-[16px] font-semibold">Статус</div>,
-      width: 148,
+      headerName: (
+        <div onClick={sortBy('status')} className="text-[16px] font-semibold">
+          Статус
+        </div>
+      ),
+      width: 150,
       renderCell: (params: any) => {
         return (
           <div
@@ -161,26 +81,70 @@ const StudentTable = () => {
       },
     },
     {
-      field: 'number',
-      headerName: <div className="text-[16px] font-semibold">Телефон</div>,
-      width: 180,
+      field: 'phoneNumber',
+      headerName: (
+        <div
+          onClick={sortBy('phoneNumber')}
+          className="text-[16px] font-semibold"
+        >
+          Телефон
+        </div>
+      ),
+      width: 170,
     },
     {
       field: 'email',
-      headerName: <div className="text-[16px] font-semibold">Email</div>,
-      width: 219,
+      headerName: (
+        <div onClick={sortBy('email')} className="text-[16px] font-semibold">
+          Почта
+        </div>
+      ),
+      width: 195,
     },
     {
-      field: 'group',
-      headerName: <div className="text-[16px] font-semibold">Группа</div>,
-      width: 185,
+      field: 'gender',
+      headerName: (
+        <div onClick={sortBy('gender')} className="text-[16px] font-semibold">
+          Пол
+        </div>
+      ),
+      width: 100,
     },
     {
-      field: 'payment',
-      headerName: <div className="text-[16px] font-semibold">Оплата</div>,
+      field: 'groups',
+      headerName: (
+        <div onClick={sortBy('groups')} className="text-[16px] font-semibold">
+          Группа
+        </div>
+      ),
       width: 140,
+      renderCell: renderCell,
+    },
+    {
+      field: 'totalPaymentPercentage',
+      headerName: (
+        <div
+          onClick={sortBy('totalPaymentPercentage')}
+          className="text-[16px] font-semibold"
+        >
+          Оплата
+        </div>
+      ),
+      width: 110,
     },
   ];
+
+  if (role) {
+    role === 'ROLE_ADMIN' &&
+      columns.push({
+        field: 'actions',
+        headerName: <div className="text-[16px] font-semibold">Действия</div>,
+        width: 120,
+        renderCell: (params: any) => <StudentActions student={params.row} />,
+      });
+  }
+
+  // const filteredStudents = students.filter(students => students.includes(searchValue))
 
   return (
     <>
@@ -188,13 +152,15 @@ const StudentTable = () => {
         <DataGrid
           autoHeight
           className=" bg-white border rounded-lg shadow-lg"
-          rows={rows}
+          rows={students}
           columns={columns}
-          getRowClassName={(params) => 'even:bg-[#F4F7FD]'}
+          getRowClassName={(params) => 'even:bg-[#dee7f3]'}
         />
+
       </div>
     </>
   );
 };
 
 export default StudentTable;
+

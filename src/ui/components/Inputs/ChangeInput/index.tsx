@@ -17,7 +17,7 @@ const ChangeInput: React.FC<Props> = ({ helperText, error, ...rest }) => {
   return (
     <div>
       <label className="relative mb-2 block text-[20px] font-medium text-gray-900 dark:text-white">
-        <div className="p-[18px] absolute">
+        <div className="absolute p-[18px]">
           {open === false ? (
             <div onClick={toggle}>
               <Eye />
@@ -36,7 +36,9 @@ const ChangeInput: React.FC<Props> = ({ helperText, error, ...rest }) => {
       font-normal text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:placeholder:text-gray-400
       dark:focus:border-blue-500 dark:focus:ring-blue-500"
         />
-        <div className="text-[red] text-[16px] mt-[4px] mb-[15px] max-w-[415px] h-[10px]">{helperText}</div>
+        <div className="mt-[4px] mb-[15px] h-[10px] max-w-[415px] text-[16px] text-[red]">
+          {helperText}
+        </div>
       </label>
     </div>
   );

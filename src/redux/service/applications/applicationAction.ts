@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getApiErrorMessage } from '../../../utils/utils';
 import {
-  ApplicationPost,
   getAllApplicatins,
   getSortedApplication,
   IApplicationPost,

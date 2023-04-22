@@ -14,7 +14,7 @@ function Profile() {
     setShow(!show);
   };
 
-  const { firstName, lastName } = useAppSelector((state) => {
+  const user = useAppSelector((state) => {
     return state.user;
   });
 
@@ -26,7 +26,7 @@ function Profile() {
             <img src={Photo} alt="#" />
           </div>
           <div className="ml-7">
-            <h2 className="text-3xl font-bold">{firstName}{lastName}</h2>
+            <h2 className="text-3xl font-bold">{user.firstName}{user.lastName}</h2>
             <div className="mt-10">
               <button
                 type="button"

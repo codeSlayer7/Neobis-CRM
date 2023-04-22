@@ -118,10 +118,7 @@ function CreateCard() {
         <div className="mt-10 ml-6 mr-[56px] flex justify-between">
           <div>
             <form>
-              <label
-                htmlFor="name"
-                className="mb-3 block text-lg font-semibold text-gray-900"
-              >
+              <label className="mb-3 block text-lg font-semibold text-gray-900">
                 ФИО
               </label>
 

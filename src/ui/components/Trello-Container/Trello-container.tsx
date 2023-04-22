@@ -29,7 +29,7 @@ function TrelloContainer() {
     dispatch(getSortedThunk());
     return () => {
       if (willMount.current) {
-        console.log('odok', copyData);
+        console.log('odoklllll data copy', copyData);
       }
 
       willMount.current = false;
@@ -78,7 +78,7 @@ function TrelloContainer() {
               <TrelloColumn
                 key={columnId}
                 columnTitle={column.name}
-                count={column.items.length}
+                count={column.items?.length}
               >
                 <Droppable droppableId={columnId} key={columnId}>
                   {(provided, snapshot) => {

@@ -63,20 +63,6 @@ const DonutChart: React.FC<Props> = () => {
             <Grid xs={2} item />
           </Grid>
         </div>
-        {/* <div className='flex justify-between'>
-        <div>
-          <div>JavaScript</div>
-          <div>Python</div>
-          <div>Java</div>
-          <div>Android</div>
-        </div>
-        <div>
-          <div>iOS</div>
-          <div>UX/UI Design</div>
-          <div>Project Manager</div>
-          <div>Flutter</div>
-        </div>
-      </div> */}
       </div>
     </div>
   );

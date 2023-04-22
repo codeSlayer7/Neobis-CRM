@@ -1,5 +1,5 @@
 import { DataGrid } from '@mui/x-data-grid';
-import Actions from '../../Actions/Actions';
+import ArchiveAction from '../../Actions/ArchiveAction';
 
 interface Columns {
   field: string;
@@ -82,34 +82,34 @@ export default function GroupAdmin() {
       headerName: (
         <div className="text-[16px] font-semibold">Количество обучаемых</div>
       ),
-      width: 240,
+      width: 230,
     },
     {
       field: 'teacher',
       headerName: (
         <div className="text-[16px] font-semibold">Преподаватель</div>
       ),
-      width: 210,
+      width: 190,
     },
     {
       field: 'date',
       headerName: (
         <div className="text-[16px] font-semibold">Дата архивации</div>
       ),
-      width: 200,
+      width: 190,
     },
     {
       field: 'cause',
       headerName: (
         <div className="text-[16px] font-semibold">Причина архивации</div>
       ),
-      width: 290,
+      width: 330,
     },
     {
         field: 'actions',
         headerName: <div className="text-[16px] font-semibold">Действия</div>,
-        width: 100,
-        renderCell: (params: any) => <Actions {...params} />,
+        width: 90,
+        renderCell: (params: any) => <ArchiveAction {...params} />,
       },
   ];
 

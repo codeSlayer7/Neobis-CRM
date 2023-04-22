@@ -1,4 +1,4 @@
-import { getCookie, setCookie, removeCookie } from '../utils/cookie';
+import { getCookie, setCookie, removeCookie } from '../../utils/cookie';
 import axios, { AxiosRequestConfig } from 'axios';
 
 const axiosInteceptor = axios.create({

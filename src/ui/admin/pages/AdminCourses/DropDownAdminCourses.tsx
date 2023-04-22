@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import { HiDotsVertical } from 'react-icons/hi';
+import { CourseType } from '../../components/Modals/CreateCourse';
 
-function DropDownAdminCourses() {
+type Props = {
+  openEditMenu: (course: CourseType) => void;
+  archive: (id: number) => void
+}
+function DropDownAdminCourses({openEditMenu, archive} : Props) {
   const [open, setOpen] = useState(false);
   const handleClick = () => {
     setOpen(!open);
@@ -19,8 +24,8 @@ function DropDownAdminCourses() {
       {open && (
         <div className="absolute left-[180px] z-10 mt-[-180px] h-24 w-48 rounded-lg border-2 border-[#4588C6] bg-white text-black">
           <ul className="text-center">
-            <li className="p-1 text-lg hover:bg-[#F1F1F1]">Архивировать</li>
-            <li className="p-1 text-lg hover:bg-[#F1F1F1]">Редактировать</li>
+            <li onClick={archive} className="p-1 text-lg hover:bg-[#F1F1F1]">Архивировать</li>
+            <li onClick={openEditMenu} className="p-1 text-lg hover:bg-[#F1F1F1]">Редактировать</li>
           </ul>
         </div>
       )}

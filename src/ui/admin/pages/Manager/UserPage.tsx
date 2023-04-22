@@ -1,46 +1,29 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Modal from '@mui/material/Modal';
 import { useState } from 'react';
 import UserTable from '../../components/TableAdmin/UserTable';
-import CreateUser from '../../components/Modals/CreateUser';
-import { useAppDispatch, useAppSelector } from '../../../../constants/global';
-import { useNavigate } from 'react-router-dom';
-import { getAllUserThunk } from '../../../../redux/slices/adminSlice';
-import { getCookie } from '../../../../utils/cookie';
+import Modal from '../../components/Modals/Modal';
+import ManagerForm from './ManagerForm';
 
 function UserPage() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-
-
   return (
     <div className="relative h-[100vh] w-full">
+      {open && <div className="background-overlay" onClick={handleClose} />}
       <button
         type="button"
-        className="bg-[#4588C6] my-20 ml-[80%] h-12 w-56 rounded-lg border text-lg text-white transition duration-150 hover:scale-95"
+        className="z-10 bg-[#4588C6] my-10 ml-[82%] h-12 w-56 rounded-lg border text-lg text-white transition duration-150 hover:scale-95"
         onClick={handleOpen}
       >
-        Создать менеджера
+        Добавить менеджера
       </button>
 
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <div className="absolute top-[-10%] left-[30%] right-32">
-          <CreateUser
-          handleClose={handleClose}
-          />
-        </div>
+      <Modal title="Создать менеджера" open={open}  onClose={handleClose}>
+        <ManagerForm onClose={handleClose} />
       </Modal>
 
-      <div className="ml-[36px]">
+      <div className="ml-[36px] pb-[20px]">
         <UserTable />
       </div>
     </div>

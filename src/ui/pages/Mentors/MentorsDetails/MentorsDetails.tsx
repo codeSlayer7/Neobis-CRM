@@ -1,41 +1,60 @@
+import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../../../constants/global';
+import { getMentorById } from '../../../../redux/service/mentors/mentors';
 import photo from '../../../images/Photo.png';
+import { getMentorByIdThunk } from '../../../../redux/service/mentors/mentorsAction';
 
 function MentorsDetails() {
+  const dispatch = useAppDispatch();
+  const { id } = useParams();
+
+  const mentor = useAppSelector((state) => state.mentors.mentor);
+
+  useEffect(() => {
+    dispatch(getMentorByIdThunk(id));
+  }, [id, dispatch]);
+
   return (
     <div className="flex h-auto w-full items-center justify-center">
-      <div className="relative my-12 flex h-[797px] w-[1318px] rounded-xl border border-black bg-[#FCFDFE]">
-        <div className="mt-12 ml-8">
-          <img src={photo} alt="#" />
-          <h3 className="mt-12 text-lg font-semibold">
-            Преподаватель JavaScript
+      <div className="relative my-12 flex h-[797px] w-[1318px] rounded-xl border-2 shadow-md bg-[#FCFDFE]">
+        <div className="mt-12 ml-20">
+          <img
+            src={mentor.imageUrl}
+            alt="#"
+            className="h-[120px] w-[120px] rounded-full border"
+          />
+          <h3 className="mt-12 text-lg font-semibold text-[#70BF44]">
+            Преподаватель <br />
+            {mentor.courseName}
           </h3>
         </div>
-        <div className="mt-12 ml-28 flex flex-wrap">
-          <ul className="mr-24 pb-5">
-            <li className="text-2xl font-semibold">Имя</li>
-            <li className="text-xl font-normal">Жылдыз Маратовна</li>
-          </ul>
-          <ul className="mr-24 pb-5">
-            <li className="text-2xl font-semibold">Номер телефона</li>
-            <li className="text-xl font-normal">+996 554 555 312</li>
-          </ul>
-          <ul className=" pb-5">
-            <li className="text-2xl font-semibold">Gmail</li>
-            <li className="text-xl font-normal">zhyldyz.maratovna@gmail.com</li>
-          </ul>
-          <ul className="mr-24 pb-5">
-            <li className="text-2xl font-semibold">Номер патента</li>
-            <li className="text-xl font-normal">№421</li>
-          </ul>
-          <ul className="mr-24 pb-5">
-            <li className="text-2xl font-semibold"> Срок патента</li>
-            <li className="text-xl font-normal">23.01.2022 - 23.01.2024</li>
-          </ul>
-          <ul className="pb-5">
-            <li className="text-2xl font-semibold">Обучение в группах</li>
-            <li className="text-xl font-normal">JavaScript</li>
-          </ul>
-          <div className="mt-5 ">
+        <div className="mt-12 ml-32 flex flex-wrap w-[60%] justify-between">
+          <div className=''>
+            <ul className="mr-24 pb-5">
+              <li className="text-2xl font-semibold">Имя</li>
+              <li className="text-xl font-normal">
+                {mentor.firstName} {mentor.lastName}
+              </li>
+            </ul>
+            <ul className="mr-24 pb-5">
+              <li className="text-2xl font-semibold">Номер телефона</li>
+              <li className="text-xl font-normal">{mentor.phoneNumber}</li>
+            </ul>
+          </div>
+          <div className='mr-20'>
+            <ul className=" pb-5">
+              <li className="text-2xl font-semibold ">Gmail</li>
+              <li className="text-xl font-normal">{mentor.email}</li>
+            </ul>
+
+            <ul className="pb-5">
+              <li className="text-2xl font-semibold">Обучение в группах</li>
+              <li className="text-xl font-normal">{mentor.groupName}</li>
+            </ul>
+          </div>
+
+          <div >
             <h3 className="mb-8 text-2xl font-semibold">Расписание</h3>
             <div className="rounded-lg border ">
               <table className="table-fixed cursor-pointer text-center text-xl font-normal">
@@ -113,7 +132,7 @@ function MentorsDetails() {
             </div>
           </div>
         </div>
-        <div className="r-5 absolute bottom-0 left-[-1px] h-0 w-0 rounded-bl-xl border border-b-[150px] border-r-[150px] border-[#FCFDFE] border-l-black border-b-violet-900 " />
+        <div className="r-5 absolute bottom-0 left-[-1px] h-0 w-0 rounded-bl-xl border border-b-[150px] border-r-[150px] border-[#FCFDFE] border border-b-violet-900 " />
       </div>
     </div>
   );

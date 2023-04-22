@@ -1,87 +1,161 @@
-import { GrFormClose } from 'react-icons/gr';
+import { FiUpload } from 'react-icons/fi';
+import { IoClose } from 'react-icons/io5';
+import { MdDeleteOutline } from 'react-icons/md';
+import { useState } from 'react';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import * as Yup from 'yup';
+import FormData from 'form-data';
+import { useAppDispatch } from '../../../../constants/global';
+import { addNewMentorThunk } from '../../../../redux/service/mentors/mentorsAction';
 
-function AdminMentorsForm({ open, onClose }) {
+function AdminMentorsForm({ handleClose }) {
+  const [selectedImage, setSelectedImage] = useState(null);
+  const dispatch = useAppDispatch();
+
+  const onSubmit = (values) => {
+    const formData = new FormData();
+    formData.append('multipartFile', selectedImage as Blob);
+    dispatch(addNewMentorThunk({ formData, values }));
+    handleClose();
+  };
+
   return (
-    <div className="my-5 ml-[30%] ">
-      <div className="relative flex h-[756px] w-[598px] flex-col items-center rounded-lg border-2 bg-[#f1f1f1]">
-        <h3 className="mt-6 text-3xl font-bold ">Добавить преподавателя</h3>
-        <button type="button" onClick={onClose}>
-          <GrFormClose className="absolute left-[550px] top-3 text-3xl " />
+    <div className="mx-auto my-5 h-[690px] w-[1000px] rounded-lg border-2 border-slate-200 bg-white shadow-lg ">
+      <div className="flex h-14 w-full items-center justify-between rounded-t-lg border-2 bg-[#4588C6]">
+        <h1 className="ml-5 text-left text-3xl  font-semibold text-white">
+          Добавить преподавателя
+        </h1>
+        <button onClick={handleClose} type="button">
+          <IoClose className="mr-5 text-3xl text-white" />
         </button>
+      </div>
+      <div className="flex">
+        <div className=" ml-20 mt-[63px] w-[50%]">
+          <div className="flex mt-5 h-72 w-80 flex-col items-center rounded-lg border-2 border-dashed border-slate-400 bg-[#f1f1f1]  text-center ">
+            <FiUpload className={selectedImage ? 'hidden' : 'mt-20 text-5xl'} />
 
-        <form className="mt-6">
-          <label className="mb-2 block text-lg font-semibold text-gray-900">
-            Имя
-          </label>
-          <input
-            type="name"
-            id="name"
-            className="mb-2 block h-[40px] w-[377px] rounded-sm border border-slate-300 bg-white p-2.5 text-sm"
-            required
-          />
+            {selectedImage && (
+              <div className="mb-5  h-72 w-80 ">
+                <img
+                  alt="not found"
+                  className="w-[100%]"
+                  src={URL.createObjectURL(selectedImage)}
+                />
+              </div>
+            )}
+          </div>
+          <div className="mt-[113px] flex h-11 w-[400px] items-center  justify-between">
+            <input
+              type="file"
+              name="file"
+              onChange={(event) => {
+                setSelectedImage(event.target.files[0]);
+              }}
+              className="  h-11 w-[330px] rounded-lg border bg-[#4588C6]  p-1 text-lg text-white transition duration-150 hover:scale-95"
+            />
+            <button
+              type="button"
+              className={
+                // selectedImage ? 'image-remove' : 'image-remove disabled-btn '
+                selectedImage
+                  ? 'mr-5 text-4xl text-[#4588C6]'
+                  : 'mt-[172px] hidden'
+              }
+              onClick={() => setSelectedImage(null)}
+            >
+              <MdDeleteOutline />
+            </button>
+          </div>
+        </div>
+        <Formik
+          initialValues={{
+            email: '',
+            firstName: '',
+            lastName: '',
+            phoneNumber: '',
+            courseId: 0,
+          }}
+          validationSchema={Yup.object({
+            email: Yup.string()
+              .min(2, 'Name must be at least 2 characters')
+              .required('This field is required'),
+            firstName: Yup.string()
+              .min(2, 'Name must be at least 2 characters')
+              .required('This field is required'),
+            lastName: Yup.string()
+              .min(2, 'Name must be at least 2 characters')
+              .required('This field is required'),
+            phoneNumber: Yup.string()
+              .min(6, 'Must be number')
+              .required('This field is required'),
+            courseId: Yup.string()
+              .min(1, 'Must be number')
+              .required('This field is required'),
+          })}
+          onSubmit={onSubmit}
+        >
+          {({ values }) => (
+            <Form className="mt-10 ml-10 mr-20 flex flex-col">
+              <Field
+                name="firstName"
+                id="firstName"
+                type="text"
+                placeholder="Имя"
+                className="my-5 h-10 w-[330px] rounded-lg border border-slate-300 p-2 "
+                required
+              />
 
-          <label className="mb-2 block text-lg font-semibold text-gray-900">
-            Фамилия
-          </label>
-          <input
-            type="lastName"
-            id="lastName"
-            className="mb-2 block h-[40px] w-[377px] rounded-sm border border-slate-300 bg-white p-2.5 text-sm"
-            required
-          />
+              <Field
+                id="lastName"
+                placeholder="Фамилия   "
+                name="lastName"
+                type="text"
+                className="my-5 h-10 w-[330px] rounded-lg border border-slate-300 p-2 "
+                required
+              />
 
-          <label className="mb-2 block text-lg font-semibold text-gray-900">
-            Почта
-          </label>
-          <input
-            type="email"
-            id="email"
-            className="mb-2 block h-[40px] w-[377px] rounded-sm border border-slate-300 bg-white p-2.5 text-sm"
-            required
-          />
-          <label className="mb-2 block text-lg font-semibold text-gray-900">
-            Номер телефона
-          </label>
+              <Field
+                id="email"
+                placeholder="Почта"
+                type="text"
+                name="email"
+                className="my-5 h-10 w-[330px] rounded-lg border border-slate-300 p-2"
+                required
+              />
 
-          <input
-            type="phoneNumber"
-            id="phoneNumber"
-            className="mb-3 block h-[40px] w-[377px] rounded-sm border border-slate-300 bg-white p-2.5 text-sm"
-            required
-          />
-          <label className="mb-2 block text-lg font-semibold text-gray-900">
-            Пароль
-          </label>
+              <Field
+                id="phoneNumber"
+                placeholder="Номер телефона"
+                name="phoneNumber"
+                type="text"
+                className="my-5 h-10 w-[330px] rounded-lg border border-slate-300 p-2"
+                required
+              />
+              <Field 
+              type="number"
+                placeholder="Направление"
+                id="courseId"
+                name="courseId"
+                className="my-5 h-10 w-[330px] rounded-lg border border-slate-300 p-2"
+              />
 
-          <input
-            type="password"
-            id="password"
-            className="mb-2 block h-[40px] w-[377px] rounded-sm border border-slate-300 bg-white p-2.5 text-sm"
-            required
-          />
-          <label className="mb-2 block text-lg font-semibold text-gray-900">
-            Направление
-          </label>
+                {/* <option value="js">JavaScript</option>
+                <option value="python">Python</option>
+                <option value="java">Java</option>
+                <option value="ui8">UI8</option> */}
+              
 
-          <select
-            id="cars"
-            name="cars"
-            className="mb-2 block h-[40px] w-[377px] rounded-sm border border-slate-300 bg-white p-2.5 text-sm "
-          >
-            <option value="js">JavaScript</option>
-            <option value="python">Python</option>
-            <option value="java">Java</option>
-            <option value="ui8">UI8</option>
-          </select>
+              <ErrorMessage className="error" name="lessons" component="div" />
 
-          <button
-            onClick={onClose}
-            type="button"
-            className="mt-4 h-[47px] w-[377px] rounded-lg border border-none bg-[#4588C6] text-lg text-white transition duration-150 hover:scale-95"
-          >
-            Добавить
-          </button>
-        </form>
+              <button
+                type="submit"
+                className="mt-11 h-11 w-[330px] rounded-lg border bg-[#4588C6] text-lg text-white transition duration-150 hover:scale-95 "
+              >
+                Сохранить
+              </button>
+            </Form>
+          )}
+        </Formik>
       </div>
     </div>
   );

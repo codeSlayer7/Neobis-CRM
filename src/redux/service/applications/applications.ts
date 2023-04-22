@@ -1,5 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
-import axiosInteceptor from '../../../api/interceptor';
+import axiosInteceptor from '../../../api/base/interceptor';
 import { ColumnName } from '../../../interfaces/enum';
 import {
   ApplicationStatusType,
@@ -78,8 +78,9 @@ export const getSortedApplication = async (): Promise<
 > => {
   try {
     return await axiosInteceptor.get(`${Endpoints.ApplicationsSorted}`);
-  } catch (e) {
-    throw new Error(e.message);
+  } catch (err) {
+    console.log(err);
+    throw new Error('Failed to fetch sorted applications');
   }
 };
 
@@ -103,16 +104,17 @@ export const archiveAppliction = async ({ id, reason }) => {
     throw new Error(e.message);
   }
 };
-export const unArchiveAppliction = async ({ id }) => {
-  try {
-    const res = await axiosInteceptor.post(
-      `${Endpoints.ApplicationsUnArchiveWithId}/${id}`
-    );
-    return res;
-  } catch (e) {
-    throw new Error(e.message);
-  }
-};
+// export const unArchiveAppliction = async ({ id }) => {
+//   try {
+//     const res = await axiosInteceptor.post(
+//       `${Endpoints.ApplicationsArchiveWithId}/${id}`,
+//       reason
+//     );
+//     return res;
+//   } catch (e) {
+//     throw new Error(e.message);
+//   }
+// };
 
 export const updateApplication = async (
   id: string,
@@ -121,7 +123,7 @@ export const updateApplication = async (
   try {
     return await axiosInteceptor.put(`${Endpoints.Applicatins}/${id}`, data);
   } catch (e) {
-    throw new Error(e.message);
+    throw new Error('Failed to update application with id ${id}');
   }
 };
 
@@ -145,10 +147,10 @@ export const changeStatusApplication = async (data) => {
       console.log(application, 'one app');
 
       const statusObj = {
-        WAITING_FOR_CALL: 1,
-        CALL_RECEIVED: 2,
-        APPLIED_FOR_TRIAL: 3,
-        ATTENDED_TRIAL: 4,
+        waitingForCall: 1,
+        callReceived: 2,
+        appliedForTrial: 3,
+        attendedTrial: 4,
       };
       if (application.status) {
         requests.push(
