@@ -1,4 +1,6 @@
-import historyBg from '../../icons/historySvg.svg';
+// import historyBg from '../../icons/historySvg.svg';
+import historyBg from '../../../icons/historySvg.svg';
+
 
 function HistoryHeader() {
   return (

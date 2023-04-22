@@ -10,7 +10,7 @@ import { styled } from '@mui/material/styles';
 import { Avatar, Typography, Box, Pagination } from '@mui/material';
 import { usePagination } from '../../../../hook/use-pagination';
 import data from './HIstoryData.json';
-import HistoryHeader from '../../../components/Sidebar/history-header';
+import HistoryHeader from '../../components/SidebarAdmin/history-header';
 import HistoryModal from './history-modal';
 
 // const StyledTableCell = styled(TableCell)(({ theme }) => ({

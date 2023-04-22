@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { HiOutlineArrowLongRight } from 'react-icons/hi2';
 import { HiOutlineMenuAlt1 } from 'react-icons/hi';
 import React, { useState } from 'react';
@@ -9,19 +9,47 @@ import { SlGraduation } from 'react-icons/sl';
 import { TiMessages } from 'react-icons/ti';
 import { TbBrandGoogleAnalytics } from 'react-icons/tb';
 import { GrHistory } from 'react-icons/gr';
+import { useAppDispatch } from '../../../../constants/global';
+import HoverText from './HoverText';
+import { toggleStore } from '../../../../redux/slices/toggleSidebar';
+import HistoryHeader from './history-header';
 
 interface IMenuItem {
   name: string;
   path: string;
   icon: React.ReactNode;
-  selected: boolean;
 }
 type Props = {
   children: React.ReactNode;
 };
+const hoverName = [
+  'Менеджер',
+  'Заявки',
+  'Преподаватели',
+  'Курсы',
+  'Студенты',
+  'Архивы',
+  'Аналитика',
+  'История операции',
+];
 
 function SidebarAdmin({ children }: Props) {
-  const Items: IMenuItem[] = [
+  const dispatch = useAppDispatch();
+
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => {
+    dispatch(toggleStore({ sidebar: !isOpen }));
+    setIsOpen(!isOpen);
+  };
+  const location = useLocation();
+
+
+  const activeMenu =
+    'text-slate-100 text-xl flex gap-3.5 rounded-full p-5 m-1 bg-[#4588C6]';
+  const normalMenu =
+    'relative text-slate-400 group flex rounded-full gap-3.5 text-xl p-5 m-1 hover:bg-[#B4D9FF] hover:text-[#4588C6]';
+
+  const menuItem: IMenuItem[] = [
     {
       name: 'Менеджер',
       path: '/admin',
@@ -59,22 +87,11 @@ function SidebarAdmin({ children }: Props) {
       icon: <TbBrandGoogleAnalytics className="text-3xl" />,
     },
     {
-      name: 'История',
+      name: 'История операции',
       path: '/admin/history',
-      icon: <GrHistory className="text-3xl text-slate-400" />,
+      icon: <GrHistory className="text-3xl" />,
     },
   ];
-
-  const [menuItem, setMenuItem] = useState(Items);
-
-  const [isOpen, setIsOpen] = useState(false);
-  const toggle = () => setIsOpen(!isOpen);
-  const [isBurger, setIsBurger] = useState(false);
-
-  const activeMenu =
-    'text-slate-100 text-xl flex gap-3.5 rounded-full p-5 m-1 bg-[#A062F7]';
-  const normalMenu =
-    'relative text-slate-400 group flex rounded-full gap-3.5 text-xl p-5 m-1 hover:bg-[#D9BFFF] hover:text-[#A062F7]';
 
   return (
     <div className="flex">
@@ -99,31 +116,48 @@ function SidebarAdmin({ children }: Props) {
             />
           </div>
         </div>
-
-        {Items?.map((item, index) => (
-          <Link
+        {menuItem?.map((item, index) => (
+          <NavLink
             to={item?.path}
             key={index}
-            onClick={() => {
-              setMenuItem({ ...item, selected: !item.selected });
-            }}
-            className={`${item.selected ? activeMenu : normalMenu}`}
+            className={({ isActive }) => (isActive ? activeMenu : normalMenu)}
           >
-            <div>{item.icon}</div>
+            <div className="group relative">{item.icon}</div>
             <div style={{ display: isOpen ? 'block' : 'none' }}>
               {item.name}
             </div>
-          </Link>
+            {hoverName
+              .filter((name) => name === item.name)
+              .map((name) => (
+                <HoverText text={name} isOpen={isOpen} key={index} />
+              ))}
+          </NavLink>
         ))}
       </div>
 
-      <main
-        className={
-          !isOpen ? 'flex  w-[100%] bg-[#F4F7FD]' : 'flex w-[73%] bg-[#F4F7FD]'
-        }
-      >
-        {children}
-      </main>
+      {location.pathname === '/history' ? (
+        <div className="flex h-[100vh] flex-col">
+          {' '}
+          <HistoryHeader />
+          <main
+            className={
+              !isOpen ? 'flex w-[100%] flex-col ' : 'flex w-[73%] flex-col'
+            }
+          >
+            {children}
+          </main>
+        </div>
+      ) : (
+        <main
+          className={
+            !isOpen
+              ? 'flex  w-[100%] bg-[#F4F7FD]'
+              : 'flex w-[73%] bg-[#F4F7FD]'
+          }
+        >
+          {children}
+        </main>
+      )}
     </div>
   );
 }
