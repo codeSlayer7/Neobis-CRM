@@ -13,19 +13,19 @@ const itemsFromBackend: IApplication[] | [] = [];
 const initialState: Column = {
   loading: false,
   columns: {
-    waitingForCall: {
+    WAITING_FOR_CALL: {
       name: 'Ждет звонка',
       items: itemsFromBackend || [],
     },
-    callReceived: {
+    CALL_RECEIVED: {
       name: 'Звонок совершен',
       items: [],
     },
-    attendedTrial: {
+    APPLIED_FOR_TRIAL: {
       name: 'Записан на проб.урок',
       items: [],
     },
-    appliedForTrial: {
+    ATTENDED_TRIAL: {
       name: 'Посетил проб.урок',
       items: [],
     },
@@ -112,28 +112,34 @@ const todoSlice = createSlice({
       // state.loading = true;
     });
     builder.addCase(getAllAppThunk.fulfilled, (state, { payload }) => {
-      console.log('get state', payload);
-      
+      // const { appliedForTrial, attendedTrial, callReceived, waitingForCall } =
+      //   payload;
+      // console.log('get state', waitingForCall);
+
+      console.log(payload);
       // state.loading = false;
       // state.accessToken = payload.authenticationResponse.jwtToken;
       // state.refreshToken = payload.authenticationResponse.refreshToken;
       // state.role = payload.role;
       // state.firstName = payload.firstName;
       // state.lastName = payload.lastName;
-    });
-
-    builder.addCase(postAppThunk.fulfilled, (state) => {
-      console.log('33');
-      // state.loading = true;
     });
     builder.addCase(getSortedThunk.fulfilled, (state, { payload }) => {
-      console.log('post data ', payload);
-      // state.loading = false;
+      const { appliedForTrial, attendedTrial, callReceived, waitingForCall } =
+        payload;
+      console.log('get state sorte', waitingForCall);
+      state.columns.WAITING_FOR_CALL.items = waitingForCall;
+      state.columns.CALL_RECEIVED.items = callReceived;
+      state.columns.APPLIED_FOR_TRIAL.items = appliedForTrial;
+      state.columns.ATTENDED_TRIAL.items = attendedTrial;
       // state.accessToken = payload.authenticationResponse.jwtToken;
       // state.refreshToken = payload.authenticationResponse.refreshToken;
       // state.role = payload.role;
       // state.firstName = payload.firstName;
       // state.lastName = payload.lastName;
+    });
+    builder.addCase(postAppThunk.fulfilled, (state, { payload }) => {
+      state.loading = true;
     });
   },
 });

@@ -13,6 +13,7 @@ import UserPage from '../admin/pages/Manager/UserPage';
 import MentorArchive from '../admin/components/Modals/MentorArchive';
 import MentorEdit from '../admin/components/Modals/MentorEdit';
 import CreateCourse from '../admin/components/Modals/CreateCourse';
+import AdminApplications from '../admin/components/Applications/adminApplications';
 
 function RouteWrapperAdmin({ children }: any) {
   return (
@@ -33,6 +34,7 @@ export default function Admin() {
           <Route index element={<UserPage />} />
           <Route path="createUser" element={<CreateUser />} />,
           <Route path="analytics" element={<Analytics />} />,
+          <Route path="applications" element={<AdminApplications />} />,
           <Route path="mentors" element={<AdminMentors />} />
           <Route path="mentor/details" element={<AdminMentorsDetails />} />
           <Route path="courses" element={<AdminCourses />} />

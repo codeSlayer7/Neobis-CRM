@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   IApplication,
   IApplicationPost,
@@ -17,8 +17,10 @@ import DropDown from '../DropDown';
 import { Select, MenuItem, styled, SelectChangeEvent } from '@mui/material';
 import { borderRadius } from '@mui/system';
 import { applyInitialState } from '@mui/x-data-grid/hooks/features/columns/gridColumnsUtils';
-import { useAppDispatch } from '../../../constants/global';
+import { useAppDispatch, useAppSelector } from '../../../constants/global';
 import { postAppThunk } from '../../../redux/service/applications/applicationAction';
+import { useNavigate } from 'react-router-dom';
+import { HiOutlineArrowLongLeft } from 'react-icons/hi2';
 
 const CustomSelect = styled(Select)(() => ({
   height: '40px',
@@ -41,21 +43,26 @@ type Entries<T> = {
 }[keyof T][];
 
 function CreateCard() {
+  const loading = useAppSelector((state) => state.trello.loading);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (loading) {
+      navigate(-1);
+    }
+  }, [loading]);
+
   const [laptop, setLaptop] = useState(hasLaptopOption);
-  const [postApp, setPostApp] = useState<IApplicationPost>({
+  const [postApp, setPostApp] = useState<T>({
     firstName: '',
     lastName: '',
     email: '',
     phoneNumber: '',
     gender: '',
     hasLaptop: false,
-    marketingStrategy: 'INSTAGRAM',
-    applicationInitialStatusNum: 1,
-    department: {
-      name: 'JavaScript',
-      status: 'ACTIVE',
-    },
-    departmentId: 100,
+    marketingStrategyEnum: 'INSTAGRAM',
+    applicationStatusInitialNum: '',
+    courseId: 1,
     reason: '',
     education: '',
   });
@@ -76,25 +83,38 @@ function CreateCard() {
       hasLaptop: !postApp.hasLaptop,
     });
   };
-
+  console.log(postApp);
   const handleSubmit = (event) => {
     event.preventDefault();
     const splitFullName = postApp.firstName.split(' ');
+    const numStatus = parseInt(postApp.applicationStatusInitialNum, 10);
     const newPostData = {
       ...postApp,
+      applicationStatusInitialNum: numStatus,
       firstName: splitFullName[1],
       lastName: splitFullName[0],
     };
+    // console.log(newPostData);
     dispatch(postAppThunk(newPostData));
   };
 
   return (
     <div className="flex h-auto w-full items-center justify-center">
       <div className="my-10 h-[798px] w-[886px] rounded-lg  border bg-[#FAFAFA] ">
-        <div className="mt-5 ml-[820px]">
-          <More />
+        <div className="flex justify-between mx-10 mt-5">
+          <div>
+            <HiOutlineArrowLongLeft
+              onClick={() => {
+                navigate(-1);
+              }}
+              className=" text-5xl text-[#A062F7]"
+            />
+          </div>
+          <div className="mt-2">
+            <More />
+          </div>
         </div>
-        <h2 className="ml-6 mt-4 text-3xl font-bold">Создать карту</h2>
+        <h2 className="ml-6 mt-6 text-3xl font-bold">Создать карту</h2>
         <div className="mt-10 ml-6 mr-[56px] flex justify-between">
           <div>
             <form>
@@ -149,51 +169,30 @@ function CreateCard() {
                   setPostApp({ ...postApp, phoneNumber: e.target.value })
                 }
               />
-              <label
-                htmlFor="department"
-                className="mb-3 block text-lg font-semibold text-gray-900"
-              >
-                Направление
-              </label>
-
-              <input
-                type="department"
-                id="department"
-                className="mb-3 block h-[40px] w-[377px] rounded-sm border border-black bg-white p-2.5 text-sm"
-                required
-                value={postApp.department.name}
-                onChange={(e) =>
-                  setPostApp({
-                    ...postApp,
-                    department: {
-                      ...postApp.department,
-                      name: e.target.value,
-                    },
-                  })
-                }
-              />
 
               <label
                 htmlFor="payment"
                 className="mb-3 block text-lg font-semibold text-gray-900"
               >
-                Причина
+                Направления
               </label>
-
-              <input
+              <CustomSelect
                 value={postApp.reason}
                 onChange={(e) =>
-                  setPostApp({ ...postApp, reason: e.target.value as string })
+                  setPostApp({
+                    ...postApp,
+                    reason: e.target.value as string,
+                  })
                 }
-                type="payment"
-                id="payment"
-                className="mb-3 block h-[40px] w-[377px] rounded-sm border border-black bg-white p-2.5 text-sm"
-                required
-              />
-            </form>
-          </div>
-          <div>
-            <form onSubmit={handleSubmit}>
+              >
+                <MenuItem value="Frontend Javascript">Javascript</MenuItem>
+                <MenuItem value="Backend Python">Python</MenuItem>
+                <MenuItem value="Java Backend">Java</MenuItem>
+                <MenuItem value="Project Managment">Project Managment</MenuItem>
+                <MenuItem value="UX UI design">UX UI design</MenuItem>
+                <MenuItem value="QA testing">QA testing</MenuItem>
+                <MenuItem value="Node js Backend">QA testing</MenuItem>
+              </CustomSelect>
               <label
                 htmlFor="date"
                 className="mb-3 block text-lg font-semibold text-gray-900"
@@ -201,20 +200,23 @@ function CreateCard() {
                 Статус заявки
               </label>
               <CustomSelect
-                value={postApp.applicationInitialStatusNum}
+                value={postApp.applicationStatusInitialNum}
                 onChange={(e) =>
                   setPostApp({
                     ...postApp,
-                    applicationInitialStatusNum: e.target.value as number,
+                    applicationStatusInitialNum: e.target.value as number,
                   })
                 }
               >
-                <MenuItem value={1}>Ждет звонка</MenuItem>
-                <MenuItem value={2}>Звонок зовершен</MenuItem>
-                <MenuItem value={3}>Записан на пробный урок</MenuItem>
-                <MenuItem value={4}>Посетил пробный урок</MenuItem>
+                <MenuItem value="1">Ждет звонка</MenuItem>
+                <MenuItem value="2">Звонок зовершен</MenuItem>
+                <MenuItem value="3">Посетил пробный урок</MenuItem>
+                <MenuItem value="4">Записан на пробный урок</MenuItem>
               </CustomSelect>
-
+            </form>
+          </div>
+          <div>
+            <form onSubmit={handleSubmit}>
               <label
                 htmlFor="status"
                 className="mb-3 block text-lg font-semibold text-gray-900"

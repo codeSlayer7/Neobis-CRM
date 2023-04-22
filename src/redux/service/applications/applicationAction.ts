@@ -37,6 +37,7 @@ export const getSortedThunk = createAsyncThunk(
   async (_data, { rejectWithValue }) => {
     try {
       const response = await getSortedApplication();
+      console.log(response, 'sorted data')
       return response.data;
     } catch (err) {
       return rejectWithValue(getApiErrorMessage(err));
@@ -49,7 +50,7 @@ export const postAppThunk = createAsyncThunk(
   async (data: IApplicationPost, { rejectWithValue }) => {
     try {
       const response = await postAppliction(data);
-      console.log(response, 'post app response');
+      console.log(response, 'post app response here');
       return response;
     } catch (err) {
       return rejectWithValue(getApiErrorMessage(err));

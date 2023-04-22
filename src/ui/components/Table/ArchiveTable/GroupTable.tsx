@@ -1,6 +1,6 @@
 import { DataGrid } from '@mui/x-data-grid';
 
-interface Columns {
+export interface Columns {
   field: string;
   headerName: any;
   width: number;
@@ -70,35 +70,41 @@ export default function GroupTable() {
   console.log(groupRows);
 
   const groupColumns: Columns[] = [
-    { field: 'id', headerName: '', width: 0 },
     {
-      field: 'group',
+      field: 'Ф.И.О',
       headerName: <div className="text-[16px] font-semibold">Направление</div>,
       width: 195,
     },
     {
-      field: 'number',
+      field: 'Email',
       headerName: (
         <div className="text-[16px] font-semibold">Количество обучаемых</div>
       ),
       width: 275,
     },
     {
-      field: 'teacher',
+      field: 'Телефон',
       headerName: (
         <div className="text-[16px] font-semibold">Преподаватель</div>
       ),
       width: 227,
     },
     {
-      field: 'date',
+      field: 'Группа',
       headerName: (
         <div className="text-[16px] font-semibold">Дата архивации</div>
       ),
       width: 212,
     },
     {
-      field: 'cause',
+      field: 'Дата Заявки',
+      headerName: (
+        <div className="text-[16px] font-semibold">Причина архивации</div>
+      ),
+      width: 290,
+    },
+    {
+      field: 'Дата Заявки',
       headerName: (
         <div className="text-[16px] font-semibold">Причина архивации</div>
       ),
@@ -108,7 +114,7 @@ export default function GroupTable() {
   return (
     <DataGrid
       autoHeight
-      className=" bg-white border rounded-lg shadow-lg w-[1300px] hover:none"
+      className=" bg-white border rounded-lg shadow-lg w-[100%] hover:none"
       rows={groupRows}
       columns={groupColumns}
       getRowClassName={(params) => 'even:bg-[#F4F7FD]'}

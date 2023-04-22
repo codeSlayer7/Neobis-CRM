@@ -6,8 +6,6 @@ import { schema } from '../../../../utils/schema';
 import { adminCreateUser } from '../../../../redux/slices/adminSlice';
 import { setCookie } from '../../../../utils/cookie';
 
-
-
 const initialValues = {
   email: '',
   password: '',
@@ -16,22 +14,20 @@ const initialValues = {
   lastName: '',
 };
 
-interface handleClose{
+interface handleClose {
   handleClose: () => void;
 }
 
-
-function CreateUser({handleClose}: handleClose) {
-  const dispatch = useAppDispatch()
-
+function CreateUser({ handleClose }: handleClose) {
+  const dispatch = useAppDispatch();
 
   const formik = useFormik({
     initialValues,
     validationSchema: schema,
     validateOnChange: false,
     onSubmit: (data) => {
-      const object = {handleClose, data}
-      dispatch(adminCreateUser(object))
+      const object = { handleClose, data };
+      dispatch(adminCreateUser(object));
     },
   });
 

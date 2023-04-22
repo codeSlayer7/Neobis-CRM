@@ -16,7 +16,7 @@ export const getAllUserThunk = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await getAllUsers();
-      console.log('response2', response);
+      console.log('responsedmin', response);
       return response.data;
     } catch (err) {
       return rejectWithValue(getApiErrorMessage(err));

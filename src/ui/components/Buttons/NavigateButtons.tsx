@@ -1,9 +1,11 @@
+import cx from 'classnames';
 import { useState } from 'react';
 import Search from '../Search';
 
 interface Props {
   setButtonType: (v: number) => void;
   buttonType: number;
+  buttonProp: any;
 }
 
 const buttons = [
@@ -29,19 +31,27 @@ const buttons = [
   },
 ];
 
-export default function NavigateButtons({ buttonType, setButtonType }: Props) {
+export default function NavigateButtons({
+  buttonType,
+  setButtonType,
+  buttonProp,
+}: Props) {
+  console.log(buttonProp, 'props button');
+
   return (
     <div className="flex rounded-[16px] bg-[#E2EBFF] p-[16px]">
-      {buttons.map((btn, index) => {
+      {...(buttonProp ? buttonProp : buttons)?.map((btn, index) => {
         return (
           <button
             key={index}
             onClick={() => setButtonType(btn.value)}
-            className={
+            className={cx(
               buttonType === btn.value
-                ? 'border-[1px solid #E2E2E2] mr-[60px] rounded-[8px] bg-[#70BF44] px-[15px] py-[8px] text-white'
-                : 'border-[1px solid #E2E2E2] mr-[60px] rounded-[8px] bg-[#FFFFFF] px-[15px] py-[8px]'
-            }
+                ? `bg-[#70BF44]  border-[1px solid #E2E2E2] mr-[60px] rounded-[8px]   px-[15px] py-[8px] text-white ${
+                    buttonProp && 'bg-[#182936]'
+                  }`
+                : `border-[1px solid #E2E2E2] mr-[60px] rounded-[8px] bg-[#FFFFFF] px-[15px] py-[8px]`
+            )}
           >
             {btn.label}
           </button>

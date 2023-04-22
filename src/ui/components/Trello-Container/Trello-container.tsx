@@ -8,19 +8,35 @@ import { useAppDispatch, useAppSelector } from '../../../constants/global';
 import useMediaQuery from '../../../hook/useMediaQuery';
 import HistoryModal from '../../pages/HistoryOperation/history/history-modal';
 import HistoryTable from '../../pages/HistoryOperation/history/HistoryTable';
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import axiosInteceptor from '../../../api/interceptor';
-import { getAllAppThunk, getSortedThunk } from '../../../redux/service/applications/applicationAction';
+import {
+  getAllAppThunk,
+  getSortedThunk,
+} from '../../../redux/service/applications/applicationAction';
+import { changeStatusApplication } from '../../../redux/service/applications/applications';
 
 function TrelloContainer() {
   const dispatch = useAppDispatch();
   const matches = useMediaQuery('(min-width: 1280px)');
+  const columns = useAppSelector((trello) => trello.trello?.columns);
+  const [Data, setData] = useState<any>(null);
+  const willMount = useRef(true);
+  const copyData = useRef(null);
+  copyData.current = columns;
 
   useEffect(() => {
     dispatch(getSortedThunk());
+    return () => {
+      if (willMount.current) {
+        console.log('odok', copyData);
+      }
+
+      willMount.current = false;
+       changeStatusApplication(copyData.current);
+    };
   }, []);
 
-  const columns = useAppSelector((trello) => trello.trello?.columns);
   const onDragEnd = (result: any): void => {
     const { source, destination } = result;
     if (!result.destination) return;
@@ -29,12 +45,15 @@ function TrelloContainer() {
       dispatch(sort({ source, destination }));
       return;
     }
-
+    const colStatus = columns[source.droppableId];
+    const itemChange = colStatus.items.slice(source.index, 1);
+    console.log('card Status', colStatus, 'col Change', itemChange);
     if (
       destination.droppableId === ColumnName.WaitCall &&
       source.draggableId !== ColumnName.WaitCall
     ) {
       const cardStatus = { name: CardStatus.WaitCall };
+
       dispatch(moveTask({ source, destination, cardStatus }));
     } else if (destination.droppableId === ColumnName.CallEnded) {
       const cardStatus = { name: CardStatus.CallEnded };
@@ -52,7 +71,7 @@ function TrelloContainer() {
   return (
     <div className="flex p-6 w-[100%] flex-col ">
       <PageTitle />
-      <div className="flex justify-between ml-4">
+      <div className="flex justify-between ml-4 flex-wrap">
         <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
           {Object.entries(columns).map(([columnId, column]) => {
             return (

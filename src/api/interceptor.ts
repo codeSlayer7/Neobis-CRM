@@ -11,6 +11,7 @@ const axiosInteceptor = axios.create({
 axiosInteceptor.interceptors.request.use(
   (config) => {
     const token = getCookie('token');
+    console.log(token, 'access token');
     if (token) {
       // config.headers["Authorization"] = 'Bearer ' + token;  // for Spring Boot back-end
       config.headers['Authorization'] = 'Bearer ' + token; // for Node.js Express back-end
@@ -28,28 +29,25 @@ axiosInteceptor.interceptors.response.use(
   },
   async (err) => {
     const originalConfig = err.config;
-   
 
     if (originalConfig.url !== '/api/v1/admin/registration' && err.response) {
       // Access Token was expired
-      if (err.response.status === 403 && !originalConfig._retry) {
+      if (err.response.status === 401 && !originalConfig._retry) {
         originalConfig._retry = true;
 
         try {
-          const cokie = getCookie('refresh');
-          console.log('oldToken', cokie);
+          // const cokie = getCookie('refresh');
+          // console.log('refreh token', cokie);
 
-          const rs = await axiosInteceptor
-            .post('/user/refresh', {
-              refresh: cokie,
-            })
+          const { data } = await axiosInteceptor
+            .post('/user/refresh')
             .catch(function (error) {
               console.log(error);
             });
 
-          console.log(rs, 'tokeniji');
-          const { accessToken } = rs.data;
-        
+          console.log(data.result.jwtToken, 'tokeniji');
+          const accessToken = data.result.jwtToken;
+
           // console.log(cookie2)
           removeCookie('token');
           setCookie('token', accessToken, 4);
