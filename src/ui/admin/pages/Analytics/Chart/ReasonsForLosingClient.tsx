@@ -1,6 +1,6 @@
 import ReactApexChart from 'react-apexcharts';
 
-const ReasonsForLosingClient = () => {
+function ReasonsForLosingClient() {
   const options: ApexCharts.ApexOptions = {
     series: [{ data: [400, 430, 448, 470, 540] }],
     chart: {
@@ -49,19 +49,25 @@ const ReasonsForLosingClient = () => {
   };
 
   return (
-    <div className="border-2 bg-[#F4F7FD] text-gray-900 p-4 rounded-md">
-              <div className="flex flex-col pl-[39px] pt-[10px]">
+    <div className="rounded-3xl border-2 bg-white p-4 text-gray-900">
+      <div className="flex flex-col pl-[39px] pt-[10px]">
         <span className="text-[#9291A5] ">Статистика</span>
         <div className="mb-[20px] text-[20px] font-semibold">
-        Причины потери клиента
+          Причины потери клиента
         </div>
       </div>
-      <div className="border -[1px solid #E5E5EF]"></div>
-      <div className='ml-[-55px]'>
-      <ReactApexChart options={options} series={options.series} type="bar" width={1320}  height={280} />
+      <div className="-[1px solid #E5E5EF] border" />
+      <div className="ml-[-55px]">
+        <ReactApexChart
+          options={options}
+          series={options.series}
+          type="bar"
+          width={1320}
+          height={280}
+        />
       </div>
     </div>
   );
-};
+}
 
 export default ReasonsForLosingClient;

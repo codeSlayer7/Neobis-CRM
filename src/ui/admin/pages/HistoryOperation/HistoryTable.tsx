@@ -56,7 +56,7 @@ export default function HistoryTable() {
           alignItems: 'flex-end',
         }}
       >
-        <Box sx={{ width: '100%', display: 'table', tableLayout: 'fixed' }}>
+        <Box sx={{ width: '90%',margin:"0 auto", display: 'table', tableLayout: 'fixed' }}>
           <TableContainer
             component={Paper}
             sx={{

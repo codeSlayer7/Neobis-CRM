@@ -5,7 +5,7 @@ import ReasonsForLosingClient from './Chart/ReasonsForLosingClient';
 
 export default function Analytics() {
   return (
-    <div className="flex flex-col pl-[40px] pt-[63px]">
+    <div className="flex flex-col my-20 pl-[40px] ">
       <DonutChart />
       <div>
         <ColumnChart />

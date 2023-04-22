@@ -12,7 +12,6 @@ import HoverText from './hoverText';
 import { useAppDispatch } from '../../../constants/global';
 import { toggleStore } from '../../../redux/slices/toggleSidebar';
 
-
 interface IMenuItem {
   name: string;
   path: string;
@@ -45,13 +44,12 @@ function Sidebar({ children }: Props) {
     { name: 'Студенты', path: '/students', icon: <StudentIcon /> },
     { name: 'Преподаватели', path: '/mentors', icon: <MentorsIcon /> },
     { name: 'Архивы', path: '/archive', icon: <ArchiveIcon /> },
-  
   ];
   return (
     <div className="flex ">
       <div
         style={{ width: isOpen ? '240px' : '80px' }}
-        className=" h-auto w-60 rounded-md border-solid  border-r-slate-300 shadow-md"
+        className=" h-[100vh] w-60  border-solid  border-r-2 border-b-0 border-slate-300 shadow-md"
       >
         <div className="my-3.5 flex items-center">
           <div
@@ -98,7 +96,7 @@ function Sidebar({ children }: Props) {
           <HistoryHeader />
           <main
             className={
-              !isOpen ? 'flex w-[100%] flex-col ' : 'flex w-[73%] flex-col'
+              !isOpen ? 'flex w-[100%] flex-col h-[100vh]' : 'flex w-[73%] flex-col h-[100vh]'
             }
           >
             {children}
@@ -107,7 +105,7 @@ function Sidebar({ children }: Props) {
       ) : (
         <main
           className={
-            !isOpen ? 'flex w-[100%] flex-col  ' : 'flex w-[73%] flex-col'
+            !isOpen ? 'flex w-[100%] flex-col h-[100vh] ' : 'flex w-[73%] flex-col h-[100vh]'
           }
         >
           {children}
