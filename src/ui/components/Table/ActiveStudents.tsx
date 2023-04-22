@@ -20,15 +20,12 @@ export default function CourseStudents() {
 //     dispatch(getCourseByIdThunk(id));
 //   }, []);
 
-const rows : Rows[] =[
-    {
-
-    },
-    {
-
-    }
+const rows = [
+  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
+  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
+  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
+  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
 ]
-
   const studentColumns: Columns[] = [
     { field: 'id', headerName: '', width: 0 },
     {

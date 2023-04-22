@@ -11,9 +11,6 @@ import HistoryHeader from './history-header';
 import HoverText from './hoverText';
 import { useAppDispatch } from '../../../constants/global';
 import { toggleStore } from '../../../redux/slices/toggleSidebar';
-// import History from '../../icons/History';
-import HistoryIcon from '../../icons/HistoryIcon';
-import HistoryIcon1 from '../../icons/HistoryIcon1';
 
 interface IMenuItem {
   name: string;
@@ -47,7 +44,6 @@ function Sidebar({ children }: Props) {
     { name: 'Студенты', path: '/students', icon: <StudentIcon /> },
     { name: 'Преподаватели', path: '/mentors', icon: <MentorsIcon /> },
     { name: 'Архивы', path: '/archive', icon: <ArchiveIcon /> },
-    { name: 'История операции', path: '/history', icon: <HistoryIcon1 /> },
   ];
   return (
     <div className="flex ">

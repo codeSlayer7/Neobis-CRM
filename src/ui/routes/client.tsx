@@ -13,7 +13,7 @@ import Courses from '../pages/Groups/Courses';
 import Students from '../pages/Students';
 import Mentors from '../pages/Mentors/Mentors';
 import MentorsDetails from '../pages/Mentors/MentorsDetails/MentorsDetails';
-import HistoryTitle from '../pages/HistoryOperation/history/history-title';
+
 import Profile from '../pages/Profile/Profile';
 import Archive from '../pages/Archive/Archive';
 
@@ -46,7 +46,7 @@ export default function Client() {
         <Route path="archive" element={<Archive />} />
         <Route path="profile" element={<Profile />} />
         <Route path="archive" element={<Archive />} />
-        <Route path="history" element={<HistoryTitle />} />
+       
       </Routes>
     </RouteWrapper>
   );

@@ -20,7 +20,7 @@ function HistoryTitle() {
   const result = format(today, "yyyy-MM-dd'T'HH:mm:ss.SSSxxx");
 
   return (
-    <div className="mb-10 flex flex-col justify-between">
+    <div className="mb-10 mx-10 flex flex-col justify-between">
       <div>
         <h3 className="text-3xl font-bold">История операций</h3>
         <span className="mt-5 block text-xl font-semibold">

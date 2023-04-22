@@ -8,6 +8,7 @@ import { BsFolder, BsPersonWorkspace } from 'react-icons/bs';
 import { SlGraduation } from 'react-icons/sl';
 import { TiMessages } from 'react-icons/ti';
 import { TbBrandGoogleAnalytics } from 'react-icons/tb';
+import { GrHistory } from 'react-icons/gr';
 
 interface IMenuItem {
   name: string;
@@ -25,44 +26,42 @@ function SidebarAdmin({ children }: Props) {
       name: 'Менеджер',
       path: '/admin',
       icon: <MdOutlineManageAccounts className="text-3xl" />,
-      selected: false,
     },
     {
       name: 'Заявки',
       path: '/admin/applications',
       icon: <TiMessages className="text-3xl" />,
-      selected: false,
     },
 
     {
       name: 'Преподаватели',
       path: '/admin/mentors',
       icon: <VscBook className="text-3xl" />,
-      selected: false,
     },
     {
       name: 'Курсы',
       path: '/admin/courses',
       icon: <BsPersonWorkspace className="text-3xl" />,
-      selected: false,
     },
     {
       name: 'Студенты',
       path: '/admin/students',
       icon: <SlGraduation className="text-3xl" />,
-      selected: false,
     },
     {
       name: 'Архивы',
       path: '/admin/archive',
       icon: <BsFolder className="text-3xl" />,
-      selected: false,
     },
     {
       name: 'Аналитика',
       path: '/admin/analytics',
       icon: <TbBrandGoogleAnalytics className="text-3xl" />,
-      selected: false,
+    },
+    {
+      name: 'История',
+      path: '/admin/history',
+      icon: <GrHistory className="text-3xl text-slate-400" />,
     },
   ];
 

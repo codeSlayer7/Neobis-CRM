@@ -30,27 +30,26 @@ export const addNewMentor = async ({ values, formData }) => {
 };
 
 //update mentor
-export const updateMentor = async ({values}) => {
-  console.log(values, 'tttttttt')
+export const updateMentor = async ({ values, formData }) => {
   return axiosInteceptor
-    .put(`${Endpoints.MentorUpdate}/${values.id}`)
-    // .then((res) => {
-    //   if (res.status === 200 && typeof formData !== 'string') {
-    //     axiosInteceptor.post(
-    //       `${Endpoints.MentorCreate}/${values.id}`,
-    //       formData,
-    //       {
-    //         headers: {
-    //           'Content-Type': `multipart/form-data`,
-    //         },
-    //       }
-    //     );
-      // }
-    // });
+    .put(`${Endpoints.MentorUpdate}/${values.id}`, values)
+    .then((res) => {
+      if (res.status === 200 && typeof formData !== 'string') {
+        axiosInteceptor.post(
+          `${Endpoints.MentorCreate}/${values.id}`,
+          formData,
+          {
+            headers: {
+              'Content-Type': `multipart/form-data`,
+            },
+          }
+        );
+      }
+    });
 };
 
 export const archiveMentor = (id: number) => {
-  return axiosInteceptor.put(`${Endpoints.MentorAPI}/archive=${id}`, {
+  return axiosInteceptor.put(`${Endpoints.MentorAPI}/archive?courseId=${id}`, {
     reason: 'kurs',
   });
 };

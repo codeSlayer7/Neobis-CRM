@@ -23,7 +23,7 @@ function Groups() {
   }, [id, dispatch]);
 
   return (
-    <div className="my-10 ml-[36px] h-[100vh] w-full">
+    <div className="my-10 ml-[36px] h-[auto] w-full">
       <div className="flex h-24 w-[1287px] items-center justify-around rounded-lg border-2 border-slate-200 shadow-md ">
         <div className="flex">
           <img
@@ -114,7 +114,7 @@ function Groups() {
           />
           <div className="mr-10  flex w-[420px] items-center justify-between">
             <input
-              className="placeholder:regular absolute block h-[44px] w-[420px] rounded-md border  border-slate-200 bg-white py-2 pl-9 pr-3 shadow-lg placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
+              className="placeholder:regular absolute block h-[44px] w-[420px] rounded-lg border-2  border-slate-300 bg-white py-2 pl-9 pr-3 shadow-lg placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
               placeholder="Поиск..."
               type="text"
               name="search"

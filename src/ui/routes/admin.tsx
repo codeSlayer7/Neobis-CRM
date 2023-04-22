@@ -12,6 +12,7 @@ import UserPage from '../admin/pages/Manager/UserPage';
 import MentorArchive from '../admin/components/Modals/MentorArchive';
 import MentorEdit from '../admin/components/Modals/MentorEdit';
 import AdminGroups from '../admin/pages/AdminCourses/AdminGroups';
+import HistoryTitle from '../admin/pages/HistoryOperation/history-title';
 
 function RouteWrapperAdmin({ children }: any) {
   return (
@@ -39,6 +40,8 @@ export default function Admin() {
         <Route path="archive" element={<AdminArchive />} />
         <Route path="mentor/mentorarchive" element={<MentorArchive />} />
         <Route path="mentor/mentoredit" element={<MentorEdit />} />
+        <Route path="history" element={<HistoryTitle />} />
+
       </Routes>
     </RouteWrapperAdmin>
   );
