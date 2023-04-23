@@ -1,123 +1,75 @@
 import { DataGrid } from '@mui/x-data-grid';
-
-export interface Columns {
-  field: string;
-  headerName: any;
-  width: number;
-  renderCell?: any;
-}
-
-interface Rows {
-  id: number;
-  group: string;
-  number: string;
-  teacher: string;
-  date: string;
-  cause: string;
-}
+import { useEffect, useState } from 'react';
+import axiosInteceptor from '../../../../api/base/interceptor';
 
 export default function GroupTable() {
-  const groupRows: Rows[] = [
-    {
-      id: 1,
-      group: 'Product Manager',
-      number: '10 студентов',
-      teacher: 'Аскар Мусабеков',
-      date: 'Октябрь 14',
-      cause: 'Курс завершился ',
-    },
-    {
-      id: 2,
-      group: 'Java Script',
-      number: '15 студентов',
-      teacher: 'Аскар Мусабеков',
-      date: 'Октябрь 14',
-      cause: 'в дикрете в связи с рождение сына',
-    },
-    {
-      id: 3,
-      group: 'Java Script',
-      number: '20 студентов',
-      teacher: 'Аскар Мусабеков',
-      date: 'Октябрь 14',
-      cause: 'в дикрете в связи с рождение сына',
-    },
-    {
-      id: 4,
-      group: 'Java Script',
-      number: '10 студентов',
-      teacher: 'Аскар Мусабеков',
-      date: 'Октябрь 14',
-      cause: 'в дикрете в связи с рождение сына',
-    },
-    {
-      id: 5,
-      group: 'Java Script',
-      number: '10 студентов',
-      teacher: 'Аскар Мусабеков',
-      date: 'Октябрь 14',
-      cause: 'в дикрете в связи с рождение сына',
-    },
-    {
-      id: 6,
-      group: 'Java Script',
-      number: '10 студентов',
-      teacher: 'Аскар Мусабеков',
-      date: 'Октябрь 14',
-      cause: 'в дикрете в связи с рождение сына',
-    },
-  ];
-  console.log(groupRows);
+  const [data, setData] = useState([]);
+  useEffect(
+    axiosInteceptor
+      .get('http://68.183.88.191:8080/api/v1/applications?is_archived=true')
+      .then((data) => setData(data))
+  );
 
-  const groupColumns: Columns[] = [
-    {
-      field: 'Ф.И.О',
-      headerName: <div className="text-[16px] font-semibold">Направление</div>,
-      width: 195,
-    },
-    {
-      field: 'Email',
-      headerName: (
-        <div className="text-[16px] font-semibold">Количество обучаемых</div>
-      ),
-      width: 275,
-    },
-    {
-      field: 'Телефон',
-      headerName: (
-        <div className="text-[16px] font-semibold">Преподаватель</div>
-      ),
-      width: 227,
-    },
-    {
-      field: 'Группа',
-      headerName: (
-        <div className="text-[16px] font-semibold">Дата архивации</div>
-      ),
-      width: 212,
-    },
-    {
-      field: 'Дата Заявки',
-      headerName: (
-        <div className="text-[16px] font-semibold">Причина архивации</div>
-      ),
-      width: 290,
-    },
-    {
-      field: 'Дата Заявки',
-      headerName: (
-        <div className="text-[16px] font-semibold">Причина архивации</div>
-      ),
-      width: 290,
-    },
-  ];
   return (
-    <DataGrid
-      autoHeight
-      className=" bg-white border rounded-lg shadow-lg w-[100%] hover:none"
-      rows={groupRows}
-      columns={groupColumns}
-      getRowClassName={(params) => 'even:bg-[#F4F7FD]'}
-    />
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead sx={{ fontWeight: 'bold' }}>
+          <TableRow>
+            {[' Ф.И.О', 'Email', 'Телефон', 'Группа', 'Дата заявки', ''].map(
+              (column) => (
+                <TableCell
+                  key={column}
+                  sx={{
+                    fontWeight: '600',
+                    fontSize: '18px',
+                    fontStyle: 'normal',
+                    lineHeight: '27px',
+                  }}
+                  align="left"
+                >
+                  {column}
+                </TableCell>
+              )
+            )}
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {data?.data.map((row, index) => (
+            <TableRow
+              key={row.name}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              style={
+                index % 2 ? { background: '#F4F5F6' } : { background: 'white' }
+              }
+            >
+              <TableCell component="th" scope="row">
+                {row.firstName} {row.lastName}
+              </TableCell>
+
+              <TableCell align="left">{row.email}</TableCell>
+              <TableCell align="left">{row.phoneNumber}</TableCell>
+              <TableCell align="left">{row.reason}</TableCell>
+              <TableCell align="left">{row.creationDate}</TableCell>
+              <TableCell align="left">
+                {console.log(row)}
+                {!row.isArchived ? (
+                  <IconButton size="large" onClick={() => archive(row.id)}>
+                    <BsArchive size={25} />
+                  </IconButton>
+                ) : (
+                  <IconButton onClick={() => unArchive(row.id)}>
+                    <FaBoxOpen size={30} />
+                  </IconButton>
+                )}
+
+                <IconButton style={{ marginLeft: '15px' }}>
+                  <TbEdit size={30} />
+                </IconButton>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 }

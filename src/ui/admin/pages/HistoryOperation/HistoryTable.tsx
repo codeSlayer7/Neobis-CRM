@@ -29,6 +29,13 @@ export default function HistoryTable() {
   const [isInitialized, setIsInitialized] = useState(false);
   const [show, setShow] = useState(false);
   const [modalData, setModalData] = useState(null);
+
+  useEffect(() => {
+    axiosInteceptor
+      .get('http://68.183.88.191:8080/api/v1/operations')
+      .then((res) => console.log(res, 'history'))
+      .catch((err) => console.log(err));
+  }, []);
   const {
     // isPaginating,
     currentPage,
@@ -47,11 +54,10 @@ export default function HistoryTable() {
   }
 
   useEffect(() => {
-    axiosInteceptor.get('api/v1/operations')
-      .then(res => {
-        console.log(res)
-      })
-  },[])
+    axiosInteceptor.get('api/v1/operations').then((res) => {
+      console.log(res);
+    });
+  }, []);
   return (
     <>
       {/* <HistoryHeader /> */}

@@ -1,4 +1,6 @@
 import { DataGrid } from '@mui/x-data-grid';
+import { useEffect, useState } from 'react';
+import axiosInteceptor from '../../../../../api/base/interceptor';
 import ArchiveAction from '../../Actions/ArchiveAction';
 
 interface Columns {
@@ -18,6 +20,7 @@ interface Rows {
 }
 
 export default function GroupAdmin() {
+  const [archiveApp, setArchiveApp] = useState(null);
   const groupRows: Rows[] = [
     {
       id: 1,
@@ -68,7 +71,6 @@ export default function GroupAdmin() {
       cause: 'в дикрете в связи с рождение сына',
     },
   ];
-  console.log(groupRows);
 
   const groupColumns: Columns[] = [
     { field: 'id', headerName: '', width: 0 },
@@ -106,12 +108,13 @@ export default function GroupAdmin() {
       width: 330,
     },
     {
-        field: 'actions',
-        headerName: <div className="text-[16px] font-semibold">Действия</div>,
-        width: 90,
-        renderCell: (params: any) => <ArchiveAction {...params} />,
-      },
+      field: 'actions',
+      headerName: <div className="text-[16px] font-semibold">Действия</div>,
+      width: 90,
+      renderCell: (params: any) => <ArchiveAction {...params} />,
+    },
   ];
+
 
   return (
     <DataGrid
