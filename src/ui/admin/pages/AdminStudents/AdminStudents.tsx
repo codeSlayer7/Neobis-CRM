@@ -121,7 +121,7 @@ export default function AdminStudents() {
         />
         <button
           type="button"
-          className="h-[43px] ml-[310px] w-[251px] rounded-lg border bg-[#4588C6] text-lg text-white transition duration-150 hover:scale-95"
+          className="h-[43px] ml-[360px] w-[251px] rounded-lg border bg-[#4588C6] text-lg text-white transition duration-150 hover:scale-95"
           onClick={handleOpen}
         >
           Добавить студента

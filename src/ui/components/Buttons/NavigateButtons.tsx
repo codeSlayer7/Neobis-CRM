@@ -48,7 +48,7 @@ export default function NavigateButtons({
             className={cx(
               buttonType === btn.value
                 ? `bg-[#70BF44]  border-[1px solid #E2E2E2] mr-[60px] rounded-[8px]   px-[15px] py-[8px] text-white ${
-                    buttonProp && 'bg-[#182936]'
+                    buttonProp && 'bg-[#2C599D]'
                   }`
                 : `border-[1px solid #E2E2E2] mr-[60px] rounded-[8px] bg-[#FFFFFF] px-[15px] py-[8px]`
             )}

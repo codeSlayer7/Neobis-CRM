@@ -4,8 +4,6 @@ import { useAppDispatch, useAppSelector } from '../../../constants/global';
 import { getAllStudentsThunk } from '../../../redux/slices/studentSlice';
 import StudentActions from '../../admin/components/Actions/StudentActions';
 import { StudentData } from '../../../redux/types/adminTypes';
-import { Pagination } from '@mui/material';
-import { paginateData } from '../../admin/pages/AdminStudents/AdminStudents';
 
 interface MyColums {
   field: string;
@@ -18,17 +16,23 @@ interface Props {
   students: {}[];
 }
 const StudentTable = ({ sortBy, students }: Props) => {
-  const [page, setPage] = useState(1)
   const { role } = useAppSelector((state) => {
     return state.user;
   });
 
-  const colors = (status: 'Неактивный' | 'Активный' | 'Заморожен') =>
+
+  // const { role } = useAppSelector((state) => {
+  //   return state.user;
+  // });
+  
+console.log("students", students);
+
+  const colors = (status: 'Архивирован' | 'Активный' | 'Заморожен') =>
     status === 'Активный'
       ? '#2CAE49'
       : status === 'Заморожен'
       ? '#2C77AE'
-      : status === 'Неактивный'
+      : status === 'Архивирован'
       ? '#DF3939'
       : '';
 
@@ -154,23 +158,14 @@ const StudentTable = ({ sortBy, students }: Props) => {
         <DataGrid
           autoHeight
           className=" bg-white border rounded-lg shadow-lg"
-          rows={paginateData<Record<string, any>>({data: students, page: page, pageSize: 10})}
+          rows={students}
           columns={columns}
           getRowClassName={(params) => 'even:bg-[#dee7f3]'}
-          hideFooterPagination
         />
-        <Pagination
-          sx={{ marginTop: '20px', marginBottom: '20px' }}
-          count={Math.ceil(students?.length / 10)}
-          page={page}
-          onChange={(_, page) => setPage(page)}
-          color="secondary"
-          size="medium"
-        />
+
       </div>
     </>
   );
 };
 
 export default StudentTable;
-
