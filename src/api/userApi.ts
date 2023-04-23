@@ -15,6 +15,8 @@ export interface LoginResponse {
     dateExpiredAccessToken: number;
     dateExpiredRefreshToken: number;
     refreshToken: string;
+    firstName: string;
+    lastName: string
   };
   role: UserRole;
 }

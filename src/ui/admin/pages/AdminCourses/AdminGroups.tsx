@@ -12,6 +12,7 @@ import Calendar from '../../../components/Schedule/calendar';
 import { array } from '../../components/AdminDropDown/GroupField';
 import { useAppDispatch, useAppSelector } from '../../../../constants/global';
 import { getCourseByIdThunk } from '../../../../redux/service/courses/coursesAction';
+import ActiveStudents from '../../../components/Table/ActiveStudents';
 
 function AdminGroups() {
   const dispatch = useAppDispatch();
@@ -80,20 +81,38 @@ function AdminGroups() {
           </span>
         </div>
       </div>
-      <div className="my-20 mb-10 flex w-[60%] justify-between">
-        {/* <DropDown
-          label={<div className="font-sans text-base">Оплата</div>}
-          onOptionClick={(option) => `(option)`}
-          options={['Наличными', 'Карта']}
-        /> */}
+      <div className="my-20  mb-10 flex w-[93%] justify-between">
+        <h3 className="text-3xl font-semibold leading-10 ">Активные группы</h3>
+        <div className="mr-5 flex w-[400px] justify-between">
+          <DropDown
+            label={
+              <div className="inline-flex h-5 w-28 items-center font-sans text-base">
+                Ментор
+              </div>
+            }
+            onOptionClick={(option) => option}
+            options={array}
+          />
+          <button
+            type="button "
+            className="bg-neobis-bg-green h-11 w-48 rounded-lg border font-sans text-lg text-white"
+          >
+            Добавить группу
+          </button>
+        </div>
+      </div>
+      <div>
+        <ActiveStudents />
+      </div>
+      <div className="my-20 mb-10 ml-[50%] mr-5 flex w-[600px] justify-between">
         <DropDown
-          label={<div className="font-sans text-base">Группы</div>}
+          label={<div className="w-[90px] font-sans text-base">Группы</div>}
           onOptionClick={(option) => `(option)`}
           options={array}
         />
-        <div className="flex w-[420px] items-center justify-between ">
+        <div className="flex w-[420px]  items-center justify-between ">
           <input
-            className="placeholder:regular absolute block w-[420px] rounded-lg border-2  border-slate-300 bg-white py-2 pl-9 pr-3 shadow-md placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
+            className="placeholder:regular absolute block h-[44px] w-[420px] rounded-lg border-2  border-slate-300 bg-white py-2 pl-9 pr-3 shadow-md placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
             placeholder="Поиск..."
             type="text"
             name="search"

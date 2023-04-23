@@ -1,8 +1,21 @@
+import { useAppSelector } from '../../../constants/global';
+
 function ProfileInput() {
+  const users = useAppSelector(
+    (state) => {
+      return state.admin.users
+    }
+  );
+
+  console.log(users, `users`);
+  
+
   return (
     <div className="mt-16 flex">
       <div>
-        <form>
+      {/* {users &&  */}
+      {/* // users.map((user: any) => ( */}
+        <form >
           <label
             htmlFor="name"
             className="mb-3 block text-lg font-normal text-gray-900"
@@ -13,6 +26,7 @@ function ProfileInput() {
           <input
             type="name"
             id="name"
+            // value={user.firstName}
             className="mb-3 block h-[45px] w-[292px] rounded-lg border border-black bg-white p-2.5 text-sm"
             required
           />
@@ -27,6 +41,7 @@ function ProfileInput() {
           <input
             type="email"
             id="email"
+            // value={user.email}
             className="mb-3 block h-[45px] w-[292px] rounded-lg border border-black bg-white p-2.5 text-sm"
             required
           />
@@ -43,20 +58,8 @@ function ProfileInput() {
             className="mb-3 block h-[45px] w-[292px] rounded-lg border border-black bg-white p-2.5 text-sm"
             required
           />
-          <label
-            htmlFor="date"
-            className="mb-3 block text-lg font-normal text-gray-900"
-          >
-            Дата рождения
-          </label>
-
-          <input
-            type="date"
-            id="date"
-            className="mb-3 block h-[45px] w-[292px] rounded-lg border border-black bg-white p-2.5 text-sm"
-            required
-          />
         </form>
+          {/* // ))} */}
       </div>
       <div className="ml-16">
         <form>
@@ -70,6 +73,7 @@ function ProfileInput() {
           <input
             type="secondName"
             id="secondName"
+            // value={lastName}
             className="mb-3 block h-[45px] w-[292px] rounded-lg border border-black bg-white p-2.5 text-sm"
             required
           />
@@ -84,13 +88,14 @@ function ProfileInput() {
           <input
             type="phone"
             id="phone"
+            // value={phoneNumber}
             className="mb-3 block h-[45px] w-[292px] rounded-lg border border-black bg-white p-2.5 text-sm"
             required
-          />
+            />
           <label
             htmlFor="gender"
             className="mb-3 block text-lg font-normal text-gray-900"
-          >
+            >
             Пол
           </label>
 
@@ -99,7 +104,7 @@ function ProfileInput() {
             id="gender"
             className="mb-3 block h-[45px] w-[292px] rounded-lg border border-black bg-white p-2.5 text-sm"
             required
-          />
+            />
         </form>
       </div>
     </div>

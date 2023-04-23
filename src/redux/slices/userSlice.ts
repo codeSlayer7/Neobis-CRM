@@ -82,12 +82,14 @@ const userSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(loginUserThunk.fulfilled, (state, { payload }) => {
+      console.log("pay", payload);
+      
       state.loading = false;
       state.accessToken = payload.authenticationResponse.jwtToken;
       state.refreshToken = payload.authenticationResponse.refreshToken;
       state.role = payload.role;
-      // state.firstName = payload.firstName;
-      // state.lastName = payload.lastName;
+      state.firstName = payload.firstName;
+      state.lastName = payload.lastName;
     });
     // builder.addCase(
     //   loginUserThunk.rejected,

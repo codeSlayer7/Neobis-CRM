@@ -9,7 +9,7 @@ function HoverText({ text, isOpen }: Props) {
       className={
         isOpen
           ? ' hidden '
-          : 'absolute top-[20%] left-20 z-40 m-2  hidden  rounded-lg border-4 border-[#D9BFFF] bg-white shadow-md group-hover:block'
+          : 'absolute top-[20%] left-20 z-40 m-2  hidden w-40 rounded-lg border-4 border-[#8874C8] bg-white shadow-md group-hover:block'
       }
     >
       <ul className="p-2 ">
