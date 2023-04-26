@@ -137,14 +137,14 @@ export default function HistoryTable() {
                           alignItems: 'center',
                         }}
                       >
-                        <Avatar
+                        {/* <Avatar
                           src={row.img}
                           sx={{
                             marginRight: '15px',
                             width: '40px',
                             height: '40px',
                           }}
-                        />
+                        /> */}
                         {row.first_name} {row.last_name}
                       </Box>
                     </TableCell>
