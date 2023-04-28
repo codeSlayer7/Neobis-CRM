@@ -1,15 +1,21 @@
-export interface ItemBack {
-  name: string;
-  time: string;
-  specific: string;
-  phoneNumber: string;
-  status: string;
-  id: number;
-}
+import { IApplication } from '../redux/service/applications/applications';
 
 export interface Column {
+  loading: boolean;
   columns: {
-    [key: string]: {
+    WAITING_FOR_CALL: {
+      name: string;
+      items: [];
+    };
+    CALL_RECEIVED: {
+      name: string;
+      items: [];
+    };
+    APPLIED_FOR_TRIAL: {
+      name: string;
+      items: [];
+    };
+    ATTENDED_TRIAL: {
       name: string;
       items: ItemBack[] | [];
     };

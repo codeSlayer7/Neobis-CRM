@@ -1,12 +1,16 @@
-import { NavLink } from 'react-router-dom';
-import { FaBars, FaArrowLeft } from 'react-icons/fa';
+import { NavLink, useLocation } from 'react-router-dom';
+import { HiOutlineArrowLongRight } from 'react-icons/hi2';
+import { HiOutlineMenuAlt1 } from 'react-icons/hi';
 import React, { useState } from 'react';
 import StudentIcon from '../../icons/StudentIcon';
 import ArchiveIcon from '../../icons/ArchiveIcon';
 import MentorsIcon from '../../icons/MentorsIcon';
 import ApplicationIcon from '../../icons/ApplicationIcon';
-import AnalyticsIcon from '../../icons/AnalyticsIcon';
-import GroupIcon from '../../icons/GroupIcon';
+import Education from '../../icons/Education';
+import HistoryHeader from '../../admin/components/SidebarAdmin/history-header';
+import HoverText from './hoverText';
+import { useAppDispatch } from '../../../constants/global';
+import { toggleStore } from '../../../redux/slices/toggleSidebar';
 
 interface IMenuItem {
   name: string;
@@ -17,41 +21,50 @@ type Props = {
   children: React.ReactNode;
 };
 
+const hoverName = ['Заявки', 'Курсы', 'Студенты', 'Преподаватели', 'Архивы'];
+
 function Sidebar({ children }: Props) {
+  const dispatch = useAppDispatch();
+
   const [isOpen, setIsOpen] = useState(false);
-  const toggle = () => setIsOpen(!isOpen);
-  const activeMenu = 'text-slate-100 text-xl flex gap-3.5 p-5 bg-purple-400';
+  const toggle = () => {
+    dispatch(toggleStore({ sidebar: !isOpen }));
+    setIsOpen(!isOpen);
+  };
+  const location = useLocation();
+
+  const activeMenu =
+    'text-slate-100 text-xl flex gap-3.5 rounded-full p-5 m-1 bg-[#A062F7]';
   const normalMenu =
-    'text-slate-400 group flex gap-3.5 text-xl p-5 hover:bg-purple-100 hover:text-purple-400 ';
+    'relative text-slate-400 group flex rounded-full gap-3.5 text-xl p-5 m-1 hover:bg-[#D9BFFF] hover:text-[#A062F7]';
 
   const menuItem: IMenuItem[] = [
-    { name: 'Заявки', path: '/applications', icon: <ApplicationIcon /> },
-    { name: 'Группы', path: '/groups', icon: <GroupIcon /> },
+    { name: 'Заявки', path: '/', icon: <ApplicationIcon /> },
+    { name: 'Курсы', path: '/courses', icon: <Education /> },
     { name: 'Студенты', path: '/students', icon: <StudentIcon /> },
     { name: 'Преподаватели', path: '/mentors', icon: <MentorsIcon /> },
     { name: 'Архивы', path: '/archive', icon: <ArchiveIcon /> },
-    { name: 'Аналитика', path: '/analytics', icon: <AnalyticsIcon /> },
   ];
   return (
     <div className="flex ">
       <div
         style={{ width: isOpen ? '240px' : '80px' }}
-        className="h-[100vh]  w-60 rounded-md border-solid border-r-slate-300  shadow-md"
+        className=" h-[100vh] w-60  border-solid  border-r-2 border-b-0 border-slate-100 shadow-md"
       >
         <div className="my-3.5 flex items-center">
           <div
             style={{ marginLeft: isOpen ? '80px' : '0px' }}
             className="ml-20 flex text-2xl"
           >
-            <FaBars
+            <HiOutlineArrowLongRight
               onClick={toggle}
               style={{ display: isOpen ? 'none' : 'block' }}
-              className="ml-6 text-2xl text-purple-400"
+              className="ml-6 text-5xl text-[#A062F7]"
             />
-            <FaArrowLeft
+            <HiOutlineMenuAlt1
               style={{ display: isOpen ? 'block' : 'none' }}
               onClick={toggle}
-              className="ml-20 text-2xl text-purple-400"
+              className="ml-20 text-4xl text-[#A062F7]"
             />
           </div>
         </div>
@@ -59,21 +72,45 @@ function Sidebar({ children }: Props) {
         {menuItem?.map((item, index) => (
           <NavLink
             to={item.path}
-            // eslint-disable-next-line react/no-array-index-key
             key={index}
             className={({ isActive }) => (isActive ? activeMenu : normalMenu)}
           >
-            <div>{item.icon}</div>
+            <div className="group relative">{item.icon}</div>
+
             <div style={{ display: isOpen ? 'block' : 'none' }}>
               {item.name}
             </div>
+            {hoverName
+              .filter((name) => name === item.name)
+              .map((name) => (
+                <HoverText text={name} isOpen={isOpen} key={index} />
+              ))}
           </NavLink>
         ))}
       </div>
+      {/* <div className="flex flex-col"> */}
 
-      <main className={!isOpen ? 'flex w-[90vw]' : 'flex w-[83%] '}>
-        {children}
-      </main>
+      {location.pathname === '/history' ? (
+        <div className="flex h-[100vh] flex-col">
+          {' '}
+          <HistoryHeader />
+          <main
+            className={
+              !isOpen ? 'flex w-[100%] flex-col h-[100vh]' : 'flex w-[73%] flex-col h-[100vh]'
+            }
+          >
+            {children}
+          </main>
+        </div>
+      ) : (
+        <main
+          className={
+            !isOpen ? 'flex w-[100%] flex-col h-[100vh] ' : 'flex w-[73%] flex-col h-[100vh]'
+          }
+        >
+          {children}
+        </main>
+      )}
     </div>
   );
 }

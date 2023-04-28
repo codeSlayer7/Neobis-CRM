@@ -1,4 +1,9 @@
 body {
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+}
 
-    overflow-x: hidden; /* Hide horizontal scrollbar */
-  }
+/* image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+} */

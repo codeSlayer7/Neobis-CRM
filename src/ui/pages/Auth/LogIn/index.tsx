@@ -1,72 +1,81 @@
 import * as yup from 'yup';
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
-// import { yupResolver } from '@hook'
+import React, { useEffect } from 'react';
 import Auth from '../../../icons/auth';
 import EmailInput from '../../../components/Inputs/EmailInput';
 import PasswordInput from '../../../components/Inputs/PasswordInput';
-import LogInButton from '../../../components/Buttons/LogInButton';
 import CheckBox from '../../../components/CheckBox';
+import { useFormik } from 'formik';
+import { UserData } from '../../../../redux/types/userTypes';
+import { loginUserThunk } from '../../../../redux/slices/userSlice';
+import { useNavigate } from 'react-router-dom';
+import { Button } from '../../../components/Buttons/Button';
+import { useAppDispatch, useAppSelector } from '../../../../constants/global';
+// import { toast } from 'react-toastify';
+// import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { schema } from '../../../../utils/schema';
 
 export interface ILoginForm {
   email: string;
   password: string;
-  type: string;
 }
 
-const schema = yup.object().shape({
-  email: yup
-    .string()
-    .required('Укажите логин !')
-    .email('Неверный email. Проверьте, правильно ли введён email'),
-  password: yup
-    .string()
-    .required('Укажите пароль !')
-    .min(6, 'Пароль должен быть неменьше 6 символов')
-    .max(40, 'Пароль должен быть небольше 40 символов'),
-});
+const initialValues = {
+  email: '',
+  password: '',
+};
 
 export const LogIn: React.FC = () => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-    reset,
-  } = useForm<ILoginForm>({ resolver: yupResolver(schema) });
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-  const onSubmit = (data: ILoginForm) => {
-    console.log(data);
-    reset();
+  const { role } = useAppSelector((state) => {
+    return state.user;
+  });
+
+  const onSubmit = (values: UserData) => {
+    dispatch(loginUserThunk(values));
   };
+  useEffect(() => {
+    if (role) {
+      role === 'ROLE_ADMIN' && navigate('/admin');
+      role === 'ROLE_MANAGER' && navigate('/');
+    }
+  }, [role]);
 
-  console.log(watch('email'));
+  const formik = useFormik({
+    initialValues,
+    validationSchema: schema,
+    validateOnChange: false,
+    onSubmit,
+  });
 
   return (
     <div className="flex h-screen items-center justify-around">
-      <div className="mt-[55px] ">
+      <div className="mt-[55px]">
         <Auth />
       </div>
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
+      <form onSubmit={formik.handleSubmit} className="flex flex-col">
         <p className="mb-[60px] text-center text-[36px] font-semibold">Вход</p>
         <EmailInput
-          type="text"
-          {...register('email', {
-            required: true,
-            // validate: {},
-          })}
-          // error={errors?.email && <span>This field is required</span>}
+          value={formik.values.email}
+          name="email"
+          onChange={formik.handleChange}
+          error={Boolean(formik.touched.email || formik.errors.email)}
+          helperText={formik.errors.email}
         />
         <PasswordInput
+          name="password"
           type="password"
-          {...register('password', {
-            required: true,
-            validate: {},
-          })}
-          // error={errors.password && <span>This field is required</span>}
+          value={formik.values.password}
+          onChange={formik.handleChange}
+          error={Boolean(formik.touched.password || formik.errors.password)}
+          helperText={formik.errors.password}
         />
-        <LogInButton />
+        <div>
+          {/* <ToastContainer /> */}
+          <Button label="Войти" />
+        </div>
         <CheckBox />
       </form>
     </div>
