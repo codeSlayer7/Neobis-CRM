@@ -1,13 +1,13 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import todoSlice from '../slices/todoSlice'
+import todoSlice from '../slices/todoSlice';
 import toggleSidebar from '../slices/toggleSidebar';
-import userSlice from '../slices/userSlice';
 import adminSlice from '../slices/adminSlice';
 import coursesAction from '../service/courses/coursesAction';
 import mentorsAction from '../service/mentors/mentorsAction';
 import studentSlice from '../slices/studentSlice';
 import { loadState, saveState } from '../../api/localStorage';
 import archiveSlice from '../slices/archiveSlice';
+import userSlice from '../slices/userSlice';
 
 export const reducer = combineReducers({
   user: userSlice,

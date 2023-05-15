@@ -22,7 +22,7 @@ function AdminMentors() {
     <div className="h-auto w-[100%] pb-0 pl-[80px] pr-[20px] pt-[40px] ">
       <div className="ml-[45%] w-[600px] flex h-[43px] items-center justify-around ">
         <DropDown
-          label={<div className="font-sans text-base w-[90px] h-[23px]">Группа</div>}
+          label={<div className="font-sans text-base w-[90px] h-[23px]">Направление</div>}
           onOptionClick={(option) => console.log(option)}
           options={array}
         />

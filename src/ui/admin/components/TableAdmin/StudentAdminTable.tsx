@@ -35,12 +35,12 @@ function StudentAdminTable() {
   //   dispatch(getAllStudentsThunk());
   // }, [dispatch]);
 
-  const colors = (status: 'Неактивен' | 'Активен' | 'Заморожен') =>
-    status === 'Активен'
+  const colors = (status: 'Архивирован' | 'Активный' | 'Заморожен') =>
+    status === 'Активный'
       ? '#2CAE49'
       : status === 'Заморожен'
       ? '#2C77AE'
-      : status === 'Неактивен'
+      : status === 'Архивирован'
       ? '#DF3939'
       : '';
 

@@ -44,7 +44,7 @@ const  Actions:React.FC<Props> = ({user})=> {
 
 {/* -------------UPDATE-------------------- */}
 <FiEdit className="text-2xl  mr-2 mt-[2px] text-slate-400 hover:text-[#4588C6]" onClick={handleOpenModalEdit} />
-      <Modal title="Изменение студента" open={openModalEdit} onClose={handleCloseModalEdit}>
+      <Modal title="Изменение менеджера" open={openModalEdit} onClose={handleCloseModalEdit}>
         <UpdateManagerForm onClose={handleCloseModalEdit} user={user}/>
       </Modal>
     </div>

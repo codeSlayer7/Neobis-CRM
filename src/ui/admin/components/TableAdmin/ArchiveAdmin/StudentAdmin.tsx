@@ -74,14 +74,14 @@ export default function StudentTableAdmin(searchValue: string) {
   const [filteredStudents, setFilteredStudents] = useState(archiveStudents)
 
 
-  useEffect(() => {
-    const searched = filterData({
-      data: archiveStudents,
-      keys: ['email', 'firstName', 'lastName'],
-      value: searchValue,
-    });
-    setFilteredStudents(searched);
-  }, [searchValue]);
+  // useEffect(() => {
+  //   const searched = filterData({
+  //     data: archiveStudents,
+  //     keys: ['email', 'firstName', 'lastName'],
+  //     value: searchValue,
+  //   });
+  //   setFilteredStudents(searched);
+  // }, [searchValue]);
 
   useEffect(() => {
     dispatch(getAllStudentsArchiveThunk());
@@ -91,7 +91,7 @@ export default function StudentTableAdmin(searchValue: string) {
     <DataGrid
       autoHeight
       className=" bg-white border rounded-lg shadow-lg w-[1300px] hover:none"
-      rows={filteredStudents || []}
+      rows={filteredStudents }
       columns={studentColumns}
       getRowClassName={(params) => 'even:bg-[#dee7f3]'}
     />

@@ -36,13 +36,13 @@ console.log("students", students);
       ? '#DF3939'
       : '';
 
-  // const renderCell = (params: any) => (
-  //   <div>
-  //     {params.row.groups.map((value: any, index: any) => (
-  //       <div key={index}>{value.name}</div>
-  //     ))}
-  //   </div>
-  // );
+  const renderCell = (params: any) => (
+    <div>
+      {params.row.groups?.map((value: any, index: any) => (
+        <div key={index}>{value.name}</div>
+      ))}
+    </div>
+  );
 
   const columns: MyColums[] = [
     { field: 'id', headerName: '', width: 0 },
@@ -124,7 +124,7 @@ console.log("students", students);
         </div>
       ),
       width: 140,
-      // renderCell: renderCell,
+      renderCell: renderCell,
     },
     {
       field: 'totalPaymentPercentage',

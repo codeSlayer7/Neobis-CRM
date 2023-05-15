@@ -1,11 +1,10 @@
 // eslint-disable-next-line import/prefer-default-export
 export enum ColumnName {
-  WaitCall = 'waitingForCall',
-  CallEnded = 'callReceived',
-  TrialLesson = 'appliedForTrial',
-  PassedTrialLesson = 'attendedTrial',
+  WaitCall = 'WAITING_FOR_CALL',
+  CallEnded = 'CALL_RECEIVED',
+  TrialLesson = 'APPLIED_FOR_TRIAL',
+  PassedTrialLesson = 'ATTENDED_TRIAL',
 }
-
 
 export const extraCardStatus = {
   WaitCall: 'WAITING_FOR_CALL',
