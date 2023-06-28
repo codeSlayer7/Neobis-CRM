@@ -22,12 +22,13 @@ Neolabs - system for customer management, quality control, monitoring of convers
 - Jira
   
 
-![Screenshot (139)](https://github.com/codeSlayer7/Neobis-CRM/assets/97346743/d49d7931-ee46-4643-b640-79587c5faa00)
+
+
+![Screenshot (152) (1)](https://github.com/codeSlayer7/Neobis-CRM/assets/97346743/c7fdbe1e-d32f-4726-8b12-432c3628b085)
 
 
 
-## Authors
-
+## Authors 
 - [Jama82](https://github.com/Jama82)
 - [Adelina2702](https://github.com/Adelina2702)
 - [codeSlayer7](https://github.com/codeSlayer7)
