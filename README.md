@@ -24,7 +24,11 @@ Neolabs - system for customer management, quality control, monitoring of convers
 
 ![Screenshot (152)](https://github.com/codeSlayer7/Neobis-CRM/assets/97346743/3867bc06-342b-4a68-bee5-66f05aa02d69)
 
+![analitycs](https://github.com/codeSlayer7/Neobis-CRM/assets/97346743/3a36ee97-5355-4422-a7b4-a06d335fbede)
 
+![application_page](https://github.com/codeSlayer7/Neobis-CRM/assets/97346743/ab569bfb-5646-4f8c-b20c-c956855c6278)
+
+![history_operation](https://github.com/codeSlayer7/Neobis-CRM/assets/97346743/b41f7d27-aa56-4e4f-b591-4d063d3f8b15)
 
 
 ## Authors 
