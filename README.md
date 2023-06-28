@@ -20,6 +20,11 @@ Neolabs - system for customer management, quality control, monitoring of convers
 - Vite
 - Eslint air-bnb style mode
 - Jira
+  
+
+![Screenshot (139)](https://github.com/codeSlayer7/Neobis-CRM/assets/97346743/d49d7931-ee46-4643-b640-79587c5faa00)
+
+
 
 ## Authors
 
